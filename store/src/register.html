@@ -95,33 +95,56 @@
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form class="space-y-6" action="#" method="POST">
         
+        <!--First name-->
         <div>           
             <div>
-                <input type="email" name="email" id="email" class="border shadow-sm border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="First name" required="">
+              <label for="fName" class="block text-sm font-medium leading-6 text-gray-900">First Name</label>
+                <input type="text" name="fname" id="fname" 
+                class="border shadow-sm border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" 
+                placeholder="*First name" 
+                required="">
             </div>
           </div>
         
+          <!--Last Name-->
         <div>
             <div>
-                <input type="email" name="email" id="email" class="border shadow-sm border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Last name" required="">
+              <label for="lName" class="block text-sm font-medium leading-6 text-gray-900">Last name</label>
+                <input type="text" name="lName" id="lname" class="border shadow-sm border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" 
+                placeholder="*Last name" 
+                required="">
             </div>
           </div>
-        
+
+        <!--Email -->
         <div>
-          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email Address</label>
           <div class="mt-2">
-            <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
+            <input id="email" name="email" 
+            type="email" 
+            autocomplete="email" 
+            placeholder="*Email Address" 
+            required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
           </div>
         </div>
   
+        <!--Password Label-->
         <div>
           <div class="flex items-center justify-between">
-            <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+            <label for="password" 
+            class="block text-sm font-medium leading-6 text-gray-900">Password</label>
             
           </div>
           
+          <!--Password System-->
           <div class="mt-2">
-            <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
+            <input id="password" name="password" type="password" 
+            autocomplete="current-password" 
+            placeholder="*Password" 
+            required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+        required/>
             <div class="text-sm mt-2 underline underline-offset-4">
               
             </div>
