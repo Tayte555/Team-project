@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+  //include("connections.php")
+  //include("functions.php")
+
+  $user_date = login("connection");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   
