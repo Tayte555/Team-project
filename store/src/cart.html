@@ -1,148 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Sole Haven | Cart</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
-
+    <title>Shopping Cart</title>
     <style>
         body {
-            font-family: 'SF Pro Display', sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
-            box-sizing: border-box;
+            padding: 0;
+            background-color: #f4f4f4;
         }
 
-        header {
-            background-color: #111827;
-            color: #F9FAFB;
-        }
-
-        header a {
-            color: #F9FAFB;
-        }
-
-        .cart-container {
-            background-color: #F9FAFB;
-            padding: 6rem 2rem;
+        #cart-container {
             display: flex;
-            justify-content: center;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #product-details {
+            flex: 1;
+            padding: 20px;
+        }
+
+        #product-image {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            min-height: 100vh;
+            padding: 20px;
+            border-left: 2px solid #000;
         }
 
-        .cart-form {
-            max-width: 400px;
+        #product-image img {
             width: 100%;
+            max-width: 200px;
+            border: 2px solid #000;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
 
-        .cart-form label {
-            color: #111827;
+        #total-amount {
+            font-size: 18px;
+            color: #333;
+            margin-top: 10px;
         }
 
-        .cart-form input {
-            border: 1px solid #E5E7EB;
-            border-radius: 0.375rem;
-            padding: 0.75rem;
-            margin-top: 0.25rem;
+        #contact-info,
+        #shipping-details,
+        #payment-details {
+            margin-bottom: 20px;
         }
 
-        .cart-form button {
-            background-color: #111827;
-            color: #F9FAFB;
-            padding: 1rem;
+        #pay-now-button {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
             border: none;
-            border-radius: 0.375rem;
+            border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
-            width: 100%;
         }
 
-        .cart-form button:hover {
-            background-color: #1F2937;
-        }
-
-        .cart-total {
-            font-weight: bold;
-            margin-top: 1rem;
-        }
-
-        footer {
-            background-color: #111827;
-            color: #F9FAFB;
-            padding: 2rem 4rem;
+        #payment-options {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
         }
 
-        footer a {
-            color: #F9FAFB;
-        }
-
-        footer ul {
-            display: flex;
-            gap: 1rem;
+        .payment-option {
+            margin-bottom: 10px;
         }
     </style>
 </head>
+<body>
 
-<body class="overflow-x-hidden">
-    <header class="items-center bg-zinc-950 md:px">
-        
-    </header>
+<div id="cart-container">
+    <div id="product-details">
+        <h2>Contact Information</h2>
+        <!-- Space for contact info form -->
 
-    <div class="cart-container">
-        <div class="cart-form">
-            <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">CART</h2>
+        <h2>Shipping Details</h2>
+        <!-- Space for shipping info form -->
 
-            <form class="space-y-6" action="#" method="POST">
-                <div>
-                    <label for="product-name" class="block text-sm font-medium leading-6 text-gray-900">Product Name</label>
-                    <div class="mt-2">
-                        <input id="product-name" name="product-name" type="text" value="Nike Air Max" readonly
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
-                    </div>
+        <h2>Payment Details</h2>
+        <!-- Space for payment info form -->
+
+        <div id="payment-options">
+            <div class="payment-option">
+                <input type="radio" name="payment-method" id="card-payment"> Credit/Debit Card
+                <div id="card-details" style="display: none;">
+                    <!-- Placeholder for card details input -->
+                    Card Number: <input type="text" placeholder="1234 5678 9012 3456"><br>
+                    Expiry Date: <input type="text" placeholder="MM/YYYY"><br>
+                    CVV: <input type="text" placeholder="123"><br>
                 </div>
-
-                <div>
-                    <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Price</label>
-                    <div class="mt-2">
-                        <input id="price" name="price" type="text" value="$150" readonly
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
-                    </div>
-                </div>
-
-                <div>
-                    <label for="quantity" class="block text-sm font-medium leading-6 text-gray-900">Quantity</label>
-                    <div class="mt-2">
-                        <input id="quantity" name="quantity" type="number" value="2" readonly
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
-                    </div>
-                </div>
-
-                <div>
-                    <label for="total" class="block text-sm font-medium leading-6 text-gray-900">Total</label>
-                    <div class="mt-2">
-                        <input id="total" name="total" type="text" value="$300" readonly
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
-                    </div>
-                </div>
-            </form>
-
-            <div class="cart-total">
-                <p>Total: $300</p>
             </div>
 
-            <button onclick="checkout()">Proceed to Checkout</button>
+            <div class="payment-option">
+                <input type="radio" name="payment-method" id="paypal-payment"> PayPal
+                <div id="paypal-details" style="display: none;">
+                    <!-- Placeholder for PayPal login button -->
+                    <button onclick="paypalLogin()">Log in with PayPal</button>
+                </div>
+            </div>
         </div>
+
+        <button id="pay-now-button" onclick="processPayment()">Pay Now</button>
     </div>
 
-    <footer>
-        
-    </footer>
-</body>
+    <div id="product-image">
+        <img src="path/to/your/product-image.jpg" alt="Product Image Placeholder">
+        <div id="total-amount">
+            Total Amount: £1,499.99
+        </div>
+    </div>
+</div>
+<script>
+    // JavaScript functions for illustration purposes
+    function processPayment() {
+        // Add actual payment processing logic here
+        alert("Payment processed successfully!");
+    }
 
+    // Show/hide card details based on radio button selection
+    document.getElementById('card-payment').addEventListener('change', function() {
+        document.getElementById('card-details').style.display = this.checked ? 'block' : 'none';
+    });
+
+    // Show/hide PayPal details based on radio button selection
+    document.getElementById('paypal-payment').addEventListener('change', function() {
+        document.getElementById('paypal-details').style.display = this.checked ? 'block' : 'none';
+    });
+
+    function paypalLogin() {
+        // Add actual PayPal login logic here
+        alert("Redirecting to PayPal login...");
+    }
+</script>
+
+</body>
 </html>
