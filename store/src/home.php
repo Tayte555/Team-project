@@ -26,7 +26,7 @@
               <a class="" href="#">
               <!-- <img class="h-9" src="logo.png" alt="logo"> -->
               <img class="h-6 
-               " src="/store/src/images/logowhite.png" alt="logo"/>         
+               " src="./images/logowhite.png" alt="logo"/>         
               </a>
 
             <!-- Nav Links -->
@@ -90,7 +90,7 @@
       <div class="carousel">
          <div class="carousel_inner">
             <div class="carousel_item carousel_item__active">
-            <img src="/store/src/images/banner1.png" width="1920" height="650" loading="eager">
+            <img src="./images/banner1.png" width="1920" height="650" loading="eager">
                <div class="carousel_caption"></div>
             </div>
             <div class="carousel_item">
@@ -116,7 +116,7 @@
           <li class="py-2 border-black">
             <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
               <div class="w-[80px]">
-                <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
+                <img src="./images/sneakersmol2.png" width="400" height="400">
               </div> 
               <div class="w-[calc(100%_-_164px)] px-4">
                 <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
@@ -128,7 +128,7 @@
           <li class="py-2 border-black">
             <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
               <div class="w-[80px]">
-                <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
+                <img src="./images/sneakersmol2.png" width="400" height="400">
               </div> 
               <div class="w-[calc(100%_-_164px)] px-4">
                 <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
@@ -140,7 +140,7 @@
           <li class="py-2 border-black">
             <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
               <div class="w-[80px]">
-                <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
+                <img src="./images/sneakersmol2.png" width="400" height="400">
               </div> 
               <div class="w-[calc(100%_-_164px)] px-4">
                 <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
@@ -162,7 +162,7 @@
           <li class="py-2 border-black">
             <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
               <div class="w-[80px]">
-                <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
+                <img src="./images/sneakersmol2.png" width="400" height="400">
               </div> 
               <div class="w-[calc(100%_-_164px)] px-4">
                 <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
@@ -174,7 +174,7 @@
           <li class="py-2 border-black">
             <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
               <div class="w-[80px]">
-                <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
+                <img src="./images/sneakersmol2.png" width="400" height="400">
               </div> 
               <div class="w-[calc(100%_-_164px)] px-4">
                 <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
@@ -186,52 +186,7 @@
           <li class="py-2 border-black">
             <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
               <div class="w-[80px]">
-                <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
-            </a>
-          </li>
-
-        
-        </ul>
-
-        
-        
-      </div>
-
-      <div class="max-h-[26rem] lg:max-h-[32rem]">
-        <ul class="divide-y">
-          <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
-            </a>
-          </li>
-
-          <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
-            </a>
-          </li>
-
-          <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
+                <img src="./images/sneakersmol2.png" width="400" height="400">
               </div> 
               <div class="w-[calc(100%_-_164px)] px-4">
                 <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
@@ -252,7 +207,7 @@
           <li class="py-2 border-black">
             <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
               <div class="w-[80px]">
-                <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
+                <img src="./images/sneakersmol2.png" width="400" height="400">
               </div> 
               <div class="w-[calc(100%_-_164px)] px-4">
                 <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
@@ -264,7 +219,7 @@
           <li class="py-2 border-black">
             <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
               <div class="w-[80px]">
-                <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
+                <img src="./images/sneakersmol2.png" width="400" height="400">
               </div> 
               <div class="w-[calc(100%_-_164px)] px-4">
                 <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
@@ -276,7 +231,52 @@
           <li class="py-2 border-black">
             <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
               <div class="w-[80px]">
-                <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
+                <img src="./images/sneakersmol2.png" width="400" height="400">
+              </div> 
+              <div class="w-[calc(100%_-_164px)] px-4">
+                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
+              </div>
+              <div class="w-[84px] text-right text-xs">£185.00</div>
+            </a>
+          </li>
+
+        
+        </ul>
+
+        
+        
+      </div>
+
+      <div class="max-h-[26rem] lg:max-h-[32rem]">
+        <ul class="divide-y">
+          <li class="py-2 border-black">
+            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+              <div class="w-[80px]">
+                <img src="./images/sneakersmol2.png" width="400" height="400">
+              </div> 
+              <div class="w-[calc(100%_-_164px)] px-4">
+                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
+              </div>
+              <div class="w-[84px] text-right text-xs">£185.00</div>
+            </a>
+          </li>
+
+          <li class="py-2 border-black">
+            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+              <div class="w-[80px]">
+                <img src="./images/sneakersmol2.png" width="400" height="400">
+              </div> 
+              <div class="w-[calc(100%_-_164px)] px-4">
+                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
+              </div>
+              <div class="w-[84px] text-right text-xs">£185.00</div>
+            </a>
+          </li>
+
+          <li class="py-2 border-black">
+            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+              <div class="w-[80px]">
+                <img src="./images/sneakersmol2.png" width="400" height="400">
               </div> 
               <div class="w-[calc(100%_-_164px)] px-4">
                 <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
@@ -306,7 +306,7 @@
                 <div class=" overflow-hidden">
                     <a href="/collections/jordan/jordan-4" class="block h-full group">
                     <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                      <img src="/store/src/images/blackcatsneaker 1.png" class="object-cover" >
+                      <img src="./images/blackcatsneaker 1.png" class="object-cover" >
                     </div>
                 </a>
                 </div>
@@ -325,7 +325,7 @@
                     <div class=" overflow-hidden">
                         <a href="/collections/jordan/jordan-4" class="block h-full group">
                         <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                          <img src="/store/src/images/blackcatsneaker 1.png" class="object-cover" >
+                          <img src="./images/blackcatsneaker 1.png" class="object-cover" >
                         </div>
                     </a>
                     </div>
@@ -344,7 +344,7 @@
                         <div class=" overflow-hidden">
                             <a href="/collections/jordan/jordan-4" class="block h-full group">
                             <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                              <img src="/store/src/images/blackcatsneaker 1.png" class="object-cover" >
+                              <img src="./images/blackcatsneaker 1.png" class="object-cover" >
                             </div>
                         </a>
                         </div>                 
@@ -362,7 +362,7 @@
                             <div class=" overflow-hidden">
                                 <a href="/collections/jordan/jordan-4" class="block h-full group">
                                 <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                                  <img src="/store/src/images/blackcatsneaker 1.png" class="object-cover" >
+                                  <img src="./images/blackcatsneaker 1.png" class="object-cover" >
                                 </div>
                             </a>
                             </div>
@@ -381,7 +381,7 @@
                                 <div class=" overflow-hidden">
                                     <a href="/collections/jordan/jordan-4" class="block h-full group">
                                     <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                                      <img src="/store/src/images/blackcatsneaker 1.png" class="object-cover" >
+                                      <img src="./images/blackcatsneaker 1.png" class="object-cover" >
                                     </div>
                                 </a>
                                 </div>
@@ -400,7 +400,7 @@
                                     <div class=" overflow-hidden">
                                         <a href="/collections/jordan/jordan-4" class="block h-full group">
                                         <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                                          <img src="/store/src/images/blackcatsneaker 1.png" class="object-cover" >
+                                          <img src="./images/blackcatsneaker 1.png" class="object-cover" >
                                         </div>
                                     </a>
                                     </div>
@@ -504,7 +504,7 @@
             <li class="py-2 border-black">
               <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
                 <div class="w-[80px]">
-                  <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
+                  <img src="./images/sneakersmol2.png" width="400" height="400">
                 </div> 
                 <div class="w-[calc(100%_-_164px)] px-4">
                   <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
@@ -516,7 +516,7 @@
             <li class="py-2 border-black">
               <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
                 <div class="w-[80px]">
-                  <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
+                  <img src="./images/sneakersmol2.png" width="400" height="400">
                 </div> 
                 <div class="w-[calc(100%_-_164px)] px-4">
                   <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
@@ -528,7 +528,7 @@
             <li class="py-2 border-black">
               <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
                 <div class="w-[80px]">
-                  <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
+                  <img src="./images/sneakersmol2.png" width="400" height="400">
                 </div> 
                 <div class="w-[calc(100%_-_164px)] px-4">
                   <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
@@ -550,7 +550,7 @@
             <li class="py-2 border-black">
               <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
                 <div class="w-[80px]">
-                  <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
+                  <img src="./images/sneakersmol2.png" width="400" height="400">
                 </div> 
                 <div class="w-[calc(100%_-_164px)] px-4">
                   <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
@@ -562,7 +562,7 @@
             <li class="py-2 border-black">
               <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
                 <div class="w-[80px]">
-                  <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
+                  <img src="./images/sneakersmol2.png" width="400" height="400">
                 </div> 
                 <div class="w-[calc(100%_-_164px)] px-4">
                   <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
@@ -574,52 +574,7 @@
             <li class="py-2 border-black">
               <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
                 <div class="w-[80px]">
-                  <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
-                </div> 
-                <div class="w-[calc(100%_-_164px)] px-4">
-                  <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-                </div>
-                <div class="w-[84px] text-right text-xs">£185.00</div>
-              </a>
-            </li>
-  
-          
-          </ul>
-  
-          
-          
-        </div>
-  
-        <div class="max-h-[26rem] lg:max-h-[32rem]">
-          <ul class="divide-y">
-            <li class="py-2 border-black">
-              <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-                <div class="w-[80px]">
-                  <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
-                </div> 
-                <div class="w-[calc(100%_-_164px)] px-4">
-                  <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-                </div>
-                <div class="w-[84px] text-right text-xs">£185.00</div>
-              </a>
-            </li>
-  
-            <li class="py-2 border-black">
-              <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-                <div class="w-[80px]">
-                  <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
-                </div> 
-                <div class="w-[calc(100%_-_164px)] px-4">
-                  <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-                </div>
-                <div class="w-[84px] text-right text-xs">£185.00</div>
-              </a>
-            </li>
-  
-            <li class="py-2 border-black">
-              <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-                <div class="w-[80px]">
-                  <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
+                  <img src="./images/sneakersmol2.png" width="400" height="400">
                 </div> 
                 <div class="w-[calc(100%_-_164px)] px-4">
                   <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
@@ -640,7 +595,7 @@
             <li class="py-2 border-black">
               <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
                 <div class="w-[80px]">
-                  <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
+                  <img src="./images/sneakersmol2.png" width="400" height="400">
                 </div> 
                 <div class="w-[calc(100%_-_164px)] px-4">
                   <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
@@ -652,7 +607,7 @@
             <li class="py-2 border-black">
               <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
                 <div class="w-[80px]">
-                  <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
+                  <img src="./images/sneakersmol2.png" width="400" height="400">
                 </div> 
                 <div class="w-[calc(100%_-_164px)] px-4">
                   <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
@@ -664,7 +619,52 @@
             <li class="py-2 border-black">
               <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
                 <div class="w-[80px]">
-                  <img src="/store/src/images/sneakersmol2.png" width="400" height="400">
+                  <img src="./images/sneakersmol2.png" width="400" height="400">
+                </div> 
+                <div class="w-[calc(100%_-_164px)] px-4">
+                  <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
+                </div>
+                <div class="w-[84px] text-right text-xs">£185.00</div>
+              </a>
+            </li>
+  
+          
+          </ul>
+  
+          
+          
+        </div>
+  
+        <div class="max-h-[26rem] lg:max-h-[32rem]">
+          <ul class="divide-y">
+            <li class="py-2 border-black">
+              <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+                <div class="w-[80px]">
+                  <img src="./images/sneakersmol2.png" width="400" height="400">
+                </div> 
+                <div class="w-[calc(100%_-_164px)] px-4">
+                  <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
+                </div>
+                <div class="w-[84px] text-right text-xs">£185.00</div>
+              </a>
+            </li>
+  
+            <li class="py-2 border-black">
+              <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+                <div class="w-[80px]">
+                  <img src="./images/sneakersmol2.png" width="400" height="400">
+                </div> 
+                <div class="w-[calc(100%_-_164px)] px-4">
+                  <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
+                </div>
+                <div class="w-[84px] text-right text-xs">£185.00</div>
+              </a>
+            </li>
+  
+            <li class="py-2 border-black">
+              <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+                <div class="w-[80px]">
+                  <img src="./images/sneakersmol2.png" width="400" height="400">
                 </div> 
                 <div class="w-[calc(100%_-_164px)] px-4">
                   <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
@@ -694,7 +694,7 @@
                 <div class=" overflow-hidden">
                     <a href="/collections/jordan/jordan-4" class="block h-full group">
                     <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                      <img src="/store/src/images/blackcatsneaker 1.png" class="object-cover" >
+                      <img src="./images/blackcatsneaker 1.png" class="object-cover" >
                     </div>
                 </a>
                 </div>
@@ -713,7 +713,7 @@
                     <div class=" overflow-hidden">
                         <a href="/collections/jordan/jordan-4" class="block h-full group">
                         <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                          <img src="/store/src/images/blackcatsneaker 1.png" class="object-cover" >
+                          <img src="./images/blackcatsneaker 1.png" class="object-cover" >
                         </div>
                     </a>
                     </div>
@@ -732,7 +732,7 @@
                         <div class=" overflow-hidden">
                             <a href="/collections/jordan/jordan-4" class="block h-full group">
                             <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                              <img src="/store/src/images/blackcatsneaker 1.png" class="object-cover" >
+                              <img src="./images/blackcatsneaker 1.png" class="object-cover" >
                             </div>
                         </a>
                         </div>                 
@@ -750,7 +750,7 @@
                             <div class=" overflow-hidden">
                                 <a href="/collections/jordan/jordan-4" class="block h-full group">
                                 <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                                  <img src="/store/src/images/blackcatsneaker 1.png" class="object-cover" >
+                                  <img src="./images/blackcatsneaker 1.png" class="object-cover" >
                                 </div>
                             </a>
                             </div>
@@ -769,7 +769,7 @@
                                 <div class=" overflow-hidden">
                                     <a href="/collections/jordan/jordan-4" class="block h-full group">
                                     <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                                      <img src="/store/src/images/blackcatsneaker 1.png" class="object-cover" >
+                                      <img src="./images/blackcatsneaker 1.png" class="object-cover" >
                                     </div>
                                 </a>
                                 </div>
@@ -788,7 +788,7 @@
                                     <div class=" overflow-hidden">
                                         <a href="/collections/jordan/jordan-4" class="block h-full group">
                                         <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                                          <img src="/store/src/images/blackcatsneaker 1.png" class="object-cover" >
+                                          <img src="./images/blackcatsneaker 1.png" class="object-cover" >
                                         </div>
                                     </a>
                                     </div>
