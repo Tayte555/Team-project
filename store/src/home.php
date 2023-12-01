@@ -27,7 +27,7 @@
           
             <div class="px-2 flex w-full py-4 items-center">
             
-              <a class="" href="#">
+              <a class="" href="home.php">
               <!-- <img class="h-9" src="logo.png" alt="logo"> -->
               <img class="h-6 
                " src="./images/logowhite.png" alt="logo"/>         
@@ -60,13 +60,15 @@
             </ul>
             <!-- Header Icons -->
             <div class="hidden xl:flex items-center -space-x-1 pr-6 text-gray-100">
+              <!-- search icon -->
               <a class="hover:text-gray-300" href="#">
                 <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-search w-10">
                     <circle cx="11" cy="11" r="8"/>
                     <path d="m21 21-4.35-4.35"/>
                   </svg>
               </a>
-              <a class="flex items-center hover:text-gray-300 pr-1" href="login.html">
+              <!-- profile -->
+              <a class="flex items-center hover:text-gray-300 pr-1" href="login.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-user w-10 mx-auto"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
                 </svg>
                 
@@ -297,21 +299,23 @@
 
   <!-- best sellers -->
   <section>
-    <div class="flex justify-between p-4 ">
+    <div class="flex justify-between p-5 ">
       <h2 class="text-sm font-bold uppercase tracking-wide">BEST SELLERS</h2>
       <a href="/collections/new-arrivals" class="underline underline-offset-2">View more</a>
     </div>
 
-    <div class="grid gap-px px-4 grid-cols-6">
+    <div class="grid gap-px px-4 grid-cols-5">
       <div class="">
         <ul class="divide-y">
           <li class="py-2">
             <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
                 <div class=" overflow-hidden">
                     <a href="/collections/jordan/jordan-4" class="block h-full group">
-                    <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
+                    <div class="bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
+                      
                       <img src="./images/blackcatsneaker 1.png" class="object-cover" >
-                    </div>
+                      </div>
+                    
                 </a>
                 </div>
 
@@ -397,24 +401,7 @@
                 
                         </div>
 
-                        <div class="">
-                            <ul class="divide-y">
-                              <li class="py-2">
-                                <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-                                    <div class=" overflow-hidden">
-                                        <a href="/collections/jordan/jordan-4" class="block h-full group">
-                                        <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                                          <img src="./images/blackcatsneaker 1.png" class="object-cover" >
-                                        </div>
-                                    </a>
-                                    </div>
-                                
-                                </a>
-                              </li>
                     
-                            </ul>
-                    
-                            </div>
     
             
     </div>
@@ -690,7 +677,7 @@
       <a href="/collections/new-arrivals" class="underline underline-offset-2">View more</a>
     </div>
 
-    <div class="grid gap-px px-4 grid-cols-6">
+    <div class="grid gap-px px-4 grid-cols-5">
       <div class="">
         <ul class="divide-y">
           <li class="py-2">
@@ -785,24 +772,6 @@
                 
                         </div>
 
-                        <div class="">
-                            <ul class="divide-y">
-                              <li class="py-2">
-                                <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-                                    <div class=" overflow-hidden">
-                                        <a href="/collections/jordan/jordan-4" class="block h-full group">
-                                        <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                                          <img src="./images/blackcatsneaker 1.png" class="object-cover" >
-                                        </div>
-                                    </a>
-                                    </div>
-                                
-                                </a>
-                              </li>
-                    
-                            </ul>
-                    
-                            </div>
     
             
     </div>
