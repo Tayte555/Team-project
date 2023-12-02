@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Sole Haven | Login</title>
+    <title>Sole Haven | Account</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
                 
@@ -13,7 +13,7 @@
 
 
 
-<body class="overflow-x-hidden">
+<body class="overflow-x-hidden flex flex-col min-h-screen">
     <header class="items-center bg-zinc-950 md:px">
         <div class="flex flex-wrap place-items-center">
       <section class="relative mx-auto">
@@ -25,7 +25,7 @@
               <a class="" href="home.html">
               <!-- <img class="h-9" src="logo.png" alt="logo"> -->
               <img class="h-6 
-               " src="/store/src/images/logowhite.png" alt="logo"/>         
+               " src="./images/logowhite.png" alt="logo"/>         
               </a>
 
             <!-- Nav Links -->
@@ -83,48 +83,48 @@
     </div>
     </header>
 
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">LOGIN</h2>
-    </div>
-  
-    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6" action="#" method="POST">
-        <div>
-          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
-          <div class="mt-2">
-            <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
-          </div>
-        </div>
-  
-        <div>
-          <div class="flex items-center justify-between">
-            <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
-            
-          </div>
-          <div class="mt-2">
-            <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
-            <div class="text-sm mt-2 underline underline-offset-4">
-              <a href="#" class="font- hover:text-opacity-50">Forgot your password?</a>
-            </div>
-          </div>
-        </div>
-  
-        <div>
-          <button type="submit" class="flex w-full justify-center rounded-md bg-zinc-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Log in</button>
-        </div>
-      </form>
-  
-      <p class="mt-10 text-center text-sm text-gray-500">
-        Don't have an account?
-        <a href="register.php" class="font-semibold leading-6 text-zinc-950 hover:text-opacity-50">Sign up</a>
-      </p>
+    <section>
+    <div class="h-full flex">
+    <div class="md:grid md:grid-cols-4 grow">
+      <div class="p-4 md:border-r md:border-black">
+        <ul>
+          <li class="mb-2">
+            <a href="/account" class="opacity-50 py-2 md:text-base md:text-base lg:text-2xl">
+              <span>Order History</span>
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="/account/addresses" class="py-2 md:text-base lg:text-2xl">
+              <span>View addresses</span>
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="/account/logout" class="py-2 md:text-base lg:text-2xl">
+              <span>Log out</span>
+            </a>
+          </li>
+          
+
+        </ul>
+
+      </div>
+      <div class="p-4 md:col-span-3 md:px-14 md:py-10 lg:p-20 mb-4 md:mb-0">
+        <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">Order History</h1>
+        <p>You haven't placed any orders yet.</p>
+
+      </div>
+
     </div>
   </div>
+  </section>
 
 
 
-  <footer class="bg-zinc-950 px-24">
+
+
+
+
+  <footer class="bg-zinc-950 px-24 mt-auto">
     
     <div class="flex gap-x-12">
       

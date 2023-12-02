@@ -13,7 +13,7 @@
 
 </head>
 
-<body class="overflow-x-hidden">
+<body class="overflow-x-hidden flex flex-col min-h-screen">
     <header class="items-center bg-zinc-950 md:px">
         <div class="flex flex-wrap place-items-center">
             <section class="relative mx-auto">
@@ -126,7 +126,7 @@
                 <button type="submit review" class="flex w-full justify-center rounded-md bg-zinc-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit Review</button>
             </div>
      
-    <footer class="bg-zinc-950 px-24">
+    <footer class="bg-zinc-950 px-24 mt-auto">
 
     </footer>
 

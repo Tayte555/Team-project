@@ -83,7 +83,7 @@
 </div>
 </header>
 
- <body>
+ <body class="overflow-x-hidden flex flex-col min-h-screen">
 
   <!-- Products Section -->
   <div class = "products">
@@ -150,7 +150,7 @@
 
  
     <!-- footer section -->
-    <footer class="bg-zinc-950 px-24">
+    <footer class="bg-zinc-950 px-24 mt-auto">
     
       <div class="flex gap-x-12">
         

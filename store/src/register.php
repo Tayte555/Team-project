@@ -43,7 +43,7 @@ session_start();
 
 
 
-<body class="overflow-x-hidden">
+<body class="overflow-x-hidden flex flex-col min-h-screen">
     <header class="items-center bg-zinc-950 md:px">
         <div class="flex flex-wrap place-items-center">
       <section class="relative mx-auto">
@@ -52,7 +52,7 @@ session_start();
           
             <div class="px-2 flex w-full py-4 items-center">
             
-              <a class="" href="home.html">
+              <a class="" href="home.php">
               <!-- <img class="h-9" src="logo.png" alt="logo"> -->
               <img class="h-6 
                " src="./images/logowhite.png" alt="logo"/>         
@@ -85,7 +85,7 @@ session_start();
             </ul>
             <!-- Header Icons -->
             <div class="hidden xl:flex items-center -space-x-1 pr-6 text-gray-100">
-              <a class="hover:text-gray-300" href="#">
+              <a class="hover:text-gray-300" href="cart.php">
                 <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-search w-10">
                     <circle cx="11" cy="11" r="8"/>
                     <path d="m21 21-4.35-4.35"/>
@@ -198,7 +198,7 @@ session_start();
 
 
 
-  <footer class="bg-zinc-950 px-24">
+  <footer class="bg-zinc-950 px-24 mt-auto">
     
     <div class="flex gap-x-12">
       

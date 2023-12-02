@@ -63,7 +63,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
 
 
-<body class="overflow-x-hidden">
+<body class="overflow-x-hidden flex flex-col min-h-screen">
     <header class="items-center bg-zinc-950 md:px">
         <div class="flex flex-wrap place-items-center">
       <section class="relative mx-auto">
@@ -174,7 +174,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
 
 
-  <footer class="bg-zinc-950 px-24">
+  <footer class="bg-zinc-950 px-24 mt-auto">
     
     <div class="flex gap-x-12">
       
