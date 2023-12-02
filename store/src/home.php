@@ -1,5 +1,10 @@
 <?php
+session_start();
 
+include("connections.php");
+include("functions.php");
+
+$user_data = login($connection);
 ?>
 
 <!DOCTYPE html>

@@ -1,10 +1,31 @@
 <?php
 session_start();
 
-  //include("connections.php")
-  //include("functions.php")
+  include("connections.php");
+  include("functions.php");
 
-  $user_date = login("connection");
+  //puts new user info into database
+  if($_SERVER['REQUEST_METHOD'] == "POST"){
+    $firstName = $_POST['fname'];
+    $lastName = $_POST['lName'];
+    $password = $_POST['password'];
+    $email = $_POST['email'];
+
+    if(!empty($firstName) && !empty($lastName) && !empty($password) && !empty($email)){
+      $email = mysqli_real_escape_string($connection, $email);
+      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+      
+      //query database to insert user data
+      $query = "insert into users (forename, surname, email, pass) values ('$firstName', '$lastName', '$email', '$hashedPassword')";
+      mysqli_query($connection, $query);
+      
+      //send back to login page after success
+      header("Location: login.php");
+      die;
+    }else{
+      echo "Empty / Incorrect field(s)...";
+    }
+  }
 ?>
 
 <!DOCTYPE html>

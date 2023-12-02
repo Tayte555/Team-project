@@ -1,3 +1,53 @@
+<?php
+session_start();
+
+include("connections.php");
+include("functions.php");
+
+//puts new user info into database
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  
+
+  if(!empty($email) && !empty($password)){
+    //query the database to read user data
+    $email = mysqli_real_escape_string($connection, $email);
+    $query = "select * from users where email = '$email' limit 1";
+    $result = mysqli_query($connection, $query);
+    
+    //check password
+    if($result){
+      if(mysqli_num_rows($result) > 0){
+        $userData = mysqli_fetch_assoc($result);
+        //check password is entered
+        if(isset($userData['pass'])){
+          $_SESSION['user_id'] = $userData['user_id'];
+          
+          //verify password hash
+          if(password_verify($password, $userData['pass'])){
+            //send user to home page after successful login
+            header("Location: home.php");
+            die;
+//all else statement intended for debugging          
+          } else {
+            echo "pass verification fail";
+          }
+        } else{
+          echo "Incorrect email or password";
+        }
+      } else {
+        echo "Incorrect email or password";
+      }
+    } else{
+      echo "Database query failed";
+    }
+  }else{
+    echo "Please enter both Email and Password";
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   
@@ -117,7 +167,7 @@
   
       <p class="mt-10 text-center text-sm text-gray-500">
         Don't have an account?
-        <a href="register.html" class="font-semibold leading-6 text-zinc-950 hover:text-opacity-50">Sign up</a>
+        <a href="register.php" class="font-semibold leading-6 text-zinc-950 hover:text-opacity-50">Sign up</a>
       </p>
     </div>
   </div>
