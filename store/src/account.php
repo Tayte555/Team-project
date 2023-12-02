@@ -1,53 +1,3 @@
-<?php
-session_start();
-
-include("connections.php");
-include("functions.php");
-
-//puts new user info into database
-if($_SERVER['REQUEST_METHOD'] == "POST"){
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-  
-
-  if(!empty($email) && !empty($password)){
-    //query the database to read user data
-    $email = mysqli_real_escape_string($connection, $email);
-    $query = "select * from users where email = '$email' limit 1";
-    $result = mysqli_query($connection, $query);
-    
-    //check password
-    if($result){
-      if(mysqli_num_rows($result) > 0){
-        $userData = mysqli_fetch_assoc($result);
-        //check password is entered
-        if(isset($userData['pass'])){
-          $_SESSION['user_id'] = $userData['user_id'];
-          
-          //verify password hash
-          if(password_verify($password, $userData['pass'])){
-            //send user to home page after successful login
-            header("Location: home.php");
-            die;
-//all else statement intended for debugging          
-          } else {
-            echo "pass verification fail";
-          }
-        } else{
-          echo "Incorrect email or password";
-        }
-      } else {
-        echo "Incorrect email or password";
-      }
-    } else{
-      echo "Database query failed";
-    }
-  }else{
-    echo "Please enter both Email and Password";
-  }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   
@@ -72,10 +22,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
           
             <div class="px-2 flex w-full py-4 items-center">
             
-              <a class="" href="home.php">
+              <a class="" href="home.html">
               <!-- <img class="h-9" src="logo.png" alt="logo"> -->
               <img class="h-6 
-               " src="./images/logowhite.png" alt="logo"/>         
+               " src="/store/src/images/logowhite.png" alt="logo"/>         
               </a>
 
             <!-- Nav Links -->
@@ -111,13 +61,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                     <path d="m21 21-4.35-4.35"/>
                   </svg>
               </a>
-              <a class="flex items-center hover:text-gray-300 pr-1" href="login.php">
+              <a class="flex items-center hover:text-gray-300 pr-1" href="login.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-user w-10 mx-auto"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
                 </svg>
                 
               </a>
               <!-- Cart      -->
-              <a class="flex items-center hover:text-gray-300" href="cart.php">
+              <a class="flex items-center hover:text-gray-300" href="cart.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart w-10"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                 </svg>
                 <!--<span class="flex absolute -mt-5 ml-4">

@@ -55,7 +55,7 @@ session_start();
               <a class="" href="home.html">
               <!-- <img class="h-9" src="logo.png" alt="logo"> -->
               <img class="h-6 
-               " src="/store/src/images/logowhite.png" alt="logo"/>         
+               " src="./images/logowhite.png" alt="logo"/>         
               </a>
 
             <!-- Nav Links -->
@@ -91,13 +91,13 @@ session_start();
                     <path d="m21 21-4.35-4.35"/>
                   </svg>
               </a>
-              <a class="flex items-center hover:text-gray-300 pr-1" href="login.html">
+              <a class="flex items-center hover:text-gray-300 pr-1" href="login.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-user w-10 mx-auto"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
                 </svg>
                 
               </a>
               <!-- Cart      -->
-              <a class="flex items-center hover:text-gray-300" href="cart.html">
+              <a class="flex items-center hover:text-gray-300" href="cart.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart w-10"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                 </svg>
                 <!--<span class="flex absolute -mt-5 ml-4">
@@ -188,7 +188,7 @@ session_start();
   
       <p class="mt-10 text-center text-sm text-gray-500">
         Already have an account?
-        <a href="login.html" class="font-semibold leading-6 text-zinc-950 hover:text-opacity-50">Sign in</a>
+        <a href="login.php" class="font-semibold leading-6 text-zinc-950 hover:text-opacity-50">Sign in</a>
       </p>
     </div>
   </div>
