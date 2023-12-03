@@ -132,7 +132,7 @@
               </li>
             </ul>
             <div class="my-4">
-              <button type="submit" @click="openNew = true" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add a new address</button>
+              <button type="submit" @click="address_input.showModal()" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add a new address</button>
               <div class="fixed z-10 inset-0 overflow-y-auto" x-show="openNew" x-transition.opacity aria-modal="true" aria-labelledby="modal-headline">
                 <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                   <div class="fixed inset-0 bg-gray-500 opacity-75" x-show="openNew" @click="openNew = false"></div>

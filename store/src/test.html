@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Sole Haven | Account</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
+                
+</head>
+
+
+<!-- Open the modal using ID.showModal() method -->
+<button class="btn" onclick="address_input.showModal()">Add a new address</button>
+<dialog id="address_input" class="modal">
+  
+  <div class="modal-box">
+    
+    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+      <div class="new-address-form">
+        <h3 class="text-xl md:text-4xl font-bold mb-4">Add a new address</h3>
+
+        <div class="grid grid-cols-6 gap-3">
+
+        <div class="col-span-6 sm:col-span-3">
+          <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
+          <input type="text" name="address[first_name]" value autocapitalize="words" required id="first_name" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+        </div>
+        <div class="col-span-6 sm:col-span-3">
+          <label for="last_name" class="block text-sm font-medium text-gray-700">Last name</label>
+          <input text="text" name="address[last_name]" value id="last_name" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+        </div>
+        <div class="col-span-6 sm:col-span-3">
+          <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+          <input text="text" name="address[phone]" value id="phone" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+        </div>
+        <div class="col-span-6">
+          <label for="address1" class="block text-sm font-medium text-gray-700">Address 1</label>
+          <input text="text" name="address[phone]" value id="address1" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+        </div>
+        <div class="col-span-6">
+          <label for="address2" class="block text-sm font-medium text-gray-700">Address 2</label>
+          <input text="text" name="address[phone]" value id="address2" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+        </div>
+        <div class="col-span-6 sm:col-span-3">
+          <label for="address2" class="block text-sm font-medium text-gray-700">City</label>
+          <input text="text" name="address[phone]" value id="city" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+        </div>
+        <div class="col-span-6 sm:col-span-3">
+          <label for="first_name" class="block text-sm font-medium text-gray-700">Country/region</label>
+          <select x-ref="address_country" name="address[country]" @change="province = JSON.parse($event.target.selectedOptions[0].dataset.provinces); address.country = $event.target.selectedOptions[0].text;" value id="country" required class="mt-2 block w-full py-2 px-3 border border-gray-300 h-[42px] bg-white shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <option value="United Kondom" data-provinces="[[&quot;England&quot;,&quot;England&quot;],[&quot;Northern Ireland&quot;,&quot;Northern Ireland&quot;],[&quot;Scotland&quot;,&quot;Scotland&quot;],[&quot;Wales&quot;,&quot;Wales&quot;]]">United Kondom</option>
+            <option value="Kazakhstan" data-provinces="[]">Kazakhstan</option>
+          </select>
+        </div>
+        <div class="col-span-6 sm:col-span-3" x-show="province.length > 0">
+          <label for="province" class="block text-sm font-medium text-gray-700">Province</label>
+          <select name="address[province]" value id="province" autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+            <option :value="item[0]" x-text="item[0]" value="England">England</option>
+            <option :value="item[0]" x-text="item[0]" value="Northern Ireland">Northern Ireland</option>
+            <option :value="item[0]" x-text="item[0]" value="Scotland">Scotland</option>
+            <option :value="item[0]" x-text="item[0]" value="Wales">Wales</option>
+          </select>
+        </div>
+        <div class="col-span-6 sm:col-span-3">
+          <label for="zip" class="block text-sm font-medium text-gray-700">Post code</label>
+          <input type="text" name="address[postcode]" value id="postcode" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+
+        </div>
+    
+  </div>
+
+
+  <div class="px-4 py-3 flex flex-col md:flex-row-reverse justify-between">
+    
+  <form method="dialog" class="modal-backdrop">
+    <button>Cancel</button>
+  </form>
+</div>
+</dialog>
