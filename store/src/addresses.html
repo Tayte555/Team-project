@@ -22,7 +22,7 @@
           
             <div class="px-2 flex w-full py-4 items-center">
             
-              <a class="" href="home.php">
+              <a class="" href="home.html">
               <!-- <img class="h-9" src="logo.png" alt="logo"> -->
               <img class="h-6 
                " src="./images/logowhite.png" alt="logo"/>         
@@ -61,13 +61,13 @@
                     <path d="m21 21-4.35-4.35"/>
                   </svg>
               </a>
-              <a class="flex items-center hover:text-gray-300 pr-1" href="login.php">
+              <a class="flex items-center hover:text-gray-300 pr-1" href="login.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-user w-10 mx-auto"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
                 </svg>
                 
               </a>
               <!-- Cart      -->
-              <a class="flex items-center hover:text-gray-300" href="cart.php">
+              <a class="flex items-center hover:text-gray-300" href="cart.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart w-10"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                 </svg>
                 <!--<span class="flex absolute -mt-5 ml-4">
@@ -89,12 +89,12 @@
       <div class="p-4 px-8 md:border-r md:border-black h-screen">
         <ul>
           <li class="mb-2 py-2">
-            <a href="/account" class="opacity-50 py-2 md:text-base md:text-base lg:text-2xl">
+            <a href="/account" class="py-2 md:text-base md:text-base lg:text-2xl">
               <span>Order History</span>
             </a>
           </li>
           <li class="mb-2 py-2">
-            <a href="addresses.html" class="py-2 md:text-base lg:text-2xl">
+            <a href="/account/addresses" class="opacity-50 py-2 md:text-base lg:text-2xl">
               <span>View addresses</span>
             </a>
           </li>
@@ -114,8 +114,30 @@
 
       </div>
       <div class="p-4 md:col-span-3 md:px-14 md:py-10 lg:p-20 mb-4 md:mb-0">
-        <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">Order History</h1>
-        <p>You haven't placed any orders yet.</p>
+        <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">View addresses</h1>
+        <div class="md:col-span-3">
+          <div class="sm:overflow-hidden">
+            <ul class="divide-y">
+              <li class="py-8 relative border-black">
+                <span class="rounded-full bg-black text-white px-3 py-1 mb-2 text-xs font-medium absolute top-4 right-0">Default</span>
+                <p>
+                  test test
+                  <br>
+                  United Kondom
+                </p>
+                <div class="-ml-2">
+                  <button class="px-2 py-1 underline underline-offset-1">Edit</button>
+                  <button class="px-2 py-1 underline underline-offset-1">Delete</button>
+                </div>
+              </li>
+            </ul>
+            <div class="my-4">
+              <button class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add a new address</button>
+
+            </div>
+          </div>
+
+        </div>
 
       
 
