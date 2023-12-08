@@ -43,6 +43,6 @@ CREATE TABLE user_orders (
 /* INSERT BASE DATA INTO DATABASE */
 
 INSERT INTO products (product_name, brand, price, release_date, stock_quantity, category, product_img) VALUES
-('Wales Bonner x Adidas Samba Pony Black', 'Adidas', 185.00, 2023-11-08, 10, 'Mens', './images/sneakersmol2.png'),
-('Jordan 4 Retro Black Cat', 'Air Jordan', 1150.00, 2020-11-22, 10, 'Mens', './images/blackcatsneaker 1.png');
+('Wales Bonner x Adidas Samba Pony Black', 'Adidas', 185.00, '2023-11-08', 10, 'Mens', './images/sneakersmol2.png'),
+('Jordan 4 Retro Black Cat', 'Air Jordan', 1150.00, '2020-11-22', 10, 'Mens', './images/blackcatsneaker 1.png');
 
