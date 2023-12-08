@@ -3,7 +3,10 @@ session_start();
 include("functions.php");
 include("connections.php");
 
-
+if (empty($_POST)){
+    header('Location: add_product.php');
+    exit();
+}
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     //htmlspecialchars to stop xss attacks
