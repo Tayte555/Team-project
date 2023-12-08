@@ -16,9 +16,9 @@ function login($connection){
 
 function insertProduct($connection, $productName, $brand, $price, $releaseDate, $stockQuantity, $category) {
     $stmt = mysqli_prepare($connection, "INSERT INTO products (product_name, brand, price, release_date, stock_quantity, category) VALUES (?, ?, ?, ?, ?, ?)");
-    mysqli_stmt_bind_param($stmt, 'sssdii', $productName, $brand, $price, $releaseDate, $stockQuantity, $category);
+    mysqli_stmt_bind_param($stmt, 'ssssii', $productName, $brand, $price, $releaseDate, $stockQuantity, $category);
     if(mysqli_stmt_execute($stmt)) {
-        echo "Product inserted successfully.";
+        $_SESSION['success_message'] = "Product added successfully.";
     } else {
         echo "ERROR: Could not execute query: " . mysqli_error($connection);
     }
