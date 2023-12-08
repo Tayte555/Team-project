@@ -1,3 +1,5 @@
+/* DATABASE CREATION */
+
 CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     forename VARCHAR(255) NOT NULL,
@@ -13,7 +15,8 @@ CREATE TABLE products (
     price DECIMAL(10,2) NOT NULL,
     release_date DATE NOT NULL,
     stock_quantity INT NOT NULL,
-    category VARCHAR(10) NOT NULL
+    category VARCHAR(10) NOT NULL,
+    product_img VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE product_stock (
@@ -36,3 +39,10 @@ CREATE TABLE user_orders (
     FOREIGN KEY (product_id) REFERENCES products(product_id),
     FOREIGN KEY (stock_id) REFERENCES product_stock(stock_id)
 );
+
+/* INSERT BASE DATA INTO DATABASE */
+
+INSERT INTO products (product_name, brand, price, release_date, stock_quantity, category, product_img) VALUES
+('Wales Bonner x Adidas Samba Pony Black', 'Adidas', 185.00, 2023-11-08, 10, 'Mens', './images/sneakersmol2.png'),
+('Jordan 4 Retro Black Cat', 'Air Jordan', 1150.00, 2020-11-22, 10, 'Mens', './images/blackcatsneaker 1.png');
+
