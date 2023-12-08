@@ -1,3 +1,26 @@
+<?php 
+
+session_start();
+//error messages for form
+$error_message = "";
+if (isset($_SESSION['error_message'])) {
+    $error_message = $_SESSION['error_message'];
+
+    // Clear the message after displaying it once
+    unset($_SESSION['error_message']);
+}
+
+$success_message = "";
+if (isset($_SESSION['success_message'])) {
+    $success_message = $_SESSION['success_message'];
+
+    // Clear the message after displaying it once
+    unset($_SESSION['success_message']);
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   
@@ -152,13 +175,25 @@
 
                           <div class="grid grid-cols-6 gap-3">
 
+                          <?php if (!empty($error_message)): ?>
+                            <div class="error-message">
+                                <?php echo $error_message; ?>
+                            </div>
+                            <?php endif; ?>
+
+                            <?php if (!empty($success_message)): ?>
+                                <div class="success-message">
+                                    <?php echo $success_message; ?>
+                                </div>
+                            <?php endif; ?>
+
                           <div class="col-span-6">
                             <label for="product_name" class="block text-sm font-medium text-gray-700">Product name</label>
-                            <input type="text" name="product[product_name]" value autocapitalize="words" required id="first_name" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                            <input type="text" name="product[product_name]" value autocapitalize="words" required id="product_name" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
                           </div>
                           <div class="col-span-6 ">
                             <label for="brand" class="block text-sm font-medium text-gray-700">Brand</label>
-                            <input text="text" name="product[brand]" value id="phone" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                            <input text="text" name="product[brand]" value id="brand" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
                           </div>
                           
                           <div class="col-span-6 sm:col-span-3">
@@ -188,11 +223,11 @@
                           </div>
                           <div class="col-span-6 sm:col-span-3">
                             <label for="zip" class="block text-sm font-medium text-gray-700">Stock quantity</label>
-                            <input type="number" min="0" name="product[stock_quantity]" value id="postcode" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                            <input type="number" min="0" name="product[stock_quantity]" value id="stock_quantity" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
                           </div>
                           <div class="col-span-6 sm:col-span-3">
                             <label for="zip" class="block text-sm font-medium text-gray-700">Category</label>
-                            <input type="text" name="product[category]" value id="postcode" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                            <input type="text" name="product[category]" value id="category" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
                           </div>
                         </div>
                       </div>
