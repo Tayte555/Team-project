@@ -4,27 +4,23 @@ session_start();
 include 'connections.php';
 
 
-if($_SERVER['REQUEST_METHOD'] == "GET"){
-    if(isset($_GET['id']) && is_numeric($_GET['id'])) {
-        $productId = $_GET['id'];
+if(isset($_GET['id']) && is_numeric($_GET['id'])) {
+    $productId = $_GET['id'];
 
-        // SQL to delete the product
-        $sql = "DELETE FROM products WHERE product_id = $productId";
+    $sql = "DELETE FROM products WHERE product_id = $productId";
 
-        if ($connection->query($sql) === TRUE) {
-            // Redirect after deletion
-            header('Location: add_product.php'); // Replace with your product list page
-            exit();
-        } else {
-            echo "Error deleting record: " . $connection->error;
-        }
+    if ($connection->query($sql) === TRUE) {
+        header('Location: add_product.php');
+        exit();
     } else {
-        echo "Invalid product ID";
+        echo "Error deleting record: " . $connection->error;
     }
-    $connection->close();
 } else {
-    header('Location: add_product.php');
+    echo "Invalid product ID";
+    header('Location: add_product.php'); 
+    exit();
 }
+$connection->close();
 
 
 ?>
