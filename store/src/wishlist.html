@@ -81,14 +81,14 @@
         <h2>Your Sneaker Wishlist</h2>
 
         <div class="sneaker-item">
-            <img src="./images/wishlist1.jpg"width="200" height="200">
+            <img src="./images/wishlist1.jpg"width="100" height="100">
             <h3>Nike Air Max 90</h3>
             <p>$129.99</p>
             <button>Add to Cart</button>
         </div>
 
         <div class="sneaker-item">
-            <img src="./images/wishlist2.jpg" width="200" height="200">
+            <img src="./images/wishlist2.jpg" width="100" height="100">
             <h3>Adidas Ultraboost</h3>
             <p>$149.99</p>
             <button>Add to Cart</button>
