@@ -6,6 +6,11 @@ if (!isset($_SESSION['user_id'])){
   exit();
 }
 
+if ($_SESSION['is_admin'] != 1){
+  header('Location: ../login.php');
+  exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -100,16 +105,21 @@ if (!isset($_SESSION['user_id'])){
         <ul>
           <li class="mb-2 py-2">
             <a href="account.php" class="opacity-50 py-2 md:text-base md:text-base lg:text-2xl">
-              <span>Order History</span>
+              <span>Admin Dashboard</span>
             </a>
           </li>
           <li class="mb-2 py-2">
-            <a href="addresses.php" class="py-2 md:text-base lg:text-2xl">
-              <span>View addresses</span>
+            <a href="add_product.php" class=" py-2 md:text-base lg:text-2xl">
+              <span>Add products</span>
             </a>
           </li>
           <li class="mb-2 py-2">
-            <a href="/account/settings" class="py-2 md:text-base lg:text-2xl">
+            <a href="manage_users.php" class="py-2 md:text-base lg:text-2xl">
+              <span>Manage users</span>
+            </a>
+          </li>
+          <li class="mb-2 py-2">
+            <a href="settings.php" class="py-2 md:text-base lg:text-2xl">
               <span>Profile settings</span>
             </a>
           </li>
@@ -124,8 +134,8 @@ if (!isset($_SESSION['user_id'])){
 
       </div>
       <div class="p-4 md:col-span-3 md:px-14 md:py-10 lg:p-20 mb-4 md:mb-0">
-        <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">Order History</h1>
-        <p>You haven't placed any orders yet.</p>
+        <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">Admin dashboard</h1>
+        <p>Only admin can access this page.</p>
 
       
 

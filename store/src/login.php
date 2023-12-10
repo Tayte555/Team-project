@@ -2,6 +2,10 @@
 session_start();
 
 if (isset($_SESSION['user_id'])){
+  if ($_SESSION['is_admin'] == 1){
+    header('Location: admin/account.php');
+    exit();
+  }
   header('Location: account/account.php');
   exit();
 }
@@ -31,13 +35,19 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         //check password is entered
         if(isset($userData['pass'])){
           $_SESSION['user_id'] = $userData['user_id'];
-          
           //verify password hash
           if(password_verify($password, $userData['pass'])){
             //send user to home page after successful login
+            $_SESSION['is_admin'] = $userData['is_admin'];
+            if ($_SESSION['is_admin'] == 1){
+              header("Location: admin/account.php");
+              exit();
+            } else {
+              header("Location: account/account.php");
+              exit();
+            }
 
-            header("Location: account/account.php");
-            exit;
+            //exit;
 //all else statement intended for debugging          
           } else {
             $_SESSION['error_message'] = "Incorrect email or password";
