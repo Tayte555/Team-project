@@ -1,3 +1,62 @@
+<?php
+session_start();
+
+if (isset($_SESSION['user_id'])){
+  header('Location: account/account.php');
+  exit();
+}
+
+include("connections.php");
+include("functions.php");
+
+$_SESSION['error_message'] = "";
+
+
+//puts new user info into database
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  
+
+  if(!empty($email) && !empty($password)){
+    //query the database to read user data
+    $email = mysqli_real_escape_string($connection, $email);
+    $query = "select * from users where email = '$email' limit 1";
+    $result = mysqli_query($connection, $query);
+    
+    //check password
+    if($result){
+      if(mysqli_num_rows($result) > 0){
+        $userData = mysqli_fetch_assoc($result);
+        //check password is entered
+        if(isset($userData['pass'])){
+          $_SESSION['user_id'] = $userData['user_id'];
+          
+          //verify password hash
+          if(password_verify($password, $userData['pass'])){
+            //send user to home page after successful login
+
+            header("Location: account/account.php");
+            exit;
+//all else statement intended for debugging          
+          } else {
+            $_SESSION['error_message'] = "Incorrect email or password";
+          }
+        } else{
+          $_SESSION['error_message'] = "Incorrect email or password";
+        }
+      } else {
+        $_SESSION['error_message'] = "Incorrect email or password";
+      }
+    } else{
+      $_SESSION['error_message'] = "Database query failed";
+    }
+  }else{
+    $_SESSION['error_message'] = "Please enter both Email and Password";
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   
@@ -13,7 +72,7 @@
 
 
 
-<body class="overflow-x-hidden">
+<body class="overflow-x-hidden flex flex-col min-h-screen">
     <header class="items-center bg-zinc-950 md:px">
         <div class="flex flex-wrap place-items-center">
       <section class="relative mx-auto">
@@ -22,10 +81,10 @@
           
             <div class="px-2 flex w-full py-4 items-center">
             
-              <a class="" href="home.html">
+              <a class="" href="home.php">
               <!-- <img class="h-9" src="logo.png" alt="logo"> -->
               <img class="h-6 
-               " src="/store/src/images/logowhite.png" alt="logo"/>         
+               " src="./images/logowhite.png" alt="logo"/>         
               </a>
 
             <!-- Nav Links -->
@@ -61,13 +120,13 @@
                     <path d="m21 21-4.35-4.35"/>
                   </svg>
               </a>
-              <a class="flex items-center hover:text-gray-300 pr-1" href="login.html">
+              <a class="flex items-center hover:text-gray-300 pr-1" href="login.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-user w-10 mx-auto"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
                 </svg>
                 
               </a>
               <!-- Cart      -->
-              <a class="flex items-center hover:text-gray-300" href="cart.html">
+              <a class="flex items-center hover:text-gray-300" href="cart.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart w-10"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                 </svg>
                 <!--<span class="flex absolute -mt-5 ml-4">
@@ -87,6 +146,15 @@
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">LOGIN</h2>
     </div>
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <?php
+    if(!empty($_SESSION['error_message'])) {
+    echo '<div class="error-message">' . $_SESSION['error_message'] . '</div>';
+    // Clear the message after displaying it
+    $_SESSION['error_message'] = "";
+  }
+  ?>
+  </div>
   
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form class="space-y-6" action="#" method="POST">
@@ -117,14 +185,14 @@
   
       <p class="mt-10 text-center text-sm text-gray-500">
         Don't have an account?
-        <a href="register.html" class="font-semibold leading-6 text-zinc-950 hover:text-opacity-50">Sign up</a>
+        <a href="register.php" class="font-semibold leading-6 text-zinc-950 hover:text-opacity-50">Sign up</a>
       </p>
     </div>
   </div>
 
 
 
-  <footer class="bg-zinc-950 px-24">
+  <footer class="bg-zinc-950 px-24 mt-auto">
     
     <div class="flex gap-x-12">
       
