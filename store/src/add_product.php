@@ -1,6 +1,10 @@
 <?php 
 
 session_start();
+include "connections.php";
+
+ini_set('display_errors', 1);
+
 
 if (!isset($_SESSION['user_id'])){
     header('Location: login.php');
@@ -22,6 +26,8 @@ if (isset($_SESSION['success_message'])) {
     unset($_SESSION['success_message']);
 }
 
+$sql = "SELECT * FROM products";
+$result = $connection->query($sql);
 
 ?>
 
@@ -148,21 +154,25 @@ if (isset($_SESSION['success_message'])) {
       <div class="p-4 md:col-span-3 md:px-14 md:py-10 lg:p-20 mb-4 md:mb-0">
         <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">View products</h1>
         <div class="md:col-span-3">
-          <div class="sm:overflow-hidden">
-            <ul class="divide-y">
-              <li class="py-8 relative border-black">
-                <span class="rounded-full bg-black text-white px-3 py-1 mb-2 text-xs font-medium absolute top-4 right-0">Default</span>
-                <p>
-                  test test
-                  <br>
-                  United Kondom
-                </p>
-                <div class="-ml-2">
-                  <button class="px-2 py-1 underline underline-offset-1">Edit</button>
-                  <button class="px-2 py-1 underline underline-offset-1">Delete</button>
-                </div>
-              </li>
-            </ul>
+          <div class="sm:overflow-hidden" style="max-height: 600px; overflow-y: auto; padding-bottom: 100px;">
+          <ul class="divide-y">
+        <?php 
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<li class='py-8 relative border-black'>";
+                echo "<p><strong>" . htmlspecialchars($row['brand']) . "</strong> " . htmlspecialchars($row['product_name']) . "</p>";
+                echo "<p>Price: £" . htmlspecialchars($row['price']) . " | Release Date: " . htmlspecialchars($row['release_date']) . "</p>";
+                echo "<p>Stock Quantity: " . htmlspecialchars($row['stock_quantity']) . " | Category: " . htmlspecialchars($row['category']) . "</p>";
+                echo "<div class='-ml-2'>";
+                echo "<button class='px-2 py-1 underline underline-offset-1'>Edit</button>";
+                echo "<button class='px-2 py-1 underline underline-offset-1'>Delete</button>";
+                echo "</div></li>";
+            }
+        } else {
+            echo "<li>No products found.</li>";
+        }
+        ?>
+    </ul>
 
             <script>
     function closeModal() {
@@ -280,7 +290,7 @@ if (isset($_SESSION['success_message'])) {
 
 
 
-  <footer class="bg-zinc-950 px-24 -mt-64">
+  <footer class="bg-zinc-950 px-24 -mt-64" style="position: relative; z-index: 10;">
     
     <div class="flex gap-x-12">
       
