@@ -24,4 +24,22 @@ function insertProduct($connection, $productName, $brand, $price, $releaseDate, 
     }
     mysqli_stmt_close($stmt);
 }
+
+function getProducts($connection, $productIds) {
+    $productIdsString = implode(',', $productIds);
+
+    $query = "select * from products where product_id IN ($productIdsString)";
+    $result = mysqli_query($connection, $query);
+
+    if($result) {
+        $products = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $products[] = $row;
+        }
+        return $products;
+    } else {
+        return [];
+    }
+}
+
 ?>

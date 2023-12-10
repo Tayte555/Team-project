@@ -4,6 +4,8 @@ session_start();
 include("connections.php");
 include("functions.php");
 
+// $firstRowIds = [3,4,4];
+// $firstRowProducts = getProducts($connection, $firstRowIds);
 ?>
 
 <!DOCTYPE html>
@@ -119,181 +121,89 @@ include("functions.php");
       <h2 class="text-sm font-bold uppercase tracking-wide">NEW ARRIVALS</h2>
       <a href="/collections/new-arrivals" class="underline underline-offset-2">View more</a>
     </div>
-
+<!--FIRST ROW SHOES-->
     <div class="grid gap-px px-4 grid-cols-4 gap-x-12">
-      <div class="max-h-[26rem] lg:max-h-[32rem]">
+    <div class="max-h-[26rem] lg:max-h-[32rem]">
         <ul class="divide-y">
-          <li class="py-2 border-black">
+          <?php 
+          $firstRowIds = [1,2,3];
+          $firstRowProducts = getProducts($connection, $firstRowIds);
+          foreach ($firstRowProducts as $product) :?>
+            <li class="py-2 border-black">
             <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
               <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
+                <img src="<?php echo $product['product_img']?>" width="400" height="400">
               </div> 
               <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
+                <p class="text-xs line-clamp-2"><?php echo $product['product_name']?></p>
               </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
+              <div class="w-[84px] text-right text-xs">£<?php echo $product['price']?></div>
             </a>
           </li>
-
-          <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
-            </a>
-          </li>
-
-          <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
-            </a>
-          </li>
-
-          
-        
+          <?php endforeach;?>  
         </ul>
-
-        
-        
       </div>
-
+<!--SECOND ROW SHOES-->
       <div class="max-h-[26rem] lg:max-h-[32rem]">
         <ul class="divide-y">
-          <li class="py-2 border-black">
+          <?php 
+          $secondRowIds = [1,2,3];
+          $secondRowProducts = getProducts($connection, $secondRowIds);
+          foreach ($secondRowProducts as $product) :?>
+            <li class="py-2 border-black">
             <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
               <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
+                <img src="<?php echo $product['product_img']?>" width="400" height="400">
               </div> 
               <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
+                <p class="text-xs line-clamp-2"><?php echo $product['product_name']?></p>
               </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
+              <div class="w-[84px] text-right text-xs">£<?php echo $product['price']?></div>
             </a>
           </li>
-
-          <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
-            </a>
-          </li>
-
-          <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
-            </a>
-          </li>
-
-        
+          <?php endforeach;?>  
         </ul>
-
-        
-        
       </div>
-
+<!--THIRD ROW SHOES-->
       <div class="max-h-[26rem] lg:max-h-[32rem]">
         <ul class="divide-y">
-          <li class="py-2 border-black">
+          <?php 
+          $thirdRowIds = [1,2,3];
+          $thirdRowProducts = getProducts($connection, $thirdRowIds);
+          foreach ($thirdRowProducts as $product) :?>
+            <li class="py-2 border-black">
             <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
               <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
+                <img src="<?php echo $product['product_img']?>" width="400" height="400">
               </div> 
               <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
+                <p class="text-xs line-clamp-2"><?php echo $product['product_name']?></p>
               </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
+              <div class="w-[84px] text-right text-xs">£<?php echo $product['price']?></div>
             </a>
           </li>
-
-          <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
-            </a>
-          </li>
-
-          <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
-            </a>
-          </li>
-
-        
+          <?php endforeach;?>  
         </ul>
-
-        
-        
       </div>
-
-      <div class="max-h-[26rem] lg:max-h-[32rem]">
+<!--FOURTH ROW SHOES-->
+<div class="max-h-[26rem] lg:max-h-[32rem]">
         <ul class="divide-y">
-          <li class="py-2 border-black">
+          <?php 
+          $fourthRowIds = [1,2,3];
+          $fourthRowProducts = getProducts($connection, $fourthRowIds);
+          foreach ($fourthRowProducts as $product) :?>
+            <li class="py-2 border-black">
             <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
               <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
+                <img src="<?php echo $product['product_img']?>" width="400" height="400">
               </div> 
               <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
+                <p class="text-xs line-clamp-2"><?php echo $product['product_name']?></p>
               </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
+              <div class="w-[84px] text-right text-xs">£<?php echo $product['price']?></div>
             </a>
           </li>
-
-          <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
-            </a>
-          </li>
-
-          <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
-            </a>
-          </li>
+          <?php endforeach;?>  
         </ul>
       </div>
 
