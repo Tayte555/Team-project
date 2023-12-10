@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_SESSION['user_id'])){
-  header('Location: account.php');
+  header('Location: account/account.php');
   exit();
 }
 
@@ -36,7 +36,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
           if(password_verify($password, $userData['pass'])){
             //send user to home page after successful login
 
-            header("Location: account.php");
+            header("Location: account/account.php");
             exit;
 //all else statement intended for debugging          
           } else {

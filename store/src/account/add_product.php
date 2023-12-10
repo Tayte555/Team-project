@@ -1,10 +1,10 @@
 <?php 
 
 session_start();
-include "connections.php";
+include "../connections.php";
 
 if (!isset($_SESSION['user_id'])){
-    header('Location: login.php');
+    header('Location: ../login.php');
     exit();
   }
 
@@ -52,10 +52,10 @@ $result = $connection->query($sql);
           
             <div class="px-2 flex w-full py-4 items-center">
             
-              <a class="" href="home.php">
+              <a class="" href="../home.php">
               <!-- <img class="h-9" src="logo.png" alt="logo"> -->
               <img class="h-6 
-               " src="./images/logowhite.png" alt="logo"/>         
+               " src="../images/logowhite.png" alt="logo"/>         
               </a>
 
             <!-- Nav Links -->
@@ -91,13 +91,13 @@ $result = $connection->query($sql);
                     <path d="m21 21-4.35-4.35"/>
                   </svg>
               </a>
-              <a class="flex items-center hover:text-gray-300 pr-1" href="login.php">
+              <a class="flex items-center hover:text-gray-300 pr-1" href="../login.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-user w-10 mx-auto"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
                 </svg>
                 
               </a>
               <!-- Cart      -->
-              <a class="flex items-center hover:text-gray-300" href="cart.html">
+              <a class="flex items-center hover:text-gray-300" href="../cart.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart w-10"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                 </svg>
                 <!--<span class="flex absolute -mt-5 ml-4">
@@ -139,7 +139,7 @@ $result = $connection->query($sql);
             </a>
           </li>
           <li class="mb-2 py-2">
-            <a href="logout.php" class="py-2 md:text-base lg:text-2xl">
+            <a href="../logout.php" class="py-2 md:text-base lg:text-2xl">
               <span>Log out</span>
             </a>
           </li>
@@ -189,7 +189,7 @@ $result = $connection->query($sql);
                   <!-- this element is to trick browser into centering the modal contents. -->
                   <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&ZeroWidthSpace;</span>
                   <div class="inline-block align-bottom bg-white text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-screen-md sm:w-full" role="dialog" aria-modal="true" aria-labelledby="Add a new product">
-                    <form method="post" action="add_product_func.php" id="product_form_new" accept-charset="UTF-8">
+                    <form method="post" action="add_product_func.php" id="product_form_new" enctype="multipart/form-data" accept-charset="UTF-8">
                       <input type="hidden" name="utf8" value="✓">
                       <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <div class="new-address-form">
@@ -198,16 +198,31 @@ $result = $connection->query($sql);
                           <div class="grid grid-cols-6 gap-3">
 
                           <?php if (!empty($error_message)): ?>
-                            <div class="error-message">
-                                <?php echo $error_message; ?>
+                            <div class="col-span-6">
+                              <div class="error-message">
+                                  <?php echo $error_message; ?>
+                              </div>
                             </div>
                             <?php endif; ?>
 
+                            <!-- Success Message (Full Width) -->
                             <?php if (!empty($success_message)): ?>
-                                <div class="success-message">
-                                    <?php echo $success_message; ?>
-                                </div>
+                            <div class="col-span-6">
+                              <div class="success-message">
+                                  <?php echo $success_message; ?>
+                              </div>
+                            </div>
                             <?php endif; ?>
+
+                            <div class="col-span-6 sm:col-span-3">
+                            <label for="product_image" class="block text-sm font-medium text-gray-700">Product Image</label>
+                              <input type="file" name="product_image" id="product_image" required class="mt-2 block w-full text-sm text-gray-700" onchange="previewImage();">
+
+                          </div>
+                          <div class="col-span-6 sm:col-span-3">
+                          <img id="image_preview" src="#" alt="Image preview" style="display: none; max-width: 200px; max-height: 200px;" />
+                          </div>
+                          
 
                           <div class="col-span-6">
                             <label for="product_name" class="block text-sm font-medium text-gray-700">Product name</label>
@@ -235,6 +250,24 @@ $result = $connection->query($sql);
                                     // If not, remove the last character entered
                                     input.value = input.value.slice(0, -1);
                                 }
+                            }
+
+                            function previewImage() {
+                              var preview = document.getElementById('image_preview');
+                              var file    = document.getElementById('product_image').files[0];
+                              var reader  = new FileReader();
+
+                            reader.onloadend = function () {
+                              preview.src = reader.result;
+                              preview.style.display = 'block';
+                            }
+
+                            if (file) {
+                              reader.readAsDataURL(file);
+                            } else {
+                              preview.src = "";
+                              preview.style.display = 'none';
+                            }
                             }
                         </script>
 

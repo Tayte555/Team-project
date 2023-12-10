@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include 'connections.php';
+include '../connections.php';
 
 
 if(isset($_GET['id']) && is_numeric($_GET['id'])) {

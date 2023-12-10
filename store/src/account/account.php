@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['user_id'])){
-  header('Location: login.php');
+  header('Location: ../login.php');
   exit();
 }
 
@@ -32,10 +32,10 @@ if (!isset($_SESSION['user_id'])){
           
             <div class="px-2 flex w-full py-4 items-center">
             
-              <a class="" href="home.php">
+              <a class="" href="../home.php">
               <!-- <img class="h-9" src="logo.png" alt="logo"> -->
               <img class="h-6 
-               " src="./images/logowhite.png" alt="logo"/>         
+               " src="../images/logowhite.png" alt="logo"/>         
               </a>
 
             <!-- Nav Links -->
@@ -71,7 +71,7 @@ if (!isset($_SESSION['user_id'])){
                     <path d="m21 21-4.35-4.35"/>
                   </svg>
               </a>
-              <a class="flex items-center hover:text-gray-300 pr-1" href="login.php">
+              <a class="flex items-center hover:text-gray-300 pr-1" href="../login.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-user w-10 mx-auto"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
                 </svg>
                 
@@ -119,7 +119,7 @@ if (!isset($_SESSION['user_id'])){
             </a>
           </li>
           <li class="mb-2 py-2">
-            <a href="logout.php" class="py-2 md:text-base lg:text-2xl">
+            <a href="../logout.php" class="py-2 md:text-base lg:text-2xl">
               <span>Log out</span>
             </a>
           </li>

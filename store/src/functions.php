@@ -14,9 +14,9 @@ function login($connection){
     die;
 }
 
-function insertProduct($connection, $productName, $brand, $price, $releaseDate, $stockQuantity, $category) {
-    $stmt = mysqli_prepare($connection, "INSERT INTO products (product_name, brand, price, release_date, stock_quantity, category) VALUES (?, ?, ?, ?, ?, ?)");
-    mysqli_stmt_bind_param($stmt, 'ssssii', $productName, $brand, $price, $releaseDate, $stockQuantity, $category);
+function insertProduct($connection, $productName, $brand, $price, $releaseDate, $stockQuantity, $category, $imagePath) {
+    $stmt = mysqli_prepare($connection, "INSERT INTO products (product_name, brand, price, release_date, stock_quantity, category, product_img) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, 'ssssiss', $productName, $brand, $price, $releaseDate, $stockQuantity, $category, $imagePath);
     if(mysqli_stmt_execute($stmt)) {
         $_SESSION['success_message'] = "Product added successfully.";
     } else {
