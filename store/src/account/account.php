@@ -1,6 +1,6 @@
 <?php 
 session_start();
-
+include("../connections.php");
 if (!isset($_SESSION['user_id'])){
   header('Location: ../login.php');
   exit();
@@ -129,6 +129,38 @@ if (!isset($_SESSION['user_id'])){
 
       </div>
       <div class="p-4 md:col-span-3 md:px-14 md:py-10 lg:p-20 mb-4 md:mb-0">
+        <?php
+        if (isset($_SESSION['user_id'])) {
+          $userId = $_SESSION['user_id'];
+      
+          $query = "SELECT forename FROM users WHERE user_id = $userId";
+          $result = mysqli_query($connection, $query);
+      
+          if ($result) {
+              // Fetch the associative array from the result set
+              $row = mysqli_fetch_assoc($result);
+      
+              // Check if a row was returned
+              if ($row) {
+                  // Display the user's forename
+                  echo "Hello " . $row['forename'] . "!";
+              } else {
+                  // Handle the case where user ID is not found
+                  echo "Hello, Unknown User!";
+              }
+      
+              // Free the result set
+              mysqli_free_result($result);
+          } else {
+              // Handle the case where the query failed
+              echo "Error executing query: " . mysqli_error($connection);
+          }
+      } else {
+          // If the user is not logged in, redirect them to the login page
+          header("Location: login.php");
+          exit();
+      }
+        ?>
         <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">Order History</h1>
         <p>You haven't placed any orders yet.</p>
 
