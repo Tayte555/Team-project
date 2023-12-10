@@ -52,7 +52,7 @@ $result = $connection->query($sql);
           
             <div class="px-2 flex w-full py-4 items-center">
             
-              <a class="" href="home.html">
+              <a class="" href="home.php">
               <!-- <img class="h-9" src="logo.png" alt="logo"> -->
               <img class="h-6 
                " src="./images/logowhite.png" alt="logo"/>         
@@ -148,10 +148,10 @@ $result = $connection->query($sql);
         </ul>
 
       </div>
-      <div class="p-4 md:col-span-3 md:px-14 md:py-10 lg:p-20 mb-4 md:mb-0">
+      <div class="p-4 md:col-span-3 md:px-14 md:py-10 lg:p-20 mb-4 md:mb-0" style="max-height: 600px; overflow-y: auto; padding-bottom: 100px;">
         <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">View products</h1>
         <div class="md:col-span-3">
-          <div class="sm:overflow-hidden" style="max-height: 600px; overflow-y: auto; padding-bottom: 100px;">
+          <div class="sm:overflow-hidden" >
           <ul class="divide-y">
         <?php 
         if ($result && $result->num_rows > 0) {
@@ -162,7 +162,7 @@ $result = $connection->query($sql);
                 echo "<p>Stock Quantity: " . htmlspecialchars($row['stock_quantity']) . " | Category: " . htmlspecialchars($row['category']) . "</p>";
                 echo "<div class='-ml-2'>";
                 echo "<button class='px-2 py-1 underline underline-offset-1'>Edit</button>";
-                echo "<button class='px-2 py-1 underline underline-offset-1'>Delete</button>";
+                echo "<a href='delete_product.php?id=" . $row['product_id'] . "' class='px-2 py-1 underline underline-offset-1' onclick='return confirm(\"Are you sure you want to delete this product?\");'>Delete</a>";
                 echo "</div></li>";
             }
         } else {
@@ -287,7 +287,7 @@ $result = $connection->query($sql);
 
 
 
-  <footer class="bg-zinc-950 px-24 -mt-64" style="position: relative; z-index: 10;">
+  <footer class="bg-zinc-950 px-24 -mt-64">
     
     <div class="flex gap-x-12">
       

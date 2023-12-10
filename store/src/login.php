@@ -1,6 +1,10 @@
 <?php
 session_start();
-ini_set('display_errors', 1);
+
+if (isset($_SESSION['user_id'])){
+  header('Location: account.php');
+  exit();
+}
 
 include("connections.php");
 include("functions.php");

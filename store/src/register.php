@@ -4,6 +4,11 @@ session_start();
   include("connections.php");
   include("functions.php");
 
+  if (isset($_SESSION['user_id'])){
+    header('Location: account.php');
+    exit();
+  }
+
   //puts new user info into database
   if($_SERVER['REQUEST_METHOD'] == "POST"){
     $firstName = $_POST['fname'];
