@@ -3,9 +3,6 @@ session_start();
 
 include("connections.php");
 include("functions.php");
-
-// $firstRowIds = [3,4,4];
-// $firstRowProducts = getProducts($connection, $firstRowIds);
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +39,7 @@ include("functions.php");
             <!-- Nav Links -->
             <ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
               <li><a class="hover:text-gray-300" href="#">New Arrivals</a></li>
-              <li><a class="hover:text-gray-300" href="best_sellers.html">Best Sellers</a></li>
+              <li><a class="hover:text-gray-300" href="best_sellers.php">Best Sellers</a></li>
               <li><a class="hover:text-gray-300" href="#">Sneakers                
                   <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                     <path d="m9 18 6-6-6-6"/>
@@ -126,9 +123,10 @@ include("functions.php");
     <div class="max-h-[26rem] lg:max-h-[32rem]">
         <ul class="divide-y">
           <?php 
-          $firstRowIds = [1,2,3];
-          $firstRowProducts = getProducts($connection, $firstRowIds);
-          foreach ($firstRowProducts as $product) :?>
+            $firstRowIds = [1,2,3];
+            $firstRowProducts = getProducts($connection, $firstRowIds);
+            foreach ($firstRowProducts as $product) :
+          ?>
             <li class="py-2 border-black">
             <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
               <div class="w-[80px]">
@@ -137,7 +135,10 @@ include("functions.php");
               <div class="w-[calc(100%_-_164px)] px-4">
                 <p class="text-xs line-clamp-2"><?php echo $product['product_name']?></p>
               </div>
-              <div class="w-[84px] text-right text-xs">£<?php echo $product['price']?></div>
+              <div class="w-[84px] text-right text-xs">
+                £<?php echo $product['price']?>
+                <button class="ml-2 p-1 bg-gray-500 text-white rounded" onclick="addToCart(<?php echo $product['product_id'] ?>)">Add to Cart</button>
+              </div>
             </a>
           </li>
           <?php endforeach;?>  
