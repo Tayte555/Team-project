@@ -41,3 +41,21 @@ window.addEventListener("load", () => {
     const itemActiveIndex = itemsArray.indexOf(itemActive);
     return itemActiveIndex;
  }
+
+ function addToCart(productId) {
+   fetch('cart.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ productId: productId }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Handle the response from the server (if needed)
+      console.log(data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }

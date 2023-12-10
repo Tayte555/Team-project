@@ -76,8 +76,60 @@
 </head>
 <body>
 
+
+<?php
+session_start();
+
+include("connections.php");
+include("functions.php");
+
+// Put product selected into the cart 
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['product_id'], $_POST['quantity'])) {
+    $product_id = $_POST['product_id'];
+    $quantity = $_POST['quantity'];
+
+    // Check if the product_id is numeric to avoid SQL injection
+    if (!is_numeric($product_id)) {
+        die('Invalid product_id');
+    }
+
+    $query = "SELECT * FROM products WHERE product_id = $product_id";
+    $result = mysqli_query($connection, $query);
+
+    if ($result) {
+        $product = mysqli_fetch_assoc($result);
+
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = [];
+        }
+
+        $_SESSION['cart'][] = [
+            'product_id' => $product_id,
+            'product_name' => $product['product_name'],
+            'price' => $product['price'],
+            'quantity' => $quantity
+        ];
+
+        echo 'Product added to cart';
+    } else {
+        echo 'Error fetching product information';
+    }
+}
+
+// Handle removal of items from the cart
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
+    if ($_POST['action'] == 'remove_from_cart') {
+        $removeIndex = $_POST['remove_index'];
+        echo removeFromCart($removeIndex);
+    }
+}
+
+mysqli_close($connection);
+?>
+
 <div id="cart-container">
     <div id="product-details">
+        <button><a href="home.php">Back</a></button>
         <h2>Contact Information</h2>
         <!-- Space for contact info form -->
 
@@ -111,9 +163,45 @@
     </div>
 
     <div id="product-image">
-        <img src="path/to/your/product-image.jpg" alt="Product Image Placeholder">
         <div id="total-amount">
-            Total Amount: £1,499.99
+            
+
+            <?php
+            // Display the contents of the shopping cart
+            if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+            echo '<h2>Shopping Cart</h2>';
+            echo '<table border="1">';
+            echo '<tr><th>Product Name</th><th>Price</th><th>Quantity</th></tr>';
+            
+            $totalAmount = 0;
+
+            foreach ($_SESSION['cart'] as $key => $item) {
+                echo '<tr>';
+                echo '<td>' . $item['product_name'] . '</td>';
+                echo '<td>$' . $item['price'] . '</td>';
+                echo '<td>' . $item['quantity'] . '</td>';
+                echo '<td>';
+                echo '<form method="post" action="' . $_SERVER['PHP_SELF'] . '">';
+                echo '<input type="hidden" name="action" value="remove_from_cart">';
+                echo '<input type="hidden" name="remove_index" value="' . $key . '">';
+                echo '<input type="submit" value="Remove from Cart">';
+                echo '</form>';
+                echo '</td>';
+                echo '</tr>';
+            
+                $totalAmount += ($item['price'] * $item['quantity']);
+            }
+            
+
+            echo '</table>';
+            } else {
+                echo 'Your shopping cart is empty.';
+                $totalAmount = 0;
+            }
+
+            echo '<br>';
+            echo 'Total Amount: £' . number_format($totalAmount, 2);
+            ?>
         </div>
     </div>
 </div>

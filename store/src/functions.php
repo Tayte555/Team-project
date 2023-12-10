@@ -1,4 +1,9 @@
 <?php
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 function login($connection){
     if(isset($_SESSION['user_id'])){
         $id = $_SESSION['user_id'];
@@ -42,4 +47,14 @@ function getProducts($connection, $productIds) {
     }
 }
 
+function removeFromCart($removeIndex) {
+
+    if (isset($_SESSION['cart'][$removeIndex])) {
+        unset($_SESSION['cart'][$removeIndex]);
+        $_SESSION['cart'] = array_values($_SESSION['cart']);
+        return 'Product removed from cart';
+    } else {
+        return 'Invalid item index';
+    }
+}
 ?>
