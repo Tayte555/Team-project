@@ -1,12 +1,17 @@
 <?php 
 
 session_start();
-//error messages for form
+
+if (!isset($_SESSION['user_id'])){
+    header('Location: login.php');
+    exit();
+  }
+
 $error_message = "";
 if (isset($_SESSION['error_message'])) {
     $error_message = $_SESSION['error_message'];
 
-    // Clear the message after displaying it once
+
     unset($_SESSION['error_message']);
 }
 
@@ -14,7 +19,6 @@ $success_message = "";
 if (isset($_SESSION['success_message'])) {
     $success_message = $_SESSION['success_message'];
 
-    // Clear the message after displaying it once
     unset($_SESSION['success_message']);
 }
 
@@ -112,17 +116,17 @@ if (isset($_SESSION['success_message'])) {
       <div class="p-4 px-8 md:border-r md:border-black h-screen">
         <ul>
           <li class="mb-2 py-2">
-            <a href="/account" class="py-2 md:text-base md:text-base lg:text-2xl">
+            <a href="account.php" class="py-2 md:text-base md:text-base lg:text-2xl">
               <span>Order History</span>
             </a>
           </li>
           <li class="mb-2 py-2">
-            <a href="/account/add_product" class="opacity-50 py-2 md:text-base lg:text-2xl">
+            <a href="add_product.php" class="opacity-50 py-2 md:text-base lg:text-2xl">
               <span>Add product</span>
             </a>
           </li>
           <li class="mb-2 py-2">
-            <a href="/account/addresses" class="py-2 md:text-base lg:text-2xl">
+            <a href="addresses.php" class="py-2 md:text-base lg:text-2xl">
               <span>View addresses</span>
             </a>
           </li>
@@ -132,7 +136,7 @@ if (isset($_SESSION['success_message'])) {
             </a>
           </li>
           <li class="mb-2 py-2">
-            <a href="/account/logout" class="py-2 md:text-base lg:text-2xl">
+            <a href="logout.php" class="py-2 md:text-base lg:text-2xl">
               <span>Log out</span>
             </a>
           </li>
@@ -142,7 +146,7 @@ if (isset($_SESSION['success_message'])) {
 
       </div>
       <div class="p-4 md:col-span-3 md:px-14 md:py-10 lg:p-20 mb-4 md:mb-0">
-        <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">View addresses</h1>
+        <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">View products</h1>
         <div class="md:col-span-3">
           <div class="sm:overflow-hidden">
             <ul class="divide-y">
@@ -159,9 +163,20 @@ if (isset($_SESSION['success_message'])) {
                 </div>
               </li>
             </ul>
+
+            <script>
+    function closeModal() {
+        document.getElementById('modal').style.display = 'none';
+    }
+
+    function showAddProductModal() {
+        document.getElementById('modal').style.display = 'block';
+    }
+</script>
+
             <div class="my-4">
-              <button type="submit" @click="address_input.showModal()" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add a new product</button>
-              <div class="fixed z-10 inset-0 overflow-y-auto" x-show="openNew" x-transition.opacity aria-modal="true" aria-labelledby="modal-headline">
+              <button onclick="showAddProductModal()" type="submit" @click="address_input.showModal()" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add a new product</button>
+              <div id="modal" class="fixed z-10 inset-0 overflow-y-auto" x-show="openNew" x-transition.opacity aria-modal="true" aria-labelledby="modal-headline">
                 <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                   <div class="fixed inset-0 bg-gray-500 opacity-75" x-show="openNew" @click="openNew = false"></div>
                   <!-- this element is to trick browser into centering the modal contents. -->
@@ -236,7 +251,7 @@ if (isset($_SESSION['success_message'])) {
                       <div class="flex flex-col md:flex-row">
                         <button type="submit" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add product</button>
                       </div>
-                      <button type="button" @click="openNew = false" class="text-sm px-4 border border-black uppercase tracking-wide">Cancel</button>
+                      <button type="button" onclick="closeModal()" class="text-sm px-4 border border-black uppercase tracking-wide">Cancel</button>
                     </div>
                     </form>
 

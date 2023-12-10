@@ -1,8 +1,12 @@
 <?php
 session_start();
+ini_set('display_errors', 1);
 
 include("connections.php");
 include("functions.php");
+
+$_SESSION['error_message'] = "";
+
 
 //puts new user info into database
 if($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -27,23 +31,24 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
           //verify password hash
           if(password_verify($password, $userData['pass'])){
             //send user to home page after successful login
-            header("Location: home.php");
-            die;
+
+            header("Location: account.php");
+            exit;
 //all else statement intended for debugging          
           } else {
-            echo "pass verification fail";
+            $_SESSION['error_message'] = "Incorrect email or password";
           }
         } else{
-          echo "Incorrect email or password";
+          $_SESSION['error_message'] = "Incorrect email or password";
         }
       } else {
-        echo "Incorrect email or password";
+        $_SESSION['error_message'] = "Incorrect email or password";
       }
     } else{
-      echo "Database query failed";
+      $_SESSION['error_message'] = "Database query failed";
     }
   }else{
-    echo "Please enter both Email and Password";
+    $_SESSION['error_message'] = "Please enter both Email and Password";
   }
 }
 ?>
@@ -137,6 +142,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">LOGIN</h2>
     </div>
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <?php
+    if(!empty($_SESSION['error_message'])) {
+    echo '<div class="error-message">' . $_SESSION['error_message'] . '</div>';
+    // Clear the message after displaying it
+    $_SESSION['error_message'] = "";
+  }
+  ?>
+  </div>
   
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form class="space-y-6" action="#" method="POST">
