@@ -3,9 +3,6 @@
 session_start();
 include "connections.php";
 
-ini_set('display_errors', 1);
-
-
 if (!isset($_SESSION['user_id'])){
     header('Location: login.php');
     exit();
