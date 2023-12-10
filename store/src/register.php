@@ -1,3 +1,38 @@
+<?php
+session_start();
+
+  include("connections.php");
+  include("functions.php");
+
+  if (isset($_SESSION['user_id'])){
+    header('Location: account.php');
+    exit();
+  }
+
+  //puts new user info into database
+  if($_SERVER['REQUEST_METHOD'] == "POST"){
+    $firstName = $_POST['fname'];
+    $lastName = $_POST['lName'];
+    $password = $_POST['password'];
+    $email = $_POST['email'];
+
+    if(!empty($firstName) && !empty($lastName) && !empty($password) && !empty($email)){
+      $email = mysqli_real_escape_string($connection, $email);
+      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+      
+      //query database to insert user data
+      $query = "insert into users (forename, surname, email, pass) values ('$firstName', '$lastName', '$email', '$hashedPassword')";
+      mysqli_query($connection, $query);
+      
+      //send back to login page after success
+      header("Location: login.php");
+      die;
+    }else{
+      echo "Empty / Incorrect field(s)...";
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   
@@ -13,7 +48,7 @@
 
 
 
-<body class="overflow-x-hidden">
+<body class="overflow-x-hidden flex flex-col min-h-screen">
     <header class="items-center bg-zinc-950 md:px">
         <div class="flex flex-wrap place-items-center">
       <section class="relative mx-auto">
@@ -22,10 +57,10 @@
           
             <div class="px-2 flex w-full py-4 items-center">
             
-              <a class="" href="home.html">
+              <a class="" href="home.php">
               <!-- <img class="h-9" src="logo.png" alt="logo"> -->
               <img class="h-6 
-               " src="/store/src/images/logowhite.png" alt="logo"/>         
+               " src="./images/logowhite.png" alt="logo"/>         
               </a>
 
             <!-- Nav Links -->
@@ -55,19 +90,19 @@
             </ul>
             <!-- Header Icons -->
             <div class="hidden xl:flex items-center -space-x-1 pr-6 text-gray-100">
-              <a class="hover:text-gray-300" href="#">
+              <a class="hover:text-gray-300" href="cart.php">
                 <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-search w-10">
                     <circle cx="11" cy="11" r="8"/>
                     <path d="m21 21-4.35-4.35"/>
                   </svg>
               </a>
-              <a class="flex items-center hover:text-gray-300 pr-1" href="login.html">
+              <a class="flex items-center hover:text-gray-300 pr-1" href="login.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-user w-10 mx-auto"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
                 </svg>
                 
               </a>
               <!-- Cart      -->
-              <a class="flex items-center hover:text-gray-300" href="cart.html">
+              <a class="flex items-center hover:text-gray-300" href="cart.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart w-10"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                 </svg>
                 <!--<span class="flex absolute -mt-5 ml-4">
@@ -152,13 +187,13 @@
         </div>
   
         <div>
-          <button type="submit" class="flex w-full justify-center rounded-md bg-zinc-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Log in</button>
+          <button type="submit" class="flex w-full justify-center rounded-md bg-zinc-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign up</button>
         </div>
       </form>
   
       <p class="mt-10 text-center text-sm text-gray-500">
         Already have an account?
-        <a href="login.html" class="font-semibold leading-6 text-zinc-950 hover:text-opacity-50">Sign in</a>
+        <a href="login.php" class="font-semibold leading-6 text-zinc-950 hover:text-opacity-50">Sign in</a>
       </p>
     </div>
   </div>
@@ -168,7 +203,7 @@
 
 
 
-  <footer class="bg-zinc-950 px-24">
+  <footer class="bg-zinc-950 px-24 mt-auto">
     
     <div class="flex gap-x-12">
       

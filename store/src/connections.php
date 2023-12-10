@@ -4,9 +4,10 @@
 $dbhost = "localhost"; 
 $dbuser = "root";
 $dbpass = "";
-$dbname = "Team-project";
+$dbname = "team_project";
 
-if($connection = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname))
-{
+if(!$connection = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname)){
     die("Database Connection Failed...");
 }
+
+?>
