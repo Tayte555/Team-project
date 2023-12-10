@@ -1,7 +1,12 @@
 <?php 
 session_start();
-include("../connections.php");
+
 if (!isset($_SESSION['user_id'])){
+  header('Location: ../login.php');
+  exit();
+}
+
+if ($_SESSION['is_admin'] != 1){
   header('Location: ../login.php');
   exit();
 }
@@ -40,8 +45,8 @@ if (!isset($_SESSION['user_id'])){
 
             <!-- Nav Links -->
             <ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
-              <li><a class="hover:text-gray-300" href="../newarrivals.html">New Arrivals</a></li>
-              <li><a class="hover:text-gray-300" href="../best_sellers.php">Best Sellers</a></li>
+              <li><a class="hover:text-gray-300" href="#">New Arrivals</a></li>
+              <li><a class="hover:text-gray-300" href="#">Best Sellers</a></li>
               <li><a class="hover:text-gray-300" href="#">Sneakers                
                   <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                     <path d="m9 18 6-6-6-6"/>
@@ -100,16 +105,21 @@ if (!isset($_SESSION['user_id'])){
         <ul>
           <li class="mb-2 py-2">
             <a href="account.php" class="opacity-50 py-2 md:text-base md:text-base lg:text-2xl">
-              <span>Order History</span>
+              <span>Admin Dashboard</span>
             </a>
           </li>
           <li class="mb-2 py-2">
-            <a href="addresses.php" class="py-2 md:text-base lg:text-2xl">
-              <span>View addresses</span>
+            <a href="add_product.php" class=" py-2 md:text-base lg:text-2xl">
+              <span>Add products</span>
             </a>
           </li>
           <li class="mb-2 py-2">
-            <a href="/account/settings" class="py-2 md:text-base lg:text-2xl">
+            <a href="manage_users.php" class="py-2 md:text-base lg:text-2xl">
+              <span>Manage users</span>
+            </a>
+          </li>
+          <li class="mb-2 py-2">
+            <a href="settings.php" class="py-2 md:text-base lg:text-2xl">
               <span>Profile settings</span>
             </a>
           </li>
@@ -124,40 +134,8 @@ if (!isset($_SESSION['user_id'])){
 
       </div>
       <div class="p-4 md:col-span-3 md:px-14 md:py-10 lg:p-20 mb-4 md:mb-0">
-        <?php
-        if (isset($_SESSION['user_id'])) {
-          $userId = $_SESSION['user_id'];
-      
-          $query = "SELECT forename FROM users WHERE user_id = $userId";
-          $result = mysqli_query($connection, $query);
-      
-          if ($result) {
-              // Fetch the associative array from the result set
-              $row = mysqli_fetch_assoc($result);
-      
-              // Check if a row was returned
-              if ($row) {
-                  // Display the user's forename
-                  echo "Hello " . $row['forename'] . "!";
-              } else {
-                  // Handle the case where user ID is not found
-                  echo "Hello, Unknown User!";
-              }
-      
-              // Free the result set
-              mysqli_free_result($result);
-          } else {
-              // Handle the case where the query failed
-              echo "Error executing query: " . mysqli_error($connection);
-          }
-      } else {
-          // If the user is not logged in, redirect them to the login page
-          header("Location: login.php");
-          exit();
-      }
-        ?>
-        <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">Order History</h1>
-        <p>You haven't placed any orders yet.</p>
+        <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">Admin dashboard</h1>
+        <p>Only admin can access this page.</p>
 
       
 
