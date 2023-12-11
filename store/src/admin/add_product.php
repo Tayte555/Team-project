@@ -6,7 +6,12 @@ include "../connections.php";
 if (!isset($_SESSION['user_id'])){
     header('Location: ../login.php');
     exit();
-  }
+}
+
+if ($_SESSION['is_admin'] != 1){
+  header('Location: ../login.php');
+  exit();
+}
 
 $error_message = "";
 if (isset($_SESSION['error_message'])) {
@@ -131,6 +136,11 @@ $result = $connection->query($sql);
           <li class="mb-2 py-2">
             <a href="manage_users.php" class="py-2 md:text-base lg:text-2xl">
               <span>Manage users</span>
+            </a>
+          </li>
+          <li class="mb-2 py-2">
+            <a href="view_messages.php" class="py-2 md:text-base lg:text-2xl">
+              <span>View messages</span>
             </a>
           </li>
           <li class="mb-2 py-2">
@@ -362,7 +372,7 @@ $result = $connection->query($sql);
         <a href="/refund-policy" class="hover:opacity-50">Meet the team</a>
       </li>
       <li class="mb-1">
-        <a href="/tos" class="hover:opacity-50">Contact us</a>
+        <a href="../contactus.php" class="hover:opacity-50">Contact us</a>
       </li>
       <li class="mb-1 pb-5">
         <a href="/shipping" class="hover:opacity-50">Careers</a>

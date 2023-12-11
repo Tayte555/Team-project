@@ -374,7 +374,7 @@ z-index: 1;
         <a href="/refund-policy" class="hover:opacity-50">Meet the team</a>
       </li>
       <li class="mb-1">
-        <a href="/tos" class="hover:opacity-50">Contact us</a>
+        <a href="contactus.php" class="hover:opacity-50">Contact us</a>
       </li>
       <li class="mb-1 pb-5">
         <a href="/shipping" class="hover:opacity-50">Careers</a>

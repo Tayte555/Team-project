@@ -57,4 +57,17 @@ function removeFromCart($removeIndex) {
         return 'Invalid item index';
     }
 }
+
+function sendContactUsMsg($connection, $firstName, $lastName, $email, $msg){
+    $stmt = mysqli_prepare($connection, "INSERT INTO contactform (first_name, last_name, email, message) VALUES (?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, 'ssss', $firstName, $lastName, $email, $msg);
+    if(mysqli_stmt_execute($stmt)) {
+        $_SESSION['success_message'] = "Message sent successfully. You should hear back from us soon!";
+    } else {
+        echo "ERROR: Could not execute query: " . mysqli_error($connection);
+    }
+    mysqli_stmt_close($stmt);
+
+}
+
 ?>

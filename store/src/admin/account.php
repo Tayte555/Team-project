@@ -119,6 +119,11 @@ if ($_SESSION['is_admin'] != 1){
             </a>
           </li>
           <li class="mb-2 py-2">
+            <a href="view_messages.php" class="py-2 md:text-base lg:text-2xl">
+              <span>View messages</span>
+            </a>
+          </li>
+          <li class="mb-2 py-2">
             <a href="settings.php" class="py-2 md:text-base lg:text-2xl">
               <span>Profile settings</span>
             </a>
@@ -133,6 +138,7 @@ if ($_SESSION['is_admin'] != 1){
         </ul>
 
       </div>
+      
       <div class="p-4 md:col-span-3 md:px-14 md:py-10 lg:p-20 mb-4 md:mb-0">
         <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">Admin dashboard</h1>
         <p>Only admin can access this page.</p>
@@ -193,7 +199,7 @@ if ($_SESSION['is_admin'] != 1){
         <a href="/refund-policy" class="hover:opacity-50">Meet the team</a>
       </li>
       <li class="mb-1">
-        <a href="/tos" class="hover:opacity-50">Contact us</a>
+        <a href="../contactus.php" class="hover:opacity-50">Contact us</a>
       </li>
       <li class="mb-1 pb-5">
         <a href="/shipping" class="hover:opacity-50">Careers</a>
