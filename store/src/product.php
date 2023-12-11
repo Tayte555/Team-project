@@ -10,7 +10,271 @@
     <!--Font Awesome-->
     <script src="https://kit.fontawesome.com/7623f015c6.js" crossorigin="anonymous"></script>
     <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
-</head>
+    <style>
+      *{
+        padding:0;
+        margin: 0;
+        box-sizing:border-box;
+      }
+      
+
+      img{
+        width:100%;
+        display: block;
+        }
+      .container{
+        width: 88vw;
+         margin: 0 auto;
+      }
+      
+      .lg-title,
+     .md-title,
+     .sm-title{
+       font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+       padding:0.6rem 0;
+      text-transform:capitalize;
+      }
+     .lg-title{
+        font-size:2.5rem;
+        font-weight:500;
+        text-align: center;
+        opacity: 0.9;
+       padding: 1.3rem 0;
+     }
+
+     .md-title{
+      font-size:2rem;
+     }
+     .sm-title{
+      font-weight: 300;
+      font-size:1rem;
+      text-transform:uppercase;
+     }
+      .text-light{
+       font-size:1rem;
+       font-weight:600;
+       line-height:1.5;
+        opacity: 0.5;
+        margin: 0.4rem 0;
+     }
+     /*product section*/
+      .products{
+       background: rgb(247, 247, 247);
+       padding: 3.2rem 0;
+    }
+    .products.text-light{
+      text-align: center;
+      width: 70%;
+      margin: 0.9rem auto;
+    }
+.product{
+   margin:2rem;
+   position: relative;
+}
+.product-content{
+   background: rgb(241,241,241);
+   box-shadow:0 0 20px 10px rgb(230,230,230);
+   cursor: pointer;
+}
+.product-img{
+   background:rgb(244,244,244);
+   box-shadow: 0 0 20px 10px rgb(250,250,250);
+   width: 200px;
+   height:200px;
+   margin: 0 auto;
+   border-radius: 50%;
+   transition: background 0.5s ease;
+}
+.product-btns{
+   display: flex;
+   justify-content: center;
+   margin-top:1.4rem;
+   opacity: 1;
+   transition: opacity 0.6s ease;
+}
+
+.btn-cart, .btn-buy{
+  background: transparent;
+  border:1px solid rgb(255,255,255);
+  padding: 0.8rem 0;
+  width: 125px;
+  font-family:inherit;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: all 0.6s ease;
+}
+.btn-cart{
+  background: rgb(0,0,0);;
+}
+.btn-cart:hover{
+  background: rgb(0,0,150);
+  color: #fff;
+}
+.btn-buy{
+  background: rgb(0,0,0);
+  
+}
+.btn-buy:hover{
+  background: rgb(0,0,150);
+  color: #fff;
+}
+
+.product-info{
+  background: rgb(253,253,253);
+  padding: 2rem;
+}
+.product-info-top{
+  display:flex;
+  justify-content:space-between;
+  align-items: center; 
+}
+.rating span{
+  color:rgb(25,50,180);
+}
+.product-name{
+  color: rgb(0,0,0);
+  display:block;
+  text-decoration: none;
+  font-size:1rem;
+  text-transform:uppercase;
+  font-weight: bold;
+  opacity: 80%
+}
+.product-price{
+  padding-top:0.6rem;
+  padding-right:0.6rem;
+  display:inline-block;
+}
+.product-price:first-of-type{
+  text-decoration:line-through;
+  color: rgb(25,227,79);
+  opacity: 80%;
+}
+
+.product-img img{
+  transition: transform 0.6s ease;
+}
+
+.product:hover .product-img img{
+  transform:scale(1.1);
+}
+.product:hover .product-img{
+  background:rgb(0,0,150);
+}
+
+.product:hover .product-btns{
+  opacity:1;
+}
+
+.off-info .sm-title{
+  background: rgb(0,0,150);
+  color: rgb(255,255,255);
+  display:inline-block;
+  padding:0.5rem;
+  position:absolute;
+  top:0;
+  left:0;
+  writing-mode:vertical-lr;
+  transform: rotate(180deg);
+  z-index:1;
+  letter-spacing:3px;
+  cursor:pointer;
+}
+/*Item section */
+
+.right-box{
+  width:50%;
+  border: 1px solid rgb(0,0,150);
+  border-radius: 10px;
+}
+.main-image-box{
+  padding:30px 0px;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.main-image{
+  height:390px;
+  width:auto;
+}
+.small-images{
+  display:flex;
+  justify-content:space-between;
+  padding:8px;
+  align-items:center;
+
+}
+.image-box{
+  margin: 0px 8px 8px 0px;
+  height:100px;
+  width: 100px;
+  cursor:pointer;
+  border: 1px solid rgb(0,0,150);
+  border-radius:5px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.image{
+  height:90%;
+  width:auto;
+}
+.details-box{
+  width:50%;
+  padding-left:50px;
+}
+
+.details-box h2{
+color(0,0,150);
+}
+.inputs{
+  width:100%;
+  justify-content: space-between;
+}
+td input{
+  height: 30px;
+}
+button{
+  border:none;
+  border-radius:5px;
+  padding:10px 15px;
+  background-color: rgb(0,0,150);
+  color: rgb(255,255,255);
+  margin-top:14px;
+  cursor:pointer;
+}
+
+/*
+@media screen and (min-width:992px){
+  .product-items{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+@media screen and (min-width:1200px){
+  .product-items{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+  }
+  .product{
+    margin-right:1rem;
+    margin-left:1rem;
+  }
+  .product .text-light{
+    width:50%;
+  }
+}
+@media screen and (min-width:1336px){
+  .product-items{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+  }
+}
+*/
+    </style>
+  </head>
 
     
   <!-- navbar -->
@@ -87,10 +351,10 @@
 
   <!-- Products Section -->
   <div class = "products">
-    <div class = "containter">
-      <h1 class = "lg-title flex items-center"> (Shoe Name here) </h1>
+    <div class = "container">
+      <h1 class = "lg-title"> Jordan 4 - Black Cats </h1>
       <!-- Product Description insert below-->
-      <p class = "text-light"> Here are our state of the art shoes from..... 
+      <p class = "text-light"> Here are our state of the art shoes from Jordan 
         These are made with deluxe material and high grade cushioning.
       </p>
 
@@ -101,9 +365,70 @@
             <!-- Picture for the product insert below-->
             <div class = "product-img">
               <img src = "images/blackcatsneaker 1.png" alt = "product image"
-              class = "w-[750px] display-block">
+              >
             </div>
-            
+            <!-- Main image section-->
+            <div class= "right-box">
+              <div class="main-image-box">
+                <img src = "images/blackcatsneaker 1.png" alt = "main-Image">
+              </div>
+              <div class = "small-images">
+                <div class = "image-box"><img src = "images/af1.png" class= "image"></div>
+                <div class = "image-box"><img src = "images/blackcatsneaker 1.png" class= "image"></div>
+                <div class = "image-box"><img src = "images/af1.png" class= "image"></div>
+                <div class = "image-box"><img src = "images/blackcatsneaker 1.png" class= "image"></div>
+              </div>
+            </div>
+
+            <div class="details-box">
+            <h1> Here is the single product name and info </h1>
+            <p>Availibility (In Stock)</p>
+            <h2> £359.99</h2>
+            <table cellspacing = "0" class="inputs">
+                <tr>
+                  <td> Quantity</td>
+                  <td align ="right"><input type = "number" id = "first"></td>
+                </tr>
+                <tr>
+                  <td> Sub Total</td>
+                  <td align ="right"><input type = "number" id = "second"></td>
+                </tr>
+                <tr>
+                  <td> Sales Tax 5.7%</td>
+                  <td align ="right"><input type = "number" id = "third"></td>
+                </tr>
+                <tr>
+                  <td> Total</td>
+                  <td align ="right"><input type = "number" id = "fourth"></td>
+                </tr>
+                <h4>Specifications</h4>
+                <p>Yappa yappa yappa </p>
+            </div>
+<script>
+    let mainImage = document.getElementById("mainImage");
+    let smallImage = document.getElementsByClassName("image");
+    smallImage[0].onclick = () =>{
+      mainImage.src = smallImage[0].src;
+    }
+    smallImage[1].onclick = () =>{
+      mainImage.src = smallImage[1].src;
+    }
+    smallImage[2].onclick = () =>{
+      mainImage.src = smallImage[2].src;
+    }
+    smallImage[3].onclick = () =>{
+      mainImage.src = smallImage[3].src;
+    }
+    smallImage[4].onclick = () =>{
+      mainImage.src = smallImage[4].src;
+    }
+    </script>
+    
+
+
+
+
+
             <!--buttons-->
             <div class = "product-btns">
               <!--Add to cart button-->
@@ -114,33 +439,30 @@
                 <span><i class = "fas fa-shopping-cart"></i></span>
               </button>
             </div>
-          </div>
 
           <div class = "product-info">
             <div class = "product-info-top">
-              <h2 class = "sm-title"> Shoes </h2>
+              <h2 class = "sm-title"> Shoe Collection </h2>
               <!--Shoe Rating-->
               <div class = "rating">
-                <span><i class = "fas fa-star"></i></span>
-                <span><i class = "fas fa-star"></i></span>
+                <span><i class = "far fa-star"></i></span>
+                <span><i class = "far fa-star"></i></span>
                 <span><i class = "fas fa-star"></i></span>
                 <span><i class = "fas fa-star"></i></span>
                 <span><i class = "fas fa-star"></i></span>
               </div>
             </div>
-            <a href = "#" class = "product-name"> Mens Shoes, new Product</a>
+            <a href = "#" class = "product-name"> Jordan 4 Black Cats</a>
             <!-- Test-->
-            <div class="w-[10px] text-right text-xs">£185.00</div>
+           <!-- <div class="w-[10px] text-right text-xs">£185.00</div> -->
             <!--How it should be-->
-            <p class = "product-price">£ 120</p>
-            <p class = "product-price">£ 120</p>
+            <p class = "product-price">£ 379.99</p>
+            <p class = "product-price">£ 299.99</p>
           </div>
 
           <div class = "off-info">
-            <h2 class = "sm-title">25% off</h2>
+            <h2 class = "sm-title">15% off</h2>
           </div>
-        </div>
-        <!-- End of a single product-->
       </div>
     </div>
   </div>
@@ -148,7 +470,6 @@
 
  </body>
 
- 
     <!-- footer section -->
     <footer class="bg-zinc-950 px-24 mt-auto">
     
