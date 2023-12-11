@@ -1,15 +1,35 @@
 <?php 
+
 session_start();
+include "../connections.php";
 
 if (!isset($_SESSION['user_id'])){
-  header('Location: ../login.php');
-  exit();
+    header('Location: ../login.php');
+    exit();
 }
 
 if ($_SESSION['is_admin'] != 1){
-  header('Location: ../login.php');
-  exit();
+    header('Location: ../login.php');
+    exit();
+  }
+
+$error_message = "";
+if (isset($_SESSION['error_message'])) {
+    $error_message = $_SESSION['error_message'];
+
+
+    unset($_SESSION['error_message']);
 }
+
+$success_message = "";
+if (isset($_SESSION['success_message'])) {
+    $success_message = $_SESSION['success_message'];
+
+    unset($_SESSION['success_message']);
+}
+
+$sql = "SELECT * FROM contactform";
+$result = $connection->query($sql);
 
 ?>
 
@@ -82,7 +102,7 @@ if ($_SESSION['is_admin'] != 1){
                 
               </a>
               <!-- Cart      -->
-              <a class="flex items-center hover:text-gray-300" href="cart.php">
+              <a class="flex items-center hover:text-gray-300" href="../cart.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart w-10"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                 </svg>
                 <!--<span class="flex absolute -mt-5 ml-4">
@@ -102,14 +122,14 @@ if ($_SESSION['is_admin'] != 1){
     
     <div class="md:grid md:grid-cols-4 ">
       <div class="p-4 px-8 md:border-r md:border-black h-screen">
-        <ul>
+      <ul>
           <li class="mb-2 py-2">
-            <a href="account.php" class="opacity-50 py-2 md:text-base md:text-base lg:text-2xl">
+            <a href="account.php" class="py-2 md:text-base md:text-base lg:text-2xl">
               <span>Admin Dashboard</span>
             </a>
           </li>
           <li class="mb-2 py-2">
-            <a href="add_product.php" class=" py-2 md:text-base lg:text-2xl">
+            <a href="add_product.php" class="py-2 md:text-base lg:text-2xl">
               <span>Add products</span>
             </a>
           </li>
@@ -119,12 +139,12 @@ if ($_SESSION['is_admin'] != 1){
             </a>
           </li>
           <li class="mb-2 py-2">
-            <a href="view_messages.php" class="py-2 md:text-base lg:text-2xl">
+            <a href="view_messages.php" class="opacity-50 py-2 md:text-base lg:text-2xl">
               <span>View messages</span>
             </a>
           </li>
           <li class="mb-2 py-2">
-            <a href="settings.php" class="py-2 md:text-base lg:text-2xl">
+            <a href="/account/settings" class="py-2 md:text-base lg:text-2xl">
               <span>Profile settings</span>
             </a>
           </li>
@@ -138,10 +158,34 @@ if ($_SESSION['is_admin'] != 1){
         </ul>
 
       </div>
-      
-      <div class="p-4 md:col-span-3 md:px-14 md:py-10 lg:p-20 mb-4 md:mb-0">
-        <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">Admin dashboard</h1>
-        <p>Only admin can access this page.</p>
+      <div class="p-4 md:col-span-3 md:px-14 md:py-10 lg:p-20 mb-4 md:mb-0" style="max-height: 600px; overflow-y: auto; padding-bottom: 100px;">
+        <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">View messages</h1>
+        <div class="md:col-span-3">
+          <div class="sm:overflow-hidden" >
+          <ul class="divide-y">
+          <?php 
+          if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<li class='py-8 relative border-black'>";
+                echo "<p><strong>First Name:</strong> " . htmlspecialchars($row['first_name']) . "</p>";
+                echo "<p><strong>Last Name:</strong> " . htmlspecialchars($row['last_name']) . "</p>";
+                echo "<p><strong>Email:</strong> " . htmlspecialchars($row['email']) . "</p>";
+                echo "<p><strong>Message:</strong> " . htmlspecialchars($row['message']) . "</p>";
+                echo "<p><strong>Timestamp:</strong> " . htmlspecialchars($row['timestamp']) . "</p>";
+                echo "<div class='-ml-2'>";
+                echo "<button class='px-2 py-1 underline underline-offset-1'>Reply</button>";
+                echo "<a href='delete_messages.php?id=" . $row['message_id'] . "' class='px-2 py-1 underline underline-offset-1' onclick='return confirm(\"Are you sure you want to delete this message?\");'>Delete</a>";
+                echo "</div></li>";
+            }
+        } else {
+            echo "<li>No messages found.</li>";
+        }
+        ?>
+
+    </ul>
+          </div>
+
+        </div>
 
       
 
