@@ -1,36 +1,21 @@
 <?php
 session_start();
 
-  include("connections.php");
-  include("functions.php");
+$error_message = "";
+if (isset($_SESSION['error_message'])) {
+    $error_message = $_SESSION['error_message'];
 
-  if (isset($_SESSION['user_id'])){
-    header('Location: account.php');
-    exit();
-  }
 
-  //puts new user info into database
-  if($_SERVER['REQUEST_METHOD'] == "POST"){
-    $firstName = $_POST['fname'];
-    $lastName = $_POST['lName'];
-    $password = $_POST['password'];
-    $email = $_POST['email'];
+    unset($_SESSION['error_message']);
+}
 
-    if(!empty($firstName) && !empty($lastName) && !empty($password) && !empty($email)){
-      $email = mysqli_real_escape_string($connection, $email);
-      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-      
-      //query database to insert user data
-      $query = "insert into users (forename, surname, email, pass) values ('$firstName', '$lastName', '$email', '$hashedPassword')";
-      mysqli_query($connection, $query);
-      
-      //send back to login page after success
-      header("Location: login.php");
-      die;
-    }else{
-      echo "Empty / Incorrect field(s)...";
-    }
-  }
+$success_message = "";
+if (isset($_SESSION['success_message'])) {
+    $success_message = $_SESSION['success_message'];
+
+    unset($_SESSION['success_message']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +25,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Sole Haven | Register</title>
+    <title>Sole Haven | Login</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
                 
@@ -90,7 +75,7 @@ session_start();
             </ul>
             <!-- Header Icons -->
             <div class="hidden xl:flex items-center -space-x-1 pr-6 text-gray-100">
-              <a class="hover:text-gray-300" href="cart.php">
+              <a class="hover:text-gray-300" href="#">
                 <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-search w-10">
                     <circle cx="11" cy="11" r="8"/>
                     <path d="m21 21-4.35-4.35"/>
@@ -118,89 +103,60 @@ session_start();
     </div>
     </header>
 
+  
 
+    <div class="flex min-h-full flex-col items-center justify-center px-2 py-12 lg:px-4">
+    <form method="post" action="contactus_func.php" id="contactus_form_new" accept-charset="UTF-8" class="w-full max-w-lg">
+                      <div class="bg-white p-6 sm:pb-4">
+            <div class="new-contactus-form">
+                <h3 class="text-xl md:text-4xl font-bold mb-4 text-center">Contact Us</h3>
 
+                          <div class="grid grid-cols-6 gap-3">
 
+                          <?php if (!empty($error_message)): ?>
+                            <div class="col-span-6">
+                              <div class="error-message">
+                                  <?php echo $error_message; ?>
+                              </div>
+                            </div>
+                            <?php endif; ?>
 
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">SIGN UP</h2>
+                            <!-- Success Message (Full Width) -->
+                            <?php if (!empty($success_message)): ?>
+                            <div class="col-span-6">
+                              <div class="success-message">
+                                  <?php echo $success_message; ?>
+                              </div>
+                            </div>
+                            <?php endif; ?>
+
+                          <div class="col-span-6 sm:col-span-3">
+                            <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
+                            <input type="text" name="contactus[first_name]" value autocapitalize="words" required placeholder="*First name" id="first_name" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                          </div>
+                          <div class="col-span-6 sm:col-span-3">
+                            <label for="last_name" class="block text-sm font-medium text-gray-700">Last name</label>
+                            <input text="text" name="contactus[last_name]" value id="last_name" placeholder="*Last name" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                          </div>
+                          <div class="col-span-6">
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input id="email" type="email" name="contactus[email]" autocomplete="email" placeholder="*Email address" required class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                          </div>
+                          <div class="col-span-6">
+                            <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                            <textarea id="message" name="contactus[message]" placeholder="*Message" required class="mt-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full border border-gray-300 sm:text-sm h-32 p-2" autocapitalize="words"></textarea>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="px-4 py-3 flex flex-col ">
+                      <button type="submit" class="bg-black flex rounded-md items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Send message</button>
+                    </div>
+                    </form>
+
+                  </div>
     </div>
-  
-    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6" action="#" method="POST">
-        
-        <!--First name-->
-        <div>           
-            <div>
-              <label for="fName" class="block text-sm font-medium leading-6 text-gray-900">First Name</label>
-                <input type="text" name="fname" id="fname" 
-                class="border shadow-sm border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" 
-                placeholder="*First name" 
-                required="">
-            </div>
-          </div>
-        
-          <!--Last Name-->
-        <div>
-            <div>
-              <label for="lName" class="block text-sm font-medium leading-6 text-gray-900">Last name</label>
-                <input type="text" name="lName" id="lname" class="border shadow-sm border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" 
-                placeholder="*Last name" 
-                required="">
-            </div>
-          </div>
-
-        <!--Email -->
-        <div>
-          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email Address</label>
-          <div class="mt-2">
-            <input id="email" name="email" 
-            type="email" 
-            autocomplete="email" 
-            placeholder="*Email Address" 
-            required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
-          </div>
-        </div>
-  
-        <!--Password Label-->
-        <div>
-          <div class="flex items-center justify-between">
-            <label for="password" 
-            class="block text-sm font-medium leading-6 text-gray-900">Password</label>
-            
-          </div>
-          
-          <!--Password System-->
-          <div class="mt-2">
-            <input id="password" name="password" type="password" 
-            autocomplete="current-password" 
-            placeholder="*Password" 
-            required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
-            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-            title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
-        required/>
-            <div class="text-sm mt-2 underline underline-offset-4">
-              
-            </div>
-          </div>
-        </div>
-  
-        <div>
-          <button type="submit" class="flex w-full justify-center rounded-md bg-zinc-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign up</button>
-        </div>
-      </form>
-  
-      <p class="mt-10 text-center text-sm text-gray-500">
-        Already have an account?
-        <a href="login.php" class="font-semibold leading-6 text-zinc-950 hover:text-opacity-50">Sign in</a>
-      </p>
-    </div>
-  </div>
-
-
-
-
 
 
   <footer class="bg-zinc-950 px-24 mt-auto">
