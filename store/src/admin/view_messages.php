@@ -174,7 +174,7 @@ $result = $connection->query($sql);
                 echo "<p><strong>Timestamp:</strong> " . htmlspecialchars($row['timestamp']) . "</p>";
                 echo "<div class='-ml-2'>";
                 echo "<button class='px-2 py-1 underline underline-offset-1'>Reply</button>";
-                echo "<a href='delete_messages.php?id=" . $row['message_id'] . "' class='px-2 py-1 underline underline-offset-1' onclick='return confirm(\"Are you sure you want to delete this message?\");'>Delete</a>";
+                echo "<a href='delete_messages.php?id=" . $row['id'] . "' class='px-2 py-1 underline underline-offset-1' onclick='return confirm(\"Are you sure you want to delete this message?\");'>Delete</a>";
                 echo "</div></li>";
             }
         } else {
