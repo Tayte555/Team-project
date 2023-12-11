@@ -1,10 +1,35 @@
 <?php 
+
 session_start();
+include "../connections.php";
 
 if (!isset($_SESSION['user_id'])){
+    header('Location: ../login.php');
+    exit();
+}
+
+if ($_SESSION['is_admin'] != 1){
   header('Location: ../login.php');
   exit();
 }
+
+$error_message = "";
+if (isset($_SESSION['error_message'])) {
+    $error_message = $_SESSION['error_message'];
+
+
+    unset($_SESSION['error_message']);
+}
+
+$success_message = "";
+if (isset($_SESSION['success_message'])) {
+    $success_message = $_SESSION['success_message'];
+
+    unset($_SESSION['success_message']);
+}
+
+$sql = "SELECT * FROM products";
+$result = $connection->query($sql);
 
 ?>
 
@@ -77,7 +102,7 @@ if (!isset($_SESSION['user_id'])){
                 
               </a>
               <!-- Cart      -->
-              <a class="flex items-center hover:text-gray-300" href="cart.html">
+              <a class="flex items-center hover:text-gray-300" href="../cart.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart w-10"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                 </svg>
                 <!--<span class="flex absolute -mt-5 ml-4">
@@ -97,20 +122,25 @@ if (!isset($_SESSION['user_id'])){
     
     <div class="md:grid md:grid-cols-4 ">
       <div class="p-4 px-8 md:border-r md:border-black h-screen">
-        <ul>
+      <ul>
           <li class="mb-2 py-2">
             <a href="account.php" class="py-2 md:text-base md:text-base lg:text-2xl">
-              <span>Order History</span>
+              <span>Admin Dashboard</span>
             </a>
           </li>
           <li class="mb-2 py-2">
-            <a href="add_product.php" class=" py-2 md:text-base lg:text-2xl">
-              <span>Add product</span>
+            <a href="add_product.php" class="opacity-50 py-2 md:text-base lg:text-2xl">
+              <span>Add products</span>
             </a>
           </li>
           <li class="mb-2 py-2">
-            <a href="addresses.php" class="opacity-50 py-2 md:text-base lg:text-2xl">
-              <span>View addresses</span>
+            <a href="manage_users.php" class="py-2 md:text-base lg:text-2xl">
+              <span>Manage users</span>
+            </a>
+          </li>
+          <li class="mb-2 py-2">
+            <a href="view_messages.php" class="py-2 md:text-base lg:text-2xl">
+              <span>View messages</span>
             </a>
           </li>
           <li class="mb-2 py-2">
@@ -128,26 +158,28 @@ if (!isset($_SESSION['user_id'])){
         </ul>
 
       </div>
-
-
-      <div class="p-4 md:col-span-3 md:px-14 md:py-10 lg:p-20 mb-4 md:mb-0">
-        <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">View addresses</h1>
+      <div class="p-4 md:col-span-3 md:px-14 md:py-10 lg:p-20 mb-4 md:mb-0" style="max-height: 600px; overflow-y: auto; padding-bottom: 100px;">
+        <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">View products</h1>
         <div class="md:col-span-3">
-          <div class="sm:overflow-hidden">
-            <ul class="divide-y">
-              <li class="py-8 relative border-black">
-                <span class="rounded-full bg-black text-white px-3 py-1 mb-2 text-xs font-medium absolute top-4 right-0">Default</span>
-                <p>
-                  test test
-                  <br>
-                  United Kondom
-                </p>
-                <div class="-ml-2">
-                  <button class="px-2 py-1 underline underline-offset-1">Edit</button>
-                  <button class="px-2 py-1 underline underline-offset-1">Delete</button>
-                </div>
-              </li>
-            </ul>
+          <div class="sm:overflow-hidden" >
+          <ul class="divide-y">
+        <?php 
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<li class='py-8 relative border-black'>";
+                echo "<p><strong>" . htmlspecialchars($row['brand']) . "</strong> " . htmlspecialchars($row['product_name']) . "</p>";
+                echo "<p>Price: £" . htmlspecialchars($row['price']) . " | Release Date: " . htmlspecialchars($row['release_date']) . "</p>";
+                echo "<p>Stock Quantity: " . htmlspecialchars($row['stock_quantity']) . " | Category: " . htmlspecialchars($row['category']) . "</p>";
+                echo "<div class='-ml-2'>";
+                echo "<button class='px-2 py-1 underline underline-offset-1'>Edit</button>";
+                echo "<a href='delete_product.php?id=" . $row['product_id'] . "' class='px-2 py-1 underline underline-offset-1' onclick='return confirm(\"Are you sure you want to delete this product?\");'>Delete</a>";
+                echo "</div></li>";
+            }
+        } else {
+            echo "<li>No products found.</li>";
+        }
+        ?>
+    </ul>
 
             <script>
     function closeModal() {
@@ -158,80 +190,118 @@ if (!isset($_SESSION['user_id'])){
         document.getElementById('modal').style.display = 'block';
     }
 </script>
+
             <div class="my-4">
-              <button onclick="showAddProductModal()" type="submit" @click="address_input.showModal()" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add a new address</button>
-              <div id="modal" class="fixed z-10 inset-0 overflow-y-auto" x-show="openNew" x-transition.opacity aria-modal="false" aria-labelledby="modal-headline">
+              <button onclick="showAddProductModal()" type="submit" @click="address_input.showModal()" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add a new product</button>
+              <div id="modal" class="fixed z-10 inset-0 overflow-y-auto" x-show="openNew" x-transition.opacity aria-modal="true" aria-labelledby="modal-headline">
                 <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                   <div class="fixed inset-0 bg-gray-500 opacity-75" x-show="openNew" @click="openNew = false"></div>
                   <!-- this element is to trick browser into centering the modal contents. -->
                   <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&ZeroWidthSpace;</span>
-                  <div class="inline-block align-bottom bg-white text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-screen-md sm:w-full" role="dialog" aria-modal="true" aria-labelledby="Add a new address">
-                    <form method="post" action="/addresses.html" id="address_form_new" accept-charset="UTF-8">
-                      <input type="hidden" name="form_type" value="customer_address">
+                  <div class="inline-block align-bottom bg-white text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-screen-md sm:w-full" role="dialog" aria-modal="true" aria-labelledby="Add a new product">
+                    <form method="post" action="add_product_func.php" id="product_form_new" enctype="multipart/form-data" accept-charset="UTF-8">
                       <input type="hidden" name="utf8" value="✓">
                       <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <div class="new-address-form">
-                          <h3 class="text-xl md:text-4xl font-bold mb-4">Add a new address</h3>
+                          <h3 class="text-xl md:text-4xl font-bold mb-4">Add a new product</h3>
 
                           <div class="grid grid-cols-6 gap-3">
 
-                          <div class="col-span-6 sm:col-span-3">
-                            <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
-                            <input type="text" name="address[first_name]" value autocapitalize="words" required id="first_name" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
-                          </div>
-                          <div class="col-span-6 sm:col-span-3">
-                            <label for="last_name" class="block text-sm font-medium text-gray-700">Last name</label>
-                            <input text="text" name="address[last_name]" value id="last_name" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
-                          </div>
-                          <div class="col-span-6 sm:col-span-3">
-                            <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
-                            <input text="text" name="address[phone]" value id="phone" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
-                          </div>
-                          <div class="col-span-6">
-                            <label for="address1" class="block text-sm font-medium text-gray-700">Address 1</label>
-                            <input text="text" name="address[phone]" value id="address1" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
-                          </div>
-                          <div class="col-span-6">
-                            <label for="address2" class="block text-sm font-medium text-gray-700">Address 2</label>
-                            <input text="text" name="address[phone]" value id="address2" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
-                          </div>
-                          <div class="col-span-6 sm:col-span-3">
-                            <label for="address2" class="block text-sm font-medium text-gray-700">City</label>
-                            <input text="text" name="address[phone]" value id="city" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
-                          </div>
-                          <div class="col-span-6 sm:col-span-3">
-                            <label for="first_name" class="block text-sm font-medium text-gray-700">Country/region</label>
-                            <select x-ref="address_country" name="address[country]" @change="province = JSON.parse($event.target.selectedOptions[0].dataset.provinces); address.country = $event.target.selectedOptions[0].text;" value id="country" required class="mt-2 block w-full py-2 px-3 border border-gray-300 h-[42px] bg-white shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                              <option value="United Kondom" data-provinces="[[&quot;England&quot;,&quot;England&quot;],[&quot;Northern Ireland&quot;,&quot;Northern Ireland&quot;],[&quot;Scotland&quot;,&quot;Scotland&quot;],[&quot;Wales&quot;,&quot;Wales&quot;]]">United Kondom</option>
-                              <option value="Kazakhstan" data-provinces="[]">Kazakhstan</option>
-                            </select>
-                          </div>
-                          <div class="col-span-6 sm:col-span-3" x-show="province.length > 0">
-                            <label for="province" class="block text-sm font-medium text-gray-700">Province</label>
-                            <select name="address[province]" value id="province" autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
-                              <option :value="item[0]" x-text="item[0]" value="England">England</option>
-                              <option :value="item[0]" x-text="item[0]" value="Northern Ireland">Northern Ireland</option>
-                              <option :value="item[0]" x-text="item[0]" value="Scotland">Scotland</option>
-                              <option :value="item[0]" x-text="item[0]" value="Wales">Wales</option>
-                            </select>
-                          </div>
-                          <div class="col-span-6 sm:col-span-3">
-                            <label for="zip" class="block text-sm font-medium text-gray-700">Post code</label>
-                            <input type="text" name="address[postcode]" value id="postcode" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                          <?php if (!empty($error_message)): ?>
+                            <div class="col-span-6">
+                              <div class="error-message">
+                                  <?php echo $error_message; ?>
+                              </div>
+                            </div>
+                            <?php endif; ?>
 
+                            <!-- Success Message (Full Width) -->
+                            <?php if (!empty($success_message)): ?>
+                            <div class="col-span-6">
+                              <div class="success-message">
+                                  <?php echo $success_message; ?>
+                              </div>
+                            </div>
+                            <?php endif; ?>
+
+                            <div class="col-span-6 sm:col-span-3">
+                            <label for="product_image" class="block text-sm font-medium text-gray-700">Product Image</label>
+                              <input type="file" name="product_image" id="product_image" required class="mt-2 block w-full text-sm text-gray-700" onchange="previewImage();">
+
+                          </div>
+                          <div class="col-span-6 sm:col-span-3">
+                          <img id="image_preview" src="#" alt="Image preview" style="display: none; max-width: 200px; max-height: 200px;" />
+                          </div>
+                          
+
+                          <div class="col-span-6">
+                            <label for="product_name" class="block text-sm font-medium text-gray-700">Product name</label>
+                            <input type="text" name="product[product_name]" value autocapitalize="words" required id="product_name" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                          </div>
+                          <div class="col-span-6 ">
+                            <label for="brand" class="block text-sm font-medium text-gray-700">Brand</label>
+                            <input text="text" name="product[brand]" value id="brand" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                          </div>
+                          
+                          <div class="col-span-6 sm:col-span-3">
+                            <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+                            <div class="mt-2 flex border border-gray-300 h-[42px] focus-within:border-indigo-500 focus-within:ring focus-within:ring-indigo-200 focus-within:ring-opacity-50">
+                                <span class="inline-flex items-center px-3 text-gray-500 bg-gray-100 border-r border-gray-300 sm:text-sm">£</span>
+                                <input oninput="validateDecimal(this)" type="number" name="product[price]" id="price" required min="0" pattern="^\d+(?:\.\d{1,2})?$" step="0.01" autocapitalize="words" class="flex-1 p-2 block w-full focus:outline-none sm:text-sm border-0" placeholder="0.00">
+                            </div>
+                        </div>
+
+                        <script>
+                            function validateDecimal(input) {
+                                // Allows only numbers with up to two decimal places
+                                const regex = /^\d*\.?\d{0,2}$/;
+                                // Check if current value matches the regular expression
+                                if (!regex.test(input.value)) {
+                                    // If not, remove the last character entered
+                                    input.value = input.value.slice(0, -1);
+                                }
+                            }
+
+                            function previewImage() {
+                              var preview = document.getElementById('image_preview');
+                              var file    = document.getElementById('product_image').files[0];
+                              var reader  = new FileReader();
+
+                            reader.onloadend = function () {
+                              preview.src = reader.result;
+                              preview.style.display = 'block';
+                            }
+
+                            if (file) {
+                              reader.readAsDataURL(file);
+                            } else {
+                              preview.src = "";
+                              preview.style.display = 'none';
+                            }
+                            }
+                        </script>
+
+
+                          <div class="col-span-6 sm:col-span-3">
+                            <label for="release_date" class="block text-sm font-medium text-gray-700">Release date</label>
+                            <input type="date" name="product[release_date]" id="release_date" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                          </div>
+                          <div class="col-span-6 sm:col-span-3">
+                            <label for="zip" class="block text-sm font-medium text-gray-700">Stock quantity</label>
+                            <input type="number" min="0" name="product[stock_quantity]" value id="stock_quantity" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                          </div>
+                          <div class="col-span-6 sm:col-span-3">
+                            <label for="zip" class="block text-sm font-medium text-gray-700">Category</label>
+                            <input type="text" name="product[category]" value id="category" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="px-4 py-3 flex flex-col md:flex-row-reverse justify-between">
                       <div class="flex flex-col md:flex-row">
-                        <div class="flex items-center my-2 md:my-0">
-                          <input type="checkbox" id="address_default_address_new" name="address[default]" value="1">
-                          <label for="address_default_address_new" class="block text-sm font-medium text-gray-700 mr-3 ml-2">Set as default address </label>
-                        </div>
-                        <button type="submit" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add address</button>
+                        <button type="submit" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add product</button>
                       </div>
-                      <button type="button" onclick="closeModal()" @click="openNew = false" class="text-sm px-4 border border-black uppercase tracking-wide">Cancel</button>
+                      <button type="button" onclick="closeModal()" class="text-sm px-4 border border-black uppercase tracking-wide">Cancel</button>
                     </div>
                     </form>
 

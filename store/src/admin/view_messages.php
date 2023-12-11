@@ -6,6 +6,11 @@ include "../connections.php";
 if (!isset($_SESSION['user_id'])){
     header('Location: ../login.php');
     exit();
+}
+
+if ($_SESSION['is_admin'] != 1){
+    header('Location: ../login.php');
+    exit();
   }
 
 $error_message = "";
@@ -23,7 +28,7 @@ if (isset($_SESSION['success_message'])) {
     unset($_SESSION['success_message']);
 }
 
-$sql = "SELECT * FROM products";
+$sql = "SELECT * FROM contactform";
 $result = $connection->query($sql);
 
 ?>
@@ -117,20 +122,25 @@ $result = $connection->query($sql);
     
     <div class="md:grid md:grid-cols-4 ">
       <div class="p-4 px-8 md:border-r md:border-black h-screen">
-        <ul>
+      <ul>
           <li class="mb-2 py-2">
             <a href="account.php" class="py-2 md:text-base md:text-base lg:text-2xl">
-              <span>Order History</span>
+              <span>Admin Dashboard</span>
             </a>
           </li>
           <li class="mb-2 py-2">
-            <a href="add_product.php" class="opacity-50 py-2 md:text-base lg:text-2xl">
-              <span>Add product</span>
+            <a href="add_product.php" class="py-2 md:text-base lg:text-2xl">
+              <span>Add products</span>
             </a>
           </li>
           <li class="mb-2 py-2">
-            <a href="addresses.php" class="py-2 md:text-base lg:text-2xl">
-              <span>View addresses</span>
+            <a href="manage_users.php" class="py-2 md:text-base lg:text-2xl">
+              <span>Manage users</span>
+            </a>
+          </li>
+          <li class="mb-2 py-2">
+            <a href="view_messages.php" class="opacity-50 py-2 md:text-base lg:text-2xl">
+              <span>View messages</span>
             </a>
           </li>
           <li class="mb-2 py-2">
@@ -149,159 +159,30 @@ $result = $connection->query($sql);
 
       </div>
       <div class="p-4 md:col-span-3 md:px-14 md:py-10 lg:p-20 mb-4 md:mb-0" style="max-height: 600px; overflow-y: auto; padding-bottom: 100px;">
-        <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">View products</h1>
+        <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">View messages</h1>
         <div class="md:col-span-3">
           <div class="sm:overflow-hidden" >
           <ul class="divide-y">
-        <?php 
-        if ($result && $result->num_rows > 0) {
+          <?php 
+          if ($result && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "<li class='py-8 relative border-black'>";
-                echo "<p><strong>" . htmlspecialchars($row['brand']) . "</strong> " . htmlspecialchars($row['product_name']) . "</p>";
-                echo "<p>Price: £" . htmlspecialchars($row['price']) . " | Release Date: " . htmlspecialchars($row['release_date']) . "</p>";
-                echo "<p>Stock Quantity: " . htmlspecialchars($row['stock_quantity']) . " | Category: " . htmlspecialchars($row['category']) . "</p>";
+                echo "<p><strong>First Name:</strong> " . htmlspecialchars($row['first_name']) . "</p>";
+                echo "<p><strong>Last Name:</strong> " . htmlspecialchars($row['last_name']) . "</p>";
+                echo "<p><strong>Email:</strong> " . htmlspecialchars($row['email']) . "</p>";
+                echo "<p><strong>Message:</strong> " . htmlspecialchars($row['message']) . "</p>";
+                echo "<p><strong>Timestamp:</strong> " . htmlspecialchars($row['timestamp']) . "</p>";
                 echo "<div class='-ml-2'>";
-                echo "<button class='px-2 py-1 underline underline-offset-1'>Edit</button>";
-                echo "<a href='delete_product.php?id=" . $row['product_id'] . "' class='px-2 py-1 underline underline-offset-1' onclick='return confirm(\"Are you sure you want to delete this product?\");'>Delete</a>";
+                echo "<button class='px-2 py-1 underline underline-offset-1'>Reply</button>";
+                echo "<a href='delete_messages.php?id=" . $row['id'] . "' class='px-2 py-1 underline underline-offset-1' onclick='return confirm(\"Are you sure you want to delete this message?\");'>Delete</a>";
                 echo "</div></li>";
             }
         } else {
-            echo "<li>No products found.</li>";
+            echo "<li>No messages found.</li>";
         }
         ?>
+
     </ul>
-
-            <script>
-    function closeModal() {
-        document.getElementById('modal').style.display = 'none';
-    }
-
-    function showAddProductModal() {
-        document.getElementById('modal').style.display = 'block';
-    }
-</script>
-
-            <div class="my-4">
-              <button onclick="showAddProductModal()" type="submit" @click="address_input.showModal()" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add a new product</button>
-              <div id="modal" class="fixed z-10 inset-0 overflow-y-auto" x-show="openNew" x-transition.opacity aria-modal="true" aria-labelledby="modal-headline">
-                <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                  <div class="fixed inset-0 bg-gray-500 opacity-75" x-show="openNew" @click="openNew = false"></div>
-                  <!-- this element is to trick browser into centering the modal contents. -->
-                  <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&ZeroWidthSpace;</span>
-                  <div class="inline-block align-bottom bg-white text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-screen-md sm:w-full" role="dialog" aria-modal="true" aria-labelledby="Add a new product">
-                    <form method="post" action="add_product_func.php" id="product_form_new" enctype="multipart/form-data" accept-charset="UTF-8">
-                      <input type="hidden" name="utf8" value="✓">
-                      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                        <div class="new-address-form">
-                          <h3 class="text-xl md:text-4xl font-bold mb-4">Add a new product</h3>
-
-                          <div class="grid grid-cols-6 gap-3">
-
-                          <?php if (!empty($error_message)): ?>
-                            <div class="col-span-6">
-                              <div class="error-message">
-                                  <?php echo $error_message; ?>
-                              </div>
-                            </div>
-                            <?php endif; ?>
-
-                            <!-- Success Message (Full Width) -->
-                            <?php if (!empty($success_message)): ?>
-                            <div class="col-span-6">
-                              <div class="success-message">
-                                  <?php echo $success_message; ?>
-                              </div>
-                            </div>
-                            <?php endif; ?>
-
-                            <div class="col-span-6 sm:col-span-3">
-                            <label for="product_image" class="block text-sm font-medium text-gray-700">Product Image</label>
-                              <input type="file" name="product_image" id="product_image" required class="mt-2 block w-full text-sm text-gray-700" onchange="previewImage();">
-
-                          </div>
-                          <div class="col-span-6 sm:col-span-3">
-                          <img id="image_preview" src="#" alt="Image preview" style="display: none; max-width: 200px; max-height: 200px;" />
-                          </div>
-                          
-
-                          <div class="col-span-6">
-                            <label for="product_name" class="block text-sm font-medium text-gray-700">Product name</label>
-                            <input type="text" name="product[product_name]" value autocapitalize="words" required id="product_name" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
-                          </div>
-                          <div class="col-span-6 ">
-                            <label for="brand" class="block text-sm font-medium text-gray-700">Brand</label>
-                            <input text="text" name="product[brand]" value id="brand" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
-                          </div>
-                          
-                          <div class="col-span-6 sm:col-span-3">
-                            <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
-                            <div class="mt-2 flex border border-gray-300 h-[42px] focus-within:border-indigo-500 focus-within:ring focus-within:ring-indigo-200 focus-within:ring-opacity-50">
-                                <span class="inline-flex items-center px-3 text-gray-500 bg-gray-100 border-r border-gray-300 sm:text-sm">£</span>
-                                <input oninput="validateDecimal(this)" type="number" name="product[price]" id="price" required min="0" pattern="^\d+(?:\.\d{1,2})?$" step="0.01" autocapitalize="words" class="flex-1 p-2 block w-full focus:outline-none sm:text-sm border-0" placeholder="0.00">
-                            </div>
-                        </div>
-
-                        <script>
-                            function validateDecimal(input) {
-                                // Allows only numbers with up to two decimal places
-                                const regex = /^\d*\.?\d{0,2}$/;
-                                // Check if current value matches the regular expression
-                                if (!regex.test(input.value)) {
-                                    // If not, remove the last character entered
-                                    input.value = input.value.slice(0, -1);
-                                }
-                            }
-
-                            function previewImage() {
-                              var preview = document.getElementById('image_preview');
-                              var file    = document.getElementById('product_image').files[0];
-                              var reader  = new FileReader();
-
-                            reader.onloadend = function () {
-                              preview.src = reader.result;
-                              preview.style.display = 'block';
-                            }
-
-                            if (file) {
-                              reader.readAsDataURL(file);
-                            } else {
-                              preview.src = "";
-                              preview.style.display = 'none';
-                            }
-                            }
-                        </script>
-
-
-                          <div class="col-span-6 sm:col-span-3">
-                            <label for="release_date" class="block text-sm font-medium text-gray-700">Release date</label>
-                            <input type="date" name="product[release_date]" id="release_date" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
-                          </div>
-                          <div class="col-span-6 sm:col-span-3">
-                            <label for="zip" class="block text-sm font-medium text-gray-700">Stock quantity</label>
-                            <input type="number" min="0" name="product[stock_quantity]" value id="stock_quantity" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
-                          </div>
-                          <div class="col-span-6 sm:col-span-3">
-                            <label for="zip" class="block text-sm font-medium text-gray-700">Category</label>
-                            <input type="text" name="product[category]" value id="category" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="px-4 py-3 flex flex-col md:flex-row-reverse justify-between">
-                      <div class="flex flex-col md:flex-row">
-                        <button type="submit" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add product</button>
-                      </div>
-                      <button type="button" onclick="closeModal()" class="text-sm px-4 border border-black uppercase tracking-wide">Cancel</button>
-                    </div>
-                    </form>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
           </div>
 
         </div>
@@ -362,7 +243,7 @@ $result = $connection->query($sql);
         <a href="/refund-policy" class="hover:opacity-50">Meet the team</a>
       </li>
       <li class="mb-1">
-        <a href="/tos" class="hover:opacity-50">Contact us</a>
+        <a href="../contactus.php" class="hover:opacity-50">Contact us</a>
       </li>
       <li class="mb-1 pb-5">
         <a href="/shipping" class="hover:opacity-50">Careers</a>

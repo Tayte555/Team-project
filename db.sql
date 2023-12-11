@@ -41,6 +41,16 @@ CREATE TABLE user_orders (
     FOREIGN KEY (stock_id) REFERENCES product_stock(stock_id)
 );
 
+CREATE TABLE contactform (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
 /* INSERT BASE DATA INTO DATABASE */
 
 INSERT INTO products (product_name, brand, price, release_date, stock_quantity, category, product_img) VALUES

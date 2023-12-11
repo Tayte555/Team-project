@@ -1,9 +1,19 @@
-<?php 
+<?php
 session_start();
 
-if (!isset($_SESSION['user_id'])){
-  header('Location: ../login.php');
-  exit();
+$error_message = "";
+if (isset($_SESSION['error_message'])) {
+    $error_message = $_SESSION['error_message'];
+
+
+    unset($_SESSION['error_message']);
+}
+
+$success_message = "";
+if (isset($_SESSION['success_message'])) {
+    $success_message = $_SESSION['success_message'];
+
+    unset($_SESSION['success_message']);
 }
 
 ?>
@@ -15,7 +25,7 @@ if (!isset($_SESSION['user_id'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Sole Haven | Account</title>
+    <title>Sole Haven | Login</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
                 
@@ -32,10 +42,10 @@ if (!isset($_SESSION['user_id'])){
           
             <div class="px-2 flex w-full py-4 items-center">
             
-              <a class="" href="../home.php">
+              <a class="" href="home.php">
               <!-- <img class="h-9" src="logo.png" alt="logo"> -->
               <img class="h-6 
-               " src="../images/logowhite.png" alt="logo"/>         
+               " src="./images/logowhite.png" alt="logo"/>         
               </a>
 
             <!-- Nav Links -->
@@ -71,13 +81,13 @@ if (!isset($_SESSION['user_id'])){
                     <path d="m21 21-4.35-4.35"/>
                   </svg>
               </a>
-              <a class="flex items-center hover:text-gray-300 pr-1" href="../login.php">
+              <a class="flex items-center hover:text-gray-300 pr-1" href="login.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-user w-10 mx-auto"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
                 </svg>
                 
               </a>
               <!-- Cart      -->
-              <a class="flex items-center hover:text-gray-300" href="cart.html">
+              <a class="flex items-center hover:text-gray-300" href="cart.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart w-10"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                 </svg>
                 <!--<span class="flex absolute -mt-5 ml-4">
@@ -93,174 +103,63 @@ if (!isset($_SESSION['user_id'])){
     </div>
     </header>
 
-    <section class="">
-    
-    <div class="md:grid md:grid-cols-4 ">
-      <div class="p-4 px-8 md:border-r md:border-black h-screen">
-        <ul>
-          <li class="mb-2 py-2">
-            <a href="account.php" class="py-2 md:text-base md:text-base lg:text-2xl">
-              <span>Order History</span>
-            </a>
-          </li>
-          <li class="mb-2 py-2">
-            <a href="add_product.php" class=" py-2 md:text-base lg:text-2xl">
-              <span>Add product</span>
-            </a>
-          </li>
-          <li class="mb-2 py-2">
-            <a href="addresses.php" class="opacity-50 py-2 md:text-base lg:text-2xl">
-              <span>View addresses</span>
-            </a>
-          </li>
-          <li class="mb-2 py-2">
-            <a href="/account/settings" class="py-2 md:text-base lg:text-2xl">
-              <span>Profile settings</span>
-            </a>
-          </li>
-          <li class="mb-2 py-2">
-            <a href="../logout.php" class="py-2 md:text-base lg:text-2xl">
-              <span>Log out</span>
-            </a>
-          </li>
-          
+  
 
-        </ul>
-
-      </div>
-
-
-      <div class="p-4 md:col-span-3 md:px-14 md:py-10 lg:p-20 mb-4 md:mb-0">
-        <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">View addresses</h1>
-        <div class="md:col-span-3">
-          <div class="sm:overflow-hidden">
-            <ul class="divide-y">
-              <li class="py-8 relative border-black">
-                <span class="rounded-full bg-black text-white px-3 py-1 mb-2 text-xs font-medium absolute top-4 right-0">Default</span>
-                <p>
-                  test test
-                  <br>
-                  United Kondom
-                </p>
-                <div class="-ml-2">
-                  <button class="px-2 py-1 underline underline-offset-1">Edit</button>
-                  <button class="px-2 py-1 underline underline-offset-1">Delete</button>
-                </div>
-              </li>
-            </ul>
-
-            <script>
-    function closeModal() {
-        document.getElementById('modal').style.display = 'none';
-    }
-
-    function showAddProductModal() {
-        document.getElementById('modal').style.display = 'block';
-    }
-</script>
-            <div class="my-4">
-              <button onclick="showAddProductModal()" type="submit" @click="address_input.showModal()" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add a new address</button>
-              <div id="modal" class="fixed z-10 inset-0 overflow-y-auto" x-show="openNew" x-transition.opacity aria-modal="false" aria-labelledby="modal-headline">
-                <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                  <div class="fixed inset-0 bg-gray-500 opacity-75" x-show="openNew" @click="openNew = false"></div>
-                  <!-- this element is to trick browser into centering the modal contents. -->
-                  <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&ZeroWidthSpace;</span>
-                  <div class="inline-block align-bottom bg-white text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-screen-md sm:w-full" role="dialog" aria-modal="true" aria-labelledby="Add a new address">
-                    <form method="post" action="/addresses.html" id="address_form_new" accept-charset="UTF-8">
-                      <input type="hidden" name="form_type" value="customer_address">
-                      <input type="hidden" name="utf8" value="✓">
-                      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                        <div class="new-address-form">
-                          <h3 class="text-xl md:text-4xl font-bold mb-4">Add a new address</h3>
+    <div class="flex min-h-full flex-col items-center justify-center px-2 py-12 lg:px-4">
+    <form method="post" action="contactus_func.php" id="contactus_form_new" accept-charset="UTF-8" class="w-full max-w-lg">
+                      <div class="bg-white p-6 sm:pb-4">
+            <div class="new-contactus-form">
+                <h3 class="text-xl md:text-4xl font-bold mb-4 text-center">Contact Us</h3>
 
                           <div class="grid grid-cols-6 gap-3">
 
+                          <?php if (!empty($error_message)): ?>
+                            <div class="col-span-6">
+                              <div class="error-message">
+                                  <?php echo $error_message; ?>
+                              </div>
+                            </div>
+                            <?php endif; ?>
+
+                            <!-- Success Message (Full Width) -->
+                            <?php if (!empty($success_message)): ?>
+                            <div class="col-span-6">
+                              <div class="success-message">
+                                  <?php echo $success_message; ?>
+                              </div>
+                            </div>
+                            <?php endif; ?>
+
                           <div class="col-span-6 sm:col-span-3">
                             <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
-                            <input type="text" name="address[first_name]" value autocapitalize="words" required id="first_name" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                            <input type="text" name="contactus[first_name]" value autocapitalize="words" required placeholder="*First name" id="first_name" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
                           </div>
                           <div class="col-span-6 sm:col-span-3">
                             <label for="last_name" class="block text-sm font-medium text-gray-700">Last name</label>
-                            <input text="text" name="address[last_name]" value id="last_name" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
-                          </div>
-                          <div class="col-span-6 sm:col-span-3">
-                            <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
-                            <input text="text" name="address[phone]" value id="phone" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                            <input text="text" name="contactus[last_name]" value id="last_name" placeholder="*Last name" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
                           </div>
                           <div class="col-span-6">
-                            <label for="address1" class="block text-sm font-medium text-gray-700">Address 1</label>
-                            <input text="text" name="address[phone]" value id="address1" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input id="email" type="email" name="contactus[email]" autocomplete="email" placeholder="*Email address" required class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
                           </div>
                           <div class="col-span-6">
-                            <label for="address2" class="block text-sm font-medium text-gray-700">Address 2</label>
-                            <input text="text" name="address[phone]" value id="address2" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                            <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                            <textarea id="message" name="contactus[message]" placeholder="*Message" required class="mt-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full border border-gray-300 sm:text-sm h-32 p-2" autocapitalize="words"></textarea>
                           </div>
-                          <div class="col-span-6 sm:col-span-3">
-                            <label for="address2" class="block text-sm font-medium text-gray-700">City</label>
-                            <input text="text" name="address[phone]" value id="city" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
-                          </div>
-                          <div class="col-span-6 sm:col-span-3">
-                            <label for="first_name" class="block text-sm font-medium text-gray-700">Country/region</label>
-                            <select x-ref="address_country" name="address[country]" @change="province = JSON.parse($event.target.selectedOptions[0].dataset.provinces); address.country = $event.target.selectedOptions[0].text;" value id="country" required class="mt-2 block w-full py-2 px-3 border border-gray-300 h-[42px] bg-white shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                              <option value="United Kondom" data-provinces="[[&quot;England&quot;,&quot;England&quot;],[&quot;Northern Ireland&quot;,&quot;Northern Ireland&quot;],[&quot;Scotland&quot;,&quot;Scotland&quot;],[&quot;Wales&quot;,&quot;Wales&quot;]]">United Kondom</option>
-                              <option value="Kazakhstan" data-provinces="[]">Kazakhstan</option>
-                            </select>
-                          </div>
-                          <div class="col-span-6 sm:col-span-3" x-show="province.length > 0">
-                            <label for="province" class="block text-sm font-medium text-gray-700">Province</label>
-                            <select name="address[province]" value id="province" autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
-                              <option :value="item[0]" x-text="item[0]" value="England">England</option>
-                              <option :value="item[0]" x-text="item[0]" value="Northern Ireland">Northern Ireland</option>
-                              <option :value="item[0]" x-text="item[0]" value="Scotland">Scotland</option>
-                              <option :value="item[0]" x-text="item[0]" value="Wales">Wales</option>
-                            </select>
-                          </div>
-                          <div class="col-span-6 sm:col-span-3">
-                            <label for="zip" class="block text-sm font-medium text-gray-700">Post code</label>
-                            <input type="text" name="address[postcode]" value id="postcode" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
 
-                          </div>
                         </div>
                       </div>
                     </div>
-                    <div class="px-4 py-3 flex flex-col md:flex-row-reverse justify-between">
-                      <div class="flex flex-col md:flex-row">
-                        <div class="flex items-center my-2 md:my-0">
-                          <input type="checkbox" id="address_default_address_new" name="address[default]" value="1">
-                          <label for="address_default_address_new" class="block text-sm font-medium text-gray-700 mr-3 ml-2">Set as default address </label>
-                        </div>
-                        <button type="submit" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add address</button>
-                      </div>
-                      <button type="button" onclick="closeModal()" @click="openNew = false" class="text-sm px-4 border border-black uppercase tracking-wide">Cancel</button>
+                    <div class="px-4 py-3 flex flex-col ">
+                      <button type="submit" class="bg-black flex rounded-md items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Send message</button>
                     </div>
                     </form>
 
                   </div>
-
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-
-      
-
     </div>
-  </div>
-  </section>
-
-  
 
 
-
-
-
-
-
-  <footer class="bg-zinc-950 px-24 -mt-64">
+  <footer class="bg-zinc-950 px-24 mt-auto">
     
     <div class="flex gap-x-12">
       
@@ -302,7 +201,7 @@ if (!isset($_SESSION['user_id'])){
         <a href="/refund-policy" class="hover:opacity-50">Meet the team</a>
       </li>
       <li class="mb-1">
-        <a href="../contactus.php" class="hover:opacity-50">Contact us</a>
+        <a href="contactus.php" class="hover:opacity-50">Contact us</a>
       </li>
       <li class="mb-1 pb-5">
         <a href="/shipping" class="hover:opacity-50">Careers</a>
