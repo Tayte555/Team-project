@@ -25,6 +25,7 @@
       .container{
         width: 88vw;
          margin: 0 auto;
+         
       }
       
       .lg-title,
@@ -61,6 +62,7 @@
       .products{
        background: rgb(247, 247, 247);
        padding: 3.2rem 0;
+       
     }
     .products.text-light{
       text-align: center;
@@ -70,6 +72,7 @@
 .product{
    margin:2rem;
    position: relative;
+   
 }
 .product-content{
    background: rgb(241,241,241);
