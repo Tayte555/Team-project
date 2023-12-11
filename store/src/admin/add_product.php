@@ -117,20 +117,20 @@ $result = $connection->query($sql);
     
     <div class="md:grid md:grid-cols-4 ">
       <div class="p-4 px-8 md:border-r md:border-black h-screen">
-        <ul>
+      <ul>
           <li class="mb-2 py-2">
             <a href="account.php" class="py-2 md:text-base md:text-base lg:text-2xl">
-              <span>Order History</span>
+              <span>Admin Dashboard</span>
             </a>
           </li>
           <li class="mb-2 py-2">
             <a href="add_product.php" class="opacity-50 py-2 md:text-base lg:text-2xl">
-              <span>Add product</span>
+              <span>Add products</span>
             </a>
           </li>
           <li class="mb-2 py-2">
-            <a href="addresses.php" class="py-2 md:text-base lg:text-2xl">
-              <span>View addresses</span>
+            <a href="manage_users.php" class="py-2 md:text-base lg:text-2xl">
+              <span>Manage users</span>
             </a>
           </li>
           <li class="mb-2 py-2">
