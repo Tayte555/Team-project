@@ -10,49 +10,445 @@
     <!--Font Awesome-->
     <script src="https://kit.fontawesome.com/7623f015c6.js" crossorigin="anonymous"></script>
     <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
-</head>
+    <style>
+      *{
+        padding:0;
+        margin: 0;
+        box-sizing:border-box;
+      }
+      
+
+      img{
+        width:100%;
+        display: block;
+        }
+      .container{
+        width: 88vw;
+         margin: 0 auto;
+      }
+      
+      .lg-title,
+     .md-title,
+     .sm-title{
+       font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+       padding:0.6rem 0;
+      text-transform:capitalize;
+      }
+     .lg-title{
+        font-size:2.5rem;
+        font-weight:500;
+        text-align: center;
+        opacity: 0.9;
+       padding: 1.3rem 0;
+     }
+
+     .md-title{
+      font-size:2rem;
+     }
+     .sm-title{
+      font-weight: 300;
+      font-size:1rem;
+      text-transform:uppercase;
+     }
+      .text-light{
+       font-size:1rem;
+       font-weight:600;
+       line-height:1.5;
+        opacity: 0.5;
+        margin: 0.4rem 0;
+     }
+     /*product section*/
+      .products{
+       background: rgb(247, 247, 247);
+       padding: 3.2rem 0;
+    }
+    .products.text-light{
+      text-align: center;
+      width: 70%;
+      margin: 0.9rem auto;
+    }
+.product{
+   margin:2rem;
+   position: relative;
+}
+.product-content{
+   background: rgb(241,241,241);
+   box-shadow:0 0 20px 10px rgb(230,230,230);
+   cursor: pointer;
+}
+.product-img{
+   background:rgb(244,244,244);
+   box-shadow: 0 0 20px 10px rgb(250,250,250);
+   width: 200px;
+   height:200px;
+   margin: 0 auto;
+   border-radius: 50%;
+   transition: background 0.5s ease;
+}
+.product-btns{
+   display: flex;
+   justify-content: center;
+   margin-top:1.4rem;
+   opacity: 1;
+   transition: opacity 0.6s ease;
+}
+
+.btn-cart, .btn-buy{
+  background: transparent;
+  border:1px solid rgb(255,255,255);
+  padding: 0.8rem 0;
+  width: 125px;
+  font-family:inherit;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: all 0.6s ease;
+}
+.btn-cart{
+  background: rgb(0,0,0);;
+}
+.btn-cart:hover{
+  background: rgb(0,0,150);
+  color: #fff;
+}
+.btn-buy{
+  background: rgb(0,0,0);
+  
+}
+.btn-buy:hover{
+  background: rgb(0,0,150);
+  color: #fff;
+}
+
+.product-info{
+  background: rgb(253,253,253);
+  padding: 2rem;
+}
+.product-info-top{
+  display:flex;
+  justify-content:space-between;
+  align-items: center; 
+}
+.rating span{
+  color:rgb(25,50,180);
+}
+.product-name{
+  color: rgb(0,0,0);
+  display:block;
+  text-decoration: none;
+  font-size:1rem;
+  text-transform:uppercase;
+  font-weight: bold;
+  opacity: 80%
+}
+.product-price{
+  padding-top:0.6rem;
+  padding-right:0.6rem;
+  display:inline-block;
+}
+.product-price:first-of-type{
+  text-decoration:line-through;
+  color: rgb(25,227,79);
+  opacity: 80%;
+}
+
+.product-img img{
+  transition: transform 0.6s ease;
+}
+
+.product:hover .product-img img{
+  transform:scale(1.1);
+}
+.product:hover .product-img{
+  background:rgb(0,0,150);
+}
+
+.product:hover .product-btns{
+  opacity:1;
+}
+
+.off-info .sm-title{
+  background: rgb(0,0,150);
+  color: rgb(255,255,255);
+  display:inline-block;
+  padding:0.5rem;
+  position:absolute;
+  top:0;
+  left:0;
+  writing-mode:vertical-lr;
+  transform: rotate(180deg);
+  z-index:1;
+  letter-spacing:3px;
+  cursor:pointer;
+}
+/*Item section */
+
+.right-box{
+  width:50%;
+  border: 1px solid rgb(0,0,150);
+  border-radius: 10px;
+}
+.main-image-box{
+  padding:30px 0px;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.main-image{
+  height:390px;
+  width:auto;
+}
+.small-images{
+  display:flex;
+  justify-content:space-between;
+  padding:8px;
+  align-items:center;
+
+}
+.image-box{
+  margin: 0px 8px 8px 0px;
+  height:100px;
+  width: 100px;
+  cursor:pointer;
+  border: 1px solid rgb(0,0,150);
+  border-radius:5px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.image{
+  height:90%;
+  width:auto;
+}
+.details-box{
+  width:50%;
+  padding-left:50px;
+}
+
+.details-box h2{
+color(0,0,150);
+}
+.inputs{
+  width:100%;
+  justify-content: space-between;
+}
+td input{
+  height: 30px;
+}
+button{
+  border:none;
+  border-radius:5px;
+  padding:10px 15px;
+  background-color: rgb(0,0,150);
+  color: rgb(255,255,255);
+  margin-top:14px;
+  cursor:pointer;
+}
+
+/*
+@media screen and (min-width:992px){
+  .product-items{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+@media screen and (min-width:1200px){
+  .product-items{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+  }
+  .product{
+    margin-right:1rem;
+    margin-left:1rem;
+  }
+  .product .text-light{
+    width:50%;
+  }
+}
+@media screen and (min-width:1336px){
+  .product-items{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+  }
+}
+*/
+    </style>
+  </head>
+
+<style>
+  .image-container {
+      white-space: nowrap; 
+      overflow-x: auto; 
+      z-index: 1;
+  }
+
+  .image-container img {
+      margin-right: 0px;
+      margin-left: 0px;
+      width: 465px;
+      height: 107px;
+      display: inline-block; 
+      z-index: 1;
+  }
+
+  @media (max-width: 600px) {
+      .image-container {
+          white-space: initial; 
+          overflow-x: initial; 
+          z-index: 1;
+      }
+
+      .image-container img {
+          flex-basis: auto; 
+          margin-right: 0;
+          margin-left: 0;
+          z-index: 1;
+      }
+    }
+
+
+  /*--Section for the "best sellers" section--*/
+  .image-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      margin-top: 20px;
+      margin-left: 17px
+      z-index: 1;
+  }
+
+  .image-section .item-container {
+      margin: 5px;
+      max-width: calc(20% - 10px);
+      height: auto;
+      float: left;
+      z-index: 1;
+  }
+
+  @media (max-width: 600px) {
+      .image-section img {
+          flex-basis: calc(50% - 10px); 
+          width: 100%;
+          z-index: 1;
+      }
+  }
+
+
+  /*--text container--*/
+  .text-container {
+      position: relative;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+      padding: 5px;
+      box-sizing: border-box;
+      z-index: 1;
+  }
+
+
+  .shoe-name {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      z-index: 5;
+      z-index: 1;
+  }
+
+  .price {
+      font-size: 12px; 
+      z-index: 1;
+  }
+
+  img:hover{
+    z-index: 1;
+  }
+
+  .group:hover .absolute {
+display: block;
+z-index: 1;
+}
+
+/* Additional styles for the sub-menus */
+.absolute {
+display: none;
+z-index: 1;
+}
+  
+</style>
+
 
     
   <!-- navbar -->
-<header class="items-center bg-zinc-950 md:px">
-    <div class="flex flex-wrap place-items-center">
-  <section class="relative mx-auto">
-      <!-- navbar -->
-    <nav class="flex justify-between w-screen">
-      
-        <div class="px-2 flex w-full py-4 items-center">
-        
-          <a class="" href="#">
-          <!-- <img class="h-9" src="logo.png" alt="logo"> -->
-          <img class="h-6 
-           " src="/store/src/images/logowhite.png" alt="logo"/>         
-          </a>
+ <!-- navbar -->
+ <header class="items-center bg-zinc-950 md:px">
+        <div class="flex flex-wrap place-items-center">
+      <section class="relative mx-auto">
+          <!-- navbar -->
+        <nav class="flex justify-between w-screen">
+          
+            <div class="px-2 flex w-full py-4 items-center">
+            
+              <a class="" href="home.php">
+              <!-- <img class="h-9" src="logo.png" alt="logo"> -->
+              <img class="h-6 
+               " src="./images/logowhite.png" alt="logo"/>         
+              </a>
 
-        <!-- Nav Links -->
-        <ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
-          <li><a class="hover:text-gray-300" href="#">New Arrivals</a></li>
-          <li><a class="hover:text-gray-300" href="best_sellers.html">Best Sellers</a></li>
-          <li><a class="hover:text-gray-300" href="#">Sneakers                
-              <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
-                <path d="m9 18 6-6-6-6"/>
-              </svg>               
-          </a></li>
-          <li><a class="hover:text-gray-300" href="#">Apparel
-            <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-          </a></li>
-          <li><a class="hover:text-gray-300" href="#">Accessories
-            <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-          </a></li>
-          <li><a class="hover:text-gray-300 pr-40" href="#">Discover
-            <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-          </a></li>
-        </ul>
+            <!-- Nav Links -->
+            <ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
+              <li><a class="hover:text-gray-300" href="#">New Arrivals</a></li>
+              <li><a class="hover:text-gray-300" href="best_sellers.php">Best Sellers</a></li>
+              <!-- Sneakers Hover Menu -->
+              <li class="relative group">
+                <a class="hover:text-gray-300" href="./sneakers.html">Sneakers
+                  <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+                    <path d="m9 18 6-6-6-6"/>
+                  </svg>
+                </a>
+                <ul class="absolute hidden space-y-2 bg-white text-black py-2 rounded-md">
+                  <li><a href="./sneakers_men.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Men</a></li>
+                  <li><a href="./sneakers_women.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Women</a></li>
+                  <li><a href="./sneakers_clearance.html">&nbsp;&nbsp;&nbsp;Clearance&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="./sneakers_kids.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kids</a></li>
+                </ul>
+              </li>
+              
+              <!-- Apparel Hover Menu -->
+              <li class="relative group">
+                <a class="hover:text-gray-300" href="./apparel.html">Apparel
+                  <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+                    <path d="m9 18 6-6-6-6"/>
+                  </svg>
+                </a>
+                <ul class="absolute hidden space-y-2 bg-white text-black py-2 rounded-md">
+                  <li><a href="./apparel_socks.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Socks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="./apparel_shoecare.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shoe Care</a></li>
+                  <li><a href="./apparel_kits.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kits</a></li>
+                </ul>
+                </li>
+              
+              <!-- Accessories Hover Menu -->
+              <li class="relative group">
+                <a class="hover:text-gray-300" href="./accessories.html">Accessories
+                  <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+                    <path d="m9 18 6-6-6-6"/>
+                  </svg>
+                </a>
+                <ul class="absolute hidden space-y-2 bg-white text-black py-2 rounded-md">
+                  <li><a href="./accessories_shoelaces.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shoelaces&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="./accessories_shoeinserts.html">&nbsp;&nbsp;&nbsp;Shoe Inserts&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="./accessories_shoebags.html">&nbsp;&nbsp;&nbsp;&nbsp;Shoe Bags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="./accessories_soles.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Soles&nbsp;&nbsp;&nbsp;</a></li>
+                </ul>
+                </li>
+              <li><a class="hover:text-gray-300 pr-40" href="#">Discover
+                <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+                  <path d="m9 18 6-6-6-6"/>
+                </svg>
+              </a></li>
+            </ul>
         <!-- Header Icons -->
         <div class="hidden xl:flex items-center -space-x-1 pr-6 text-gray-100">
           <a class="hover:text-gray-300" href="#">
@@ -87,10 +483,10 @@
 
   <!-- Products Section -->
   <div class = "products">
-    <div class = "containter">
-      <h1 class = "lg-title flex items-center"> (Shoe Name here) </h1>
+    <div class = "container">
+      <h1 class = "lg-title"> Jordan 4 - Black Cats </h1>
       <!-- Product Description insert below-->
-      <p class = "text-light"> Here are our state of the art shoes from..... 
+      <p class = "text-light"> Here are our state of the art shoes from Jordan 
         These are made with deluxe material and high grade cushioning.
       </p>
 
@@ -101,9 +497,70 @@
             <!-- Picture for the product insert below-->
             <div class = "product-img">
               <img src = "images/blackcatsneaker 1.png" alt = "product image"
-              class = "w-[750px] display-block">
+              >
             </div>
-            
+            <!-- Main image section-->
+            <div class= "right-box">
+              <div class="main-image-box">
+                <img src = "images/blackcatsneaker 1.png" alt = "main-Image">
+              </div>
+              <div class = "small-images">
+                <div class = "image-box"><img src = "images/af1.png" class= "image"></div>
+                <div class = "image-box"><img src = "images/blackcatsneaker 1.png" class= "image"></div>
+                <div class = "image-box"><img src = "images/af1.png" class= "image"></div>
+                <div class = "image-box"><img src = "images/blackcatsneaker 1.png" class= "image"></div>
+              </div>
+            </div>
+
+            <div class="details-box">
+            <h1> Here is the single product name and info </h1>
+            <p>Availibility (In Stock)</p>
+            <h2> £359.99</h2>
+            <table cellspacing = "0" class="inputs">
+                <tr>
+                  <td> Quantity</td>
+                  <td align ="right"><input type = "number" id = "first"></td>
+                </tr>
+                <tr>
+                  <td> Sub Total</td>
+                  <td align ="right"><input type = "number" id = "second"></td>
+                </tr>
+                <tr>
+                  <td> Sales Tax 5.7%</td>
+                  <td align ="right"><input type = "number" id = "third"></td>
+                </tr>
+                <tr>
+                  <td> Total</td>
+                  <td align ="right"><input type = "number" id = "fourth"></td>
+                </tr>
+                <h4>Specifications</h4>
+                <p>Yappa yappa yappa </p>
+            </div>
+<script>
+    let mainImage = document.getElementById("mainImage");
+    let smallImage = document.getElementsByClassName("image");
+    smallImage[0].onclick = () =>{
+      mainImage.src = smallImage[0].src;
+    }
+    smallImage[1].onclick = () =>{
+      mainImage.src = smallImage[1].src;
+    }
+    smallImage[2].onclick = () =>{
+      mainImage.src = smallImage[2].src;
+    }
+    smallImage[3].onclick = () =>{
+      mainImage.src = smallImage[3].src;
+    }
+    smallImage[4].onclick = () =>{
+      mainImage.src = smallImage[4].src;
+    }
+    </script>
+    
+
+
+
+
+
             <!--buttons-->
             <div class = "product-btns">
               <!--Add to cart button-->
@@ -114,33 +571,30 @@
                 <span><i class = "fas fa-shopping-cart"></i></span>
               </button>
             </div>
-          </div>
 
           <div class = "product-info">
             <div class = "product-info-top">
-              <h2 class = "sm-title"> Shoes </h2>
+              <h2 class = "sm-title"> Shoe Collection </h2>
               <!--Shoe Rating-->
               <div class = "rating">
-                <span><i class = "fas fa-star"></i></span>
-                <span><i class = "fas fa-star"></i></span>
+                <span><i class = "far fa-star"></i></span>
+                <span><i class = "far fa-star"></i></span>
                 <span><i class = "fas fa-star"></i></span>
                 <span><i class = "fas fa-star"></i></span>
                 <span><i class = "fas fa-star"></i></span>
               </div>
             </div>
-            <a href = "#" class = "product-name"> Mens Shoes, new Product</a>
+            <a href = "#" class = "product-name"> Jordan 4 Black Cats</a>
             <!-- Test-->
-            <div class="w-[10px] text-right text-xs">£185.00</div>
+           <!-- <div class="w-[10px] text-right text-xs">£185.00</div> -->
             <!--How it should be-->
-            <p class = "product-price">£ 120</p>
-            <p class = "product-price">£ 120</p>
+            <p class = "product-price">£ 379.99</p>
+            <p class = "product-price">£ 299.99</p>
           </div>
 
           <div class = "off-info">
-            <h2 class = "sm-title">25% off</h2>
+            <h2 class = "sm-title">15% off</h2>
           </div>
-        </div>
-        <!-- End of a single product-->
       </div>
     </div>
   </div>
@@ -148,7 +602,6 @@
 
  </body>
 
- 
     <!-- footer section -->
     <footer class="bg-zinc-950 px-24 mt-auto">
     
