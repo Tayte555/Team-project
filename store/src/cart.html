@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shopping Cart</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="shopping-cart.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+	<body>
+		<!-- navbar -->
+		<header class="items-center bg-zinc-950 md:px">
+			<div class="flex flex-wrap place-items-center">
+		  <section class="relative mx-auto">
+			  <!-- navbar -->
+			<nav class="flex justify-between w-screen">
+			  
+				<div class="px-2 flex w-full py-4 items-center">
+				
+				  <a class="" href="home.php">
+				  <!-- <img class="h-9" src="logo.png" alt="logo"> -->
+				  <img class="h-6 
+				   " src="./images/logowhite.png" alt="logo"/>         
+				  </a>
+	
+				<!-- Nav Links -->
+				<ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
+				  <li><a class="hover:text-gray-300" href="#">New Arrivals</a></li>
+				  <li><a class="hover:text-gray-300" href="best_sellers.html">Best Sellers</a></li>
+				  <li><a class="hover:text-gray-300" href="#">Sneakers                
+					  <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+						<path d="m9 18 6-6-6-6"/>
+					  </svg>               
+				  </a></li>
+				  <li><a class="hover:text-gray-300" href="#">Apparel
+					<svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+					  <path d="m9 18 6-6-6-6"/>
+					</svg>
+				  </a></li>
+				  <li><a class="hover:text-gray-300" href="#">Accessories
+					<svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+					  <path d="m9 18 6-6-6-6"/>
+					</svg>
+				  </a></li>
+				  <li><a class="hover:text-gray-300 pr-40" href="#">Discover
+					<svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+					  <path d="m9 18 6-6-6-6"/>
+					</svg>
+				  </a></li>
+				</ul>
+				<!-- Header Icons -->
+				<div class="hidden xl:flex items-center -space-x-1 pr-6 text-gray-100">
+				  <!-- search icon -->
+				  <a class="hover:text-gray-300" href="#">
+					<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-search w-10">
+						<circle cx="11" cy="11" r="8"/>
+						<path d="m21 21-4.35-4.35"/>
+					  </svg>
+				  </a>
+				  <!-- profile -->
+				  <a class="flex items-center hover:text-gray-300 pr-1" href="login.php">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-user w-10 mx-auto"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
+					</svg>
+					
+				  </a>
+				  <!-- Cart      -->
+				  <a class="flex items-center hover:text-gray-300" href="cart.php">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart w-10"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+					</svg>
+					<!--<span class="flex absolute -mt-5 ml-4">
+						<span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
+						  <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500">
+						  </span>
+						</span> -->           
+				  </a>             
+				</div>
+			  </div>
+			</nav>
+		  </section>
+		</div>
+		</header>
+		<main class="page">
+			 <section class="shopping-cart dark">
+				 <div class="container">
+					<div class="block-heading">
+					  <h2>Shopping Cart</h2>
+					  <p></p>
+					</div>
+					<div class="content">
+						 <div class="row">
+							 <div class="col-md-12 col-lg-8">
+								 <div class="items">
+									 <div class="product">
+										 <div class="row">
+											 <div class="col-md-3">
+												 <img class="img-fluid mx-auto d-block image" src="images\blackcatsneaker 1.png">
+											 </div>
+											 <div class="col-md-8">
+												 <div class="info">
+													 <div class="row">
+														 <div class="col-md-5 product-name">
+															 <div class="product-name">
+																 <a href="#">Jordan 4 Retro Black Cat (2020)</a>
+																 <div class="product-info">
+																	 <div>Size: <span class="value">9.5 UK</span></div>
+																 </div>
+															 </div>
+														 </div>
+														 <div class="col-md-4 quantity">
+															 <label for="quantity">Quantity:</label>
+															 <input id="quantity" type="number" value ="1" class="form-control quantity-input">
+														 </div>
+														 <div class="col-md-3 price">
+															 <span>$120</span>
+														 </div>
+													 </div>
+												 </div>
+											 </div>
+										 </div>
+									 </div>
+									 <div class="product">
+										 <div class="row">
+											 <div class="col-md-3">
+												 <img class="img-fluid mx-auto d-block image" src="images\blackcatsneaker 1.png">
+											 </div>
+											 <div class="col-md-8">
+												 <div class="info">
+													 <div class="row">
+														 <div class="col-md-5 product-name">
+															 <div class="product-name">
+																 <a href="#">Jordan 4 Retro Black Cat (2020)</a>
+																 <div class="product-info">
+																	 <div>Size: <span class="value">9.5 UK</span></div>
+																 </div>
+															 </div>
+														 </div>
+														 <div class="col-md-4 quantity">
+															 <label for="quantity">Quantity:</label>
+															 <input id="quantity" type="number" value ="1" class="form-control quantity-input">
+														 </div>
+														 <div class="col-md-3 price">
+															 <span>$120</span>
+														 </div>
+													 </div>
+												 </div>
+											 </div>
+										 </div>
+									 </div>
+									 <div class="product">
+										 <div class="row">
+											 <div class="col-md-3">
+												 <img class="img-fluid mx-auto d-block image" src="images\blackcatsneaker 1.png">
+											 </div>
+											 <div class="col-md-8">
+												 <div class="info">
+													 <div class="row">
+														 <div class="col-md-5 product-name">
+															 <div class="product-name">
+																 <a href="#">Jordan 4 Retro Black Cat (2020)</a>
+																 <div class="product-info">
+																	 <div>Size: <span class="value">9.5 UK</span></div>
+																 </div>
+															 </div>
+														 </div>
+														 <div class="col-md-4 quantity">
+															 <label for="quantity">Quantity:</label>
+															 <input id="quantity" type="number" value ="1" class="form-control quantity-input">
+														 </div>
+														 <div class="col-md-3 price">
+															 <span>$120</span>
+														 </div>
+													 </div>
+												 </div>
+											 </div>
+										 </div>
+									 </div>
+								 </div>
+							 </div>
+							 <div class="col-md-12 col-lg-4">
+								 <div class="summary">
+									 <h3>Summary</h3>
+									 <div class="summary-item"><span class="text">Subtotal</span><span class="price">$360</span></div>
+									 <div class="summary-item"><span class="text">Discount</span><span class="price">$0</span></div>
+									 <div class="summary-item"><span class="text">Shipping</span><span class="price">$0</span></div>
+									 <div class="summary-item"><span class="text">Total</span><span class="price">$360</span></div>
+									 <button type="button" class="btn btn-primary btn-lg btn-block pay-button">Pay</button>
+								 </div>
+							 </div>
+						 </div> 
+					 </div>
+				 </div>
+			</section>
+		</main>
+	</body>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!-- footer section -->
+<footer class="bg-zinc-950 px-24 mt-auto">
+
+	<div class="flex gap-x-12">
+	  
+	  <div class="">
+		<div class=" bg-zinc-950 p-5 md:col-span-2 lg:col-auto">
+		  <h3 class="mb-2 text-base text-white text-sm font-bold pb-5 pt-6 grow">FIND US 🗺️</h3>
+		<div class="">
+		  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2429.5812611345723!2d-1.8908227230241506!3d52.48671703869282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870bc9ae4f2e4b3%3A0x9a670ba18e08a084!2sAston%20University!5e0!3m2!1sen!2suk!4v1701019587175!5m2!1sen!2suk" width="370" height="130" class="rounded-xl" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade""></iframe>     
+		</div>
+	  </div>
+	  </div>
+	  
+  
+	<div class="bg-zinc-950 p-5 md:col-span-2 lg:col-auto grow">
+	  <h3 class="mb-2 text-base text-white text-sm font-bold pb-5 pt-6">CUSTOMER SERVICE 🛎️</h3>
+	  <ul class="text-white space-y-3">
+		<li class="mb-1">
+		  <a href="/privacy-policy" class="hover:opacity-50">Privacy policy</a>
+		</li>
+		<li class="mb-1">
+		  <a href="/refund-policy" class="hover:opacity-50">Refund policy</a>
+		</li>
+		<li class="mb-1">
+		  <a href="/tos" class="hover:opacity-50">Terms of service</a>
+		</li>
+		<li class="mb-1 pb-5">
+		  <a href="/shipping" class="hover:opacity-50">Shipping policy</a>
+		</li>
+	  </ul>
+  </div>
+  
+  <div class="bg-zinc-950 p-5 md:col-span-2 lg:col-auto grow">
+	<h3 class="mb-2 text-base text-white text-sm font-bold pb-5 pt-6">INFORMATION 💼</h3>
+	<ul class="text-white space-y-3">
+	  <li class="mb-1">
+		<a href="/privacy-policy" class="hover:opacity-50">About us</a>
+	  </li>
+	  <li class="mb-1">
+		<a href="/refund-policy" class="hover:opacity-50">Meet the team</a>
+	  </li>
+	  <li class="mb-1">
+		<a href="/tos" class="hover:opacity-50">Contact us</a>
+	  </li>
+	  <li class="mb-1 pb-5">
+		<a href="/shipping" class="hover:opacity-50">Careers</a>
+	  </li>
+	</ul>
+  </div>
+  
+  
+  
+  <div class="bg-zinc-950 p-5 md:col-span-2 lg:col-auto grow">
+	<h3 class="mb-2 text-base text-white text-sm font-bold pb-5 pt-6">JOIN OUR NEWSLETTER 🤫</h3>
+	<div>
+	  <div>
+		<input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter your email" required="">        </div>
+		
+		<ul class="flex mt-9">
+		  <li class="grow">
+			<a>
+			  <svg width="25" height="25" viewBox="0 0 1792 1792" fill="#ffffff">
+				<path d="M1152 896q0-106-75-181t-181-75-181 75-75 181 75 181 181 75 181-75 75-181zm138 0q0 164-115 279t-279 115-279-115-115-279 115-279 279-115 279 115 115 279zm108-410q0 38-27 65t-65 27-65-27-27-65 27-65 65-27 65 27 27 65zM896 266q-7 0-76.5-.5t-105.5 0-96.5 3-103 10T443 297q-50 20-88 58t-58 88q-11 29-18.5 71.5t-10 103-3 96.5 0 105.5.5 76.5-.5 76.5 0 105.5 3 96.5 10 103T297 1349q20 50 58 88t88 58q29 11 71.5 18.5t103 10 96.5 3 105.5 0 76.5-.5 76.5.5 105.5 0 96.5-3 103-10 71.5-18.5q50-20 88-58t58-88q11-29 18.5-71.5t10-103 3-96.5 0-105.5-.5-76.5.5-76.5 0-105.5-3-96.5-10-103T1495 443q-20-50-58-88t-88-58q-29-11-71.5-18.5t-103-10-96.5-3-105.5 0-76.5.5zm768 630q0 229-5 317-10 208-124 322t-322 124q-88 5-317 5t-317-5q-208-10-322-124t-124-322q-5-88-5-317t5-317q10-208 124-322t322-124q88-5 317-5t317 5q208 10 322 124t124 322q5 88 5 317z"/>
+			  </svg>
+			</a>
+		  </li>
+  
+		  <li class="grow">
+			<a>
+			  <svg width="25" height="25" viewBox="0 0 1792 1792" fill="#ffffff">
+				<path d="M768 1344v384h-192v-384q0-42 19-79t52.5-64.5 78-64.5 91.5-54.5 100-21.5q5 32 23 58t45.5 44 57 29.5 65 19.5 71.5 11 76 4.5q125 0 213.5 67.5t88.5 192.5v6q26-4 58-4 68 0 115 50t47 122v245H576v-498H384v-256h192V768q0-104 65.5-160t181.5-56q94 0 159 13z"/>
+			  </svg>
+			</a>
+		  </li>
+  
+		  <li class="grow">
+			<a>
+			  <svg width="25" height="25" viewBox="0 0 1792 1792" fill="#ffffff">
+				<path d="M1536 912v160q0 40-28 68t-68 28h-160v304H936v-304H752v-160h184V896q0-104 59-192.5t160-132.5V364H888V204c0-44 11-75 66-75h99v-158h158v158h165v160H976v272q90 52 137 152t47 234z"/>
+			  </svg>
+			</a>
+		  </li>
+  
+		  <li class="grow">
+			<a>
+			  <svg width="25" height="25" viewBox="0 0 1792 1792" fill="#ffffff">
+				<path d="M896 1664q-104 0-199-40.5t-163-108-108-163-40.5-199 40.5-199 108-163 163-108 199-40.5 199 40.5 163 108 108 163 40.5 199-40.5 199-108 163-163 108-199 40.5zM672 1392h400V560H672v832zM1048 704q0-80-56-136t-136-56-136 56-56 136 56 136 136 56 136-56 56-136zm160 0q0 104-74 180t-178 76-178-76-74-180q0-77 38-141-98-58-167-133-64 94-99 206-32-52-56-112t-36-108q-12 39-19 78-8 39-8 78 0 180 118 307t296 127q158 0 276-117 122-113 122-283zm160 273q33-45 49-99-23 11-50 11-29 0-56-13-20-8-42-23-50-32-93-92-27-42-45-93-14-41-14-83 0-45 15-85t43-68q34-29 74-49-42 14-78 49v-2q0-59 42-106t101-47q53 0 96 26t67 68q22-4 42-12-25 26-54 55z"/>
+			  </svg>
+			</a>
+		  </li>
+		</ul>
+	  </div>
+	</div>
+  </div>
+  
+  </div>
+  
+  <div class="border-t border-zinc-800 p-5 md:col-span-2 lg:col-auto">
+	<p class="text-white text-sm">© 2023 Your Company. All rights reserved.</p>
+  </div>
+  
+  </footer>
+  <!-- /footer section -->
+  
