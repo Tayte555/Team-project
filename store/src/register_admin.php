@@ -1,70 +1,36 @@
 <?php
 session_start();
 
-if (isset($_SESSION['user_id'])){
-  if ($_SESSION['is_admin'] == 1){
-    header('Location: admin/account.php');
+  include("connections.php");
+  include("functions.php");
+
+  if (isset($_SESSION['user_id'])){
+    header('Location: account.php');
     exit();
   }
-  header('Location: account/account.php');
-  exit();
-}
 
-include("connections.php");
-include("functions.php");
+  //puts new user info into database
+  if($_SERVER['REQUEST_METHOD'] == "POST"){
+    $firstName = $_POST['fname'];
+    $lastName = $_POST['lName'];
+    $password = $_POST['password'];
+    $email = $_POST['email'];
 
-$_SESSION['error_message'] = "";
-
-
-//puts new user info into database
-if($_SERVER['REQUEST_METHOD'] == "POST"){
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-  
-
-  if(!empty($email) && !empty($password)){
-    //query the database to read user data
-    $email = mysqli_real_escape_string($connection, $email);
-    $query = "select * from users where email = '$email' limit 1";
-    $result = mysqli_query($connection, $query);
-    
-    //check password
-    if($result){
-      if(mysqli_num_rows($result) > 0){
-        $userData = mysqli_fetch_assoc($result);
-        //check password is entered
-        if(isset($userData['pass'])){
-          $_SESSION['user_id'] = $userData['user_id'];
-          //verify password hash
-          if(password_verify($password, $userData['pass'])){
-            //send user to home page after successful login
-            $_SESSION['is_admin'] = $userData['is_admin'];
-            if ($_SESSION['is_admin'] == 1){
-              header("Location: admin/account.php");
-              exit();
-            } else {
-              header("Location: account/account.php");
-              exit();
-            }
-
-            //exit;
-//all else statement intended for debugging          
-          } else {
-            $_SESSION['error_message'] = "Incorrect email or password";
-          }
-        } else{
-          $_SESSION['error_message'] = "Incorrect email or password";
-        }
-      } else {
-        $_SESSION['error_message'] = "Incorrect email or password";
-      }
-    } else{
-      $_SESSION['error_message'] = "Database query failed";
+    if(!empty($firstName) && !empty($lastName) && !empty($password) && !empty($email)){
+      $email = mysqli_real_escape_string($connection, $email);
+      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+      
+      //query database to insert user data
+      $query = "insert into users (forename, surname, email, pass, is_admin) values ('$firstName', '$lastName', '$email', '$hashedPassword', 1)";
+      mysqli_query($connection, $query);
+      
+      //send back to login page after success
+      header("Location: login.php");
+      die;
+    }else{
+      echo "Empty / Incorrect field(s)...";
     }
-  }else{
-    $_SESSION['error_message'] = "Please enter both Email and Password";
   }
-}
 ?>
 
 <!DOCTYPE html>
@@ -74,12 +40,113 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Sole Haven | Login</title>
+    <title>Sole Haven | Register</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
                 
 </head>
 
+<style>
+  .image-container {
+      white-space: nowrap; 
+      overflow-x: auto; 
+      z-index: 1;
+  }
+
+  .image-container img {
+      margin-right: 0px;
+      margin-left: 0px;
+      width: 465px;
+      height: 107px;
+      display: inline-block; 
+      z-index: 1;
+  }
+
+  @media (max-width: 600px) {
+      .image-container {
+          white-space: initial; 
+          overflow-x: initial; 
+          z-index: 1;
+      }
+
+      .image-container img {
+          flex-basis: auto; 
+          margin-right: 0;
+          margin-left: 0;
+          z-index: 1;
+      }
+    }
+
+
+  /*--Section for the "best sellers" section--*/
+  .image-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      margin-top: 20px;
+      margin-left: 17px
+      z-index: 1;
+  }
+
+  .image-section .item-container {
+      margin: 5px;
+      max-width: calc(20% - 10px);
+      height: auto;
+      float: left;
+      z-index: 1;
+  }
+
+  @media (max-width: 600px) {
+      .image-section img {
+          flex-basis: calc(50% - 10px); 
+          width: 100%;
+          z-index: 1;
+      }
+  }
+
+
+  /*--text container--*/
+  .text-container {
+      position: relative;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+      padding: 5px;
+      box-sizing: border-box;
+      z-index: 1;
+  }
+
+
+  .shoe-name {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      z-index: 5;
+      z-index: 1;
+  }
+
+  .price {
+      font-size: 12px; 
+      z-index: 1;
+  }
+
+  img:hover{
+    z-index: 1;
+  }
+
+  .group:hover .absolute {
+display: block;
+z-index: 1;
+}
+
+/* Additional styles for the sub-menus */
+.absolute {
+display: none;
+z-index: 1;
+}
+  
+</style>
 
 
 <body class="overflow-x-hidden flex flex-col min-h-screen">
@@ -97,25 +164,53 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                " src="./images/logowhite.png" alt="logo"/>         
               </a>
 
-            <!-- Nav Links -->
-            <ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
+             <!-- Nav Links -->
+             <ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
               <li><a class="hover:text-gray-300" href="#">New Arrivals</a></li>
-              <li><a class="hover:text-gray-300" href="#">Best Sellers</a></li>
-              <li><a class="hover:text-gray-300" href="#">Sneakers                
+              <li><a class="hover:text-gray-300" href="best_sellers.php">Best Sellers</a></li>
+              <!-- Sneakers Hover Menu -->
+              <li class="relative group">
+                <a class="hover:text-gray-300" href="./sneakers.html">Sneakers
                   <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                     <path d="m9 18 6-6-6-6"/>
-                  </svg>               
-              </a></li>
-              <li><a class="hover:text-gray-300" href="#">Apparel
-                <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
-                  <path d="m9 18 6-6-6-6"/>
-                </svg>
-              </a></li>
-              <li><a class="hover:text-gray-300" href="#">Accessories
-                <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
-                  <path d="m9 18 6-6-6-6"/>
-                </svg>
-              </a></li>
+                  </svg>
+                </a>
+                <ul class="absolute hidden space-y-2 bg-white text-black py-2 rounded-md">
+                  <li><a href="./sneakers_men.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Men</a></li>
+                  <li><a href="./sneakers_women.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Women</a></li>
+                  <li><a href="./sneakers_clearance.html">&nbsp;&nbsp;&nbsp;Clearance&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="./sneakers_kids.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kids</a></li>
+                </ul>
+              </li>
+              
+              <!-- Apparel Hover Menu -->
+              <li class="relative group">
+                <a class="hover:text-gray-300" href="./apparel.html">Apparel
+                  <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+                    <path d="m9 18 6-6-6-6"/>
+                  </svg>
+                </a>
+                <ul class="absolute hidden space-y-2 bg-white text-black py-2 rounded-md">
+                  <li><a href="./apparel_socks.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Socks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="./apparel_shoecare.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shoe Care</a></li>
+                  <li><a href="./apparel_kits.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kits</a></li>
+                </ul>
+                </li>
+              
+              <!-- Accessories Hover Menu -->
+              <li class="relative group">
+                <a class="hover:text-gray-300" href="./accessories.html">Accessories
+                  <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+                    <path d="m9 18 6-6-6-6"/>
+                  </svg>
+                </a>
+                <ul class="absolute hidden space-y-2 bg-white text-black py-2 rounded-md">
+                  <li><a href="./accessories_shoelaces.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shoelaces&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="./accessories_shoeinserts.html">&nbsp;&nbsp;&nbsp;Shoe Inserts&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="./accessories_shoebags.html">&nbsp;&nbsp;&nbsp;&nbsp;Shoe Bags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="./accessories_soles.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Soles&nbsp;&nbsp;&nbsp;</a></li>
+                </ul>
+                </li>
               <li><a class="hover:text-gray-300 pr-40" href="#">Discover
                 <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                   <path d="m9 18 6-6-6-6"/>
@@ -124,7 +219,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             </ul>
             <!-- Header Icons -->
             <div class="hidden xl:flex items-center -space-x-1 pr-6 text-gray-100">
-              <a class="hover:text-gray-300" href="#">
+              <a class="hover:text-gray-300" href="cart.php">
                 <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-search w-10">
                     <circle cx="11" cy="11" r="8"/>
                     <path d="m21 21-4.35-4.35"/>
@@ -152,58 +247,88 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     </div>
     </header>
 
+
+
+
+
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">LOGIN</h2>
+      <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">ADMIN SIGN UP</h2>
     </div>
-    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <?php
-    if(!empty($_SESSION['error_message'])) {
-    echo '<div class="error-message">' . $_SESSION['error_message'] . '</div>';
-    // Clear the message after displaying it
-    $_SESSION['error_message'] = "";
-  }
-  ?>
-  </div>
   
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form class="space-y-6" action="#" method="POST">
+        
+        <!--First name-->
+        <div>           
+            <div>
+              <label for="fName" class="block text-sm font-medium leading-6 text-gray-900">First Name</label>
+                <input type="text" name="fname" id="fname" 
+                class="border shadow-sm border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" 
+                placeholder="*First name" 
+                required="">
+            </div>
+          </div>
+        
+          <!--Last Name-->
         <div>
-          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+            <div>
+              <label for="lName" class="block text-sm font-medium leading-6 text-gray-900">Last name</label>
+                <input type="text" name="lName" id="lname" class="border shadow-sm border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" 
+                placeholder="*Last name" 
+                required="">
+            </div>
+          </div>
+
+        <!--Email -->
+        <div>
+          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email Address</label>
           <div class="mt-2">
-            <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
+            <input id="email" name="email" 
+            type="email" 
+            autocomplete="email" 
+            placeholder="*Email Address" 
+            required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
           </div>
         </div>
   
+        <!--Password Label-->
         <div>
           <div class="flex items-center justify-between">
-            <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+            <label for="password" 
+            class="block text-sm font-medium leading-6 text-gray-900">Password</label>
             
           </div>
+          
+          <!--Password System-->
           <div class="mt-2">
-            <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
+            <input id="password" name="password" type="password" 
+            autocomplete="current-password" 
+            placeholder="*Password" 
+            required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+        required/>
             <div class="text-sm mt-2 underline underline-offset-4">
-              <a href="#" class="font- hover:text-opacity-50">Forgot your password?</a>
+              
             </div>
           </div>
         </div>
   
         <div>
-          <button type="submit" class="flex w-full justify-center rounded-md bg-zinc-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Log in</button>
+          <button type="submit" class="flex w-full justify-center rounded-md bg-zinc-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign up</button>
         </div>
       </form>
-
-      <p class="mt-10 text-center text-sm text-gray-500">
-        Sign up as admin?
-        <a href="register_admin.php" class="font-semibold leading-6 text-zinc-950 hover:text-opacity-50">Sign up admin</a>
-      </p>
   
       <p class="mt-10 text-center text-sm text-gray-500">
-        Don't have an account?
-        <a href="register.php" class="font-semibold leading-6 text-zinc-950 hover:text-opacity-50">Sign up</a>
+        Already have an account?
+        <a href="login.php" class="font-semibold leading-6 text-zinc-950 hover:text-opacity-50">Sign in</a>
       </p>
     </div>
   </div>
+
+
+
 
 
 
