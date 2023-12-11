@@ -3,7 +3,6 @@ session_start();
 
 include("connections.php");
 include("functions.php");
-
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +17,107 @@ include("functions.php");
                   
 </head>
 
+<style>
+  .image-container {
+      white-space: nowrap; 
+      overflow-x: auto; 
+      z-index: 1;
+  }
+
+  .image-container img {
+      margin-right: 0px;
+      margin-left: 0px;
+      width: 465px;
+      height: 107px;
+      display: inline-block; 
+      z-index: 1;
+  }
+
+  @media (max-width: 600px) {
+      .image-container {
+          white-space: initial; 
+          overflow-x: initial; 
+          z-index: 1;
+      }
+
+      .image-container img {
+          flex-basis: auto; 
+          margin-right: 0;
+          margin-left: 0;
+          z-index: 1;
+      }
+    }
+
+
+  /*--Section for the "best sellers" section--*/
+  .image-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      margin-top: 20px;
+      margin-left: 17px
+      z-index: 1;
+  }
+
+  .image-section .item-container {
+      margin: 5px;
+      max-width: calc(20% - 10px);
+      height: auto;
+      float: left;
+      z-index: 1;
+  }
+
+  @media (max-width: 600px) {
+      .image-section img {
+          flex-basis: calc(50% - 10px); 
+          width: 100%;
+          z-index: 1;
+      }
+  }
+
+
+  /*--text container--*/
+  .text-container {
+      position: relative;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+      padding: 5px;
+      box-sizing: border-box;
+      z-index: 1;
+  }
+
+
+  .shoe-name {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      z-index: 5;
+      z-index: 1;
+  }
+
+  .price {
+      font-size: 12px; 
+      z-index: 1;
+  }
+
+  img:hover{
+    z-index: 1;
+  }
+
+  .group:hover .absolute {
+display: block;
+z-index: 1;
+}
+
+/* Additional styles for the sub-menus */
+.absolute {
+display: none;
+z-index: 1;
+}
+  
+</style>
 
 
 <body class="overflow-x-hidden">
@@ -40,22 +140,50 @@ include("functions.php");
             <!-- Nav Links -->
             <ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
               <li><a class="hover:text-gray-300" href="#">New Arrivals</a></li>
-              <li><a class="hover:text-gray-300" href="best_sellers.html">Best Sellers</a></li>
-              <li><a class="hover:text-gray-300" href="#">Sneakers                
+              <li><a class="hover:text-gray-300" href="best_sellers.php">Best Sellers</a></li>
+              <!-- Sneakers Hover Menu -->
+              <li class="relative group">
+                <a class="hover:text-gray-300" href="./sneakers.html">Sneakers
                   <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                     <path d="m9 18 6-6-6-6"/>
-                  </svg>               
-              </a></li>
-              <li><a class="hover:text-gray-300" href="#">Apparel
-                <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
-                  <path d="m9 18 6-6-6-6"/>
-                </svg>
-              </a></li>
-              <li><a class="hover:text-gray-300" href="#">Accessories
-                <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
-                  <path d="m9 18 6-6-6-6"/>
-                </svg>
-              </a></li>
+                  </svg>
+                </a>
+                <ul class="absolute hidden space-y-2 bg-white text-black py-2 rounded-md">
+                  <li><a href="./sneakers_men.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Men</a></li>
+                  <li><a href="./sneakers_women.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Women</a></li>
+                  <li><a href="./sneakers_clearance.html">&nbsp;&nbsp;&nbsp;Clearance&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="./sneakers_kids.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kids</a></li>
+                </ul>
+              </li>
+              
+              <!-- Apparel Hover Menu -->
+              <li class="relative group">
+                <a class="hover:text-gray-300" href="./apparel.html">Apparel
+                  <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+                    <path d="m9 18 6-6-6-6"/>
+                  </svg>
+                </a>
+                <ul class="absolute hidden space-y-2 bg-white text-black py-2 rounded-md">
+                  <li><a href="./apparel_socks.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Socks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="./apparel_shoecare.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shoe Care</a></li>
+                  <li><a href="./apparel_kits.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kits</a></li>
+                </ul>
+                </li>
+              
+              <!-- Accessories Hover Menu -->
+              <li class="relative group">
+                <a class="hover:text-gray-300" href="./accessories.html">Accessories
+                  <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+                    <path d="m9 18 6-6-6-6"/>
+                  </svg>
+                </a>
+                <ul class="absolute hidden space-y-2 bg-white text-black py-2 rounded-md">
+                  <li><a href="./accessories_shoelaces.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shoelaces&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="./accessories_shoeinserts.html">&nbsp;&nbsp;&nbsp;Shoe Inserts&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="./accessories_shoebags.html">&nbsp;&nbsp;&nbsp;&nbsp;Shoe Bags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="./accessories_soles.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Soles&nbsp;&nbsp;&nbsp;</a></li>
+                </ul>
+                </li>
               <li><a class="hover:text-gray-300 pr-40" href="#">Discover
                 <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                   <path d="m9 18 6-6-6-6"/>
@@ -119,181 +247,93 @@ include("functions.php");
       <h2 class="text-sm font-bold uppercase tracking-wide">NEW ARRIVALS</h2>
       <a href="/collections/new-arrivals" class="underline underline-offset-2">View more</a>
     </div>
-
+<!--FIRST ROW SHOES-->
     <div class="grid gap-px px-4 grid-cols-4 gap-x-12">
-      <div class="max-h-[26rem] lg:max-h-[32rem]">
+    <div class="max-h-[26rem] lg:max-h-[32rem]">
         <ul class="divide-y">
-          <li class="py-2 border-black">
+          <?php 
+            $firstRowIds = [1,2,3];
+            $firstRowProducts = getProducts($connection, $firstRowIds);
+            foreach ($firstRowProducts as $product) :
+          ?>
+            <li class="py-2 border-black">
             <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
               <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
+                <img src="<?php echo $product['product_img']?>" width="400" height="400">
               </div> 
               <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
+                <p class="text-xs line-clamp-2"><?php echo $product['product_name']?></p>
               </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
+              <div class="w-[84px] text-right text-xs">
+                £<?php echo $product['price']?>
+                <button class="ml-2 p-1 bg-gray-500 text-white rounded" onclick="addToCart(<?php echo $product['product_id'] ?>)">Add to Cart</button>
+              </div>
             </a>
           </li>
-
-          <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
-            </a>
-          </li>
-
-          <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
-            </a>
-          </li>
-
-          
-        
+          <?php endforeach;?>  
         </ul>
-
-        
-        
       </div>
-
+<!--SECOND ROW SHOES-->
       <div class="max-h-[26rem] lg:max-h-[32rem]">
         <ul class="divide-y">
-          <li class="py-2 border-black">
+          <?php 
+          $secondRowIds = [1,2,3];
+          $secondRowProducts = getProducts($connection, $secondRowIds);
+          foreach ($secondRowProducts as $product) :?>
+            <li class="py-2 border-black">
             <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
               <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
+                <img src="<?php echo $product['product_img']?>" width="400" height="400">
               </div> 
               <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
+                <p class="text-xs line-clamp-2"><?php echo $product['product_name']?></p>
               </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
+              <div class="w-[84px] text-right text-xs">£<?php echo $product['price']?></div>
             </a>
           </li>
-
-          <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
-            </a>
-          </li>
-
-          <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
-            </a>
-          </li>
-
-        
+          <?php endforeach;?>  
         </ul>
-
-        
-        
       </div>
-
+<!--THIRD ROW SHOES-->
       <div class="max-h-[26rem] lg:max-h-[32rem]">
         <ul class="divide-y">
-          <li class="py-2 border-black">
+          <?php 
+          $thirdRowIds = [1,2,3];
+          $thirdRowProducts = getProducts($connection, $thirdRowIds);
+          foreach ($thirdRowProducts as $product) :?>
+            <li class="py-2 border-black">
             <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
               <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
+                <img src="<?php echo $product['product_img']?>" width="400" height="400">
               </div> 
               <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
+                <p class="text-xs line-clamp-2"><?php echo $product['product_name']?></p>
               </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
+              <div class="w-[84px] text-right text-xs">£<?php echo $product['price']?></div>
             </a>
           </li>
-
-          <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
-            </a>
-          </li>
-
-          <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
-            </a>
-          </li>
-
-        
+          <?php endforeach;?>  
         </ul>
-
-        
-        
       </div>
-
-      <div class="max-h-[26rem] lg:max-h-[32rem]">
+<!--FOURTH ROW SHOES-->
+<div class="max-h-[26rem] lg:max-h-[32rem]">
         <ul class="divide-y">
-          <li class="py-2 border-black">
+          <?php 
+          $fourthRowIds = [1,2,3];
+          $fourthRowProducts = getProducts($connection, $fourthRowIds);
+          foreach ($fourthRowProducts as $product) :?>
+            <li class="py-2 border-black">
             <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
               <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
+                <img src="<?php echo $product['product_img']?>" width="400" height="400">
               </div> 
               <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
+                <p class="text-xs line-clamp-2"><?php echo $product['product_name']?></p>
               </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
+              <div class="w-[84px] text-right text-xs">£<?php echo $product['price']?></div>
             </a>
           </li>
-
-          <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
-            </a>
-          </li>
-
-          <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="./images/sneakersmol2.png" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2">Wales Bonner x adidas Samba Pony 'Black'</p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£185.00</div>
-            </a>
-          </li>
+          <?php endforeach;?>  
         </ul>
       </div>
 
@@ -828,7 +868,7 @@ include("functions.php");
           <a href="/refund-policy" class="hover:opacity-50">Meet the team</a>
         </li>
         <li class="mb-1">
-          <a href="/tos" class="hover:opacity-50">Contact us</a>
+          <a href="contactus.php" class="hover:opacity-50">Contact us</a>
         </li>
         <li class="mb-1 pb-5">
           <a href="/shipping" class="hover:opacity-50">Careers</a>

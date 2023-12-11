@@ -5,7 +5,8 @@ CREATE TABLE users (
     forename VARCHAR(255) NOT NULL,
     surname VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
-    pass VARCHAR(255) NOT NULL
+    pass VARCHAR(255) NOT NULL,
+    is_admin INT NOT NULL DEFAULT 0 
 );
 
 CREATE TABLE products (
@@ -15,7 +16,7 @@ CREATE TABLE products (
     price DECIMAL(10,2) NOT NULL,
     release_date DATE NOT NULL,
     stock_quantity INT NOT NULL,
-    category VARCHAR(10) NOT NULL,
+    category VARCHAR(255) NOT NULL,
     product_img VARCHAR(255) NOT NULL
 );
 
@@ -40,9 +41,26 @@ CREATE TABLE user_orders (
     FOREIGN KEY (stock_id) REFERENCES product_stock(stock_id)
 );
 
+CREATE TABLE contactform (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
 /* INSERT BASE DATA INTO DATABASE */
 
 INSERT INTO products (product_name, brand, price, release_date, stock_quantity, category, product_img) VALUES
 ('Wales Bonner x Adidas Samba Pony Black', 'Adidas', 185.00, '2023-11-08', 10, 'Mens', './images/sneakersmol2.png'),
-('Jordan 4 Retro Black Cat', 'Air Jordan', 1150.00, '2020-11-22', 10, 'Mens', './images/blackcatsneaker 1.png');
+('Jordan 4 Retro Black Cat', 'Air Jordan', 1150.00, '2020-11-22', 10, 'Mens', './images/blackcatsneaker 1.png'),
+('Air Force 1 Low White', 'Nike', 95.00, '2008-02-16', 10, 'Mens', './images/af1.png');
 
+/* Default admin account details
+Email: admin@admin.com
+Password: Adminuser1
+*/
+INSERT INTO users (forename, surname, email, pass, is_admin) VALUES 
+('Admin', 'User', 'admin@admin.com', '$2y$10$XwUZC/FKFIeuvEB7BK.qre2NLtB.9ti2KqwR3s5bkQkYk8H3j0kKe', 1);

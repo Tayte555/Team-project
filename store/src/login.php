@@ -1,8 +1,20 @@
 <?php
 session_start();
 
+if (isset($_SESSION['user_id'])){
+  if ($_SESSION['is_admin'] == 1){
+    header('Location: admin/account.php');
+    exit();
+  }
+  header('Location: account/account.php');
+  exit();
+}
+
 include("connections.php");
 include("functions.php");
+
+$_SESSION['error_message'] = "";
+
 
 //puts new user info into database
 if($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -23,27 +35,34 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         //check password is entered
         if(isset($userData['pass'])){
           $_SESSION['user_id'] = $userData['user_id'];
-          
           //verify password hash
           if(password_verify($password, $userData['pass'])){
             //send user to home page after successful login
-            header("Location: home.php");
-            die;
+            $_SESSION['is_admin'] = $userData['is_admin'];
+            if ($_SESSION['is_admin'] == 1){
+              header("Location: admin/account.php");
+              exit();
+            } else {
+              header("Location: account/account.php");
+              exit();
+            }
+
+            //exit;
 //all else statement intended for debugging          
           } else {
-            echo "pass verification fail";
+            $_SESSION['error_message'] = "Incorrect email or password";
           }
         } else{
-          echo "Incorrect email or password";
+          $_SESSION['error_message'] = "Incorrect email or password";
         }
       } else {
-        echo "Incorrect email or password";
+        $_SESSION['error_message'] = "Incorrect email or password";
       }
     } else{
-      echo "Database query failed";
+      $_SESSION['error_message'] = "Database query failed";
     }
   }else{
-    echo "Please enter both Email and Password";
+    $_SESSION['error_message'] = "Please enter both Email and Password";
   }
 }
 ?>
@@ -137,6 +156,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">LOGIN</h2>
     </div>
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <?php
+    if(!empty($_SESSION['error_message'])) {
+    echo '<div class="error-message">' . $_SESSION['error_message'] . '</div>';
+    // Clear the message after displaying it
+    $_SESSION['error_message'] = "";
+  }
+  ?>
+  </div>
   
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form class="space-y-6" action="#" method="POST">
@@ -164,6 +192,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
           <button type="submit" class="flex w-full justify-center rounded-md bg-zinc-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Log in</button>
         </div>
       </form>
+
+      <p class="mt-10 text-center text-sm text-gray-500">
+        Sign up as admin?
+        <a href="register_admin.php" class="font-semibold leading-6 text-zinc-950 hover:text-opacity-50">Sign up admin</a>
+      </p>
   
       <p class="mt-10 text-center text-sm text-gray-500">
         Don't have an account?
@@ -216,7 +249,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         <a href="/refund-policy" class="hover:opacity-50">Meet the team</a>
       </li>
       <li class="mb-1">
-        <a href="/tos" class="hover:opacity-50">Contact us</a>
+        <a href="contactus.php" class="hover:opacity-50">Contact us</a>
       </li>
       <li class="mb-1 pb-5">
         <a href="/shipping" class="hover:opacity-50">Careers</a>

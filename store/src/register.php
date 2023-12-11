@@ -4,6 +4,11 @@ session_start();
   include("connections.php");
   include("functions.php");
 
+  if (isset($_SESSION['user_id'])){
+    header('Location: account.php');
+    exit();
+  }
+
   //puts new user info into database
   if($_SERVER['REQUEST_METHOD'] == "POST"){
     $firstName = $_POST['fname'];
@@ -41,6 +46,107 @@ session_start();
                 
 </head>
 
+<style>
+  .image-container {
+      white-space: nowrap; 
+      overflow-x: auto; 
+      z-index: 1;
+  }
+
+  .image-container img {
+      margin-right: 0px;
+      margin-left: 0px;
+      width: 465px;
+      height: 107px;
+      display: inline-block; 
+      z-index: 1;
+  }
+
+  @media (max-width: 600px) {
+      .image-container {
+          white-space: initial; 
+          overflow-x: initial; 
+          z-index: 1;
+      }
+
+      .image-container img {
+          flex-basis: auto; 
+          margin-right: 0;
+          margin-left: 0;
+          z-index: 1;
+      }
+    }
+
+
+  /*--Section for the "best sellers" section--*/
+  .image-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      margin-top: 20px;
+      margin-left: 17px
+      z-index: 1;
+  }
+
+  .image-section .item-container {
+      margin: 5px;
+      max-width: calc(20% - 10px);
+      height: auto;
+      float: left;
+      z-index: 1;
+  }
+
+  @media (max-width: 600px) {
+      .image-section img {
+          flex-basis: calc(50% - 10px); 
+          width: 100%;
+          z-index: 1;
+      }
+  }
+
+
+  /*--text container--*/
+  .text-container {
+      position: relative;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+      padding: 5px;
+      box-sizing: border-box;
+      z-index: 1;
+  }
+
+
+  .shoe-name {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      z-index: 5;
+      z-index: 1;
+  }
+
+  .price {
+      font-size: 12px; 
+      z-index: 1;
+  }
+
+  img:hover{
+    z-index: 1;
+  }
+
+  .group:hover .absolute {
+display: block;
+z-index: 1;
+}
+
+/* Additional styles for the sub-menus */
+.absolute {
+display: none;
+z-index: 1;
+}
+  
+</style>
 
 
 <body class="overflow-x-hidden flex flex-col min-h-screen">
@@ -58,25 +164,53 @@ session_start();
                " src="./images/logowhite.png" alt="logo"/>         
               </a>
 
-            <!-- Nav Links -->
-            <ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
+             <!-- Nav Links -->
+             <ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
               <li><a class="hover:text-gray-300" href="#">New Arrivals</a></li>
-              <li><a class="hover:text-gray-300" href="#">Best Sellers</a></li>
-              <li><a class="hover:text-gray-300" href="#">Sneakers                
+              <li><a class="hover:text-gray-300" href="best_sellers.php">Best Sellers</a></li>
+              <!-- Sneakers Hover Menu -->
+              <li class="relative group">
+                <a class="hover:text-gray-300" href="./sneakers.html">Sneakers
                   <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                     <path d="m9 18 6-6-6-6"/>
-                  </svg>               
-              </a></li>
-              <li><a class="hover:text-gray-300" href="#">Apparel
-                <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
-                  <path d="m9 18 6-6-6-6"/>
-                </svg>
-              </a></li>
-              <li><a class="hover:text-gray-300" href="#">Accessories
-                <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
-                  <path d="m9 18 6-6-6-6"/>
-                </svg>
-              </a></li>
+                  </svg>
+                </a>
+                <ul class="absolute hidden space-y-2 bg-white text-black py-2 rounded-md">
+                  <li><a href="./sneakers_men.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Men</a></li>
+                  <li><a href="./sneakers_women.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Women</a></li>
+                  <li><a href="./sneakers_clearance.html">&nbsp;&nbsp;&nbsp;Clearance&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="./sneakers_kids.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kids</a></li>
+                </ul>
+              </li>
+              
+              <!-- Apparel Hover Menu -->
+              <li class="relative group">
+                <a class="hover:text-gray-300" href="./apparel.html">Apparel
+                  <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+                    <path d="m9 18 6-6-6-6"/>
+                  </svg>
+                </a>
+                <ul class="absolute hidden space-y-2 bg-white text-black py-2 rounded-md">
+                  <li><a href="./apparel_socks.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Socks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="./apparel_shoecare.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shoe Care</a></li>
+                  <li><a href="./apparel_kits.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kits</a></li>
+                </ul>
+                </li>
+              
+              <!-- Accessories Hover Menu -->
+              <li class="relative group">
+                <a class="hover:text-gray-300" href="./accessories.html">Accessories
+                  <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+                    <path d="m9 18 6-6-6-6"/>
+                  </svg>
+                </a>
+                <ul class="absolute hidden space-y-2 bg-white text-black py-2 rounded-md">
+                  <li><a href="./accessories_shoelaces.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shoelaces&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="./accessories_shoeinserts.html">&nbsp;&nbsp;&nbsp;Shoe Inserts&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="./accessories_shoebags.html">&nbsp;&nbsp;&nbsp;&nbsp;Shoe Bags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="./accessories_soles.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Soles&nbsp;&nbsp;&nbsp;</a></li>
+                </ul>
+                </li>
               <li><a class="hover:text-gray-300 pr-40" href="#">Discover
                 <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                   <path d="m9 18 6-6-6-6"/>
@@ -182,7 +316,7 @@ session_start();
         </div>
   
         <div>
-          <button type="submit" class="flex w-full justify-center rounded-md bg-zinc-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Log in</button>
+          <button type="submit" class="flex w-full justify-center rounded-md bg-zinc-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign up</button>
         </div>
       </form>
   
@@ -240,7 +374,7 @@ session_start();
         <a href="/refund-policy" class="hover:opacity-50">Meet the team</a>
       </li>
       <li class="mb-1">
-        <a href="/tos" class="hover:opacity-50">Contact us</a>
+        <a href="contactus.php" class="hover:opacity-50">Contact us</a>
       </li>
       <li class="mb-1 pb-5">
         <a href="/shipping" class="hover:opacity-50">Careers</a>
