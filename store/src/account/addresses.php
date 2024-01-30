@@ -104,11 +104,6 @@ if (!isset($_SESSION['user_id'])){
             </a>
           </li>
           <li class="mb-2 py-2">
-            <a href="add_product.php" class=" py-2 md:text-base lg:text-2xl">
-              <span>Add product</span>
-            </a>
-          </li>
-          <li class="mb-2 py-2">
             <a href="addresses.php" class="opacity-50 py-2 md:text-base lg:text-2xl">
               <span>View addresses</span>
             </a>

@@ -21,7 +21,7 @@ session_start();
       $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
       
       //query database to insert user data
-      $query = "insert into users (forename, surname, email, pass, is_admin) values ('$firstName', '$lastName', '$email', '$hashedPassword', 1)";
+      $query = "insert into users (forename, surname, email, pass, is_admin) values ('$firstName', '$lastName', '$email', '$hashedPassword', '1')";
       mysqli_query($connection, $query);
       
       //send back to login page after success
