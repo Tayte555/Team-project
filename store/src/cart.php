@@ -83,6 +83,17 @@ session_start();
 include("connections.php");
 include("functions.php");
 
+// Function to get the current user's ID
+function getCurrentUserID() {
+    // Check if the user is logged in and their ID is stored in a session variable
+    if (isset($_SESSION['user_id'])) {
+        return $_SESSION['user_id'];
+    } else {
+        // Return a default value or handle the case where the user is not logged in
+        return null;
+    }
+}
+
 // Put product selected into the cart 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['product_id'], $_POST['quantity'])) {
     $product_id = $_POST['product_id'];
@@ -124,6 +135,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
     }
 }
 
+// Handle checkout
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == 'checkout') {
+    if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+        $user_id = getCurrentUserID();
+        if ($user_id) {
+            foreach ($_SESSION['cart'] as $item) {
+                processPurchase($item['product_id'], $item['quantity'], $user_id, $connection);
+            }
+            // Clear the cart after checkout
+            unset($_SESSION['cart']);
+            echo 'Checkout successful!';
+        } else {
+            echo 'User not logged in.';
+        }
+    } else {
+        echo 'Your shopping cart is empty.';
+    }
+}
+
 mysqli_close($connection);
 ?>
 
@@ -159,7 +189,7 @@ mysqli_close($connection);
             </div>
         </div>
 
-        <button id="pay-now-button" onclick="processPayment()">Pay Now</button>
+        <button id="checkout-button" onclick="checkout()">Pay Now</button>
     </div>
 
     <div id="product-image">
@@ -181,11 +211,18 @@ mysqli_close($connection);
                 echo '<td>$' . $item['price'] . '</td>';
                 echo '<td>' . $item['quantity'] . '</td>';
                 echo '<td>';
-                echo '<form method="post" action="' . $_SERVER['PHP_SELF'] . '">';
+
+
+                echo '<form id="remove-from-cart-form" method="post" action="' . htmlspecialchars($_SERVER['PHP_SELF']) . '">';
                 echo '<input type="hidden" name="action" value="remove_from_cart">';
                 echo '<input type="hidden" name="remove_index" value="' . $key . '">';
                 echo '<input type="submit" value="Remove from Cart">';
                 echo '</form>';
+                echo '<form id="checkout-form" method="post" action="' . htmlspecialchars($_SERVER['PHP_SELF']) . '">';
+                echo '<input type="hidden" name="action" value="checkout">';
+                echo '<input type="submit" value="Checkout">';
+                echo '</form>';
+
                 echo '</td>';
                 echo '</tr>';
             
@@ -205,10 +242,12 @@ mysqli_close($connection);
         </div>
     </div>
 </div>
+
 <script>
     // JavaScript functions for illustration purposes
-    function processPayment() {
+    function checkout() {
         // Add actual payment processing logic here
+        document.getElementById("checkout-form").submit();
         alert("Payment processed successfully!");
     }
 
