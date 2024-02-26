@@ -52,6 +52,20 @@ CREATE TABLE contactform (
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE user_addresses (
+    address_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    address_line_1 VARCHAR(255) NOT NULL,
+    address_line_2 VARCHAR(255),
+    city VARCHAR(255) NOT NULL,
+    country_region VARCHAR(255) NOT NULL,
+    province VARCHAR(255),
+    post_code VARCHAR(20) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
 
 /* INSERT BASE DATA INTO DATABASE */
 
