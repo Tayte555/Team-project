@@ -150,14 +150,34 @@ if (!isset($_SESSION['user_id'])){
               // Handle the case where the query failed
               echo "Error executing query: " . mysqli_error($connection);
           }
+
+          // Fetch user's orders
+          $orderQuery = "SELECT * FROM user_orders WHERE user_id = $userId";
+          $orderResult = mysqli_query($connection, $orderQuery);
+
+          // Check if there are orders
+          if ($orderResult && mysqli_num_rows($orderResult) > 0) {
+            // Display order history
+            echo "<h1 class='text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold'>Order History</h1>";
+            while ($orderRow = mysqli_fetch_assoc($orderResult)) {
+                echo "<p>Order ID: " . $orderRow['order_id'] . "</p>";
+                echo "<p>Order Date: " . $orderRow['order_date'] . "</p>";
+                echo "<p>Product ID: " . $orderRow['product_id'] . "</p>";
+                echo "<p>Quantity: " . $orderRow['quantity'] . "</p>";
+                echo "<p>Total Price: $" . $orderRow['total_price'] . "</p>";
+                echo "<hr>";
+            }
+            } else {
+              // Display message when no orders found
+              echo "<p>You haven't placed any orders yet.</p>";
+            }
+
       } else {
           // If the user is not logged in, redirect them to the login page
           header("Location: login.php");
           exit();
       }
         ?>
-        <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">Order History</h1>
-        <p>You haven't placed any orders yet.</p>
     </div>
   </div>
   </section>
