@@ -1,9 +1,40 @@
 <?php 
 session_start();
-
+include("../connections.php");
 if (!isset($_SESSION['user_id'])){
   header('Location: ../login.php');
   exit();
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+  $userId = $_SESSION['user_id'];
+  $firstName = $_POST['address']['first_name'];
+  $lastName = $_POST['address']['last_name'];
+  $phone = $_POST['address']['phone'];
+  $addressLine1 = $_POST['address']['address1'];
+  $addressLine2 = $_POST['address']['address2'];
+  $city = $_POST['address']['city'];
+  $countryRegion = $_POST['address']['country'];
+  $province = $_POST['address']['province'];
+  $postCode = $_POST['address']['postcode'];
+  $isDefault = isset($_POST['address']['default']) ? 1 : 0; // Check if the address is default
+
+  // Insert data into table
+  $query = "INSERT INTO user_addresses (user_id, first_name, last_name, phone, address_line_1, address_line_2, city, country_region, province, post_code, is_default) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  $statement = mysqli_prepare($connection, $query);
+  mysqli_stmt_bind_param($statement, "isssssssssi", $userId, $firstName, $lastName, $phone, $addressLine1, $addressLine2, $city, $countryRegion, $province, $postCode, $isDefault);
+  
+  if(mysqli_stmt_execute($statement)) {
+      // Address added successfully
+      echo "Address added successfully.";
+  } else {
+      // Error in adding address
+      echo "Error adding address: " . mysqli_error($connection);
+  }
+
+  mysqli_stmt_close($statement);
 }
 
 ?>
@@ -161,7 +192,7 @@ if (!isset($_SESSION['user_id'])){
                   <!-- this element is to trick browser into centering the modal contents. -->
                   <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&ZeroWidthSpace;</span>
                   <div class="inline-block align-bottom bg-white text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-screen-md sm:w-full" role="dialog" aria-modal="true" aria-labelledby="Add a new address">
-                    <form method="post" action="/addresses.html" id="address_form_new" accept-charset="UTF-8">
+                    <form method="post" action="./addresses.php" id="address_form_new" accept-charset="UTF-8">
                       <input type="hidden" name="form_type" value="customer_address">
                       <input type="hidden" name="utf8" value="✓">
                       <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
@@ -184,15 +215,15 @@ if (!isset($_SESSION['user_id'])){
                           </div>
                           <div class="col-span-6">
                             <label for="address1" class="block text-sm font-medium text-gray-700">Address 1</label>
-                            <input text="text" name="address[phone]" value id="address1" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                            <input text="text" name="address[address1]" value id="address1" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
                           </div>
                           <div class="col-span-6">
                             <label for="address2" class="block text-sm font-medium text-gray-700">Address 2</label>
-                            <input text="text" name="address[phone]" value id="address2" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                            <input text="text" name="address[address2]" value id="address2" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
                           </div>
                           <div class="col-span-6 sm:col-span-3">
-                            <label for="address2" class="block text-sm font-medium text-gray-700">City</label>
-                            <input text="text" name="address[phone]" value id="city" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                            <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+                            <input text="text" name="address[city]" value id="city" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
                           </div>
                           <div class="col-span-6 sm:col-span-3">
                             <label for="first_name" class="block text-sm font-medium text-gray-700">Country/region</label>

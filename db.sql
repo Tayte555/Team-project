@@ -64,6 +64,7 @@ CREATE TABLE user_addresses (
     country_region VARCHAR(255) NOT NULL,
     province VARCHAR(255),
     post_code VARCHAR(20) NOT NULL,
+    is_default BOOLEAN NOT NULL DEFAULT 0,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
