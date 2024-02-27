@@ -6,7 +6,9 @@ if (!isset($_SESSION['user_id'])){
   exit();
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// INSERTING ADDRESSES
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_address'])) {
 
   $userId = $_SESSION['user_id'];
   $firstName = $_POST['address']['first_name'];
@@ -35,6 +37,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   mysqli_stmt_close($statement);
+}
+
+//DELETING ADDRESSES
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_address'])) {
+  $addressId = $_POST['address_id'];
+  $deleteQuery = "DELETE FROM user_addresses WHERE address_id = ? AND user_id = ?";
+  $deleteStatement = mysqli_prepare($connection, $deleteQuery);
+  mysqli_stmt_bind_param($deleteStatement, "ii", $addressId, $_SESSION['user_id']);
+  
+  if(mysqli_stmt_execute($deleteStatement)) {
+      echo "Address deleted successfully.";
+      // Redirect or refresh the page to reflect the changes
+      header("Refresh:0");
+      exit();
+  } else {
+      echo "Error deleting address: " . mysqli_error($connection);
+  }
+
+  mysqli_stmt_close($deleteStatement);
 }
 
 // Query to select user addresses
@@ -184,7 +206,11 @@ mysqli_stmt_close($statement);
                     </p>
                     <div class="-ml-2">
                       <button class="px-2 py-1 underline underline-offset-1">Edit</button>
-                      <button class="px-2 py-1 underline underline-offset-1">Delete</button>
+                      
+                      <form method="POST" action="">
+                        <input type="hidden" name="address_id" value="<?php echo $address['address_id']; ?>">
+                        <button type="submit" name="delete_address" class="px-2 py-1 underline underline-offset-1">Delete</button>
+                      </form>
                     </div>
                 </li>
                 <?php endforeach; ?>
@@ -270,7 +296,7 @@ mysqli_stmt_close($statement);
                           <input type="checkbox" id="address_default_address_new" name="address[default]" value="1">
                           <label for="address_default_address_new" class="block text-sm font-medium text-gray-700 mr-3 ml-2">Set as default address </label>
                         </div>
-                        <button type="submit" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add address</button>
+                        <button type="submit" name="add_address" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add address</button>
                       </div>
                       <button type="button" onclick="closeModal()" @click="openNew = false" class="text-sm px-4 border border-black uppercase tracking-wide">Cancel</button>
                     </div>
