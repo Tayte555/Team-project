@@ -37,6 +37,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   mysqli_stmt_close($statement);
 }
 
+// Query to select user addresses
+$query = "SELECT * FROM user_addresses WHERE user_id = ?";
+$statement = mysqli_prepare($connection, $query);
+mysqli_stmt_bind_param($statement, "i", $_SESSION['user_id']);
+mysqli_stmt_execute($statement);
+$result = mysqli_stmt_get_result($statement);
+$addresses = mysqli_fetch_all($result, MYSQLI_ASSOC);
+mysqli_stmt_close($statement);
 ?>
 
 <!DOCTYPE html>
@@ -161,18 +169,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="md:col-span-3">
           <div class="sm:overflow-hidden">
             <ul class="divide-y">
-              <li class="py-8 relative border-black">
-                <span class="rounded-full bg-black text-white px-3 py-1 mb-2 text-xs font-medium absolute top-4 right-0">Default</span>
-                <p>
-                  test test
-                  <br>
-                  United Kondom
-                </p>
-                <div class="-ml-2">
-                  <button class="px-2 py-1 underline underline-offset-1">Edit</button>
-                  <button class="px-2 py-1 underline underline-offset-1">Delete</button>
-                </div>
-              </li>
+              <?php foreach ($addresses as $address): ?>
+                <li class="py-8 relative border-black">
+                    <?php if ($address['is_default']): ?>
+                      <span class="rounded-full bg-black text-white px-3 py-1 mb-2 text-xs font-medium absolute top-4 right-0">Default</span>
+                    <?php endif; ?>
+                    <p>
+                        <?php echo $address['first_name'] . ' ' . $address['last_name']; ?><br>
+                        <?php echo $address['address_line_1']; ?><br>
+                        <?php if (!empty($address['address_line_2'])) echo $address['address_line_2'] . '<br>'; ?>
+                        <?php echo $address['city'] . ', ' . $address['country_region']; ?><br>
+                        <?php if (!empty($address['province'])) echo $address['province'] . '<br>'; ?>
+                        <?php echo $address['post_code']; ?>
+                    </p>
+                    <div class="-ml-2">
+                      <button class="px-2 py-1 underline underline-offset-1">Edit</button>
+                      <button class="px-2 py-1 underline underline-offset-1">Delete</button>
+                    </div>
+                </li>
+                <?php endforeach; ?>
             </ul>
 
             <script>
