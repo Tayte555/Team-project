@@ -6,10 +6,11 @@
     <title>Shopping Cart</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'SF Pro Display', sans-serif;
             margin: 0;
-            padding: 0;
+            box-sizing: border-box;
             background-color: #f4f4f4;
+            color: #1F2937;
         }
 
         #cart-container {
@@ -18,6 +19,9 @@
             margin: 20px auto;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            justify-content: space-around;
         }
 
         #product-details {
@@ -48,14 +52,17 @@
             margin-top: 10px;
         }
 
-        #contact-info,
-        #shipping-details,
-        #payment-details {
-            margin-bottom: 20px;
+        #payment-options {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .payment-option {
+            margin-bottom: 10px;
         }
 
         #pay-now-button {
-            background-color: #000;
+            background-color: #111827;
             color: #fff;
             padding: 10px 20px;
             border: none;
