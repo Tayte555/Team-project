@@ -5,6 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              
+            },
+            transitionTimingFunction: {
+              gentle: 'cubic-bezier(0.38, 0, 0.25, 0.99)',
+            },
+          },
+        },
+      }
+    </script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <title>Sole Haven | Online Trainer and Exclusive Sneaker Shop</title>
     <link rel="stylesheet" href="styles.css">
@@ -15,7 +29,8 @@
 
 
 
-<body class="overflow-x-hidden flex flex-col min-h-screen">
+<body class="overflow-x-hidden flex flex-col min-h-screen" 
+  x-data="{ openFilter : false}">
   <header class="items-center bg-zinc-950 md:px">
     <div class="flex flex-wrap place-items-center">
       <section class="relative mx-auto">
@@ -115,10 +130,9 @@
     </div>
     </header>
 
-    <section>
 
-  </section>
 
+  
   <div>
     <div class="md:ml-[8.3333%] md:mr-[8.3333%] px-4 py-8 lg:py-12">
       <div class="gap-4 lg:grid lg:grid-cols-2">
@@ -130,7 +144,7 @@
 
     </div>
     <div class="flex justify-end items-center px-4 md:px-4 border-t border-black">
-      <button type="button" class="flex items-center mr-auto py-3">
+      <button type="button" class="flex items-center mr-auto py-3" @click="openFilter = !openFilter">
         Filter
         <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="ml-2 w-6 color-black icon icon-filter" fill="none" viewBox="0 11 20 20">
           <line x1="16.5" y1="17.5" x2="3.5" y2="17.5" stroke="currentColor" stroke-linecap="round"></line>
@@ -301,7 +315,67 @@
     </div>
 
   </div>
+
+
+
+<!-- Filter tab -->
+  <header header="fixed top-0 right-0 bottom-0 left-0 z-10" :hidden="!openFilter">
+    <ul class="absolute top-0 left-0 bottom-0 w-3/12 py-4 bg-white z-10 border-r border-black">
+      <li class="border-b border-black">
+        <a href="#" class="block p-4">Brand</a>
+      </li>
+      <li class="border-b border-black">
+        <a href="#" class="block p-4">Size</a>
+      </li>
+      <li class="border-b border-black">
+        <a href="#" class="block p-4">Price</a>
+      </li>
+      <li class="border-b border-black">
+        <a href="#" class="block p-4">Colour</a>
+      </li>
+    </ul>
+
+<!-- close button -->
+    <button class="absolute top-0 left-0 bottom-0 right-0" @click="openFilter = !openFilter">
+      <svg class="w-6 h-6 absolute top-2 right-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+    </button>
+
+
+  </header>
+
+
+
   
+  <form class="flex flex-col h-screen overflow-hidden">
+    <header class="relative w-3/12 p-4 border-b border-black">
+      <h3 class="text-xl font-medium">Filters</h3>
+      <button type="button" class="absolute top-0 bottom-0 right-0 grid border-l border-black w-14 place-items-center">
+        <span class="sr-only">Close panel</span>
+        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+      </button>
+    </header>
+    <main class="flex-1 scrollbar-hide">
+      <div class="filter-group Brand">
+        <button type="button" class="flex items-center justify-between p-4 w text-base border-b border-black cursor-pointer filter-group-summary" @click="toggle()">
+          <div>
+            <span class="font-medium">Brand</span>
+          </div>
+          <span class="arrow-icon rotate-90">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 icon icon-arrow-right">
+              <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+          </span>
+
+        </button>
+      </div>
+
+    </main>
+
+  </form>
   
 
 
