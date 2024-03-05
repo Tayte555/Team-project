@@ -230,7 +230,7 @@
 }
 
 .details-box h2{
-color(0,0,150);
+color:(0,0,150);
 }
 .inputs{
   width:100%;
@@ -317,7 +317,7 @@ button{
       flex-wrap: wrap;
       justify-content: flex-start;
       margin-top: 20px;
-      margin-left: 17px
+      margin-left: 17px;
       z-index: 1;
   }
 
