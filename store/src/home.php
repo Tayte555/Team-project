@@ -55,7 +55,7 @@ include("functions.php");
       flex-wrap: wrap;
       justify-content: flex-start;
       margin-top: 20px;
-      margin-left: 17px
+      margin-left: 17px;
       z-index: 1;
   }
 
