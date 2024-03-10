@@ -9,42 +9,41 @@ include("functions.php");
 <html lang="en">
   
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Sole Haven | Product</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/7623f015c6.js" crossorigin="anonymous"></script>
-                  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title> Sole Haven | Product</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://kit.fontawesome.com/7623f015c6.js" crossorigin="anonymous"></script>                
 </head>
 
 <style>
-    *{
-        padding:0;
-        margin:0;
-        box-sizing:border-box;
-    }
-    img{
-        width:100%;
-        display: block;
-    }
-    .main-wrapper{
-        max-height: 100%;
-        background-color: rgb(240,240,230);
-        display: flex;
-        align-items:center;
-        justify-content: center;
-    }
-    .container{
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 16px;
-    }
-    .product-div{
-        margin: 1rem 0;
-        padding: 2rem 0;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+*{
+  padding:0;
+  margin:0;
+  box-sizing:border-box;
+}
+img{
+  width:100%;
+  display: block;
+}
+.main-wrapper{
+  max-height: 100%;
+  background-color: rgb(240,240,230);
+  display: flex;
+  align-items:center;
+  justify-content: center;
+}
+  .container{
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+.product-div{
+  margin: 1rem 0;
+  padding: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
         background-color: rgb(240,250,240);
         border-radius: 15px;
         column-gap: 10px;
@@ -93,7 +92,7 @@ include("functions.php");
         margin-bottom: 22px;
         font-weight: 700;
         letter-spacing: 1px;
-        opacity: 0.9;
+        opacity: 0.9; 
     }
     .product-price{
         font-weight: 700;
@@ -161,6 +160,51 @@ include("functions.php");
     .buy-now-btn:active{
       opacity: 0.2;
     }
+
+    .select-size{
+      font-size: 20px;
+      margin-top: 15px;
+      
+    }
+    .size-group{
+      background-color: rgb(240,240,240);
+      border-color:red;
+      border-radius: 15px;
+      
+      display: flex;
+      align-items:center;
+      justify-content: center;
+      color: rgb(0,0,0);
+      margin-top: 10px;
+      padding-bottom: 1px;
+      padding-top:1px;
+      height: 70px;
+    }
+    .size-btn{
+      margin-right: 25px;
+      margin-top: 25px;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-bottom: 20px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 10px;
+      padding-bottom:10px;
+      font-size: 22px;
+      font-weight: bold;
+      transition:font-size 0.3s, opacity 0.15s, margin 0.2s;
+    }
+    .size-btn:hover{
+      opacity: 0.5;
+      font-size: 30px;
+      margin-left: 5px;
+    
+    }
+    .size-btn:active{
+      opacity: 0.3;
+      color: red;
+    }
+
 
 @media screen and (max-width: 992px){
     .product-div{
@@ -358,6 +402,23 @@ include("functions.php");
                         These are made with deluxe material and high grade 
                         cushioning.
                         </p>
+                        <div class = "Shoe-size">
+                          <p class = "select-size">Select Size:</p>
+                          <div class = "size-group">
+                            <button type = "button" class = "size-btn">3</button>
+                            <button type = "button" class = "size-btn"> 4</button>
+                            <button type = "button" class = "size-btn"> 5</button>
+                            <button type = "button" class = "size-btn"> 6</button>
+                            <button type = "button" class = "size-btn"> 7</button>
+                            <button type = "button" class = "size-btn"> 8</button>
+                            <button type = "button" class = "size-btn"> 9</button>
+                            <button type = "button" class = "size-btn"> 10</button>
+                            <button type = "button" class = "size-btn"> 11</button>
+                            <button type = "button" class = "size-btn"> 12</button>
+                            <button type = "button" class = "size-btn"> 13</button>                          
+                          </div>
+                        </div>
+
                         <div class = "btn-groups">
                             <button type = "button" class = "add-cart-btn">
                                 <i class = "fas fa-shopping-cart"></i> Add To Cart
