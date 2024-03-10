@@ -167,10 +167,9 @@ img{
       
     }
     .size-group{
-      background-color: rgb(240,240,240);
+      background-color: rgba(250,250,250, 0.5);
       border-color:red;
-      border-radius: 15px;
-      
+      border: 2px solid rgb(0,0,0);
       display: flex;
       align-items:center;
       justify-content: center;
