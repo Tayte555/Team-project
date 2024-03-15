@@ -70,4 +70,35 @@ function sendContactUsMsg($connection, $firstName, $lastName, $email, $msg){
 
 }
 
+function processPurchase($product_id, $quantity, $user_id, $connection){
+    // Fetch product details
+    $sql_fetch_product = "SELECT price, stock_quantity FROM products WHERE product_id = ?";
+    $stmt = $connection->prepare($sql_fetch_product);
+    $stmt->bind_param('i', $product_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $product = $result->fetch_assoc();
+
+    if ($product) {
+        // Calculate total price
+        $total_price = $product['price'] * $quantity;
+
+        // Decrease stock
+        $sql_update_stock = "UPDATE products SET stock_quantity = stock_quantity - ? WHERE product_id = ?";
+        $stmt = $connection->prepare($sql_update_stock);
+        $stmt->bind_param('ii', $quantity, $product_id);
+        $stmt->execute();
+
+        // Create order
+        $sql_create_order = "INSERT INTO user_orders (user_id, product_id, order_date, quantity, total_price) 
+                            VALUES (?, ?, NOW(), ?, ?)";
+        $stmt = $connection->prepare($sql_create_order);
+        $stmt->bind_param('iiid', $user_id, $product_id, $quantity, $total_price);
+        $stmt->execute();
+    } else {
+        // Product not found
+        echo "Product not found!";
+    }
+}
+
 ?>

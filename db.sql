@@ -20,25 +20,27 @@ CREATE TABLE products (
     product_img VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE product_stock (
-    stock_id INT PRIMARY KEY AUTO_INCREMENT,
-    product_id INT,
-    shoe_size VARCHAR(10) NOT NULL,
-    stock_quantity INT NOT NULL,
-    FOREIGN KEY (product_id) REFERENCES products(product_id)
-);
+-- table to be implemented in later variations where shoes sizes etc. are used
+
+-- CREATE TABLE product_stock (
+--     stock_id INT PRIMARY KEY AUTO_INCREMENT,
+--     product_id INT,
+--     shoe_size VARCHAR(10) NOT NULL,
+--     stock_quantity INT NOT NULL,
+--     FOREIGN KEY (product_id) REFERENCES products(product_id)
+-- );
 
 CREATE TABLE user_orders (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     product_id INT,
-    stock_id INT,
+    -- stock_id INT,
     order_date DATE NOT NULL,
     quantity INT NOT NULL,
     total_price DECIMAL(10,2) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (product_id) REFERENCES products(product_id),
-    FOREIGN KEY (stock_id) REFERENCES product_stock(stock_id)
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+    -- FOREIGN KEY (stock_id) REFERENCES product_stock(stock_id)
 );
 
 CREATE TABLE contactform (
@@ -50,6 +52,21 @@ CREATE TABLE contactform (
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE user_addresses (
+    address_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    address_line_1 VARCHAR(255) NOT NULL,
+    address_line_2 VARCHAR(255),
+    city VARCHAR(255) NOT NULL,
+    country_region VARCHAR(255) NOT NULL,
+    province VARCHAR(255),
+    post_code VARCHAR(20) NOT NULL,
+    is_default BOOLEAN NOT NULL DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
 
 /* INSERT BASE DATA INTO DATABASE */
 
@@ -63,4 +80,5 @@ Email: admin@admin.com
 Password: Adminuser1
 */
 INSERT INTO users (forename, surname, email, pass, is_admin) VALUES 
-('Admin', 'User', 'admin@admin.com', '$2y$10$XwUZC/FKFIeuvEB7BK.qre2NLtB.9ti2KqwR3s5bkQkYk8H3j0kKe', 1);
+('Default', 'User', 'default@user.com', 'Defaultuser1', 0),
+('Admin', 'User', 'admin@admin.com', 'Adminuser1', 1);

@@ -1,11 +1,72 @@
 <?php 
 session_start();
-
+include("../connections.php");
 if (!isset($_SESSION['user_id'])){
   header('Location: ../login.php');
   exit();
 }
 
+// INSERTING ADDRESSES
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_address'])) {
+
+  $userId = $_SESSION['user_id'];
+  $firstName = $_POST['address']['first_name'];
+  $lastName = $_POST['address']['last_name'];
+  $phone = $_POST['address']['phone'];
+  $addressLine1 = $_POST['address']['address1'];
+  $addressLine2 = $_POST['address']['address2'];
+  $city = $_POST['address']['city'];
+  $countryRegion = $_POST['address']['country'];
+  $province = $_POST['address']['province'];
+  $postCode = $_POST['address']['postcode'];
+  $isDefault = isset($_POST['address']['default']) ? 1 : 0; // Check if the address is default
+
+  // Insert data into table
+  $query = "INSERT INTO user_addresses (user_id, first_name, last_name, phone, address_line_1, address_line_2, city, country_region, province, post_code, is_default) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  $statement = mysqli_prepare($connection, $query);
+  mysqli_stmt_bind_param($statement, "isssssssssi", $userId, $firstName, $lastName, $phone, $addressLine1, $addressLine2, $city, $countryRegion, $province, $postCode, $isDefault);
+  
+  if(mysqli_stmt_execute($statement)) {
+      // Address added successfully
+      echo "Address added successfully.";
+  } else {
+      // Error in adding address
+      echo "Error adding address: " . mysqli_error($connection);
+  }
+
+  mysqli_stmt_close($statement);
+}
+
+//DELETING ADDRESSES
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_address'])) {
+  $addressId = $_POST['address_id'];
+  $deleteQuery = "DELETE FROM user_addresses WHERE address_id = ? AND user_id = ?";
+  $deleteStatement = mysqli_prepare($connection, $deleteQuery);
+  mysqli_stmt_bind_param($deleteStatement, "ii", $addressId, $_SESSION['user_id']);
+  
+  if(mysqli_stmt_execute($deleteStatement)) {
+      echo "Address deleted successfully.";
+      // Redirect or refresh the page to reflect the changes
+      header("Refresh:0");
+      exit();
+  } else {
+      echo "Error deleting address: " . mysqli_error($connection);
+  }
+
+  mysqli_stmt_close($deleteStatement);
+}
+
+// Query to select user addresses
+$query = "SELECT * FROM user_addresses WHERE user_id = ?";
+$statement = mysqli_prepare($connection, $query);
+mysqli_stmt_bind_param($statement, "i", $_SESSION['user_id']);
+mysqli_stmt_execute($statement);
+$result = mysqli_stmt_get_result($statement);
+$addresses = mysqli_fetch_all($result, MYSQLI_ASSOC);
+mysqli_stmt_close($statement);
 ?>
 
 <!DOCTYPE html>
@@ -130,18 +191,29 @@ if (!isset($_SESSION['user_id'])){
         <div class="md:col-span-3">
           <div class="sm:overflow-hidden">
             <ul class="divide-y">
-              <li class="py-8 relative border-black">
-                <span class="rounded-full bg-black text-white px-3 py-1 mb-2 text-xs font-medium absolute top-4 right-0">Default</span>
-                <p>
-                  test test
-                  <br>
-                  United Kondom
-                </p>
-                <div class="-ml-2">
-                  <button class="px-2 py-1 underline underline-offset-1">Edit</button>
-                  <button class="px-2 py-1 underline underline-offset-1">Delete</button>
-                </div>
-              </li>
+              <?php foreach ($addresses as $address): ?>
+                <li class="py-8 relative border-black">
+                    <?php if ($address['is_default']): ?>
+                      <span class="rounded-full bg-black text-white px-3 py-1 mb-2 text-xs font-medium absolute top-4 right-0">Default</span>
+                    <?php endif; ?>
+                    <p>
+                        <?php echo $address['first_name'] . ' ' . $address['last_name']; ?><br>
+                        <?php echo $address['address_line_1']; ?><br>
+                        <?php if (!empty($address['address_line_2'])) echo $address['address_line_2'] . '<br>'; ?>
+                        <?php echo $address['city'] . ', ' . $address['country_region']; ?><br>
+                        <?php if (!empty($address['province'])) echo $address['province'] . '<br>'; ?>
+                        <?php echo $address['post_code']; ?>
+                    </p>
+                    <div class="-ml-2">
+                      <button class="px-2 py-1 underline underline-offset-1">Edit</button>
+                      
+                      <form method="POST" action="">
+                        <input type="hidden" name="address_id" value="<?php echo $address['address_id']; ?>">
+                        <button type="submit" name="delete_address" class="px-2 py-1 underline underline-offset-1">Delete</button>
+                      </form>
+                    </div>
+                </li>
+                <?php endforeach; ?>
             </ul>
 
             <script>
@@ -161,7 +233,7 @@ if (!isset($_SESSION['user_id'])){
                   <!-- this element is to trick browser into centering the modal contents. -->
                   <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&ZeroWidthSpace;</span>
                   <div class="inline-block align-bottom bg-white text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-screen-md sm:w-full" role="dialog" aria-modal="true" aria-labelledby="Add a new address">
-                    <form method="post" action="/addresses.html" id="address_form_new" accept-charset="UTF-8">
+                    <form method="post" action="./addresses.php" id="address_form_new" accept-charset="UTF-8">
                       <input type="hidden" name="form_type" value="customer_address">
                       <input type="hidden" name="utf8" value="✓">
                       <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
@@ -184,15 +256,15 @@ if (!isset($_SESSION['user_id'])){
                           </div>
                           <div class="col-span-6">
                             <label for="address1" class="block text-sm font-medium text-gray-700">Address 1</label>
-                            <input text="text" name="address[phone]" value id="address1" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                            <input text="text" name="address[address1]" value id="address1" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
                           </div>
                           <div class="col-span-6">
                             <label for="address2" class="block text-sm font-medium text-gray-700">Address 2</label>
-                            <input text="text" name="address[phone]" value id="address2" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                            <input text="text" name="address[address2]" value id="address2" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
                           </div>
                           <div class="col-span-6 sm:col-span-3">
-                            <label for="address2" class="block text-sm font-medium text-gray-700">City</label>
-                            <input text="text" name="address[phone]" value id="city" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+                            <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+                            <input text="text" name="address[city]" value id="city" required autocapitalize="words" class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
                           </div>
                           <div class="col-span-6 sm:col-span-3">
                             <label for="first_name" class="block text-sm font-medium text-gray-700">Country/region</label>
@@ -224,7 +296,7 @@ if (!isset($_SESSION['user_id'])){
                           <input type="checkbox" id="address_default_address_new" name="address[default]" value="1">
                           <label for="address_default_address_new" class="block text-sm font-medium text-gray-700 mr-3 ml-2">Set as default address </label>
                         </div>
-                        <button type="submit" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add address</button>
+                        <button type="submit" name="add_address" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add address</button>
                       </div>
                       <button type="button" onclick="closeModal()" @click="openNew = false" class="text-sm px-4 border border-black uppercase tracking-wide">Cancel</button>
                     </div>

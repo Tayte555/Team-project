@@ -55,7 +55,7 @@ include("functions.php");
       flex-wrap: wrap;
       justify-content: flex-start;
       margin-top: 20px;
-      margin-left: 17px
+      margin-left: 17px;
       z-index: 1;
   }
 
@@ -352,7 +352,7 @@ z-index: 1;
       <div class="">
         <ul class="divide-y">
           <li class="py-2">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+            <a href="C:\xampp\htdocs\Team-project\store\src\product.php" class="flex items-center text-xs hover:opacity-75 md:text-sm">
                 <div class=" overflow-hidden">
                     <a href="/collections/jordan/jordan-4" class="block h-full group">
                     <div class="bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
@@ -373,7 +373,7 @@ z-index: 1;
         <div class="">
             <ul class="divide-y">
               <li class="py-2">
-                <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+                <a href="store\src\product.php" class="flex items-center text-xs hover:opacity-75 md:text-sm">
                     <div class=" overflow-hidden">
                         <a href="/collections/jordan/jordan-4" class="block h-full group">
                         <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">

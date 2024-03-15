@@ -5,104 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              
+            },
+            transitionTimingFunction: {
+              gentle: 'cubic-bezier(0.38, 0, 0.25, 0.99)',
+            },
+          },
+        },
+      }
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <title>Sole Haven | Online Trainer and Exclusive Sneaker Shop</title>
     <link rel="stylesheet" href="styles.css">
                   
 </head>
 
-<style>
-        .image-container {
-            white-space: nowrap; 
-            overflow-x: auto; 
-        }
-
-        .image-container img {
-            margin-right: 0px;
-            margin-left: 0px;
-            width: 465px;
-            height: 107px;
-            display: inline-block; 
-        }
-
-        @media (max-width: 600px) {
-            .image-container {
-                white-space: initial; 
-                overflow-x: initial; 
-            }
-
-            .image-container img {
-                flex-basis: auto; 
-                margin-right: 0;
-                margin-left: 0;
-            }
-          }
-
-
-        /*--Section for the "best sellers" section--*/
-        .image-section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            margin-top: 20px;
-            margin-left: 17px
-        }
-
-        .image-section .item-container {
-            margin: 5px;
-            max-width: calc(20% - 10px);
-            height: auto;
-            float: left;
-        }
-
-        @media (max-width: 600px) {
-            .image-section img {
-                flex-basis: calc(50% - 10px); 
-                width: 100%;
-            }
-        }
-
-
-        /*--text container--*/
-        .text-container {
-            position: relative;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-            padding: 5px;
-            box-sizing: border-box;
-        }
-
-
-        .shoe-name {
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 5px;
-            z-index: 5;
-        }
-
-        .price {
-            font-size: 12px; 
-        }
-
-        img:hover{
-          transform: scale(1.1);
-        }
-
-        .group:hover .absolute {
-    display: block;
-  }
-
-  /* Additional styles for the sub-menus */
-  .absolute {
-    display: none;
-  }
-        
-    </style>
 
 
 
-<body class="overflow-x-hidden flex flex-col min-h-screen">
+
+<body class="overflow-x-hidden flex flex-col min-h-screen" 
+  x-data="{ openFilter : false}">
   <header class="items-center bg-zinc-950 md:px">
     <div class="flex flex-wrap place-items-center">
       <section class="relative mx-auto">
@@ -202,976 +130,256 @@
     </div>
     </header>
 
-    <section>
-
-  </section>
 
 
-  <!--This page was created by Mohammed Zeinelabdin-->
-  <div class="px-1 py-2 md:py-2 sm:px-2 bg-zinc-950">
-    <ul class="text-white">
-        <li class="flex items-center mb-1 text-xl font-thin md:mb-1 md:text-2xl lg:text-4xl">
-            <a href="/collections/air-jordan-1" class="text-white hover:text-neutral-500">&nbsp;&nbsp;</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sneakers</a></a>
-        </li> 
-    </ul>
-</div>
-
-
-
-    <div class="image-section">
-      <div class="item-container">
-        <img src="images/sneakers_men/mens_1.png">
-        <br>
-        <div class="text-container">
-          <div class="shoe-name">Air Jordan 4 Craft 'Olive'</div>
-          <div class="price">from £199.95</div>
-        </div>
-      </div>
   
-        <div class="item-container">
-          <img src="images/sneakers_men/mens_2.png">
-          <br>
-          <div class="text-container">
-            <div class="shoe-name">Air Jordan 4 Retro</div>
-            <div class="price">from £185.95</div>
+  <div>
+    <div class="md:ml-[8.3333%] md:mr-[8.3333%] px-4 py-8 lg:py-12">
+      <div class="gap-4 lg:grid lg:grid-cols-2">
+        <h1 class="text-3xl font-bold tracking-wide">All Sneakers</h1>
+        <h2 class="max-h-[3.75rem] max-h-overflow-hidden text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent lg:max-h-screen lg:text-black pt-2 tracking-wide ">
+            Shop all sneakers available at Solehaven, from Air Jordan, Yeezy, Nike, Off-white and Fear of God
+        </h2>
+      </div>
+
+    </div>
+    <div class="flex justify-end items-center px-4 md:px-4 border-t border-black">
+      <button type="button" class="flex items-center mr-auto py-3" @click="openFilter = !openFilter">
+        Filter
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="ml-2 w-6 color-black icon icon-filter" fill="none" viewBox="0 11 20 20">
+          <line x1="16.5" y1="17.5" x2="3.5" y2="17.5" stroke="currentColor" stroke-linecap="round"></line>
+          <line x1="16.5" y1="24.5" x2="3.5" y2="24.5" stroke="currentColor" stroke-linecap="round"></line>
+          <circle cx="13" cy="24.5" r="2" fill="white" stroke="currentColor"></circle>
+          <circle cx="7" cy="17.5" r="2" fill="white" stroke="currentColor"></circle>
+        </svg>
+      </button>
+      <select id="sort-by" x-data x-model="sort" @change="sortCollection()" class="font-medium text-sm border-none text-right focus:ring-0">
+        <option value="manual" selected="selected"> Featured </option>
+        <option value="best-selling"> Best selling </option>
+        <option value="title-ascending"> Alphabetically, A-Z </option>
+        <option value="title-descending"> Alphabetically, Z-A </option>
+        <option value="price-ascending"> Price, low to high </option>
+        <option value="price-descending"> Price, high to low </option>
+        <option value="created-ascending"> Date, old to new </option>
+        <option value="created-descending"> Date, new to old </option>
+      </select>
+    </div>
+  </div>
+  <div class="flex border-t border-black">
+    <div class="collection w-full">
+      <ul class="grid grid-cols-2 lg-grid-cols-3 xl:grid-cols-5 gap-px gap-y-5 mb-10">
+        
+        <li class="">
+          <a href="C:\xampp\htdocs\Team-project\store\src\product.php" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+              <div class=" overflow-hidden">
+                  <a href="/collections/jordan/jordan-4" class="block h-full group">
+                  <div class="bg-neutral-100 pt-36 pb-8 flex items-center justify-center">
+                    
+                    <img src="./images/blackcatsneaker 1.png" class="object-cover" >
+                    </div>
+                    <div class="flex flex-col justify-between p-4 grow">
+                      <h3 class="mb-2 text-sm font-medium ">Air Jordan 4 Retro 'Black Cat' 2020</h3>
+                      <div class="flex items-baseline mr-2 text-sm" x-show="!query">
+                        <span class="mr-1">From</span>
+                        <span class="money">£1,399.99</span>
+                      </div>
+                    </div>
+              </a>
+              </div>
+          </a>
+        </li>
+
+        <li class="">
+          <a href="C:\xampp\htdocs\Team-project\store\src\product.php" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+              <div class=" overflow-hidden">
+                  <a href="/collections/jordan/jordan-4" class="block h-full group">
+                  <div class="bg-neutral-100 pt-36 pb-8 flex items-center justify-center">
+                    
+                    <img src="./images/blackcatsneaker 1.png" class="object-cover" >
+                    </div>
+                    <div class="flex flex-col justify-between p-4 grow">
+                      <h3 class="mb-2 text-sm font-medium ">Air Jordan 4 Retro 'Black Cat' 2020</h3>
+                      <div class="flex items-baseline mr-2 text-sm" x-show="!query">
+                        <span class="mr-1">From</span>
+                        <span class="money">£1,399.99</span>
+                      </div>
+                    </div>
+              </a>
+              </div>
+          </a>
+        </li>
+
+        <li class="">
+          <a href="C:\xampp\htdocs\Team-project\store\src\product.php" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+              <div class=" overflow-hidden">
+                  <a href="/collections/jordan/jordan-4" class="block h-full group">
+                  <div class="bg-neutral-100 pt-36 pb-8 flex items-center justify-center">
+                    
+                    <img src="./images/blackcatsneaker 1.png" class="object-cover" >
+                    </div>
+                    <div class="flex flex-col justify-between p-4 grow">
+                      <h3 class="mb-2 text-sm font-medium ">Air Jordan 4 Retro 'Black Cat' 2020</h3>
+                      <div class="flex items-baseline mr-2 text-sm" x-show="!query">
+                        <span class="mr-1">From</span>
+                        <span class="money">£1,399.99</span>
+                      </div>
+                    </div>
+              </a>
+              </div>
+          </a>
+        </li>
+
+        <li class="">
+          <a href="C:\xampp\htdocs\Team-project\store\src\product.php" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+              <div class=" overflow-hidden">
+                  <a href="/collections/jordan/jordan-4" class="block h-full group">
+                  <div class="bg-neutral-100 pt-36 pb-8 flex items-center justify-center">
+                    
+                    <img src="./images/blackcatsneaker 1.png" class="object-cover" >
+                    </div>
+                    <div class="flex flex-col justify-between p-4 grow">
+                      <h3 class="mb-2 text-sm font-medium ">Air Jordan 4 Retro 'Black Cat' 2020</h3>
+                      <div class="flex items-baseline mr-2 text-sm" x-show="!query">
+                        <span class="mr-1">From</span>
+                        <span class="money">£1,399.99</span>
+                      </div>
+                    </div>
+              </a>
+              </div>
+          </a>
+        </li>
+
+        <li class="">
+          <a href="C:\xampp\htdocs\Team-project\store\src\product.php" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+              <div class=" overflow-hidden">
+                  <a href="/collections/jordan/jordan-4" class="block h-full group">
+                  <div class="bg-neutral-100 pt-36 pb-8 flex items-center justify-center">
+                    
+                    <img src="./images/blackcatsneaker 1.png" class="object-cover" >
+                    </div>
+                    <div class="flex flex-col justify-between p-4 grow">
+                      <h3 class="mb-2 text-sm font-medium ">Air Jordan 4 Retro 'Black Cat' 2020</h3>
+                      <div class="flex items-baseline mr-2 text-sm" x-show="!query">
+                        <span class="mr-1">From</span>
+                        <span class="money">£1,399.99</span>
+                      </div>
+                    </div>
+              </a>
+              </div>
+          </a>
+        </li>
+
+        <li class="">
+          <a href="C:\xampp\htdocs\Team-project\store\src\product.php" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+              <div class=" overflow-hidden">
+                  <a href="/collections/jordan/jordan-4" class="block h-full group">
+                  <div class="bg-neutral-100 pt-36 pb-8 flex items-center justify-center">
+                    
+                    <img src="./images/blackcatsneaker 1.png" class="object-cover" >
+                    </div>
+                    <div class="flex flex-col justify-between p-4 grow">
+                      <h3 class="mb-2 text-sm font-medium ">Air Jordan 4 Retro 'Black Cat' 2020</h3>
+                      <div class="flex items-baseline mr-2 text-sm" x-show="!query">
+                        <span class="mr-1">From</span>
+                        <span class="money">£1,399.99</span>
+                      </div>
+                    </div>
+              </a>
+              </div>
+          </a>
+        </li>
+
+        <li class="">
+          <a href="C:\xampp\htdocs\Team-project\store\src\product.php" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+              <div class=" overflow-hidden">
+                  <a href="/collections/jordan/jordan-4" class="block h-full group">
+                  <div class="bg-neutral-100 pt-36 pb-8 flex items-center justify-center">
+                    
+                    <img src="./images/blackcatsneaker 1.png" class="object-cover" >
+                    </div>
+                    <div class="flex flex-col justify-between p-4 grow">
+                      <h3 class="mb-2 text-sm font-medium ">Air Jordan 4 Retro 'Black Cat' 2020</h3>
+                      <div class="flex items-baseline mr-2 text-sm" x-show="!query">
+                        <span class="mr-1">From</span>
+                        <span class="money">£1,399.99</span>
+                      </div>
+                    </div>
+              </a>
+              </div>
+          </a>
+        </li>
+
+
+      </ul>
+
+    </div>
+
+  </div>
+
+
+
+<!-- Filter tab -->
+  <header header="fixed top-0 right-0 bottom-0 left-0 z-10" :hidden="!openFilter">
+    <ul class="absolute top-0 left-0 bottom-0 w-3/12 py-4 bg-white z-10 border-r border-black">
+      <li class="border-b border-black">
+        <a href="#" class="block p-4">Brand</a>
+      </li>
+      <li class="border-b border-black">
+        <a href="#" class="block p-4">Size</a>
+      </li>
+      <li class="border-b border-black">
+        <a href="#" class="block p-4">Price</a>
+      </li>
+      <li class="border-b border-black">
+        <a href="#" class="block p-4">Colour</a>
+      </li>
+    </ul>
+
+<!-- close button -->
+    <button class="absolute top-0 left-0 bottom-0 right-0" @click="openFilter = !openFilter">
+      <svg class="w-6 h-6 absolute top-2 right-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+    </button>
+
+
+  </header>
+
+
+
+  
+  <form class="flex flex-col h-screen overflow-hidden">
+    <header class="relative w-3/12 p-4 border-b border-black">
+      <h3 class="text-xl font-medium">Filters</h3>
+      <button type="button" class="absolute top-0 bottom-0 right-0 grid border-l border-black w-14 place-items-center">
+        <span class="sr-only">Close panel</span>
+        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+      </button>
+    </header>
+    <main class="flex-1 scrollbar-hide">
+      <div class="filter-group Brand">
+        <button type="button" class="flex items-center justify-between p-4 w text-base border-b border-black cursor-pointer filter-group-summary" @click="toggle()">
+          <div>
+            <span class="font-medium">Brand</span>
           </div>
-        </div>
+          <span class="arrow-icon rotate-90">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 icon icon-arrow-right">
+              <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+          </span>
 
-        <div class="item-container">
-          <img src="images/sneakers_men/mens_3.png">
-          <br>
-          <div class="text-container">
-            <div class="shoe-name">Nike Go FlyEase</div>
-            <div class="price">from £119.95</div>
-          </div>
-        </div>
-
-        <div class="item-container">
-          <img src="images/sneakers_men/mens_4.png">
-          <br>
-          <div class="text-container">
-            <div class="shoe-name">Nike Court Vision Mid Winter</div>
-            <div class="price">from £82.95</div>
-          </div>
-        </div>
-
-        <div class="item-container">
-          <img src="images/sneakers_men/mens_5.png">
-          <br>
-          <div class="text-container">
-            <div class="shoe-name">Nike Air Max 90</div>
-            <div class="price">from £154.95</div>
-          </div>
-        </div>
-
-  </div>
-
-</div>
-<br>
-
-<div class="image-section">
-  <div class="item-container">
-    <img src="images/sneakers_men/mens_6.png">
-    <br>
-    <div class="text-container">
-      <div class="shoe-name">Nike Air Max Alpha Trainer 5</div>
-      <div class="price">from £77.95</div>
-    </div>
-  </div>
-
-
-        <div class="item-container">
-          <img src="images/sneakers_men/mens_7.png">
-          <br>
-          <div class="text-container">
-            <div class="shoe-name">Nike Court Vision Mid Winter</div>
-            <div class="price">from £82.95</div>
-          </div>
-        </div>
-
-        <div class="item-container">
-          <img src="images/sneakers_men/mens_8.png">
-          <br>
-          <div class="text-container">
-            <div class="shoe-name">Nike Air Max Plus</div>
-            <div class="price">from £174.95</div>
-          </div>
-        </div>
-
-
-        <div class="item-container">
-          <img src="images/sneakers_men/mens_9.png">
-          <br>
-          <div class="text-container">
-            <div class="shoe-name">Air Jordan 1 Zoom CMFT 2 'Dia de Muertos'</div>
-            <div class="price">from £164.95</div>
-          </div>
-        </div>
-
-
-        <div class="item-container">
-          <img src="images/sneakers_men/mens_10.png">
-          <br>
-          <div class="text-container">
-            <div class="shoe-name">Nike Air Force 1 Mid x Off-White</div>
-            <div class="price">from £175</div>
-          </div>
-        </div>
-    
-  </div>
- <br>
-
- <div class="image-section">
-  <div class="item-container">
-    <img src="images/sneakers_men/mens_11.png">
-    <br>
-    <div class="text-container">
-      <div class="shoe-name">adidas Originals Handball Spezial</div>
-      <div class="price">from £85</div>
-    </div>
-  </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_men/mens_12.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">adidas Originals Samba OG</div>
-        <div class="price">from £90</div>
+        </button>
       </div>
-    </div>
 
-    <div class="item-container">
-      <img src="images/sneakers_men/mens_13.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">adidas Originals Jeans</div>
-        <div class="price">from £85</div>
-      </div>
-    </div>
+    </main>
 
-    <div class="item-container">
-      <img src="images/sneakers_men/mens_14.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">adidas Runfalcon 3.0 Shoes</div>
-        <div class="price">from £50</div>
-      </div>
-    </div>
+  </form>
+  
 
-    <div class="item-container">
-      <img src="images/sneakers_men/mens_15.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">adidas Court Team Bounce 2.0 Shoes</div>
-        <div class="price">from £80</div>
-      </div>
-    </div>
 
-</div>
 
-
-<div class="image-section">
-  <div class="item-container">
-    <img src="images/sneakers_men/mens_16.png">
-    <br>
-    <div class="text-container">
-      <div class="shoe-name">adidas NMD_R1 Shoes</div>
-      <div class="price">from £120</div>
-    </div>
-  </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_men/mens_17.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">adidas Response CL Shoes</div>
-        <div class="price">from £90</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_men/mens_18.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">adidas Originals Forum Low x The Grinch</div>
-        <div class="price">from £85</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_men/mens_19.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">adidas Oznova Shoes</div>
-        <div class="price">from £110</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_men/mens_20.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">adidas Adi2000 Shoes</div>
-        <div class="price">from £90</div>
-      </div>
-    </div>
-
-</div>
-<br>
-
-<div class="image-section">
-  <div class="item-container">
-    <img src="images/sneakers_men/mens_21.png">
-    <br>
-    <div class="text-container">
-      <div class="shoe-name">Vans Old Skool Cordura</div>
-      <div class="price">from £75</div>
-    </div>
-  </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_men/mens_22.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Vans 66/99/19 Rowley Classic</div>
-        <div class="price">from £70</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_men/mens_23.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Vans Sk8-Hi</div>
-        <div class="price">from £75</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_men/mens_24.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Vans Cruze 2</div>
-        <div class="price">from £70</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_men/mens_25.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Vans Classic Slip-On</div>
-        <div class="price">from £46</div>
-      </div>
-    </div>
-
-</div>
-
-<div class="image-section">
-  <div class="item-container">
-    <img src="images/sneakers_men/mens_26.png">
-    <br>
-    <div class="text-container">
-      <div class="shoe-name">BOSS Jonah Run Trainers</div>
-      <div class="price">from £200</div>
-    </div>
-  </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_men/mens_27.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">BOSS Parkour Run</div>
-        <div class="price">from £170</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_men/mens_28.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">BOSS Kai Running</div>
-        <div class="price">from £170</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_men/mens_29.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">New Balance 9060</div>
-        <div class="price">from £160</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_men/mens_30.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">New Balance Fresh Foam x Hierro 7 GORE-TEX</div>
-        <div class="price">from £100</div>
-      </div>
-    </div>
-
-</div>
-
-</div>
-<br>
-
-<div class="image-section">
-  <div class="item-container">
-    <img src="images/sneakers_women/women_1.png">
-    <br>
-    <div class="text-container">
-      <div class="shoe-name">Nike Dunk High</div>
-      <div class="price">from £120</div>
-    </div>
-  </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_2.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Nike Court Cision Low Next Nature</div>
-        <div class="price">from £60</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_3.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Nike Free Metcon 5</div>
-        <div class="price">from £120</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_4.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Nike Gamma Force</div>
-        <div class="price">from £70</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_5.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Jumpman Two Trey</div>
-        <div class="price">from £65</div>
-      </div>
-    </div>
-
-</div>
-
-</div>
-<br>
-
-<div class="image-section">
-<div class="item-container">
-<img src="images/sneakers_women/women_6.png">
-<br>
-<div class="text-container">
-  <div class="shoe-name">Nike Air Max 97 Futura</div>
-  <div class="price">from £105</div>
-</div>
-</div>
-
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_8.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Nike Dunk Low Twist</div>
-        <div class="price">from £100</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_9.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Nike Air Huarache Craft</div>
-        <div class="price">from £70</div>
-      </div>
-    </div>
-
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_10.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Nike ACG Air Zoom Gaiadome GORE-TEX</div>
-        <div class="price">from £200</div>
-      </div>
-    </div>
-
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_11.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Air Jordan 1 Mid SE</div>
-        <div class="price">from £80</div>
-      </div>
-    </div>
-
-</div>
-<br>
-
-<div class="image-section">
-<div class="item-container">
-<img src="images/sneakers_women/women_12.png">
-<br>
-<div class="text-container">
-  <div class="shoe-name">adidas Originals Gazelle Bold Women's</div>
-  <div class="price">from £90</div>
-</div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_women/women_13.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">adidas YZY 700 V3 Women's</div>
-    <div class="price">from £250</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_women/women_14.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">adidas Originals Campus 00s</div>
-    <div class="price">from £85</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_women/women_15.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">adidas CourtJam Control Clay Tennis Shoes</div>
-    <div class="price">from £60</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_women/women_16.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">adidas Hyperturf Adventure Shoes</div>
-    <div class="price">from £90</div>
-  </div>
-</div>
-
-</div>
-
-
-<div class="image-section">
-<div class="item-container">
-<img src="images/sneakers_women/women_17.png">
-<br>
-<div class="text-container">
-  <div class="shoe-name">adidas NMD_R1 Shoes</div>
-  <div class="price">from £80</div>
-</div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_women/women_18.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">adidas YZY 350 V2 CMPCT Women's</div>
-    <div class="price">from £200</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_women/women_19.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">adidas Originals YZY 700 MNVN Women's</div>
-    <div class="price">from £180</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_women/women_20.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">adidas Originals Stan Smith Women's</div>
-    <div class="price">from £85</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_women/women_21.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">adidas Adifom SLTN Shoes</div>
-    <div class="price">from £151</div>
-  </div>
-</div>
-
-</div>
-<br>
-
-<div class="image-section">
-<div class="item-container">
-<img src="images/sneakers_women/women_21.png">
-<br>
-<div class="text-container">
-  <div class="shoe-name">Vans Knu Stack Nostalgia Women's</div>
-  <div class="price">from £50</div>
-</div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_women/women_22.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">Vans Sk8-Hi Women's</div>
-    <div class="price">from £50</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_women/women_23.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">Vans UA Classic Slip-On Platform</div>
-    <div class="price">from £30</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_women/women_24.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">Vans Sk8-Hi Stack Women's</div>
-    <div class="price">from £70</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_women/women_25.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">Vans Knu Skool Women's</div>
-    <div class="price">from £75</div>
-  </div>
-</div>
-
-</div>
-
-<div class="image-section">
-<div class="item-container">
-<img src="images/sneakers_women/women_26.png">
-<br>
-<div class="text-container">
-  <div class="shoe-name">BOSS Vanity Loafer Slip-Ons</div>
-  <div class="price">from £140</div>
-</div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_women/women_27.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">BOSS RHYS Trainers Women's</div>
-    <div class="price">from £120</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_women/women_28.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">BOSS Women's Aiden Trainer</div>
-    <div class="price">from £100</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_women/women_29.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">New Balance 327 Moonbeam Outerspace</div>
-    <div class="price">from £100</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_women/women_30.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">New Balance 530 Women's</div>
-    <div class="price">from £100</div>
-  </div>
-</div>
-
-</div>
-
-</div>
-<br>
-
-<div class="image-section">
-  <div class="item-container">
-    <img src="images/sneakers_clearance/clearance_1.png">
-    <br>
-    <div class="text-container">
-      <div class="shoe-name">Nike Swift 3</div>
-      <div class="price">from £40</div>
-    </div>
-  </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_clearance/clearance_2.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Nike Revolution 6 Junior</div>
-        <div class="price">from £20</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_clearance/clearance_3.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Nike Quest 5</div>
-        <div class="price">from £40</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_clearance/clearance_4.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">adidas Originals ZX 750 Woven</div>
-        <div class="price">from £60</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_clearance/clearance_5.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">adidas Originals Stan Smith CS Mid</div>
-        <div class="price">from £45</div>
-      </div>
-    </div>
-
-</div>
-
-</div>
-<br>
-
-<div class="image-section">
-<div class="item-container">
-<img src="images/sneakers_clearance/clearance_6.png">
-<br>
-<div class="text-container">
-  <div class="shoe-name">Vans Old Skool</div>
-  <div class="price">from £35</div>
-</div>
-</div>
-
-
-    <div class="item-container">
-      <img src="images/sneakers_clearance/clearance_7.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Vans Authentic Bolt</div>
-        <div class="price">from £50</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_clearance/clearance_8.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">New Balance 327</div>
-        <div class="price">from £40</div>
-      </div>
-    </div>
-
-
-    <div class="item-container">
-      <img src="images/sneakers_clearance/clearance_9.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Nike Gamma Force Women's</div>
-        <div class="price">from £35</div>
-      </div>
-    </div>
-
-
-    <div class="item-container">
-      <img src="images/sneakers_clearance/clearance_10.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Nike Dunk High Womens</div>
-        <div class="price">from £75</div>
-      </div>
-    </div>
-
-</div>
-<br>
-
-<div class="image-section">
-<div class="item-container">
-<img src="images/sneakers_clearance/clearance_11.png">
-<br>
-<div class="text-container">
-  <div class="shoe-name">adidas Originals Samba OG Women's - Cloud White</div>
-  <div class="price">from £75</div>
-</div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_clearance/clearance_12.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">adidas Originals Drop Step Low Junior</div>
-    <div class="price">from £45</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_clearance/clearance_13.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">Vans Old Skool Women's - Black</div>
-    <div class="price">from £40</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_clearance/clearance_14.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">New Balance 327 Women's</div>
-    <div class="price">from £80</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_clearance/clearance_15.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">New Balance 550 Women's</div>
-    <div class="price">from £90</div>
-  </div>
-</div>
-</div>
-
-
-<div class="image-section">
-  <div class="item-container">
-    <img src="images/sneakers_kids/kids_1.png">
-    <br>
-    <div class="text-container">
-      <div class="shoe-name">Nike Air Mac Plus Kids' Shoes</div>
-      <div class="price">from £65</div>
-    </div>
-  </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_kids/kids_2.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Nike Air Force 1 '07 LV8 Junior</div>
-        <div class="price">from £70</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_kids/kids_3.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Nike Force 1 For Kids</div>
-        <div class="price">from £38</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_kids/kids_4.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">adidas Originals U_Path Run Junior</div>
-        <div class="price">from £30</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_kids/kids_5.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">adidas Tensaur Sport Children</div>
-        <div class="price">from £30</div>
-      </div>
-    </div>
-
-</div>
-
-</div>
-<br>
-
-<div class="image-section">
-<div class="item-container">
-<img src="images/sneakers_kids/kids_6.png">
-<br>
-<div class="text-container">
-  <div class="shoe-name">adidas Originals Forum Mid Junior</div>
-  <div class="price">from £40</div>
-</div>
-</div>
-
-
-    <div class="item-container">
-      <img src="images/sneakers_kids/kids_7.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Vans Slip-On Children</div>
-        <div class="price">from £35</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_kids/kids_8.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Vans Boys' Old Skool Children - Green</div>
-        <div class="price">from £30</div>
-      </div>
-    </div>
-
-
-    <div class="item-container">
-      <img src="images/sneakers_kids/kids_9.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">New Balance Boy's 574 Sneaker</div>
-        <div class="price">from £50</div>
-      </div>
-    </div>
-
-
-    <div class="item-container">
-      <img src="images/sneakers_kids/kids_10.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">New Balance Hunior MS327 Trainer</div>
-        <div class="price">from £40</div>
-      </div>
-    </div>
-
-</div>
-<br>
-
-<div class="image-section">
-<div class="item-container">
-<img src="images/sneakers_kids/kids_11.png">
-<br>
-<div class="text-container">
-  <div class="shoe-name">Nike Dunk Low Kids Shoes</div>
-  <div class="price">from £40</div>
-</div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_kids/kids_12.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">Nike Air Force 1 '07 LV8 Children</div>
-    <div class="price">from £45</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_kids/kids_13.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">Nike Court Borough Low Recraft for Kids</div>
-    <div class="price">from £30</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_kids/kids_14.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">Adidas Originals Ozweego Children</div>
-    <div class="price">from £35</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_kids/kids_15.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">adidas Tensaur Sport Infant</div>
-    <div class="price">from £23</div>
-  </div>
-</div>
-
-
-</div>
-
-<div class="image-section">
-<div class="item-container">
-<img src="images/sneakers_kids/kids_16.png">
-<br>
-<div class="text-container">
-  <div class="shoe-name">adidas RunFalcon 3.0 Children</div>
-  <div class="price">from £33</div>
-</div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_kids/kids_17.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">Vans Old Skool Junior</div>
-    <div class="price">from £20</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_kids/kids_18.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">Vans TD Slip-On V</div>
-    <div class="price">from £15</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_kids/kids_19.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">New Balance 327 UNISEX - Trainers</div>
-    <div class="price">from £40</div>
-  </div>
-</div>
-
-<div class="item-container">
-  <img src="images/sneakers_kids/kids_20.png">
-  <br>
-  <div class="text-container">
-    <div class="shoe-name">New Balance Junior 480 Trainer</div>
-    <div class="price">from £30</div>
-  </div>
-</div>
-
-
-</div>
-</body>
-
-<br><br><br>
 
 
 
