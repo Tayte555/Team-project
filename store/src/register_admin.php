@@ -4,10 +4,12 @@ session_start();
   include("connections.php");
   include("functions.php");
 
+  //checks to see if a user is already logged in 
   if (isset($_SESSION['user_id'])){
     header('Location: account.php');
     exit();
   }
+  ////
 
   //puts new user info into database
   if($_SERVER['REQUEST_METHOD'] == "POST"){

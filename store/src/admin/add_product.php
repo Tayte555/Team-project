@@ -225,7 +225,7 @@ $result = $connection->query($sql);
                             <?php endif; ?>
 
                             <div class="col-span-6 sm:col-span-3">
-                            <label for="product_image" class="block text-sm font-medium text-gray-700">Product Image</label>
+                            <label for="product_image" class="block text-sm font-medium text-gray-700">Product Image (jpeg/jpg/png/gif)</label>
                               <input type="file" name="product_image" id="product_image" required class="mt-2 block w-full text-sm text-gray-700" onchange="previewImage();">
 
                           </div>
