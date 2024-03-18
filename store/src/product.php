@@ -166,43 +166,43 @@ img{
       margin-top: 15px;
       
     }
-    .size-group{
-      background-color: rgba(250,250,250, 0.5);
-      border-color:red;
-      border: 2px solid rgb(0,0,0);
-      display: flex;
-      align-items:center;
-      justify-content: center;
-      color: rgb(0,0,0);
-      margin-top: 10px;
-      padding-bottom: 1px;
-      padding-top:1px;
-      height: 70px;
-    }
-    .size-btn{
-      margin-right: 25px;
-      margin-top: 25px;
-      margin-left: 10px;
-      margin-right: 10px;
-      margin-bottom: 20px;
-      padding-left: 10px;
-      padding-right: 10px;
-      padding-top: 10px;
-      padding-bottom:10px;
-      font-size: 22px;
-      font-weight: bold;
-      transition:font-size 0.3s, opacity 0.15s, margin 0.2s;
-    }
-    .size-btn:hover{
-      opacity: 0.5;
-      font-size: 30px;
-      margin-left: 5px;
-    
-    }
-    .size-btn:active{
-      opacity: 0.3;
-      color: red;
-    }
+
+.size-group{
+  border-color:red;
+  border: 2px solid rgb(0,0,0);
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  color: rgb(0,0,0);
+  margin-top: 10px;
+  padding-bottom: 1px;
+  padding-top:1px;
+  height: 70px;
+}
+.size-btn{
+  margin-right: 25px;
+  margin-top: 25px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom:10px;
+  font-size: 22px;
+  font-weight: bold;
+  transition:font-size 0.3s, opacity 0.15s, margin 0.2s;
+}
+.size-btn:hover{
+  opacity: 0.5;
+  font-size: 30px;
+  margin-left: 5px;
+
+}
+.size-btn:active{
+  opacity: 0.3;
+  color: red;
+}
 
 
 @media screen and (max-width: 992px){
