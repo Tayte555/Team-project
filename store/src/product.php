@@ -49,7 +49,7 @@ img{
   .container{
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 16px;
+    padding: 0 8px;
   }
 .product-div{
   margin: 1rem 0;
@@ -148,6 +148,7 @@ img{
     }
     .add-cart-btn{
         background-color: rgb(180,180,180);
+
         border: 2px solid rgb(0,0,0);
         margin-right: 8px;  
         transition: background-color 0.15s, color 0.15s, opacity 0.15s;
@@ -160,7 +161,8 @@ img{
       opacity: 0.3;
     }
     .buy-now-btn{
-        background-color: rgb(0,0,0);
+      
+      background-color: rgb(0,0,0);
         border: 2px solid rgb(0,0,0);
         transition: background-color 0.15s, color 0.15s, opacity 0.15s;
     }
@@ -187,7 +189,9 @@ img{
   justify-content: center;
   color: rgb(0,0,0);
   margin-top: 10px;
+  
   padding: 6px 6px 6px 6px;
+  position: relative;
 }
 .size-btn{
   padding-left: 11px;
@@ -197,7 +201,10 @@ img{
   padding-right: 11px;
   padding-top: 10px;
   padding-bottom:10px;
+  width: 40px;
   margin-right: 7px;
+  margin-right: 3px;
+  height: 45px;
   font-size: 20px;
   font-weight: bold;
   transition:opacity 0.15s, border 0.20s, padding 0.2s;
