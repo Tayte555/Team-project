@@ -266,7 +266,6 @@ z-index: 1;
               </div>
               <div class="w-[84px] text-right text-xs">
                 £<?php echo $product['price']?>
-                <button class="ml-2 p-1 bg-gray-500 text-white rounded" onclick="addToCart(<?php echo $product['product_id'] ?>)">Add to Cart</button>
               </div>
             </a>
           </li>
@@ -277,7 +276,7 @@ z-index: 1;
       <div class="max-h-[26rem] lg:max-h-[32rem]">
         <ul class="divide-y">
           <?php 
-          $secondRowIds = [1,2,3];
+          $secondRowIds = [4,5,6];
           $secondRowProducts = getProducts($connection, $secondRowIds);
           foreach ($secondRowProducts as $product) :?>
             <li class="py-2 border-black">
@@ -298,7 +297,7 @@ z-index: 1;
       <div class="max-h-[26rem] lg:max-h-[32rem]">
         <ul class="divide-y">
           <?php 
-          $thirdRowIds = [1,2,3];
+          $thirdRowIds = [7,8,9];
           $thirdRowProducts = getProducts($connection, $thirdRowIds);
           foreach ($thirdRowProducts as $product) :?>
             <li class="py-2 border-black">
@@ -319,7 +318,7 @@ z-index: 1;
 <div class="max-h-[26rem] lg:max-h-[32rem]">
         <ul class="divide-y">
           <?php 
-          $fourthRowIds = [1,2,3];
+          $fourthRowIds = [10,11,12];
           $fourthRowProducts = getProducts($connection, $fourthRowIds);
           foreach ($fourthRowProducts as $product) :?>
             <li class="py-2 border-black">
