@@ -149,7 +149,7 @@ img{
     .add-cart-btn{
         background-color: rgb(180,180,180);
         border: 2px solid rgb(0,0,0);
-        margin-right: 8px;    
+        margin-right: 8px;  
         transition: background-color 0.15s, color 0.15s, opacity 0.15s;
     }
     .add-cart-btn:hover{
@@ -187,28 +187,29 @@ img{
   justify-content: center;
   color: rgb(0,0,0);
   margin-top: 10px;
-  padding-bottom: 1px;
-  padding-top:1px;
-  height: 70px;
+  padding: 6px 6px 6px 6px;
 }
 .size-btn{
-  margin-right: 25px;
-  margin-top: 25px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 11px;
+  border-color: rgb(189,179,179);
+  align-items: center;
+  justify-content: center;
+  padding-right: 11px;
   padding-top: 10px;
   padding-bottom:10px;
-  font-size: 22px;
+  margin-right: 7px;
+  font-size: 20px;
   font-weight: bold;
-  transition:font-size 0.3s, opacity 0.15s, margin 0.2s;
+  transition:opacity 0.15s, border 0.20s, padding 0.2s;
 }
 .size-btn:hover{
-  opacity: 0.5;
-  font-size: 30px;
-  margin-left: 5px;
+  
+  color: rgb(0,0,0);
+  border: 2px solid rgba(0,0,0,0.4);
+  padding-left: 9px;
+  padding-right: 9px;
+  padding-top: 8px;
+  padding-bottom:8px;
 
 }
 .size-btn:active{
@@ -463,7 +464,41 @@ img{
         <div class="product-div-right">
           <span class="product-name"><?php echo $product['product_name']; ?></span>
           <span class="product-price">£ <?php echo $product['price']; ?></span>
-          <br>
+          <div class = "product-rating">
+                            <span><i class = "fas fa-star"></i></span>
+                            <span><i class = "fas fa-star"></i></span>
+                            <span><i class = "fas fa-star"></i></span>
+                            <span><i class = "fas fa-star-half-alt"></i></span>
+                            <span><i class = "far fa-star"></i></span>
+                            <span>(1942 Ratings)</span>
+                        </div>
+          <!--Shoe Size -->
+          <div class = "Shoe-size">
+                          <p class = "select-size">Select Size:</p>
+                          <div class = "size-group">
+                            <button type = "button" class = "size-btn">3</button>
+                            <button type = "button" class = "size-btn"> 4</button>
+                            <button type = "button" class = "size-btn"> 5</button>
+                            <button type = "button" class = "size-btn"> 6</button>
+                            <button type = "button" class = "size-btn"> 7</button>
+                            <button type = "button" class = "size-btn"> 8</button>
+                            <button type = "button" class = "size-btn"> 9</button>
+                            <button type = "button" class = "size-btn"> 10</button>
+                            <button type = "button" class = "size-btn"> 11</button>
+                            <button type = "button" class = "size-btn"> 12</button>
+                            <button type = "button" class = "size-btn"> 13</button>                          
+                          </div>
+                        </div>
+          
+          <div class = "btn-groups">
+                            <button type = "button" class = "add-cart-btn">
+                                <i class = "fas fa-shopping-cart"></i> Add To Cart
+                            </button>
+                            <button type = "button" class = "buy-now-btn">
+                                <i class = "fas fa-wallet"></i> Buy Now
+                            </button>
+                        </div>
+                        <br>
           <!-- Product description and release date -->
           <div class="product-info">
             <p><?php echo $product['product_desc']; ?></p>
