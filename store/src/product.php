@@ -196,6 +196,7 @@ img{
 .size-btn{
   padding-left: 11px;
   border-color: rgb(189,179,179);
+  display: flex;
   align-items: center;
   justify-content: center;
   padding-right: 11px;
@@ -222,6 +223,12 @@ img{
 .size-btn:active{
   opacity: 0.3;
   color: red;
+  border: 2px solid rgba(0,0,0,0.4);
+}
+.size-btn:focus{
+  background: rgb(230,230,230);
+  color: black;
+  border: 2px solid rgba(0,0,0,0.4);
 }
 
 
