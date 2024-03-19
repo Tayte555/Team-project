@@ -345,7 +345,7 @@ z-index: 1;
   <div class="grid gap-px px-4 grid-cols-5">
     <!-- PHP Loop to Fetch Best Sellers -->
     <?php
-    $bestSellerIds = [13, 14, 35, 16, 10]; // Example best seller product IDs from the database
+    $bestSellerIds = [13, 14, 35, 16, 10]; 
     $bestSellerProducts = getProducts($connection, $bestSellerIds);
     foreach ($bestSellerProducts as $product) : ?>
       <div class="">

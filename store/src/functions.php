@@ -124,4 +124,25 @@ function getAllProductDetails($product_id, $conn) {
     return $product_details;
 }
 
+function getMensProducts($conn) {
+    // Prepare SQL statement to fetch mens products
+    $sql = "SELECT * FROM products WHERE category = 'Mens'";
+    
+    // Execute the SQL statement
+    $result = $conn->query($sql);
+    
+    // Initialize an empty array to store products
+    $mens_products = array();
+    
+    // Check if there are any results
+    if ($result->num_rows > 0) {
+        // Fetch products and store them in the array
+        while ($row = $result->fetch_assoc()) {
+            $mens_products[] = $row;
+        }
+    }
+    
+    return $mens_products;
+}
+
 ?>
