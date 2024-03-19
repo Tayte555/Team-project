@@ -139,7 +139,7 @@ z-index: 1;
 
             <!-- Nav Links -->
             <ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
-              <li><a class="hover:text-gray-300" href="#">New Arrivals</a></li>
+              <li><a class="hover:text-gray-300" href="newarrivals.php">New Arrivals</a></li>
               <li><a class="hover:text-gray-300" href="best_sellers.php">Best Sellers</a></li>
               <!-- Sneakers Hover Menu -->
               <li class="relative group">
