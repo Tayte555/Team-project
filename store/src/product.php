@@ -3,6 +3,18 @@ session_start();
 
 include("connections.php");
 include("functions.php");
+
+// Check if the product ID is provided in the URL
+if(isset($_GET['id'])) {
+    $product_id = $_GET['id'];
+    // Fetch product details based on the provided ID
+    $product = getAllProductDetails($product_id, $connection);
+} else {
+    // Redirect or handle the case when the product ID is not provided
+    // For example, you can redirect the user to another page or show an error message
+    header("Location: index.php");
+    exit(); // Ensure script execution stops after redirection
+}
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +84,7 @@ img{
         margin: 0 4px 8px 4px;
         display: flex;
         align-items: center;
-        justify content: center;
+        justify-content: center;
     }
     .active{
         border-color: rgb(180,180,180) !important;
@@ -357,7 +369,7 @@ img{
     </header>
 
 
-    <section> 
+    <!-- <section> 
         <div class = "main-wrapper">
             <div class = "container">
                 <div class = "product-div">
@@ -433,9 +445,37 @@ img{
         </div>
 
 
-    </section>
+    </section> -->
 
+<!--CHANGE THIS PART BELOW TO MAKE IT WORK-->
 
+<section> 
+  <div class="main-wrapper">
+    <div class="container">
+      <div class="product-div">
+        <div class="product-div-left">
+          <div class="img-container">
+            <!-- Display the product image from the fetched product details -->
+            <img src="<?php echo $product['product_img']; ?>" alt="<?php echo $product['product_name']; ?>">
+          </div>
+          <!-- Hover container content remains unchanged -->
+        </div>
+        <div class="product-div-right">
+          <span class="product-name"><?php echo $product['product_name']; ?></span>
+          <span class="product-price">£ <?php echo $product['price']; ?></span>
+          <br>
+          <!-- Product description and release date -->
+          <div class="product-info">
+            <p><?php echo $product['product_desc']; ?></p>
+            <br>
+            <p>Release Date: <?php echo $product['release_date']; ?></p>
+          </div>
+          <!-- Button groups and buttons content remains unchanged -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 

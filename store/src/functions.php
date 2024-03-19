@@ -101,4 +101,27 @@ function processPurchase($product_id, $quantity, $user_id, $connection){
     }
 }
 
+function getAllProductDetails($product_id, $conn) {
+    // Prepare SQL statement to fetch product details
+    $sql = "SELECT * FROM products WHERE product_id = ?";
+    
+    // Prepare the SQL statement
+    $stmt = $conn->prepare($sql);
+    
+    // Bind parameters and execute the statement
+    $stmt->bind_param("i", $product_id);
+    $stmt->execute();
+    
+    // Get the result
+    $result = $stmt->get_result();
+    
+    // Fetch product details as an associative array
+    $product_details = $result->fetch_assoc();
+    
+    // Close the statement
+    $stmt->close();
+    
+    return $product_details;
+}
+
 ?>

@@ -250,93 +250,88 @@ z-index: 1;
 <!--FIRST ROW SHOES-->
     <div class="grid gap-px px-4 grid-cols-4 gap-x-12">
     <div class="max-h-[26rem] lg:max-h-[32rem]">
-        <ul class="divide-y">
-          <?php 
-            $firstRowIds = [1,2,3];
-            $firstRowProducts = getProducts($connection, $firstRowIds);
-            foreach ($firstRowProducts as $product) :
-          ?>
+    <ul class="divide-y">
+        <?php 
+        $fourthRowIds = [1,2,3];
+        $fourthRowProducts = getProducts($connection, $fourthRowIds);
+        foreach ($fourthRowProducts as $product) :?>
             <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="<?php echo $product['product_img']?>" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2"><?php echo $product['product_name']?></p>
-              </div>
-              <div class="w-[84px] text-right text-xs">
-                £<?php echo $product['price']?>
-              </div>
-            </a>
-          </li>
-          <?php endforeach;?>  
-        </ul>
-      </div>
+                <a href="product.php?id=<?php echo $product['product_id'];?>" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+                    <div class="w-[80px]">
+                        <img src="<?php echo $product['product_img']?>" width="400" height="400">
+                    </div> 
+                    <div class="w-[calc(100%_-_164px)] px-4">
+                        <p class="text-xs line-clamp-2"><?php echo $product['product_name']?></p>
+                    </div>
+                    <div class="w-[84px] text-right text-xs">£<?php echo $product['price']?></div>
+                </a>
+            </li>
+        <?php endforeach;?>  
+    </ul>
+</div>
 <!--SECOND ROW SHOES-->
-      <div class="max-h-[26rem] lg:max-h-[32rem]">
-        <ul class="divide-y">
-          <?php 
-          $secondRowIds = [4,5,6];
-          $secondRowProducts = getProducts($connection, $secondRowIds);
-          foreach ($secondRowProducts as $product) :?>
+<div class="max-h-[26rem] lg:max-h-[32rem]">
+    <ul class="divide-y">
+        <?php 
+        $fourthRowIds = [4,5,6];
+        $fourthRowProducts = getProducts($connection, $fourthRowIds);
+        foreach ($fourthRowProducts as $product) :?>
             <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="<?php echo $product['product_img']?>" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2"><?php echo $product['product_name']?></p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£<?php echo $product['price']?></div>
-            </a>
-          </li>
-          <?php endforeach;?>  
-        </ul>
-      </div>
+                <a href="product.php?id=<?php echo $product['product_id'];?>" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+                    <div class="w-[80px]">
+                        <img src="<?php echo $product['product_img']?>" width="400" height="400">
+                    </div> 
+                    <div class="w-[calc(100%_-_164px)] px-4">
+                        <p class="text-xs line-clamp-2"><?php echo $product['product_name']?></p>
+                    </div>
+                    <div class="w-[84px] text-right text-xs">£<?php echo $product['price']?></div>
+                </a>
+            </li>
+        <?php endforeach;?>  
+    </ul>
+</div>
 <!--THIRD ROW SHOES-->
-      <div class="max-h-[26rem] lg:max-h-[32rem]">
-        <ul class="divide-y">
-          <?php 
-          $thirdRowIds = [7,8,9];
-          $thirdRowProducts = getProducts($connection, $thirdRowIds);
-          foreach ($thirdRowProducts as $product) :?>
+<div class="max-h-[26rem] lg:max-h-[32rem]">
+    <ul class="divide-y">
+        <?php 
+        $fourthRowIds = [7,8,9];
+        $fourthRowProducts = getProducts($connection, $fourthRowIds);
+        foreach ($fourthRowProducts as $product) :?>
             <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="<?php echo $product['product_img']?>" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2"><?php echo $product['product_name']?></p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£<?php echo $product['price']?></div>
-            </a>
-          </li>
-          <?php endforeach;?>  
-        </ul>
-      </div>
+                <a href="product.php?id=<?php echo $product['product_id'];?>" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+                    <div class="w-[80px]">
+                        <img src="<?php echo $product['product_img']?>" width="400" height="400">
+                    </div> 
+                    <div class="w-[calc(100%_-_164px)] px-4">
+                        <p class="text-xs line-clamp-2"><?php echo $product['product_name']?></p>
+                    </div>
+                    <div class="w-[84px] text-right text-xs">£<?php echo $product['price']?></div>
+                </a>
+            </li>
+        <?php endforeach;?>  
+    </ul>
+</div>
 <!--FOURTH ROW SHOES-->
 <div class="max-h-[26rem] lg:max-h-[32rem]">
-        <ul class="divide-y">
-          <?php 
-          $fourthRowIds = [10,11,12];
-          $fourthRowProducts = getProducts($connection, $fourthRowIds);
-          foreach ($fourthRowProducts as $product) :?>
+    <ul class="divide-y">
+        <?php 
+        $fourthRowIds = [10,11,12];
+        $fourthRowProducts = getProducts($connection, $fourthRowIds);
+        foreach ($fourthRowProducts as $product) :?>
             <li class="py-2 border-black">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-              <div class="w-[80px]">
-                <img src="<?php echo $product['product_img']?>" width="400" height="400">
-              </div> 
-              <div class="w-[calc(100%_-_164px)] px-4">
-                <p class="text-xs line-clamp-2"><?php echo $product['product_name']?></p>
-              </div>
-              <div class="w-[84px] text-right text-xs">£<?php echo $product['price']?></div>
-            </a>
-          </li>
-          <?php endforeach;?>  
-        </ul>
-      </div>
-
-    </div>
+                <a href="product.php?id=<?php echo $product['product_id'];?>" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+                    <div class="w-[80px]">
+                        <img src="<?php echo $product['product_img']?>" width="400" height="400">
+                    </div> 
+                    <div class="w-[calc(100%_-_164px)] px-4">
+                        <p class="text-xs line-clamp-2"><?php echo $product['product_name']?></p>
+                    </div>
+                    <div class="w-[84px] text-right text-xs">£<?php echo $product['price']?></div>
+                </a>
+            </li>
+        <?php endforeach;?>  
+    </ul>
+</div>
 
   </section>
 
