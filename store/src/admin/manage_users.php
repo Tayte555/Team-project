@@ -18,7 +18,7 @@ if ($_SESSION['is_admin'] != 1){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sole Haven | Account</title>
+    <title>Sole Haven | Manage Users</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
@@ -31,7 +31,6 @@ if ($_SESSION['is_admin'] != 1){
                 <nav class="flex justify-between w-screen">
                     <div class="px-2 flex w-full py-4 items-center">
                         <a class="" href="../home.php">
-                            <!-- <img class="h-9" src="logo.png" alt="logo"> -->
                             <img class="h-6" src="../images/logowhite.png" alt="logo"/>         
                         </a>
 
@@ -122,8 +121,8 @@ if ($_SESSION['is_admin'] != 1){
             </div>
 
             <div class="p-4 md:col-span-3 md:px-14 md:py-10 lg:p-20 mb-4 md:mb-0">
-                <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">Admin dashboard</h1>
-                <p>Only admin can access this page.</p>
+                <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">Manage Users</h1>
+                <p>Below is a list of users.</p>
 
                 <!-- Users Table -->
                 <table class="table w-full">
@@ -139,10 +138,10 @@ if ($_SESSION['is_admin'] != 1){
                     <tbody>
                         <?php
                         // Include your database connection here
-                        include 'db_connection.php';
+                        include '../connections.php';
 
                         // Fetch users from the database
-                        $query = "SELECT * FROM users";
+                        $query = "SELECT * FROM users WHERE is_admin = 0;";
                         $result = mysqli_query($connection, $query);
                         if (!$result) {
                             die("Query failed: " . mysqli_error($connection));
@@ -153,11 +152,15 @@ if ($_SESSION['is_admin'] != 1){
                             // Display users in a table
                             while ($row = mysqli_fetch_assoc($result)) {
                                 echo "<tr>";
-                                echo "<td>{$row['id']}</td>";
+                                echo "<td>{$row['user_id']}</td>";
                                 echo "<td>{$row['forename']}</td>";
                                 echo "<td>{$row['surname']}</td>";
                                 echo "<td>{$row['email']}</td>";
-                                echo "<td><a href='delete_user.php?id={$row['id']}'>Delete</a></td>";
+                                echo "<td>
+    <a href='edit_user.php?id={$row['user_id']}'>Edit</a> |
+    <a href='delete_user.php?id={$row['user_id']}' onclick='return confirm(\"Are you sure you want to delete this user?\")'>Delete</a>
+    </td>";
+
                                 echo "</tr>";
                             }
                         } else {
