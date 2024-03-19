@@ -315,7 +315,7 @@ z-index: 1;
 <div class="max-h-[26rem] lg:max-h-[32rem]">
     <ul class="divide-y">
         <?php 
-        $fourthRowIds = [10,11,12];
+        $fourthRowIds = [23,11,12];
         $fourthRowProducts = getProducts($connection, $fourthRowIds);
         foreach ($fourthRowProducts as $product) :?>
             <li class="py-2 border-black">
@@ -335,120 +335,37 @@ z-index: 1;
 
   </section>
 
-  <!-- best sellers -->
-  <section>
-    <div class="flex justify-between p-5 ">
-      <h2 class="text-sm font-bold uppercase tracking-wide">BEST SELLERS</h2>
-      <a href="best_sellers.php" class="underline underline-offset-2">View more</a>
-    </div>
+<!-- best sellers -->
+<section>
+  <div class="flex justify-between p-5 ">
+    <h2 class="text-sm font-bold uppercase tracking-wide">BEST SELLERS</h2>
+    <a href="best_sellers.php" class="underline underline-offset-2">View more</a>
+  </div>
 
-    <div class="grid gap-px px-4 grid-cols-5">
+  <div class="grid gap-px px-4 grid-cols-5">
+    <!-- PHP Loop to Fetch Best Sellers -->
+    <?php
+    $bestSellerIds = [13, 14, 35, 16, 10]; // Example best seller product IDs from the database
+    $bestSellerProducts = getProducts($connection, $bestSellerIds);
+    foreach ($bestSellerProducts as $product) : ?>
       <div class="">
         <ul class="divide-y">
           <li class="py-2">
-            <a href="C:\xampp\htdocs\Team-project\store\src\product.php" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-                <div class=" overflow-hidden">
-                    <a href="/collections/jordan/jordan-4" class="block h-full group">
-                    <div class="bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                      
-                      <img src="./images/blackcatsneaker 1.png" class="object-cover" >
-                      </div>
-                    
+            <a href="product.php?id=<?php echo $product['product_id']; ?>" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+              <div class="overflow-hidden">
+                <!-- <a href="/collections/jordan/jordan-4" class="block h-full group"> -->
+                  <div class="bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
+                    <img src="<?php echo $product['product_img'] ?>" class="object-cover" >
+                  </div>
                 </a>
-                </div>
-
+              </div>
             </a>
           </li>
-
         </ul>
-
-        </div>
-
-        <div class="">
-            <ul class="divide-y">
-              <li class="py-2">
-                <a href="store\src\product.php" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-                    <div class=" overflow-hidden">
-                        <a href="/collections/jordan/jordan-4" class="block h-full group">
-                        <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                          <img src="./images/blackcatsneaker 1.png" class="object-cover" >
-                        </div>
-                    </a>
-                    </div>
-
-                </a>
-              </li>
-    
-            </ul>
-    
-            </div>
-
-            <div class="">
-                <ul class="divide-y">
-                  <li class="py-2">
-                    <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-                        <div class=" overflow-hidden">
-                            <a href="/collections/jordan/jordan-4" class="block h-full group">
-                            <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                              <img src="./images/blackcatsneaker 1.png" class="object-cover" >
-                            </div>
-                        </a>
-                        </div>                 
-                    </a>
-                  </li>
-        
-                </ul>
-        
-                </div>
-
-                <div class="">
-                    <ul class="divide-y">
-                      <li class="py-2">
-                        <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-                            <div class=" overflow-hidden">
-                                <a href="/collections/jordan/jordan-4" class="block h-full group">
-                                <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                                  <img src="./images/blackcatsneaker 1.png" class="object-cover" >
-                                </div>
-                            </a>
-                            </div>
-      
-                        </a>
-                      </li>
-            
-                    </ul>
-            
-                    </div>
-
-                    <div class="">
-                        <ul class="divide-y">
-                          <li class="py-2">
-                            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-                                <div class=" overflow-hidden">
-                                    <a href="/collections/jordan/jordan-4" class="block h-full group">
-                                    <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                                      <img src="./images/blackcatsneaker 1.png" class="object-cover" >
-                                    </div>
-                                </a>
-                                </div>
-      
-                            </a>
-                          </li>
-                
-                        </ul>
-                
-                        </div>
-
-                    
-    
-            
-    </div>
-    
-            
-    </div>
-
-  </section>
-
+      </div>
+    <?php endforeach; ?>
+  </div>
+</section>
 
   <!-- collections -->
   <section>
