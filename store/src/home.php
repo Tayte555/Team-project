@@ -245,7 +245,7 @@ z-index: 1;
   <section>
     <div class="flex justify-between p-4 ">
       <h2 class="text-sm font-bold uppercase tracking-wide">NEW ARRIVALS</h2>
-      <a href="/collections/new-arrivals" class="underline underline-offset-2">View more</a>
+      <a href="newarrivals.php" class="underline underline-offset-2">View more</a>
     </div>
 <!--FIRST ROW SHOES-->
     <div class="grid gap-px px-4 grid-cols-4 gap-x-12">
@@ -339,7 +339,7 @@ z-index: 1;
   <section>
     <div class="flex justify-between p-5 ">
       <h2 class="text-sm font-bold uppercase tracking-wide">BEST SELLERS</h2>
-      <a href="/collections/new-arrivals" class="underline underline-offset-2">View more</a>
+      <a href="best_sellers.php" class="underline underline-offset-2">View more</a>
     </div>
 
     <div class="grid gap-px px-4 grid-cols-5">
