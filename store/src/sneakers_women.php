@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+include("connections.php");
+include("functions.php");
+
+$womensProducts = getWomensProducts($connection);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   
@@ -207,7 +216,6 @@
   </section>
 
 
-  <!--This page was created by Mohammed Zeinelabdin-->
   <div class="px-1 py-2 md:py-2 sm:px-2 bg-zinc-950">
     <ul class="text-white">
         <li class="flex items-center mb-1 text-xl font-thin md:mb-1 md:text-2xl lg:text-4xl">
@@ -218,304 +226,21 @@
 
 
 
+</div>
+  <?php foreach ($womensProducts as $product) : ?>
     <div class="image-section">
       <div class="item-container">
-        <img src="images/sneakers_women/women_1.png">
+      <a href="product.php?id=<?php echo $product['product_id']; ?>" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+        <img src="<?php echo $product['product_img']; ?>" alt="<?php echo $product['product_name']; ?>">
         <br>
         <div class="text-container">
-          <div class="shoe-name">Nike Dunk High</div>
-          <div class="price">from £120</div>
+          <div class="shoe-name"><?php echo $product['product_name']; ?></div>
+          <div class="price">from £<?php echo $product['price']; ?></div>
         </div>
       </div>
-  
-        <div class="item-container">
-          <img src="images/sneakers_women/women_2.png">
-          <br>
-          <div class="text-container">
-            <div class="shoe-name">Nike Court Cision Low Next Nature</div>
-            <div class="price">from £60</div>
-          </div>
-        </div>
-
-        <div class="item-container">
-          <img src="images/sneakers_women/women_3.png">
-          <br>
-          <div class="text-container">
-            <div class="shoe-name">Nike Free Metcon 5</div>
-            <div class="price">from £120</div>
-          </div>
-        </div>
-
-        <div class="item-container">
-          <img src="images/sneakers_women/women_4.png">
-          <br>
-          <div class="text-container">
-            <div class="shoe-name">Nike Gamma Force</div>
-            <div class="price">from £70</div>
-          </div>
-        </div>
-
-        <div class="item-container">
-          <img src="images/sneakers_women/women_5.png">
-          <br>
-          <div class="text-container">
-            <div class="shoe-name">Jumpman Two Trey</div>
-            <div class="price">from £65</div>
-          </div>
-        </div>
-
+    </div>
+  <?php endforeach; ?>
   </div>
-
-</div>
-<br>
-
-<div class="image-section">
-  <div class="item-container">
-    <img src="images/sneakers_women/women_6.png">
-    <br>
-    <div class="text-container">
-      <div class="shoe-name">Nike Air Max 97 Futura</div>
-      <div class="price">from £105</div>
-    </div>
-  </div>
-
-
-        <div class="item-container">
-          <img src="images/sneakers_women/women_8.png">
-          <br>
-          <div class="text-container">
-            <div class="shoe-name">Nike Dunk Low Twist</div>
-            <div class="price">from £100</div>
-          </div>
-        </div>
-
-        <div class="item-container">
-          <img src="images/sneakers_women/women_9.png">
-          <br>
-          <div class="text-container">
-            <div class="shoe-name">Nike Air Huarache Craft</div>
-            <div class="price">from £70</div>
-          </div>
-        </div>
-
-
-        <div class="item-container">
-          <img src="images/sneakers_women/women_10.png">
-          <br>
-          <div class="text-container">
-            <div class="shoe-name">Nike ACG Air Zoom Gaiadome GORE-TEX</div>
-            <div class="price">from £200</div>
-          </div>
-        </div>
-
-
-        <div class="item-container">
-          <img src="images/sneakers_women/women_11.png">
-          <br>
-          <div class="text-container">
-            <div class="shoe-name">Air Jordan 1 Mid SE</div>
-            <div class="price">from £80</div>
-          </div>
-        </div>
-    
-  </div>
- <br>
-
- <div class="image-section">
-  <div class="item-container">
-    <img src="images/sneakers_women/women_12.png">
-    <br>
-    <div class="text-container">
-      <div class="shoe-name">adidas Originals Gazelle Bold Women's</div>
-      <div class="price">from £90</div>
-    </div>
-  </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_13.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">adidas YZY 700 V3 Women's</div>
-        <div class="price">from £250</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_14.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">adidas Originals Campus 00s</div>
-        <div class="price">from £85</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_15.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">adidas CourtJam Control Clay Tennis Shoes</div>
-        <div class="price">from £60</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_16.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">adidas Hyperturf Adventure Shoes</div>
-        <div class="price">from £90</div>
-      </div>
-    </div>
-
-</div>
-
-
-<div class="image-section">
-  <div class="item-container">
-    <img src="images/sneakers_women/women_17.png">
-    <br>
-    <div class="text-container">
-      <div class="shoe-name">adidas NMD_R1 Shoes</div>
-      <div class="price">from £80</div>
-    </div>
-  </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_18.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">adidas YZY 350 V2 CMPCT Women's</div>
-        <div class="price">from £200</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_19.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">adidas Originals YZY 700 MNVN Women's</div>
-        <div class="price">from £180</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_20.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">adidas Originals Stan Smith Women's</div>
-        <div class="price">from £85</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_21.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">adidas Adifom SLTN Shoes</div>
-        <div class="price">from £151</div>
-      </div>
-    </div>
-
-</div>
-<br>
-
-<div class="image-section">
-  <div class="item-container">
-    <img src="images/sneakers_women/women_21.png">
-    <br>
-    <div class="text-container">
-      <div class="shoe-name">Vans Knu Stack Nostalgia Women's</div>
-      <div class="price">from £50</div>
-    </div>
-  </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_22.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Vans Sk8-Hi Women's</div>
-        <div class="price">from £50</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_23.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Vans UA Classic Slip-On Platform</div>
-        <div class="price">from £30</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_24.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Vans Sk8-Hi Stack Women's</div>
-        <div class="price">from £70</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_25.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">Vans Knu Skool Women's</div>
-        <div class="price">from £75</div>
-      </div>
-    </div>
-
-</div>
-
-<div class="image-section">
-  <div class="item-container">
-    <img src="images/sneakers_women/women_26.png">
-    <br>
-    <div class="text-container">
-      <div class="shoe-name">BOSS Vanity Loafer Slip-Ons</div>
-      <div class="price">from £140</div>
-    </div>
-  </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_27.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">BOSS RHYS Trainers Women's</div>
-        <div class="price">from £120</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_28.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">BOSS Women's Aiden Trainer</div>
-        <div class="price">from £100</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_29.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">New Balance 327 Moonbeam Outerspace</div>
-        <div class="price">from £100</div>
-      </div>
-    </div>
-
-    <div class="item-container">
-      <img src="images/sneakers_women/women_30.png">
-      <br>
-      <div class="text-container">
-        <div class="shoe-name">New Balance 530 Women's</div>
-        <div class="price">from £100</div>
-      </div>
-    </div>
-
-</div>
-
-</div>
 <br>
 
 <br><br><br>

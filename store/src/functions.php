@@ -102,41 +102,34 @@ function processPurchase($product_id, $quantity, $user_id, $connection){
 }
 
 function getAllProductDetails($product_id, $conn) {
-    // Prepare SQL statement to fetch product details
     $sql = "SELECT * FROM products WHERE product_id = ?";
-    
-    // Prepare the SQL statement
     $stmt = $conn->prepare($sql);
-    
-    // Bind parameters and execute the statement
     $stmt->bind_param("i", $product_id);
     $stmt->execute();
-    
-    // Get the result
     $result = $stmt->get_result();
-    
-    // Fetch product details as an associative array
     $product_details = $result->fetch_assoc();
-    
-    // Close the statement
     $stmt->close();
-    
     return $product_details;
 }
 
 function getMensProducts($conn) {
-    // Prepare SQL statement to fetch mens products
     $sql = "SELECT * FROM products WHERE category = 'Mens'";
-    
-    // Execute the SQL statement
     $result = $conn->query($sql);
-    
-    // Initialize an empty array to store products
     $mens_products = array();
-    
-    // Check if there are any results
     if ($result->num_rows > 0) {
-        // Fetch products and store them in the array
+        while ($row = $result->fetch_assoc()) {
+            $mens_products[] = $row;
+        }
+    }
+    
+    return $mens_products;
+}
+
+function getWomensProducts($conn) {
+    $sql = "SELECT * FROM products WHERE category = 'Womens'";
+    $result = $conn->query($sql);
+    $mens_products = array();
+    if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $mens_products[] = $row;
         }
