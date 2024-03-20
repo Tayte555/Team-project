@@ -100,8 +100,8 @@ $mensProducts = getMensProducts($connection);
 
             <!-- Nav Links -->
             <ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
-              <li><a class="hover:text-gray-300" href="./newarrivals.html">New Arrivals</a></li>
-              <li><a class="hover:text-gray-300" href="#">Best Sellers</a></li>
+              <li><a class="hover:text-gray-300" href="./newarrivals.php">New Arrivals</a></li>
+              <li><a class="hover:text-gray-300" href="./best_sellers.php">Best Sellers</a></li>
               
               <!-- Sneakers Hover Menu -->
               <li class="relative group">
@@ -111,8 +111,8 @@ $mensProducts = getMensProducts($connection);
                   </svg>
                 </a>
                 <ul class="absolute hidden space-y-2 bg-white text-black py-2 rounded-md">
-                  <li><a href="./sneakers_men.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Men</a></li>
-                  <li><a href="./sneakers_women.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Women</a></li>
+                  <li><a href="./sneakers_men.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Men</a></li>
+                  <li><a href="./sneakers_women.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Women</a></li>
                   <li><a href="./sneakers_clearance.html">&nbsp;&nbsp;&nbsp;Clearance&nbsp;&nbsp;&nbsp;</a></li>
                   <li><a href="./sneakers_kids.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kids</a></li>
                 </ul>
