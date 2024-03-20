@@ -504,15 +504,20 @@ img{
                           </div>
                         </div>
           
-          <div class = "btn-groups">
-                            <button type = "button" class = "add-cart-btn">
-                                <i class = "fas fa-shopping-cart"></i> Add To Cart
-                            </button>
+                      <div class = "btn-groups">
+                      <form action="cart.php" method="post">
+                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                        <!-- Assuming you want to add just one quantity for now -->
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="add-cart-btn">
+                          <i class="fas fa-shopping-cart"></i> Add To Cart
+                        </button>
+                      </form>
                             <button type = "button" class = "buy-now-btn">
                                 <i class = "fas fa-wallet"></i> Buy Now
                             </button>
-                        </div>
-                        <br>
+                      </div>
+                      <br>
           <!-- Product description and release date -->
           <div class="product-info">
             <p><?php echo $product['product_desc']; ?></p>
