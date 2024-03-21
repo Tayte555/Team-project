@@ -464,7 +464,7 @@ img{
 
     </section> -->
 
-<!--CHANGE THIS PART BELOW TO MAKE IT WORK-->
+
 
 <section> 
   <div class="main-wrapper">
@@ -490,21 +490,24 @@ img{
                         </div>
           <!--Shoe Size -->
           <div class = "Shoe-size">
-                          <p class = "select-size">Select Size:</p>
-                          <div class = "size-group">
-                            <button type = "button" class = "size-btn">3</button>
-                            <button type = "button" class = "size-btn"> 4</button>
-                            <button type = "button" class = "size-btn"> 5</button>
-                            <button type = "button" class = "size-btn"> 6</button>
-                            <button type = "button" class = "size-btn"> 7</button>
-                            <button type = "button" class = "size-btn"> 8</button>
-                            <button type = "button" class = "size-btn"> 9</button>
-                            <button type = "button" class = "size-btn"> 10</button>
-                            <button type = "button" class = "size-btn"> 11</button>
-                            <button type = "button" class = "size-btn"> 12</button>
-                            <button type = "button" class = "size-btn"> 13</button>                          
-                          </div>
-                        </div>
+          <div class="Shoe-size">
+            <p class="select-size">Select Size:</p>
+            <div class="size-group">
+              <?php
+                if ($product['product_collection'] == 'Tops&Sweatshirts' || $product['product_collection'] == 'Tshirts' || $product['product_collection'] == 'Sweatpants' || $product['product_collection'] == 'Jackets') {
+                  // Display size options for clothing
+                  $sizes = array('XS', 'S', 'M', 'L', 'XL');
+                } else {
+                  // Display shoe sizes
+                  $sizes = range(3, 13);
+                }
+
+                foreach ($sizes as $size) {
+                  echo '<button type="button" class="size-btn">' . $size . '</button>';
+                }
+              ?>
+            </div>
+          </div>
           
                       <div class = "btn-groups">
                       <form action="cart.php" method="post">
