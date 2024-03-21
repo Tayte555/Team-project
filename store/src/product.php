@@ -385,87 +385,6 @@ img{
     </div>
     </header>
 
-
-    <!-- <section> 
-        <div class = "main-wrapper">
-            <div class = "container">
-                <div class = "product-div">
-                    <div class = "product-div-left">
-                        <div class = "img-container">
-                            <img src = "images/blackcatsneaker 1.png" alt = "jordan 4">
-                        </div>
-                        <div class = "hover-container">
-                            <div>
-                                <img src = "images/blackcatsneaker 1.png">
-                            </div>  
-                            <div>
-                                <img src = "images/blackcatsneaker 1.png">
-                            </div>  
-                            <div>
-                                <img src = "images/sneakersmol2.png">
-                            </div>  
-                            <div>
-                                <img src = "images/blackcatsneaker 1.png">
-                            </div> 
-                            <div>
-                                <img src = "images/blackcatsneaker 1.png">
-                            </div>     
-                        </div>
-                    </div>
-
-                    <div class = "product-div-right">
-                        <span class = "product-name">
-                            Jordan 4 Black Cat</span>
-                        <span class = "product-price"> £ 379.99</span>
-                        <div class = "product-rating">
-                            <span><i class = "fas fa-star"></i></span>
-                            <span><i class = "fas fa-star"></i></span>
-                            <span><i class = "fas fa-star"></i></span>
-                            <span><i class = "fas fa-star-half-alt"></i></span>
-                            <span><i class = "far fa-star"></i></span>
-                            <span>(1942 Ratings)</span>
-                        </div>
-                        <p class = "product-description">
-                        Here are our state of the art shoes from Jordan 
-                        These are made with deluxe material and high grade 
-                        cushioning.
-                        </p>
-                        <div class = "Shoe-size">
-                          <p class = "select-size">Select Size:</p>
-                          <div class = "size-group">
-                            <button type = "button" class = "size-btn">3</button>
-                            <button type = "button" class = "size-btn"> 4</button>
-                            <button type = "button" class = "size-btn"> 5</button>
-                            <button type = "button" class = "size-btn"> 6</button>
-                            <button type = "button" class = "size-btn"> 7</button>
-                            <button type = "button" class = "size-btn"> 8</button>
-                            <button type = "button" class = "size-btn"> 9</button>
-                            <button type = "button" class = "size-btn"> 10</button>
-                            <button type = "button" class = "size-btn"> 11</button>
-                            <button type = "button" class = "size-btn"> 12</button>
-                            <button type = "button" class = "size-btn"> 13</button>                          
-                          </div>
-                        </div>
-
-                        <div class = "btn-groups">
-                            <button type = "button" class = "add-cart-btn">
-                                <i class = "fas fa-shopping-cart"></i> Add To Cart
-                            </button>
-                            <button type = "button" class = "buy-now-btn">
-                                <i class = "fas fa-wallet"></i> Buy Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-    </section> -->
-
-
-
 <section> 
   <div class="main-wrapper">
     <div class="container">
@@ -489,6 +408,21 @@ img{
                             <span>(1942 Ratings)</span>
                         </div>
           <!--Shoe Size -->
+          <script>
+            function selectSize(size) {
+                document.getElementById('selected_size').value = size;
+            }
+
+            function addToCart() {
+                var selectedSize = document.getElementById('selected_size').value;
+                if (selectedSize === '') {
+                    alert('Please select a size before adding to cart.');
+                    return false;
+                }
+                return true;
+            }
+        </script>
+          
           <div class = "Shoe-size">
           <div class="Shoe-size">
             <p class="select-size">Select Size:</p>
@@ -503,24 +437,29 @@ img{
                 }
 
                 foreach ($sizes as $size) {
-                  echo '<button type="button" class="size-btn">' . $size . '</button>';
+                  echo '<button type="button" class="size-btn" onclick="selectSize(\'' . $size . '\')">' . $size . '</button>';
                 }
               ?>
             </div>
           </div>
           
+         
+
                       <div class = "btn-groups">
-                      <form action="cart.php" method="post">
-                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
-                        <!-- Assuming you want to add just one quantity for now -->
-                        <input type="hidden" name="quantity" value="1">
-                        <button type="submit" class="add-cart-btn">
-                          <i class="fas fa-shopping-cart"></i> Add To Cart
-                        </button>
+                      <form action="cart.php" method="post" onsubmit="return addToCart();">
+                          <!-- Hidden input fields for product details -->
+                          <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                          <input type="hidden" name="product_name" value="<?php echo $product['product_name']; ?>">
+                          <input type="hidden" name="product_img" value="<?php echo htmlspecialchars($product['product_img']); ?>">
+                          <!-- Assuming you want to add just one quantity for now -->
+                          <input type="hidden" name="quantity" value="1">
+                          <!-- Include a hidden input field for the selected size -->
+                          <input type="hidden" id="selected_size" name="size" value="">
+                          <button type="submit" class="add-cart-btn">
+                              <i class="fas fa-shopping-cart"></i> Add To Cart
+                          </button>
                       </form>
-                            <button type = "button" class = "buy-now-btn">
-                                <i class = "fas fa-wallet"></i> Buy Now
-                            </button>
+                            
                       </div>
                       <br>
           <!-- Product description and release date -->

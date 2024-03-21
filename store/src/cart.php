@@ -1,85 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
-    <style>
-        body {
-            font-family: 'SF Pro Display', sans-serif;
-            margin: 0;
-            box-sizing: border-box;
-            background-color: #f4f4f4;
-            color: #1F2937;
-        }
-
-        #cart-container {
-            display: flex;
-            max-width: 1200px;
-            margin: 20px auto;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: center;
-            justify-content: space-around;
-        }
-
-        #product-details {
-            flex: 1;
-            padding: 20px;
-        }
-
-        #product-image {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            border-left: 2px solid #000;
-        }
-
-        #product-image img {
-            width: 100%;
-            max-width: 200px;
-            border: 2px solid #000;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-
-        #total-amount {
-            font-size: 18px;
-            color: #333;
-            margin-top: 10px;
-        }
-
-        #payment-options {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .payment-option {
-            margin-bottom: 10px;
-        }
-
-        #pay-now-button {
-            background-color: #111827;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        #payment-options {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .payment-option {
-            margin-bottom: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Shopping Cart</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="shopping-cart.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 
@@ -102,7 +30,7 @@ function getCurrentUserID() {
 }
 
 // Put product selected into the cart 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['product_id'], $_POST['quantity'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['product_id'], $_POST['quantity'], $_POST['product_img'])) {
     $product_id = $_POST['product_id'];
     $quantity = $_POST['quantity'];
 
@@ -120,12 +48,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['product_id'], $_POST['
         if (!isset($_SESSION['cart'])) {
             $_SESSION['cart'] = [];
         }
+        
+        $product_id = $_POST['product_id'];
+        $product_name = $_POST['product_name'];
+        $product_img = $_POST['product_img'];
+        $quantity = $_POST['quantity'];
+        $size = $_POST['size'];
 
         $_SESSION['cart'][] = [
             'product_id' => $product_id,
-            'product_name' => $product['product_name'],
+            'product_name' => $product_name,
             'price' => $product['price'],
-            'quantity' => $quantity
+            'quantity' => $quantity,
+            'product_img' => $product_img, // Ensure correct image path here
+            'size' => $size,
         ];
 
         echo 'Product added to cart';
@@ -138,7 +74,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['product_id'], $_POST['
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
     if ($_POST['action'] == 'remove_from_cart') {
         $removeIndex = $_POST['remove_index'];
-        echo removeFromCart($removeIndex);
+        removeFromCart($removeIndex);
+        header("Location: cart.php");
+        exit();
     }
 }
 
@@ -164,115 +102,196 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
 mysqli_close($connection);
 ?>
 
-<div id="cart-container">
-    <div id="product-details">
-        <button><a href="home.php">Back</a></button>
-        <h2>Contact Information</h2>
-        <!-- Space for contact info form -->
+    <!-- navbar -->
+		<header class="items-center bg-zinc-950 md:px">
+			<div class="flex flex-wrap place-items-center">
+		  <section class="relative mx-auto">
+			  <!-- navbar -->
+			<nav class="flex justify-between w-screen">
+			  
+				<div class="px-2 flex w-full py-4 items-center">
+				
+				  <a class="" href="home.php">
+				  <!-- <img class="h-9" src="logo.png" alt="logo"> -->
+				  <img class="h-6 
+				   " src="./images/logowhite.png" alt="logo"/>         
+				  </a>
+	
+				<!-- Nav Links -->
+				<ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
+				  <li><a class="hover:text-gray-300" href="#">New Arrivals</a></li>
+				  <li><a class="hover:text-gray-300" href="best_sellers.html">Best Sellers</a></li>
+				  <li><a class="hover:text-gray-300" href="#">Sneakers                
+					  <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+						<path d="m9 18 6-6-6-6"/>
+					  </svg>               
+				  </a></li>
+				  <li><a class="hover:text-gray-300" href="#">Apparel
+					<svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+					  <path d="m9 18 6-6-6-6"/>
+					</svg>
+				  </a></li>
+				  <li><a class="hover:text-gray-300" href="#">Accessories
+					<svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+					  <path d="m9 18 6-6-6-6"/>
+					</svg>
+				  </a></li>
+				  <li><a class="hover:text-gray-300 pr-40" href="#">Discover
+					<svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+					  <path d="m9 18 6-6-6-6"/>
+					</svg>
+				  </a></li>
+				</ul>
+				<!-- Header Icons -->
+				<div class="hidden xl:flex items-center -space-x-1 pr-6 text-gray-100">
+				  <!-- search icon -->
+				  <a class="hover:text-gray-300" href="#">
+					<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-search w-10">
+						<circle cx="11" cy="11" r="8"/>
+						<path d="m21 21-4.35-4.35"/>
+					  </svg>
+				  </a>
+				  <!-- profile -->
+				  <a class="flex items-center hover:text-gray-300 pr-1" href="login.php">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-user w-10 mx-auto"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
+					</svg>
+					
+				  </a>
+				  <!-- Cart      -->
+				  <a class="flex items-center hover:text-gray-300" href="cart.php">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart w-10"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+					</svg>
+					<!--<span class="flex absolute -mt-5 ml-4">
+						<span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
+						  <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500">
+						  </span>
+						</span> -->           
+				  </a>             
+				</div>
+			  </div>
+			</nav>
+		  </section>
+		</div>
+        
+        <style>
+            .product {
+                border-bottom: 1px solid black;
+                padding-bottom: 20px;
+                margin-bottom: 20px; 
+                padding-left: 30px;
+                padding-right: 30px;
+            }
+        </style>
 
-        <h2>Shipping Details</h2>
-        <!-- Space for shipping info form -->
-
-        <h2>Payment Details</h2>
-        <!-- Space for payment info form -->
-
-        <div id="payment-options">
-            <div class="payment-option">
-                <input type="radio" name="payment-method" id="card-payment"> Credit/Debit Card
-                <div id="card-details" style="display: none;">
-                    <!-- Placeholder for card details input -->
-                    Card Number: <input type="text" placeholder="1234 5678 9012 3456"><br>
-                    Expiry Date: <input type="text" placeholder="MM/YYYY"><br>
-                    CVV: <input type="text" placeholder="123"><br>
-                </div>
+<main class="page">
+    <section class="shopping-cart dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2>Shopping Cart</h2>
+                <p></p>
             </div>
-
-            <div class="payment-option">
-                <input type="radio" name="payment-method" id="paypal-payment"> PayPal
-                <div id="paypal-details" style="display: none;">
-                    <!-- Placeholder for PayPal login button -->
-                    <button onclick="paypalLogin()">Log in with PayPal</button>
-                </div>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-12 col-lg-8">
+                        <div class="items">
+                            <?php
+                                // Display the contents of the shopping cart
+                                if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+                                    foreach ($_SESSION['cart'] as $index => $item) {
+                            ?>
+                            <div class="product">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img class="img-fluid mx-auto d-block image" src="<?php echo $item['product_img']; ?>">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="info">
+                                            <div class="row">
+                                                <div class="col-md-5 product-name">
+                                                    <div class="product-name">
+                                                        <p><?php echo $item['product_name']; ?></p>
+                                                        <div class="product-info">
+                                                            <div>Size: <span class="value"><?php echo $item['size']; ?></span></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 quantity">
+                                                    <label for="quantity_<?php echo $index; ?>">Quantity:</label>
+                                                    <input id="quantity_<?php echo $index; ?>" type="number" value="<?php echo $item['quantity']; ?>" class="form-control quantity-input" onchange="updatePrice(<?php echo $index; ?>)">
+                                                </div>
+                                                <div class="col-md-3 price">
+                                                    <span id="price_<?php echo $index; ?>">£<?php echo number_format($item['price'] * $item['quantity'], 2); ?></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                            <input type="hidden" name="remove_index" value="<?php echo $index; ?>">
+                                            <input type="hidden" name="action" value="remove_from_cart">
+                                            <button type="submit" class="btn btn-link btn-sm" style="color: gray; font-size: 30px;">&times;</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                                    }
+                                } else {
+                                    echo 'Your shopping cart is empty.';
+                                }
+                            ?>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-4">
+                        <div class="summary">
+                            <h3>Summary</h3>
+                            <div class="summary-item"><span class="text">Subtotal</span><span class="text">   </span><span id="subtotal">£0.00</span></div>
+                            <div class="summary-item"><span class="text">Discount</span><span class="price">£0.00</span></div>
+                            <div class="summary-item"><span class="text">Shipping</span><span class="price">£0.00</span></div>
+                            
+                            <form id="checkout-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"> 
+                                <input type ="hidden" name ="action" value="checkout">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block pay-button" id="payButton">Pay</button>
+                            </form>
+                        </div>
+                    </div>
+                </div> 
             </div>
         </div>
-
-        <button id="checkout-button" onclick="checkout()">Pay Now</button>
-    </div>
-
-    <div id="product-image">
-        <div id="total-amount">
-            
-
-            <?php
-            // Display the contents of the shopping cart
-            if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
-            echo '<h2>Shopping Cart</h2>';
-            echo '<table border="1">';
-            echo '<tr><th>Product Name</th><th>Price</th><th>Quantity</th></tr>';
-            
-            $totalAmount = 0;
-
-            foreach ($_SESSION['cart'] as $key => $item) {
-                echo '<tr>';
-                echo '<td>' . $item['product_name'] . '</td>';
-                echo '<td>$' . $item['price'] . '</td>';
-                echo '<td>' . $item['quantity'] . '</td>';
-                echo '<td>';
-
-
-                echo '<form id="remove-from-cart-form" method="post" action="' . htmlspecialchars($_SERVER['PHP_SELF']) . '">';
-                echo '<input type="hidden" name="action" value="remove_from_cart">';
-                echo '<input type="hidden" name="remove_index" value="' . $key . '">';
-                echo '<input type="submit" value="Remove from Cart">';
-                echo '</form>';
-                echo '<form id="checkout-form" method="post" action="' . htmlspecialchars($_SERVER['PHP_SELF']) . '">';
-                echo '<input type="hidden" name="action" value="checkout">';
-                echo '<input type="submit" value="Checkout">';
-                echo '</form>';
-
-                echo '</td>';
-                echo '</tr>';
-            
-                $totalAmount += ($item['price'] * $item['quantity']);
-            }
-            
-
-            echo '</table>';
-            } else {
-                echo 'Your shopping cart is empty.';
-                $totalAmount = 0;
-            }
-
-            echo '<br>';
-            echo 'Total Amount: £' . number_format($totalAmount, 2);
-            ?>
-        </div>
-    </div>
-</div>
+    </section>
+</main>
 
 <script>
-    // JavaScript functions for illustration purposes
-    function checkout() {
-        // Add actual payment processing logic here
-        document.getElementById("checkout-form").submit();
-        alert("Payment processed successfully!");
+    // Calculate initial subtotal when page loads
+    window.addEventListener('load', function() {
+        calculateSubtotal();
+    });
+    
+    // Function to update price and subtotal
+    function updatePrice(index) {
+        var quantityInput = document.getElementById('quantity_' + index);
+        var quantity = parseInt(quantityInput.value);
+        var pricePerItem = parseFloat(<?php echo $item['price']; ?>);
+        var newPrice = quantity * pricePerItem;
+        document.getElementById('price_' + index).innerText = '£' + newPrice.toFixed(2);
+        calculateSubtotal();
     }
+    
+    // Function to calculate subtotal
+    function calculateSubtotal() {
+        var subtotal = 0;
+        var priceElements = document.querySelectorAll('.price');
+        priceElements.forEach(function(element) {
+            var price = parseFloat(element.innerText.replace('£', ''));
+            subtotal += price;
+        });
+        document.getElementById('subtotal').innerText = '£' + subtotal.toFixed(2);
 
-    // Show/hide card details based on radio button selection
-    document.getElementById('card-payment').addEventListener('change', function() {
-        document.getElementById('card-details').style.display = this.checked ? 'block' : 'none';
-    });
-
-    // Show/hide PayPal details based on radio button selection
-    document.getElementById('paypal-payment').addEventListener('change', function() {
-        document.getElementById('paypal-details').style.display = this.checked ? 'block' : 'none';
-    });
-
-    function paypalLogin() {
-        // Add actual PayPal login logic here
-        alert("Redirecting to PayPal login...");
+        function checkout() {
+            document.getElementById("checkout-form").submit();
+            alert("Payment processed successfully!");
+        }
     }
 </script>
-
 </body>
 </html>
