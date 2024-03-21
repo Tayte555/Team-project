@@ -216,11 +216,11 @@ mysqli_close($connection);
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 quantity">
-                                                    <label for="quantity">Quantity:</label>
-                                                    <input id="quantity" type="number" value="<?php echo $item['quantity']; ?>" class="form-control quantity-input">
+                                                    <label for="quantity_<?php echo $index; ?>">Quantity:</label>
+                                                    <input id="quantity_<?php echo $index; ?>" type="number" value="<?php echo $item['quantity']; ?>" class="form-control quantity-input" onchange="updatePrice(<?php echo $index; ?>)">
                                                 </div>
                                                 <div class="col-md-3 price">
-                                                    <span>£<?php echo $item['price']; ?></span>
+                                                    <span id="price_<?php echo $index; ?>">£<?php echo number_format($item['price'] * $item['quantity'], 2); ?></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -245,17 +245,10 @@ mysqli_close($connection);
                     <div class="col-md-12 col-lg-4">
                         <div class="summary">
                             <h3>Summary</h3>
-                            <?php
-                                // Calculate total amount
-                                $totalAmount = 0;
-                                foreach ($_SESSION['cart'] as $item) {
-                                    $totalAmount += ($item['price'] * $item['quantity']);
-                                }
-                            ?>
-                            <div class="summary-item"><span class="text">Subtotal</span><span class="price">£<?php echo number_format($totalAmount, 2); ?></span></div>
-                            <div class="summary-item"><span class="text">Discount</span><span class="price">£0</span></div>
-                            <div class="summary-item"><span class="text">Shipping</span><span class="price">£0</span></div>
-                            <div class="summary-item"><span class="text">Total</span><span class="price">£<?php echo number_format($totalAmount, 2); ?></span></div>
+                            <div class="summary-item"><span class="text">Subtotal</span><span class="text">   </span><span id="subtotal">£0.00</span></div>
+                            <div class="summary-item"><span class="text">Discount</span><span class="price">£0.00</span></div>
+                            <div class="summary-item"><span class="text">Shipping</span><span class="price">£0.00</span></div>
+                            
                             <form action="checkout.php" method="post"> <!-- Assuming checkout.php is the file to handle checkout -->
                                 <button type="submit" class="btn btn-primary btn-lg btn-block pay-button" id="payButton">Pay</button>
                             </form>
@@ -266,6 +259,34 @@ mysqli_close($connection);
         </div>
     </section>
 </main>
+
+<script>
+    // Calculate initial subtotal when page loads
+    window.addEventListener('load', function() {
+        calculateSubtotal();
+    });
+    
+    // Function to update price and subtotal
+    function updatePrice(index) {
+        var quantityInput = document.getElementById('quantity_' + index);
+        var quantity = parseInt(quantityInput.value);
+        var pricePerItem = parseFloat(<?php echo $item['price']; ?>);
+        var newPrice = quantity * pricePerItem;
+        document.getElementById('price_' + index).innerText = '£' + newPrice.toFixed(2);
+        calculateSubtotal();
+    }
+    
+    // Function to calculate subtotal
+    function calculateSubtotal() {
+        var subtotal = 0;
+        var priceElements = document.querySelectorAll('.price');
+        priceElements.forEach(function(element) {
+            var price = parseFloat(element.innerText.replace('£', ''));
+            subtotal += price;
+        });
+        document.getElementById('subtotal').innerText = '£' + subtotal.toFixed(2);
+    }
+</script>
 
 
 <script>
