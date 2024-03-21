@@ -132,6 +132,10 @@ img{
     }
     .btn-groups{
         margin-top: 22px;
+        margin-bottom: 22px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
     }
     .btn-groups button{
         display: inline-block;
@@ -148,7 +152,6 @@ img{
     }
     .add-cart-btn{
         background-color: rgb(180,180,180);
-
         border: 2px solid rgb(0,0,0);
         margin-right: 8px;  
         transition: background-color 0.15s, color 0.15s, opacity 0.15s;
@@ -161,7 +164,6 @@ img{
       opacity: 0.3;
     }
     .buy-now-btn{
-      
       background-color: rgb(0,0,0);
         border: 2px solid rgb(0,0,0);
         transition: background-color 0.15s, color 0.15s, opacity 0.15s;
