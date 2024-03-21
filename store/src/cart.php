@@ -249,7 +249,8 @@ mysqli_close($connection);
                             <div class="summary-item"><span class="text">Discount</span><span class="price">£0.00</span></div>
                             <div class="summary-item"><span class="text">Shipping</span><span class="price">£0.00</span></div>
                             
-                            <form action="checkout.php" method="post"> <!-- Assuming checkout.php is the file to handle checkout -->
+                            <form id="checkout-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"> 
+                                <input type ="hidden" name ="action" value="checkout">
                                 <button type="submit" class="btn btn-primary btn-lg btn-block pay-button" id="payButton">Pay</button>
                             </form>
                         </div>
@@ -285,33 +286,12 @@ mysqli_close($connection);
             subtotal += price;
         });
         document.getElementById('subtotal').innerText = '£' + subtotal.toFixed(2);
+
+        function checkout() {
+            document.getElementById("checkout-form").submit();
+            alert("Payment processed successfully!");
+        }
     }
 </script>
-
-
-<script>
-    // JavaScript functions for illustration purposes
-    function checkout() {
-        // Add actual payment processing logic here
-        document.getElementById("checkout-form").submit();
-        alert("Payment processed successfully!");
-    }
-
-    // Show/hide card details based on radio button selection
-    document.getElementById('card-payment').addEventListener('change', function() {
-        document.getElementById('card-details').style.display = this.checked ? 'block' : 'none';
-    });
-
-    // Show/hide PayPal details based on radio button selection
-    document.getElementById('paypal-payment').addEventListener('change', function() {
-        document.getElementById('paypal-details').style.display = this.checked ? 'block' : 'none';
-    });
-
-    function paypalLogin() {
-        // Add actual PayPal login logic here
-        alert("Redirecting to PayPal login...");
-    }
-</script>
-
 </body>
 </html>
