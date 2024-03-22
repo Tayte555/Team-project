@@ -139,6 +139,24 @@ input[type="search"]:focus {
     outline: none; /* Remove the default outline */
     border-color: #4A90E2; /* Blue border on focus */
 }
+
+/* Ensure this is included in your style tag or CSS file */
+#cart-sidebar {
+    transition: transform 0.3s ease;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+}
+
+.cart-item img {
+    border-radius: 5px;
+}
+
+.cart-item div {
+    flex-grow: 1;
+}
 </style>
 
 
@@ -230,15 +248,54 @@ input[type="search"]:focus {
                 </svg>
                 
               </a>
-              <!-- Cart      -->
+              <!-- Cart 
               <a class="flex items-center hover:text-gray-300" href="cart.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart w-10"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                 </svg>
-                <!--<span class="flex absolute -mt-5 ml-4">
+                <span class="flex absolute -mt-5 ml-4">
                     <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
                       <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500">
                       </span>
-                    </span> -->           
+                    </span> -->        
+                    <div id="cart-icon" class="cursor-pointer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart w-10">
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+    </svg> 
+</div> 
+
+<!-- Sidebar Container -->
+<div id="cart-sidebar" class="fixed right-0 top-0 transform translate-x-full h-full bg-white p-5 rounded shadow-lg min-w-[300px] z-50 transition-transform duration-300 flex flex-col text-black">
+    <!-- Sidebar Header -->
+    <h3 class="text-lg font-semibold mb-3">Your Cart</h3>
+
+    <!-- Cart Items -->
+    <div class="cart-item mb-4">
+        <img src="images\blackcatsneaker 1.png" alt="Shoe 1" class="w-20 h-20 object-cover mr-4">
+        <div>
+            <h4 class="text-sm font-semibold">Sneaker Model 1</h4>
+            <p class="text-xs">Price: $100.00</p>
+            <p class="text-xs">Quantity: 1</p>
+        </div>
+    </div>
+    <div class="cart-item mb-4">
+        <img src="images\blackcatsneaker 1.png" alt="Shoe 2" class="w-20 h-20 object-cover mr-4">
+        <div>
+            <h4 class="text-sm font-semibold">Sneaker Model 2</h4>
+            <p class="text-xs">Price: $150.00</p>
+            <p class="text-xs">Quantity: 1</p>
+        </div>
+    </div>
+
+    <!-- Cart Total -->
+    <div class="mt-auto pt-4 border-t">
+        <h4 class="text-lg font-semibold">Total: $250.00</h4>
+    </div>
+
+    <!-- Checkout Button -->
+    <a href="checkout.php" class="block text-center bg-blue-500 text-white p-2 rounded mt-3">Checkout</a>
+</div>   
               </a>             
             </div>
           </div>
@@ -769,7 +826,31 @@ input[type="search"]:focus {
       </div>
   
       </footer>
+    <script>
+    document.getElementById('cart-icon').addEventListener('click', function() {
+        var sidebar = document.getElementById('cart-sidebar');
+        if (sidebar.classList.contains('translate-x-full')) {
+            sidebar.classList.remove('translate-x-full');
+            sidebar.classList.add('translate-x-0');
+        } else {
+            sidebar.classList.remove('translate-x-0');
+            sidebar.classList.add('translate-x-full');
+     }
+      });
 
+// Close the sidebar when clicking outside of it
+document.addEventListener('click', function(event) {
+    var sidebar = document.getElementById('cart-sidebar');
+    var clickInsideCartIcon = document.getElementById('cart-icon').contains(event.target);
+    var clickInsideSidebar = sidebar.contains(event.target);
+
+    if (!clickInsideCartIcon && !clickInsideSidebar && !sidebar.classList.contains('translate-x-full')) {
+        sidebar.classList.remove('translate-x-0');
+        sidebar.classList.add('translate-x-full');
+    }
+});
+
+</script>          
 
 
 </body>
