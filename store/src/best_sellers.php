@@ -127,7 +127,7 @@ include("functions.php");
       <div class="gap-4 lg:grid lg:grid-cols-2">
         <h1 class="text-3xl font-bold tracking-wide">All Best Sellers</h1>
         <h2 class="max-h-[3.75rem] max-h-overflow-hidden text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent lg:max-h-screen lg:text-black pt-2 tracking-wide ">
-            Shop all the best selling sneakers available at Solehaven, from Air Jordan, Yeezy, Nike and Off-white
+            Shop all the best selling products available at Solehaven, from Air Jordan, Yeezy, Nike and Off-white
         </h2>
       </div>
 
@@ -160,7 +160,7 @@ include("functions.php");
   echo '<div class="collection w-full">';
   echo '<ul class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-px gap-y-5 mb-10">';
 
-  $rowIds = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+  $rowIds = [1,2,22,4,5,6,7,8,9,10,11,12,13,14,15];
   $rowProducts = getProducts($connection, $rowIds);
   foreach ($rowProducts as $product) {  
       echo '<li class="">';

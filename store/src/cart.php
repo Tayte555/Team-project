@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
             unset($_SESSION['cart']);
             echo 'Checkout successful!';
         } else {
-            echo 'User not logged in.';
+            echo '<script>alert("Must be logged in to process purchase...");</script>';
         }
     } else {
         echo 'Your shopping cart is empty.';
@@ -262,11 +262,11 @@ mysqli_close($connection);
 </main>
 
 <script>
-    // Calculate initial subtotal when page loads
-    window.addEventListener('load', function() {
+        // Calculate initial subtotal when page loads
+        window.addEventListener('load', function() {
         calculateSubtotal();
     });
-    
+
     // Function to update price and subtotal
     function updatePrice(index) {
         var quantityInput = document.getElementById('quantity_' + index);
@@ -276,22 +276,30 @@ mysqli_close($connection);
         document.getElementById('price_' + index).innerText = '£' + newPrice.toFixed(2);
         calculateSubtotal();
     }
-    
+
     // Function to calculate subtotal
     function calculateSubtotal() {
         var subtotal = 0;
-        var priceElements = document.querySelectorAll('.price');
-        priceElements.forEach(function(element) {
-            var price = parseFloat(element.innerText.replace('£', ''));
-            subtotal += price;
-        });
+        <?php
+            // Loop through cart items to calculate subtotal
+            if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+                foreach ($_SESSION['cart'] as $index => $item) {
+        ?>
+        var price_<?php echo $index; ?> = parseFloat(<?php echo $item['price']; ?>);
+        var quantity_<?php echo $index; ?> = parseInt(document.getElementById('quantity_<?php echo $index; ?>').value);
+        subtotal += price_<?php echo $index; ?> * quantity_<?php echo $index; ?>;
+        <?php
+                }
+            }
+        ?>
+        subtotal += 4.99;
         document.getElementById('subtotal').innerText = '£' + subtotal.toFixed(2);
+    }
 
-        function checkout() {
+    function checkout() {
             document.getElementById("checkout-form").submit();
             alert("Payment processed successfully!");
         }
-    }
 </script>
 </body>
 </html>
