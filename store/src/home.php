@@ -117,6 +117,28 @@ display: none;
 z-index: 1;
 }
   
+input[type="search"] {
+    width: 100%;
+    height: 40px; /* Adjust height as needed */
+    padding: 0 15px; /* Padding inside the search bar */
+    font-size: 1rem; /* Adjust font-size as needed */
+    border: 2px solid transparent; /* Hide border by default */
+    background-color: transparent; /* Make background transparent by default */
+    color: white; /* Text color white by default */
+    border-radius: 20px; /* Rounded corners for the search bar */
+    transition: all 0.3s ease; /* Smooth transition for focus effect */
+}
+
+input[type="search"]::placeholder {
+    color: rgba(255, 255, 255, 0.6); /* Light white placeholder text */
+}
+
+input[type="search"]:focus {
+    background-color: white; /* Background white on focus */
+    color: black; /* Text color black on focus */
+    outline: none; /* Remove the default outline */
+    border-color: #4A90E2; /* Blue border on focus */
+}
 </style>
 
 
@@ -143,7 +165,7 @@ z-index: 1;
               <li><a class="hover:text-gray-300" href="best_sellers.php">Best Sellers</a></li>
               <!-- Sneakers Hover Menu -->
               <li class="relative group">
-                <a class="hover:text-gray-300" href="./sneakers.php">Sneakers
+                <a class="hover:text-gray-300" href="./sneakers.html">Sneakers
                   <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                     <path d="m9 18 6-6-6-6"/>
                   </svg>
@@ -193,6 +215,9 @@ z-index: 1;
             <!-- Header Icons -->
             <div class="hidden xl:flex items-center -space-x-1 pr-6 text-gray-100">
               <!-- search icon -->
+              <div class="flex-grow mx-4">
+        <input type="search" placeholder="Search items..." class="w-full h-10 px-4 bg-transparent text-white placeholder-gray-300 rounded transition-all duration-300 focus:outline-none focus:ring focus:border-blue-300 focus:bg-white focus:text-black" />
+    </div>
               <a class="hover:text-gray-300" href="#">
                 <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-search w-10">
                     <circle cx="11" cy="11" r="8"/>
@@ -642,7 +667,6 @@ z-index: 1;
     </div>
 
   </section>
-
     <!-- footer section -->
     <footer class="bg-zinc-950 px-24 mt-auto">
     
