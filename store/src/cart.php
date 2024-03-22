@@ -247,7 +247,7 @@ mysqli_close($connection);
                             <h3>Summary</h3>
                             <div class="summary-item"><span class="text">Subtotal</span><span class="text">   </span><span id="subtotal">£0.00</span></div>
                             <div class="summary-item"><span class="text">Discount</span><span class="price">£0.00</span></div>
-                            <div class="summary-item"><span class="text">Shipping</span><span class="price">£0.00</span></div>
+                            <div class="summary-item"><span class="text">Shipping</span><span class="price">£4.99</span></div>
                             
                             <form id="checkout-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"> 
                                 <input type ="hidden" name ="action" value="checkout">
