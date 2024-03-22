@@ -397,12 +397,81 @@
 
 
 
-
-</div>
 <br>
 
 <br><br><br>
 
+<div id="app">
+  <!-- Filter tab -->
+<!-- Filter modal -->
+<div id="filterModal" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden">
+  <div class="flex justify-center items-center h-full">
+      <div class="bg-white p-8 rounded-lg">
+          <h2 class="text-xl font-semibold mb-4">Filter Options</h2>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700" for="brandSelect">Brand</label>
+            <select id="brandSelect" class="mt-1 p-2 border rounded-md w-full">
+                <option value="">Select Brand</option>
+                <option value="nike">N/A</option>
+                <option value="adidas">N/A</option>
+              </select>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700" for="sizeSelect">Size</label>
+            <select id="sizeSelect" class="mt-1 p-2 border rounded-md w-full">
+                <option value="">Select Size</option>
+                <option value="us-7">N/A</option>
+                <option value="us-8">N/A</option>
+                <!-- Add more options as needed -->
+            </select>
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700" for="priceSelect">Price</label>
+              <select id="priceSelect" class="mt-1 p-2 border rounded-md w-full">
+                  <option value="">Select Price Range</option>
+                  <option value="0-50">N/A</option>
+                  <option value="51-100">N/A</option>
+              </select>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700" for="colorSelect">Color</label>
+            <select id="colorSelect" class="mt-1 p-2 border rounded-md w-full">
+                <option value="">Select Color</option>
+                <option value="red">N/A</option>
+                <option value="blue">N/A</option>
+            </div>
+            </select>
+          </div>
+          <button id="applyFilterBtn" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Apply Filter</button>
+          <button id="closeFilterBtn" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md ml-2 hover:bg-gray-400">Close</button>
+      </div>
+  </div>
+</div>
+
+
+    <!-- close button -->
+    <button @click="openFilter = !openFilter" class="absolute top-0 left-0 bottom-0 right-0">
+      <svg class="w-6 h-6 absolute top-2 right-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </header>
+</div>
+
+<!-- Include Vue.js -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      openFilter: false
+    }
+  });
+</script>
+
+
+</header>
 
 
     <!-- footer section -->
