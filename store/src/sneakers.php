@@ -195,7 +195,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo '<img src="' . $row['product_img'] . '" class="object-cover">';
     echo '</div>';
     echo '<div class="flex flex-col justify-between p-4 grow">';
-    echo '<h3 class="mb-2 text-sm font-medium tracking-wide">' . $row['product_name'] . '</h3>';
+    echo '<h3 class="mb-2 text-sm font-medium">' . $row['product_name'] . '</h3>';
     echo '<div class="flex justify-between items-center">';
     echo '<div>';
     echo '<span class="mr-1 text-xs">From</span>';
