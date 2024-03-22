@@ -19,28 +19,167 @@ include("functions.php");
     <title>Best Sellers</title>
 </head>
 
+<style>
+  .image-container {
+      white-space: nowrap; 
+      overflow-x: auto; 
+      z-index: 1;
+  }
 
-<body class="overflow-x-hidden">
+  .image-container img {
+      margin-right: 0px;
+      margin-left: 0px;
+      width: 465px;
+      height: 107px;
+      display: inline-block; 
+      z-index: 1;
+  }
 
-  <!-- navbar -->
-    <header class="items-center bg-zinc-950 md:px">
-        <div class="flex flex-wrap place-items-center">
+  @media (max-width: 600px) {
+      .image-container {
+          white-space: initial; 
+          overflow-x: initial; 
+          z-index: 1;
+      }
+
+      .image-container img {
+          flex-basis: auto; 
+          margin-right: 0;
+          margin-left: 0;
+          z-index: 1;
+      }
+    }
+
+
+  /*--Section for the "best sellers" section--*/
+  .image-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      margin-top: 20px;
+      margin-left: 17px;
+      z-index: 1;
+  }
+
+  .image-section .item-container {
+      margin: 5px;
+      max-width: calc(20% - 10px);
+      height: auto;
+      float: left;
+      z-index: 1;
+  }
+
+  @media (max-width: 600px) {
+      .image-section img {
+          flex-basis: calc(50% - 10px); 
+          width: 100%;
+          z-index: 1;
+      }
+  }
+
+
+  /*--text container--*/
+  .text-container {
+      position: relative;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+      padding: 5px;
+      box-sizing: border-box;
+      z-index: 1;
+  }
+
+
+  .shoe-name {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      z-index: 5;
+      z-index: 1;
+  }
+
+  .price {
+      font-size: 12px; 
+      z-index: 1;
+  }
+
+  img:hover{
+    z-index: 1;
+  }
+
+  .group:hover .absolute {
+display: block;
+z-index: 1;
+}
+
+/* Additional styles for the sub-menus */
+.absolute {
+display: none;
+z-index: 1;
+}
+  
+input[type="search"] {
+    width: 100%;
+    height: 40px; 
+    padding: 0 15px; /* Padding inside the search bar */
+    font-size: 1rem; /* Adjust font-size as needed */
+    border: 2px solid transparent; /* Hide border by default */
+    background-color: transparent; /* Make background transparent by default */
+    color: white; /* Text color white by default */
+    border-radius: 20px; /* Rounded corners for the search bar */
+    transition: all 0.3s ease; /* Smooth transition for focus effect */
+}
+
+input[type="search"]::placeholder {
+    color: rgba(255, 255, 255, 0.6); /* Light white placeholder text */
+}
+
+input[type="search"]:focus {
+    background-color: white; /* Background white on focus */
+    color: black; /* Text color black on focus */
+    outline: none; /* Remove the default outline */
+    border-color: #4A90E2; /* Blue border on focus */
+}
+
+
+#cart-sidebar {
+    transition: transform 0.3s ease;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+}
+
+.cart-item img {
+    border-radius: 5px;
+}
+
+.cart-item div {
+    flex-grow: 1;
+}
+</style>
+
+
+
+<body class="overflow-x-hidden flex flex-col min-h-screen" 
+  x-data="{ openFilter : false}">
+  <header class="items-center bg-zinc-950 md:px">
+    <div class="flex flex-wrap place-items-center">
       <section class="relative mx-auto">
-          <!-- navbar -->
+        <!-- navbar -->
         <nav class="flex justify-between w-screen">
-          
-            <div class="px-2 flex w-full py-4 items-center">
-            
-              <a class="" href="home.php">
-              <!-- <img class="h-9" src="logo.png" alt="logo"> -->
-              <img class="h-6 
-               " src="./images/logowhite.png" alt="logo"/>         
-              </a>
+          <div class="px-2 flex w-full py-2 items-center">
+            <a class="" href="home.php">
+              <img class="h-6 mr-60" src="./images/logowhite.png" alt="logo"/>
+            </a>
 
             <!-- Nav Links -->
             <ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
-              <li><a class="hover:text-gray-300" href="./newarrivals.php">New Arrivals</a></li>
+              <li><a class="hover:text-gray-300" href="./newarrivals.html">New Arrivals</a></li>
               <li><a class="hover:text-gray-300" href="./best_sellers.php">Best Sellers</a></li>
+              
               <!-- Sneakers Hover Menu -->
               <li class="relative group">
                 <a class="hover:text-gray-300" href="./sneakers.php">Sneakers
@@ -49,12 +188,12 @@ include("functions.php");
                   </svg>
                 </a>
                 <ul class="absolute hidden space-y-2 bg-white text-black py-2 rounded-md">
-                  <li><a href="./sneakers_men.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Men</a></li>
-                  <li><a href="./sneakers_women.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Women</a></li>
+                  <li><a href="./sneakers_men.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Men</a></li>
+                  <li><a href="./sneakers_women.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Women</a></li>
                   <li><a href="./sneakers_clearance.html">&nbsp;&nbsp;&nbsp;Clearance&nbsp;&nbsp;&nbsp;</a></li>
                   <li><a href="./sneakers_kids.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kids</a></li>
                 </ul>
-              </li> 
+              </li>
               
               <!-- Apparel Hover Menu -->
               <li class="relative group">
@@ -84,15 +223,25 @@ include("functions.php");
                   <li><a href="./accessories_soles.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Soles&nbsp;&nbsp;&nbsp;</a></li>
                 </ul>
                 </li>
-              <li><a class="hover:text-gray-300 pr-40" href="#">Discover
-                <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
-                  <path d="m9 18 6-6-6-6"/>
-                </svg>
-              </a></li>
+              
+              <!-- Discover Hover Menu -->
+              <li class="relative group">
+                <a class="hover:text-gray-300 pr-40" href="#">Discover
+                  <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+                    <path d="m9 18 6-6-6-6"/>
+                  </svg>
+                </a>
+                <!-- Add sub-menu items for Discover -->
+              </li>
             </ul>
             <!-- Header Icons -->
             <div class="hidden xl:flex items-center -space-x-1 pr-6 text-gray-100">
-              <!-- search icon -->
+              
+            
+            <!-- search icon -->
+              <div class="flex-grow mx-4">
+        <input type="search" placeholder="Search items..." class="w-full h-10 px-4 bg-transparent text-white placeholder-gray-300 rounded transition-all duration-300 focus:border-blue-300 focus:bg-white focus:text-black" />
+    </div>
               <a class="hover:text-gray-300" href="#">
                 <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-search w-10">
                     <circle cx="11" cy="11" r="8"/>
@@ -105,22 +254,63 @@ include("functions.php");
                 </svg>
                 
               </a>
-              <!-- Cart      -->
+              <!-- Cart 
               <a class="flex items-center hover:text-gray-300" href="cart.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart w-10"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                 </svg>
-                <!--<span class="flex absolute -mt-5 ml-4">
+                <span class="flex absolute -mt-5 ml-4">
                     <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
                       <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500">
                       </span>
-                    </span> -->           
+                    </span> -->        
+                    <div id="cart-icon" class="cursor-pointer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart w-10">
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+    </svg> 
+</div> 
+
+<!-- Sidebar Container -->
+<div id="cart-sidebar" class="fixed right-0 top-0 transform translate-x-full h-full bg-white p-5 rounded shadow-lg min-w-[300px] z-50 transition-transform duration-300 flex flex-col text-black">
+    <!-- Sidebar Header -->
+    <h3 class="text-lg font-semibold mb-3">Your Cart</h3>
+
+    <!-- Cart Items -->
+    <div class="cart-item mb-4">
+        <img src="images\blackcatsneaker 1.png" alt="Shoe 1" class="w-20 h-20 object-cover mr-4">
+        <div>
+            <h4 class="text-sm font-semibold">Sneaker Model 1</h4>
+            <p class="text-xs">Price: $100.00</p>
+            <p class="text-xs">Quantity: 1</p>
+        </div>
+    </div>
+    <div class="cart-item mb-4">
+        <img src="images\blackcatsneaker 1.png" alt="Shoe 2" class="w-20 h-20 object-cover mr-4">
+        <div>
+            <h4 class="text-sm font-semibold">Sneaker Model 2</h4>
+            <p class="text-xs">Price: $150.00</p>
+            <p class="text-xs">Quantity: 1</p>
+        </div>
+    </div>
+
+    <!-- Cart Total -->
+    <div class="mt-auto pt-4 border-t">
+        <h4 class="text-lg font-semibold">Total: $250.00</h4>
+    </div>
+
+    <!-- Checkout Button -->
+    <a href="cart.php" class="block text-center bg-blue-500 text-white p-2 rounded mt-3">Checkout</a>
+</div>   
               </a>             
             </div>
           </div>
+          
         </nav>
       </section>
     </div>
     </header>
+
 
     <div>
     <div class="md:ml-[8.3333%] md:mr-[8.3333%] px-4 py-8 lg:py-12">
@@ -132,8 +322,11 @@ include("functions.php");
       </div>
 
     </div>
+
+
+ 
     <div class="flex justify-end items-center px-4 md:px-4 border-t border-black">
-      <button type="button" class="flex items-center mr-auto py-3" @click="openFilter = !openFilter">
+      <div id="filter-icon" class="flex items-center mr-auto py-3">
         Filter
         <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="ml-2 w-6 color-black icon icon-filter" fill="none" viewBox="0 11 20 20">
           <line x1="16.5" y1="17.5" x2="3.5" y2="17.5" stroke="currentColor" stroke-linecap="round"></line>
@@ -141,7 +334,138 @@ include("functions.php");
           <circle cx="13" cy="24.5" r="2" fill="white" stroke="currentColor"></circle>
           <circle cx="7" cy="17.5" r="2" fill="white" stroke="currentColor"></circle>
         </svg>
-      </button>
+
+
+        
+</div>
+
+<div id="filter-sidebar" class="fixed right-0 top-0 transform translate-x-full h-full bg-white p-5 rounded shadow-lg min-w-[300px] z-50 transition-transform duration-300 flex flex-col text-black">
+    <!-- Sidebar Header -->
+    <header class="relative w-full p-2 border-b border-black">
+      <h3 class="text-medium font-bold uppercase tracking-wide"> Filters </h3>
+    </header>
+    <main class="flex-1">
+  <div class="filter-group Brand" onclick="toggleDropdown('dropdownBrand')">
+    <button type="button" class="flex items-center justify-between w-full p-4 text-base border-b border-black cursor-pointer">
+      <div>
+        <span class="font-medium">Brand</span>
+        <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+          <path d="m9 18 6-6-6-6"/>
+        </svg>
+      </div>
+    </button>
+    <div id="dropdownBrand" class="rounded border-gray-500 bg-white p-2 py-2 hidden">
+      <ul class="space-y-2">
+        <li class="py-2">
+          <label class="flex items-center cursor-pointer">
+            <input type="checkbox" class="mr-2 accent-black">
+            <div class="flex justify-between w-full text-sm hover:opacity-75">Nike</div>
+          </label>
+        </li>
+        <li class="py-2">
+          <label class="flex items-center cursor-pointer">
+            <input type="checkbox" class="mr-2 accent-black">
+            <div class="flex justify-between w-full text-sm hover:opacity-75">Yeezy</div>
+          </label>
+        </li>
+        <li class="py-2">
+          <label class="flex items-center cursor-pointer">
+            <input type="checkbox" class="mr-2 accent-black">
+            <div class="flex justify-between w-full text-sm hover:opacity-75">Adidas</div>
+          </label>
+        </li>
+        <li class="py-2">
+          <label class="flex items-center cursor-pointer">
+            <input type="checkbox" class="mr-2 accent-black">
+            <div class="flex justify-between w-full text-sm hover:opacity-75">New Balance</div>
+          </label>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="filter-group Colour" onclick="toggleDropdown('dropdownColour')">
+    <button type="button" class="flex items-center justify-between w-full p-4 text-base border-b border-black cursor-pointer">
+      <div>
+        <span class="font-medium">Colour</span>
+        <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
+          <path d="m9 18 6-6-6-6"/>
+        </svg>
+      </div>
+    </button>
+    <div id="dropdownColour" class="rounded border-gray-500 bg-white p-2 py-2 hidden">
+      <ul class="space-y-2">
+        <li class="py-2">
+          <label class="flex items-center cursor-pointer">
+            <input type="checkbox" class="mr-2 accent-black">
+            <div class="flex justify-between w-full text-sm hover:opacity-75">Black</div>
+          </label>
+        </li>
+        <li class="py-2">
+          <label class="flex items-center cursor-pointer">
+            <input type="checkbox" class="mr-2 accent-black">
+            <div class="flex justify-between w-full text-sm hover:opacity-75">Blue</div>
+          </label>
+        </li>
+        <li class="py-2">
+          <label class="flex items-center cursor-pointer">
+            <input type="checkbox" class="mr-2 accent-black">
+            <div class="flex justify-between w-full text-sm hover:opacity-75">Brown</div>
+          </label>
+        </li>
+        <li class="py-2">
+          <label class="flex items-center cursor-pointer">
+            <input type="checkbox" class="mr-2 accent-black">
+            <div class="flex justify-between w-full text-sm hover:opacity-75">Green</div>
+          </label>
+        </li>
+        <li class="py-2">
+          <label class="flex items-center cursor-pointer">
+            <input type="checkbox" class="mr-2 accent-black">
+            <div class="flex justify-between w-full text-sm hover:opacity-75">Purple</div>
+          </label>
+        </li>
+        <li class="py-2">
+          <label class="flex items-center cursor-pointer">
+            <input type="checkbox" class="mr-2 accent-black">
+            <div class="flex justify-between w-full text-sm hover:opacity-75">Red</div>
+          </label>
+        </li>
+        <li class="py-2">
+          <label class="flex items-center cursor-pointer">
+            <input type="checkbox" class="mr-2 accent-black">
+            <div class="flex justify-between w-full text-sm hover:opacity-75">White</div>
+          </label>
+        </li>
+        <li class="py-2">
+          <label class="flex items-center cursor-pointer">
+            <input type="checkbox" class="mr-2 accent-black">
+            <div class="flex justify-between w-full text-sm hover:opacity-75">Yellow</div>
+          </label>
+        </li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+<script>
+  function toggleDropdown(dropdownId) {
+    let dropdown = document.getElementById(dropdownId);
+    if (dropdown) {
+      dropdown.classList.toggle('hidden');
+    }
+  }
+</script>
+
+
+    
+
+    <!-- Clear all Button -->
+    <a href="#" class="block rounded flex items-center justify-center p-2 text-base text-white bg-black cursor-pointer hover:opacity-75">Clear all</a>
+</div>
+
+
+
       <select id="sort-by" x-data x-model="sort" @change="sortCollection()" class="font-medium text-sm border-none text-right focus:ring-0">
         <option value="manual" selected="selected"> Featured </option>
         <option value="best-selling"> Best selling </option>
@@ -167,7 +491,7 @@ include("functions.php");
       echo '<div class="overflow-hidden">';
       echo '<a href="product.php?id=' . $product['product_id'] . '"  class="block h-full group">';
       echo '<div class="bg-neutral-100 pt-36 pb-8 flex items-center justify-center">';
-      echo '<img src="' . $product['product_img'] . '" class="object-cover">';
+      echo '<img src="' . $product['product_img'] . '" class="object-cover hover:opacity-75">';
       echo '</div>';
       echo '<div class="flex flex-col justify-between p-4 grow">';
       echo '<h3 class="mb-2 text-sm font-medium">' . $product['product_name'] . '</h3>';
@@ -294,3 +618,54 @@ include("functions.php");
       </div>
   
       </footer>
+
+      <script>
+    document.getElementById('cart-icon').addEventListener('click', function() {
+        var sidebar = document.getElementById('cart-sidebar');
+        if (sidebar.classList.contains('translate-x-full')) {
+            sidebar.classList.remove('translate-x-full');
+            sidebar.classList.add('translate-x-0');
+        } else {
+            sidebar.classList.remove('translate-x-0');
+            sidebar.classList.add('translate-x-full');
+     }
+      });
+
+// Close the sidebar when clicking outside of it
+document.addEventListener('click', function(event) {
+    var sidebar = document.getElementById('cart-sidebar');
+    var clickInsideCartIcon = document.getElementById('cart-icon').contains(event.target);
+    var clickInsideSidebar = sidebar.contains(event.target);
+
+    if (!clickInsideCartIcon && !clickInsideSidebar && !sidebar.classList.contains('translate-x-full')) {
+        sidebar.classList.remove('translate-x-0');
+        sidebar.classList.add('translate-x-full');
+    }
+});
+
+
+
+document.getElementById('filter-icon').addEventListener('click', function() {
+        var sidebar = document.getElementById('filter-sidebar');
+        if (sidebar.classList.contains('translate-x-full')) {
+            sidebar.classList.remove('translate-x-full');
+            sidebar.classList.add('translate-x-0');
+        } else {
+            sidebar.classList.remove('translate-x-0');
+            sidebar.classList.add('translate-x-full');
+     }
+      });
+
+// Close the sidebar when clicking outside of it
+document.addEventListener('click', function(event) {
+    var sidebar = document.getElementById('filter-sidebar');
+    var clickInsideFilterIcon = document.getElementById('filter-icon').contains(event.target);
+    var clickInsideSidebar = sidebar.contains(event.target);
+
+    if (!clickInsideFilterIcon && !clickInsideSidebar && !sidebar.classList.contains('translate-x-full')) {
+        sidebar.classList.remove('translate-x-0');
+        sidebar.classList.add('translate-x-full');
+    }
+});
+
+</script>  

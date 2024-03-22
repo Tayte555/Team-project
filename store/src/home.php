@@ -232,9 +232,10 @@ input[type="search"]:focus {
             </ul>
             <!-- Header Icons -->
             <div class="hidden xl:flex items-center -space-x-1 pr-6 text-gray-100">
-              <!-- search icon -->
+              
+            <!-- search icon -->
               <div class="flex-grow mx-4">
-        <input type="search" placeholder="Search items..." class="w-full h-10 px-4 bg-transparent text-white placeholder-gray-300 rounded transition-all duration-300 focus:outline-none focus:ring focus:border-blue-300 focus:bg-white focus:text-black" />
+        <input type="search" placeholder="Search items..." class="w-full h-10 px-4 bg-transparent text-white placeholder-gray-300 rounded transition-all duration-300 focus:border-blue-300 focus:bg-white focus:text-black" />
     </div>
               <a class="hover:text-gray-300" href="#">
                 <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-search w-10">
@@ -294,11 +295,12 @@ input[type="search"]:focus {
     </div>
 
     <!-- Checkout Button -->
-    <a href="checkout.php" class="block text-center bg-blue-500 text-white p-2 rounded mt-3">Checkout</a>
+    <a href="cart.php" class="block text-center bg-blue-500 text-white p-2 rounded mt-3">Checkout</a>
 </div>   
               </a>             
             </div>
           </div>
+
         </nav>
       </section>
     </div>
