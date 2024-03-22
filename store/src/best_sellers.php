@@ -155,46 +155,39 @@ include("functions.php");
     </div>
   </div>
 
-<?php 
+<?php
+  echo '<div class="flex border-t border-black">';
+  echo '<div class="collection w-full">';
+  echo '<ul class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-px gap-y-5 mb-10">';
 
-echo '<div class="flex border-t border-black">';
-echo '<div class="collection w-full">';
-echo '<ul class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-px gap-y-5 mb-10">';
+  $rowIds = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+  $rowProducts = getProducts($connection, $rowIds);
+  foreach ($rowProducts as $product) {  
+      echo '<li class="">';
+      echo '<div class="overflow-hidden">';
+      echo '<a href="product.php?id=' . $product['product_id'] . '"  class="block h-full group">';
+      echo '<div class="bg-neutral-100 pt-36 pb-8 flex items-center justify-center">';
+      echo '<img src="' . $product['product_img'] . '" class="object-cover">';
+      echo '</div>';
+      echo '<div class="flex flex-col justify-between p-4 grow">';
+      echo '<h3 class="mb-2 text-sm font-medium">' . $product['product_name'] . '</h3>';
+      echo '<div class="flex justify-between items-center">';
+      echo '<div>';
+      echo '<span class="mr-1 text-xs">From</span>';
+      echo '<span class="price text-sm">£' . $product['price'] . '</span>';
+      echo '</div>';
+      echo '</div>';
+      echo '</div>';
+      echo '</a>';
+      echo '</div>';
+      echo '</li>';
+  }
 
-$query = "SELECT * FROM products";
-$result = mysqli_query($connection, $query);
+  echo '</ul>';
+  echo '</div>';
+  echo '</div>';
 
-while ($row = mysqli_fetch_assoc($result)) {
-    echo '<li class="">';
-    echo '<div class="overflow-hidden">';
-    echo '<a href="#" class="block h-full group">';
-    echo '<div class="bg-neutral-100 pt-36 pb-8 flex items-center justify-center">';
-    echo '<img src="' . $row['product_img'] . '" class="object-cover">';
-    echo '</div>';
-    echo '<div class="flex flex-col justify-between p-4 grow">';
-    echo '<h3 class="mb-2 text-sm font-medium">' . $row['product_name'] . '</h3>';
-    echo '<div class="flex justify-between items-center">';
-    echo '<div>';
-    echo '<span class="mr-1 text-xs">From</span>';
-    echo '<span class="price text-sm">£' . $row['price'] . '</span>';
-    echo '</div>';
-    echo '<form action="cart.php" method="post" class="flex items-center">';
-    echo '<input type="hidden" name="product_id" value="' . $row['product_id'] . '">';
-    echo '<input type="number" name="quantity" value="1" min="1" class="text-sm p-1 mr-2">';
-    echo '<button type="submit" class="bg-slate-800 hover:bg-slate-900 text-white font-light tracking-wide py-1 px-2 rounded text-xs">Add to Cart</button>';
-    echo '</form>';
-    echo '</div>';
-    echo '</div>';
-    echo '</a>';
-    echo '</div>';
-    echo '</li>';
-}
-
-echo '</ul>';
-echo '</div>';
-echo '</div>';
-
-mysqli_close($connection);
+  mysqli_close($connection);
 ?>
 
 <br><br>
