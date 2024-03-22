@@ -477,6 +477,7 @@ img{
 
 
 
+   
     <!-- footer section -->
     <footer class="bg-zinc-950 px-24 mt-auto">
     
@@ -496,16 +497,16 @@ img{
         <h3 class="mb-2 text-base text-white text-sm font-bold pb-5 pt-6">CUSTOMER SERVICE 🛎️</h3>
         <ul class="text-white space-y-3">
           <li class="mb-1">
-            <a href="/privacy-policy" class="hover:opacity-50">Privacy policy</a>
+            <a href="privacy.html" class="hover:opacity-50">Privacy policy</a>
           </li>
           <li class="mb-1">
-            <a href="/refund-policy" class="hover:opacity-50">Refund policy</a>
+            <a href="refundpolicy.html" class="hover:opacity-50">Refund policy</a>
           </li>
           <li class="mb-1">
-            <a href="/tos" class="hover:opacity-50">Terms of service</a>
+            <a href="terms_of_use.html" class="hover:opacity-50">Terms of service</a>
           </li>
           <li class="mb-1 pb-5">
-            <a href="/shipping" class="hover:opacity-50">Shipping policy</a>
+            <a href="shipping_response.html" class="hover:opacity-50">Shipping policy</a>
           </li>
         </ul>
     </div>
@@ -514,20 +515,23 @@ img{
       <h3 class="mb-2 text-base text-white text-sm font-bold pb-5 pt-6">INFORMATION 💼</h3>
       <ul class="text-white space-y-3">
         <li class="mb-1">
-          <a href="/privacy-policy" class="hover:opacity-50">About us</a>
+          <a href="aboutus.html" class="hover:opacity-50">About us</a>
         </li>
         <li class="mb-1">
-          <a href="/refund-policy" class="hover:opacity-50">Meet the team</a>
+          <a href="FAQ.html" class="hover:opacity-50">FAQ</a>
         </li>
         <li class="mb-1">
           <a href="contactus.php" class="hover:opacity-50">Contact us</a>
         </li>
         <li class="mb-1 pb-5">
-          <a href="/shipping" class="hover:opacity-50">Careers</a>
+          <a href="shipping_response.html" class="hover:opacity-50">Careers</a>
         </li>
       </ul>
-    </div>
-        
+  </div>
+  
+      
+  
+      
       <div class="bg-zinc-950 p-5 md:col-span-2 lg:col-auto grow">
         <h3 class="mb-2 text-base text-white text-sm font-bold pb-5 pt-6">JOIN OUR NEWSLETTER 🤫</h3>
         <div>
@@ -575,7 +579,8 @@ img{
   
       </div>
   
-    </footer>
+      </footer>
+
 
 
 
