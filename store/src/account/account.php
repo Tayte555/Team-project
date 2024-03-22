@@ -1,3 +1,4 @@
+
 <?php 
 session_start();
 include("../connections.php");
@@ -98,6 +99,11 @@ if (!isset($_SESSION['user_id'])){
     <div class="md:grid md:grid-cols-4 ">
       <div class="p-4 px-8 md:border-r md:border-black h-screen">
         <ul>
+          <li class="mb-2 py-2">
+            <a href="admin.html" class="opacity-50 py-2 md:text-base md:text-base lg:text-2xl">
+              <span>Admin Dashboard</span>
+            </a>
+          </li>
           <li class="mb-2 py-2">
             <a href="account.php" class="opacity-50 py-2 md:text-base md:text-base lg:text-2xl">
               <span>Order History</span>
