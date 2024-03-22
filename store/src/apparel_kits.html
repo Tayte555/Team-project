@@ -211,10 +211,36 @@
   <div class="px-1 py-2 md:py-2 sm:px-2 bg-zinc-950">
     <ul class="text-white">
         <li class="flex items-center mb-1 text-xl font-thin md:mb-1 md:text-2xl lg:text-4xl">
-            <a href="/collections/air-jordan-1" class="text-white hover:text-neutral-500">&nbsp;&nbsp;</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kits</a></a>
+            <a href="/collections/air-jordan-1" class="text-white hover:text-neutral-500">&nbsp;&nbsp;</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apparel</a></a>
         </li> 
     </ul>
 </div>
+
+<div style="border-top: 1px solid black;">
+  <div class="flex justify-end items-center px-4 md:px-4 border-t border-black">
+    <button id="openFilterBtn" type="button" class="flex items-center mr-auto py-3">
+      Filter
+      <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="ml-2 w-6 color-black icon icon-filter" fill="none" viewBox="0 11 20 20">
+        <line x1="16.5" y1="17.5" x2="3.5" y2="17.5" stroke="currentColor" stroke-linecap="round"></line>
+        <line x1="16.5" y1="24.5" x2="3.5" y2="24.5" stroke="currentColor" stroke-linecap="round"></line>
+        <circle cx="13" cy="24.5" r="2" fill="white" stroke="currentColor"></circle>
+        <circle cx="7" cy="17.5" r="2" fill="white" stroke="currentColor"></circle>
+      </svg>
+    </button>
+    <select id="sort-by" x-data x-model="sort" @change="sortCollection()" class="font-medium text-sm border-none text-right focus:ring-0">
+      <option value="manual" selected="selected"> Featured </option>
+      <option value="best-selling"> Best selling </option>
+      <option value="title-ascending"> Alphabetically, A-Z </option>
+      <option value="title-descending"> Alphabetically, Z-A </option>
+      <option value="price-ascending"> Price, low to high </option>
+      <option value="price-descending"> Price, high to low </option>
+      <option value="created-ascending"> Date, old to new </option>
+      <option value="created-descending"> Date, new to old </option>
+    </select>
+  </div>
+  <div style="border-top: 1px solid black;"></div>
+</div>
+
 
 
 
@@ -280,6 +306,78 @@
 
 <br><br><br>
 
+
+<div id="app">
+  <!-- Filter tab -->
+<!-- Filter modal -->
+<div id="filterModal" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden">
+  <div class="flex justify-center items-center h-full">
+      <div class="bg-white p-8 rounded-lg">
+          <h2 class="text-xl font-semibold mb-4">Filter Options</h2>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700" for="brandSelect">Brand</label>
+            <select id="brandSelect" class="mt-1 p-2 border rounded-md w-full">
+                <option value="">Select Brand</option>
+                <option value="nike">N/A</option>
+                <option value="adidas">N/A</option>
+              </select>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700" for="sizeSelect">Size</label>
+            <select id="sizeSelect" class="mt-1 p-2 border rounded-md w-full">
+                <option value="">Select Size</option>
+                <option value="us-7">N/A</option>
+                <option value="us-8">N/A</option>
+                <!-- Add more options as needed -->
+            </select>
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700" for="priceSelect">Price</label>
+              <select id="priceSelect" class="mt-1 p-2 border rounded-md w-full">
+                  <option value="">Select Price Range</option>
+                  <option value="0-50">N/A</option>
+                  <option value="51-100">N/A</option>
+              </select>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700" for="colorSelect">Color</label>
+            <select id="colorSelect" class="mt-1 p-2 border rounded-md w-full">
+                <option value="">Select Color</option>
+                <option value="red">N/A</option>
+                <option value="blue">N/A</option>
+            </div>
+            </select>
+          </div>
+          <button id="applyFilterBtn" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Apply Filter</button>
+          <button id="closeFilterBtn" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md ml-2 hover:bg-gray-400">Close</button>
+      </div>
+  </div>
+</div>
+
+
+    <!-- close button -->
+    <button @click="openFilter = !openFilter" class="absolute top-0 left-0 bottom-0 right-0">
+      <svg class="w-6 h-6 absolute top-2 right-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </header>
+</div>
+
+<!-- Include Vue.js -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      openFilter: false
+    }
+  });
+</script>
+
+
+</header>
 
 
     <!-- footer section -->
@@ -385,6 +483,22 @@
   
       </footer>
 
+            <!-- JavaScript for filter modal -->
+            <script>
+              document.addEventListener("DOMContentLoaded", function () {
+                  const filterBtn = document.getElementById("openFilterBtn");
+                  const filterModal = document.getElementById("filterModal");
+                  const closeFilterBtn = document.getElementById("closeFilterBtn");
+            
+                  filterBtn.addEventListener("click", function () {
+                      filterModal.classList.remove("hidden");
+                  });
+            
+                  closeFilterBtn.addEventListener("click", function () {
+                      filterModal.classList.add("hidden");
+                  });
+              });
+            </script>
 
 
 </body>
