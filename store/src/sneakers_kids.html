@@ -630,6 +630,23 @@
       </footer>
 
 
+      <!-- JavaScript for filter modal -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const filterBtn = document.getElementById("openFilterBtn");
+      const filterModal = document.getElementById("filterModal");
+      const closeFilterBtn = document.getElementById("closeFilterBtn");
+
+      filterBtn.addEventListener("click", function () {
+          filterModal.classList.remove("hidden");
+      });
+
+      closeFilterBtn.addEventListener("click", function () {
+          filterModal.classList.add("hidden");
+      });
+  });
+</script>
+
 
 
 </body>
