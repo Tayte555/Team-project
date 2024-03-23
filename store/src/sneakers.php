@@ -185,7 +185,7 @@ input[type="search"]:focus {
         <!-- navbar -->
         <nav class="flex justify-between w-screen">
           <div class="px-2 flex w-full py-2 items-center">
-            <a class="" href="home.php">
+            <a class="" href="index.php">
               <img class="h-6 mr-60" src="./images/logowhite.png" alt="logo"/>
             </a>
 

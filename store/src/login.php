@@ -91,7 +91,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
           
             <div class="px-2 flex w-full py-4 items-center">
             
-              <a class="" href="home.php">
+              <a class="" href="index.php">
               <!-- <img class="h-9" src="logo.png" alt="logo"> -->
               <img class="h-6 
                " src="./images/logowhite.png" alt="logo"/>         
