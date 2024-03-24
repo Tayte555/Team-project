@@ -17,94 +17,7 @@ include("functions.php");
                   
 </head>
 
-<style>
-        .image-container {
-            white-space: nowrap; 
-            overflow-x: auto; 
-        }
 
-        .image-container img {
-            margin-right: 0px;
-            margin-left: 0px;
-            width: 465px;
-            height: 107px;
-            display: inline-block; 
-        }
-
-        @media (max-width: 600px) {
-            .image-container {
-                white-space: initial; 
-                overflow-x: initial; 
-            }
-
-            .image-container img {
-                flex-basis: auto; 
-                margin-right: 0;
-                margin-left: 0;
-            }
-          }
-
-
-        /*--Section for the "best sellers" section--*/
-        .image-section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            margin-top: 20px;
-        }
-
-        .image-section .item-container {
-            margin: 5px;
-            max-width: calc(20% - 10px);
-            height: auto;
-            float: left;
-        }
-
-        @media (max-width: 600px) {
-            .image-section img {
-                flex-basis: calc(50% - 10px); 
-                width: 100%;
-            }
-        }
-
-
-        /*--text container--*/
-        .text-container {
-            position: relative;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-            padding: 5px;
-            box-sizing: border-box;
-        }
-
-
-        .shoe-name {
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 5px;
-            z-index: 5;
-        }
-
-        .price {
-            font-size: 12px; 
-        }
-
-        img:hover{
-          transform: scale(1.1);
-        }
-
-        .group:hover .absolute {
-    display: block;
-  }
-
-  /* Additional styles for the sub-menus */
-  .absolute {
-    display: none;
-  }
-        
-    </style>
 
 
 
@@ -212,139 +125,120 @@ include("functions.php");
   </section>
 
 
-  <!--This page was created by Mohammed Zeinelabdin-->
-  <div class="px-1 py-2 md:py-20 sm:px-20 bg-zinc-950">
-    <ul class="text-white">
-        <li class="flex items-center mb-1 text-xl font-thin md:mb-2 md:text-2xl lg:text-4xl">
-            <a href="/collections/air-jordan-1" class="text-white hover:text-neutral-500">&nbsp;&nbsp;</b>New Arrivals</a></a>
-            <div class="ml-2 text-sm md:text-base lg:text-lg font-thin">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The latest new arrivals at Sole Haven. Shop the newest Jordan, Yeezy, Essentials and more.
-            </div>
-        </li> 
-    </ul>
+ 
 </div>
-  <br>
-  <hr>
-  <br>
-  <h1><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FEATURED RECOMMENDATIONS</b></h1>
-  <br>
-  <hr>
-<br>
-
-  <div class="image-container">
-    &nbsp;&nbsp; <img src="images/newarrivals/listing_1.png">
-    <img src="images/newarrivals/listing_2.png">
-    <img src="images/newarrivals/listing_3.png">
-    <img src="images/newarrivals/listing_8.png">
-</div>
-    
-<br>
-<br>
-
-  <div class="image-container">
-    &nbsp;&nbsp;<img src="images/newarrivals/listing_4.png"> 
-    <img src="images/newarrivals/listing_5.png">
-    <img src="images/newarrivals/listing_6.png">
-    <img src="images/newarrivals/listing_7.png">
-    <br>
-  </div>
-  <br>
-  <lb></lb>
-<hr>
-<br>
-    <h1><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BROWSE OUR COLLECTION</b></h1> 
-    <br>
-    <hr>
-    <div class="image-section">
-      <div class="item-container">
-        <img src="images/newarrivals/bestsellers_1.png">
-        <div class="text-container">
-          <div class="shoe-name">Nike Air Max 1 Red Stardust</div>
-          <div class="price">from £140</div>
-        </div>
+<div>
+    <div class="md:ml-[8.3333%] md:mr-[8.3333%] px-4 py-8 lg:py-12">
+      <div class="gap-4 lg:grid lg:grid-cols-2">
+        <h1 class="text-3xl font-bold tracking-wide">New Arrivals</h1>
+        <h2 class="max-h-[3.75rem] max-h-overflow-hidden text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent lg:max-h-screen lg:text-black pt-2 tracking-wide ">
+            Shop all the newest arrivals at Solehaven store
+        </h2>
       </div>
-  
-        <div class="item-container">
-          <img src="images/newarrivals/bestsellers_2.png">
-          <div class="text-container">
-            <div class="shoe-name">Nike Air Max 1 87 Leopard</div>
-            <div class="price">from £145</div>
-          </div>
-        </div>
 
-        <div class="item-container">
-          <img src="images/newarrivals/bestsellers_3.png">
-          <div class="text-container">
-            <div class="shoe-name">Nike Dunk Low Bacon</div>
-            <div class="price">from £120</div>
-          </div>
-        </div>
-
-        <div class="item-container">
-          <img src="images/newarrivals/bestsellers_4.png">
-          <div class="text-container">
-            <div class="shoe-name">Air Jordan 6 Gore-Tex Brown Kelp</div>
-            <div class="price">from £200</div>
-          </div>
-        </div>
-
-        <div class="item-container">
-          <img src="images/newarrivals/bestsellers_5.png">
-          <div class="text-container">
-            <div class="shoe-name">Nike Dunk Low - Men Shoes Black 14</div>
-            <div class="price">from £100</div>
-          </div>
-        </div>
-
-  </div>
-
-</div>
-<br>
-
-<div class="image-section">
-  <div class="item-container">
-    <img src="images/newarrivals/bestsellers_6.png">
-    <div class="text-container">
-      <div class="shoe-name">Air Jordan 1 Mid Women's Shoes</div>
-      <div class="price">from £130</div>
+    </div>
+    <div class="flex justify-end items-center px-4 md:px-4 border-t border-black">
+      <button type="button" class="flex items-center mr-auto py-3" @click="openFilter = !openFilter">
+        Filter
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="ml-2 w-6 color-black icon icon-filter" fill="none" viewBox="0 11 20 20">
+          <line x1="16.5" y1="17.5" x2="3.5" y2="17.5" stroke="currentColor" stroke-linecap="round"></line>
+          <line x1="16.5" y1="24.5" x2="3.5" y2="24.5" stroke="currentColor" stroke-linecap="round"></line>
+          <circle cx="13" cy="24.5" r="2" fill="white" stroke="currentColor"></circle>
+          <circle cx="7" cy="17.5" r="2" fill="white" stroke="currentColor"></circle>
+        </svg>
+      </button>
+      <select id="sort-by" x-data x-model="sort" @change="sortCollection()" class="font-medium text-sm border-none text-right focus:ring-0">
+        <option value="manual" selected="selected"> Featured </option>
+        <option value="best-selling"> Best selling </option>
+        <option value="title-ascending"> Alphabetically, A-Z </option>
+        <option value="title-descending"> Alphabetically, Z-A </option>
+        <option value="price-ascending"> Price, low to high </option>
+        <option value="price-descending"> Price, high to low </option>
+        <option value="created-ascending"> Date, old to new </option>
+        <option value="created-descending"> Date, new to old </option>
+      </select>
     </div>
   </div>
+  <br>
+  
+  
+  <h1><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NEW THIS WEEK</b></h1> 
+  
+  
+<br>
 
+<?php
+  echo '<div class="flex border-t border-black">';
+  echo '<div class="collection w-full">';
+  echo '<ul class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-px gap-y-5 mb-10">';
 
-        <div class="item-container">
-          <img src="images/newarrivals/bestsellers_7.png">
-          <div class="text-container">
-            <div class="shoe-name">Nike Air Max 95 FV4710-100</div>
-            <div class="price">from £175</div>
-          </div>
-        </div>
+  $rowIds = [25,50,23,28,29];
+  $rowProducts = getProducts($connection, $rowIds);
+  foreach ($rowProducts as $product) {  
+      echo '<li class="">';
+      echo '<div class="overflow-hidden">';
+      echo '<a href="product.php?id=' . $product['product_id'] . '"  class="block h-full group">';
+      echo '<div class="bg-neutral-100 pt-1 pb-5 flex items-center justify-center">';
+      echo '<img src="' . $product['product_img'] . '" class="object-cover hover:opacity-75">';
+      echo '</div>';
+      echo '<div class="flex flex-col justify-between p-4 grow">';
+      echo '<h3 class="mb-2 text-sm font-medium">' . $product['product_name'] . '</h3>';
+      echo '<div class="flex justify-between items-center">';
+      echo '<div>';
+      echo '<span class="mr-1 text-xs">From</span>';
+      echo '<span class="price text-sm">£' . $product['price'] . '</span>';
+      echo '</div>';
+      echo '</div>';
+      echo '</div>';
+      echo '</a>';
+      echo '</div>';
+      echo '</li>';
+  }
 
-        <div class="item-container">
-          <img src="images/newarrivals/bestsellers_8.png">
-          <div class="text-container">
-            <div class="shoe-name">Nike Mens Revolution 6 Running</div>
-            <div class="price">from £60</div>
-          </div>
-        </div>
+  echo '</ul>';
+  echo '</div>';
+  echo '</div>';
 
+  
+?>
 
-        <div class="item-container">
-          <img src="images/newarrivals/bestsellers_9.png">
-          <div class="text-container">
-            <div class="shoe-name">Nike Air Max 97 - Women Shoes Pink 4.5</div>
-            <div class="price">from £110</div>
-          </div>
-        </div>
+    <h1><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NEW THIS MONTH</b></h1> 
+    <br>
+    
+    <?php
+  echo '<div class="flex border-t border-black">';
+  echo '<div class="collection w-full">';
+  echo '<ul class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-px gap-y-5 mb-10">';
 
+  $rowIds = [27,33,32,8,59,5,1,26,10,11];
+  $rowProducts = getProducts($connection, $rowIds);
+  foreach ($rowProducts as $product) {  
+      echo '<li class="">';
+      echo '<div class="overflow-hidden">';
+      echo '<a href="product.php?id=' . $product['product_id'] . '"  class="block h-full group">';
+      echo '<div class="bg-neutral-100 pt-1 pb-5 flex items-center justify-center">';
+      echo '<img src="' . $product['product_img'] . '" class="object-cover hover:opacity-75">';
+      echo '</div>';
+      echo '<div class="flex flex-col justify-between p-4 grow">';
+      echo '<h3 class="mb-2 text-sm font-medium">' . $product['product_name'] . '</h3>';
+      echo '<div class="flex justify-between items-center">';
+      echo '<div>';
+      echo '<span class="mr-1 text-xs">From</span>';
+      echo '<span class="price text-sm">£' . $product['price'] . '</span>';
+      echo '</div>';
+      echo '</div>';
+      echo '</div>';
+      echo '</a>';
+      echo '</div>';
+      echo '</li>';
+  }
 
-        <div class="item-container">
-          <img src="images/newarrivals/bestsellers_10.png">
-          <div class="text-container">
-            <div class="shoe-name">Nike Waffle Debut Vintage Women's Shoes</div>
-            <div class="price">from £80</div>
-          </div>
-        </div>
-  </div>
+  echo '</ul>';
+  echo '</div>';
+  echo '</div>';
+
+  mysqli_close($connection);
+?>
 
 
 <br><br><br>
