@@ -79,7 +79,7 @@ if (!isset($_SESSION['user_id'])){
                 
               </a>
               <!-- Cart      -->
-              <a class="flex items-center hover:text-gray-300" href="cart.php">
+              <a class="flex items-center hover:text-gray-300" href="../cart.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart w-10"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                 </svg>
                 <!--<span class="flex absolute -mt-5 ml-4">
@@ -101,9 +101,9 @@ if (!isset($_SESSION['user_id'])){
       <div class="p-4 px-8 md:border-r md:border-black h-screen">
         <ul>
           <li class="mb-2 py-2">
-            <a href="admin.html" class="opacity-50 py-2 md:text-base md:text-base lg:text-2xl">
+            <!-- <a href="admin.html" class="opacity-50 py-2 md:text-base md:text-base lg:text-2xl">
               <span>Admin Dashboard</span>
-            </a>
+            </a> -->
           </li>
           <li class="mb-2 py-2">
             <a href="account.php" class="opacity-50 py-2 md:text-base md:text-base lg:text-2xl">
