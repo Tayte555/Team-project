@@ -93,7 +93,7 @@ mysqli_stmt_close($statement);
           
             <div class="px-2 flex w-full py-4 items-center">
             
-              <a class="" href="../home.php">
+              <a class="" href="../index.php">
               <!-- <img class="h-9" src="logo.png" alt="logo"> -->
               <img class="h-6 
                " src="../images/logowhite.png" alt="logo"/>         
@@ -101,8 +101,8 @@ mysqli_stmt_close($statement);
 
             <!-- Nav Links -->
             <ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
-              <li><a class="hover:text-gray-300" href="#">New Arrivals</a></li>
-              <li><a class="hover:text-gray-300" href="#">Best Sellers</a></li>
+              <li><a class="hover:text-gray-300" href="newarrivals.php">New Arrivals</a></li>
+              <li><a class="hover:text-gray-300" href="best_sellers.php">Best Sellers</a></li>
               <li><a class="hover:text-gray-300" href="#">Sneakers                
                   <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                     <path d="m9 18 6-6-6-6"/>

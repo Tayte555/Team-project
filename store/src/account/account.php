@@ -2,6 +2,7 @@
 <?php 
 session_start();
 include("../connections.php");
+include("../functions.php");
 if (!isset($_SESSION['user_id'])){
   header('Location: ../login.php');
   exit();
@@ -33,7 +34,7 @@ if (!isset($_SESSION['user_id'])){
           
             <div class="px-2 flex w-full py-4 items-center">
             
-              <a class="" href="../home.php">
+              <a class="" href="../index.php">
               <!-- <img class="h-9" src="logo.png" alt="logo"> -->
               <img class="h-6 
                " src="../images/logowhite.png" alt="logo"/>         
@@ -41,7 +42,7 @@ if (!isset($_SESSION['user_id'])){
 
             <!-- Nav Links -->
             <ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
-              <li><a class="hover:text-gray-300" href="../newarrivals.html">New Arrivals</a></li>
+              <li><a class="hover:text-gray-300" href="../newarrivals.php">New Arrivals</a></li>
               <li><a class="hover:text-gray-300" href="../best_sellers.php">Best Sellers</a></li>
               <li><a class="hover:text-gray-300" href="#">Sneakers                
                   <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
@@ -165,14 +166,25 @@ if (!isset($_SESSION['user_id'])){
           if ($orderResult && mysqli_num_rows($orderResult) > 0) {
             // Display order history
             echo "<h1 class='text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold'>Order History</h1>";
+            echo "<div class='flex flex-wrap'>";
             while ($orderRow = mysqli_fetch_assoc($orderResult)) {
-                echo "<p>Order ID: " . $orderRow['order_id'] . "</p>";
-                echo "<p>Order Date: " . $orderRow['order_date'] . "</p>";
-                echo "<p>Product ID: " . $orderRow['product_id'] . "</p>";
-                echo "<p>Quantity: " . $orderRow['quantity'] . "</p>";
-                echo "<p>Total Price: $" . $orderRow['total_price'] . "</p>";
-                echo "<hr>";
+                // Get product details including image
+                $product_details = getAllProductDetails($orderRow['product_id'], $connection);
+                
+                echo "<div class='bg-gray-100 p-4 mb-4 rounded-lg flex items-center mr-4' style='width: 450px;'>";
+                // Display product image
+                echo "<img src='../" . $product_details['product_img'] . "' class='w-32 h-32 md:w-35 md:h-35 mr-4' alt='Product Image'>";
+                echo "<div>";
+                echo "<p class='text-lg font-semibold'>" . $product_details['product_name'] . "</p>";
+                echo "<p class='text-sm md:text-base'>Order ID: " . $orderRow['order_id'] . "</p>";
+                echo "<p class='text-sm md:text-base'>Order Date: " . $orderRow['order_date'] . "</p>";
+                echo "<p class='text-sm md:text-base'>Size: " . $orderRow['size']. "</p>";
+                echo "<p class='text-sm md:text-base'>Quantity: " . $orderRow['quantity'] . "</p>";
+                echo "<p class='text-sm md:text-base'>Total Price: $" . $orderRow['total_price'] . "</p>";
+                echo "</div>";
+                echo "</div>";
             }
+            echo "</div>";
             } else {
               // Display message when no orders found
               echo "<p>You haven't placed any orders yet.</p>";
