@@ -149,7 +149,7 @@ if ($connection->connect_error) {
 
 $searchTerm = $_GET['search'];
 
-$sql = "SELECT * FROM products WHERE product_name LIKE '%$searchTerm%' OR product_desc LIKE '%$searchTerm%'";
+$sql = "SELECT * FROM products WHERE product_name LIKE '%$searchTerm%' OR brand LIKE '%$searchTerm%' OR colour LIKE '%searchTerm%' OR category LIKE '%searchTerm%' OR product_collection LIKE '%searchTerm%'";
 
 $result = $connection->query($sql);
 
