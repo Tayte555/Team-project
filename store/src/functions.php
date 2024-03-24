@@ -70,8 +70,8 @@ function sendContactUsMsg($connection, $firstName, $lastName, $email, $msg){
 
 }
 
-function processPurchase($product_id, $quantity, $user_id, $connection){
-    // Fetch product details
+function processPurchase($product_id, $quantity, $product_size, $user_id, $connection){
+    // Fetch product details including size
     $sql_fetch_product = "SELECT price, stock_quantity FROM products WHERE product_id = ?";
     $stmt = $connection->prepare($sql_fetch_product);
     $stmt->bind_param('i', $product_id);
@@ -89,11 +89,11 @@ function processPurchase($product_id, $quantity, $user_id, $connection){
         $stmt->bind_param('ii', $quantity, $product_id);
         $stmt->execute();
 
-        // Create order
-        $sql_create_order = "INSERT INTO user_orders (user_id, product_id, order_date, quantity, total_price) 
-                            VALUES (?, ?, NOW(), ?, ?)";
+        // Create order including size
+        $sql_create_order = "INSERT INTO user_orders (user_id, product_id, order_date, quantity, total_price, size) 
+                            VALUES (?, ?, NOW(), ?, ?, ?)";
         $stmt = $connection->prepare($sql_create_order);
-        $stmt->bind_param('iiid', $user_id, $product_id, $quantity, $total_price);
+        $stmt->bind_param('iiids', $user_id, $product_id, $quantity, $total_price, $product_size);
         $stmt->execute();
     } else {
         // Product not found

@@ -173,11 +173,12 @@ CREATE TABLE `user_addresses` (
 --
 
 CREATE TABLE `user_orders` (
-  `order_id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `product_id` int(11) DEFAULT NULL,
+  `order_id` int(11) PRIMARY KEY AUTO_INCREMENT,
+  `user_id` int(11),
+  `product_id` int(11),
   `order_date` date NOT NULL,
   `quantity` int(11) NOT NULL,
+  `size` VARCHAR(5),
   `total_price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

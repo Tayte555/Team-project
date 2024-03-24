@@ -85,8 +85,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
     if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
         $user_id = getCurrentUserID();
         if ($user_id) {
-            foreach ($_SESSION['cart'] as $item) {
-                processPurchase($item['product_id'], $item['quantity'], $user_id, $connection);
+            foreach ($_SESSION['cart'] as $index => $item) {
+                // Validate size data
+                $product_size = $item['size'];
+
+                processPurchase($item['product_id'], $item['quantity'], $product_size, $user_id, $connection);
             }
             // Clear the cart after checkout
             unset($_SESSION['cart']);
@@ -215,6 +218,7 @@ mysqli_close($connection);
                                                         <p><?php echo $item['product_name']; ?></p>
                                                         <div class="product-info">
                                                             <div>Size: <span class="value"><?php echo $item['size']; ?></span></div>
+                                                            <input type="hidden" name="size_<?php echo $index; ?>" value="<?php echo $item['size']; ?>">
                                                         </div>
                                                     </div>
                                                 </div>
