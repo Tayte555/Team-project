@@ -7,6 +7,8 @@ include("functions.php");
 $filterConditions = [];
 $filterValues = [];
 
+$sortOption = isset($_GET['sort']) ? $_GET['sort'] : 'manual';
+
 if (!empty($_GET['brand'])) {
     foreach ($_GET['brand'] as $brand) {
         $filterConditions[] = "brand = '". mysqli_real_escape_string($connection, $brand) ."'";
@@ -19,15 +21,13 @@ if (!empty($_GET['colour'])) {
     }
 }
 
-if (!empty($_GET['product_collection'])) {
-  foreach ($_GET['product_collection'] as $product_collection) {
-      $filterConditions[] = "product_collection = '". mysqli_real_escape_string($connection, $product_collection) ."'";
-  }
-}
-
 $sqlFilter = '';
 if (!empty($filterConditions)) {
     $sqlFilter = " WHERE " . implode(' AND ', $filterConditions);
+}
+
+function isSelected($optionValue, $currentValue) {
+  return $optionValue == $currentValue ? 'selected' : '';
 }
 
 ?>
@@ -565,95 +565,6 @@ input[type="search"]:focus {
                             </div>
                         </div>
 
-                        <div class="filter-group Collection" onclick="toggleDropdown('dropdownCollection')">
-                            <button type="button"
-                                class="flex items-center justify-between w-full p-4 text-base border-b border-black cursor-pointer hover:opacity-75">
-                                <div>
-                                    <span class="font-medium">Collection</span>
-                                    <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
-                                        <path d="m9 18 6-6-6-6" />
-                                    </svg>
-                                </div>
-                            </button>
-                            <div id="dropdownCollection" class="rounded border-gray-500 bg-white p-2 py-2 hidden">
-                                <ul class="space-y-2">
-                                    <li class="py-2">
-                                        <label class="flex items-center cursor-pointer">
-                                            <input type="checkbox" name="product_collection[]" value="2002r"
-                                                class="mr-2 accent-black">
-                                            <div class="flex justify-between w-full text-sm hover:opacity-75">2002r
-                                            </div>
-                                        </label>
-                                    </li>
-                                    <li class="py-2">
-                                        <label class="flex items-center cursor-pointer">
-                                            <input type="checkbox" name="product_collection[]" value="350"
-                                                class="mr-2 accent-black">
-                                            <div class="flex justify-between w-full text-sm hover:opacity-75">350</div>
-                                        </label>
-                                    </li>
-                                    <li class="py-2">
-                                        <label class="flex items-center cursor-pointer">
-                                            <input type="checkbox" name="product_collection[]" value="700"
-                                                class="mr-2 accent-black">
-                                            <div class="flex justify-between w-full text-sm hover:opacity-75">700
-                                            </div>
-                                        </label>
-                                    </li>
-                                    <li class="py-2">
-                                        <label class="flex items-center cursor-pointer">
-                                            <input type="checkbox" name="product_collection[]" value="Air Force 1"
-                                                class="mr-2 accent-black">
-                                            <div class="flex justify-between w-full text-sm hover:opacity-75">Air Force
-                                                1
-                                            </div>
-                                        </label>
-                                    </li>
-                                    <li class="py-2">
-                                        <label class="flex items-center cursor-pointer">
-                                            <input type="checkbox" name="product_collection[]" value="Dunk"
-                                                class="mr-2 accent-black">
-                                            <div class="flex justify-between w-full text-sm hover:opacity-75">Dunk
-                                            </div>
-                                        </label>
-                                    </li>
-                                    <li class="py-2">
-                                        <label class="flex items-center cursor-pointer">
-                                            <input type="checkbox" name="product_collection[]" value="Jordan 1"
-                                                class="mr-2 accent-black">
-                                            <div class="flex justify-between w-full text-sm hover:opacity-75">Jordan 1
-                                            </div>
-                                        </label>
-                                    </li>
-                                    <li class="py-2">
-                                        <label class="flex items-center cursor-pointer">
-                                            <input type="checkbox" name="product_collection[]" value="Jordan 4"
-                                                class="mr-2 accent-black">
-                                            <div class="flex justify-between w-full text-sm hover:opacity-75">Jordan 4
-                                            </div>
-                                        </label>
-                                    </li>
-                                    <li class="py-2">
-                                        <label class="flex items-center cursor-pointer">
-                                            <input type="checkbox" name="product_collection[]" value="Samba"
-                                                class="mr-2 accent-black">
-                                            <div class="flex justify-between w-full text-sm hover:opacity-75">Samba
-                                            </div>
-                                        </label>
-                                    </li>
-                                    <li class="py-2">
-                                        <label class="flex items-center cursor-pointer">
-                                            <input type="checkbox" name="product_collection[]" value="Slides"
-                                                class="mr-2 accent-black">
-                                            <div class="flex justify-between w-full text-sm hover:opacity-75">Slides
-                                            </div>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
                     </main>
 
                     <script>
@@ -684,18 +595,20 @@ input[type="search"]:focus {
             </form>
 
 
-
-            <select id="sort-by" x-data x-model="sort" @change="sortCollection()"
-                class="font-medium text-sm border-none text-right focus:ring-0">
-                <option value="manual" selected="selected"> Featured </option>
-                <option value="best-selling"> Best selling </option>
-                <option value="title-ascending"> Alphabetically, A-Z </option>
-                <option value="title-descending"> Alphabetically, Z-A </option>
-                <option value="price-ascending"> Price, low to high </option>
-                <option value="price-descending"> Price, high to low </option>
-                <option value="created-ascending"> Date, old to new </option>
-                <option value="created-descending"> Date, new to old </option>
-            </select>
+            <form action="sneakers.php" method="GET" id="filter-form">
+                <select id="sort-by" name="sort" onchange="this.form.submit()"
+                    class="font-medium text-sm border-none text-right focus:ring-0">
+                    <option value="manual" <?= isSelected('manual', $sortOption); ?>>Featured</option>
+                    <option value="title-ascending" <?= isSelected('title-ascending', $sortOption); ?>>Alphabetically,
+                        A-Z</option>
+                    <option value="title-descending" <?= isSelected('title-descending', $sortOption); ?>>Alphabetically,
+                        Z-A</option>
+                    <option value="price-ascending" <?= isSelected('price-ascending', $sortOption); ?>>Price, low to
+                        high</option>
+                    <option value="price-descending" <?= isSelected('price-descending', $sortOption); ?>>Price, high to
+                        low</option>
+                </select>
+            </form>
         </div>
     </div>
 
@@ -726,11 +639,7 @@ if (!empty($_GET['colour'])) {
     }
 }
 
-if (!empty($_GET['product_collection'])) {
-  foreach ($_GET['product_collection'] as $product_collection) {
-      $collectionFilter[] = "'" . mysqli_real_escape_string($connection, $product_collection) . "'";
-  }
-}
+
 
 $sqlFilterParts = [];
 
@@ -742,17 +651,34 @@ if (!empty($colourFilter)) {
     $sqlFilterParts[] = "colour IN (" . implode(',', $colourFilter) . ")";
 }
 
-if (!empty($collectionFilter)) {
-  $sqlFilterParts[] = "collection IN (" . implode(',', $collectionFilter) . ")";
-}
-
 
 $sqlFilter = '';
 if (!empty($sqlFilterParts)) {
     $sqlFilter = " WHERE " . implode(' AND ', $sqlFilterParts);
 }
 
-$query = "SELECT * FROM products" . $sqlFilter;
+
+$sortOption = $_GET['sort'] ?? 'manual';
+
+switch ($sortOption) {
+    case 'title-ascending':
+        $orderBy = "ORDER BY product_name ASC";
+        break;
+    case 'title-descending':
+        $orderBy = "ORDER BY product_name DESC";
+        break;
+    case 'price-ascending':
+        $orderBy = "ORDER BY price ASC";
+        break;
+    case 'price-descending':
+        $orderBy = "ORDER BY price DESC";
+        break;
+    default:
+        $orderBy = "";
+        break;
+}
+
+$query = "SELECT * FROM products" . $sqlFilter . " " . $orderBy;
 $result = mysqli_query($connection, $query);
 
 if (!$result) {

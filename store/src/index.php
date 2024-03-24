@@ -462,56 +462,48 @@ input[type="search"]:focus {
     <div class="px-4 py-6 md:py-[8.333%] sm:px-[8.333%] bg-zinc-950">
       <ul class="text-white">
         <li class="inline-block mb-2 mr-2 text-3xl font-bold md:mb-3 md:mr-3 md:text-4xl lg:text-6xl">
-          <a href="/collections/air-jordan-1" class="text-white hover:text-neutral-500">Air Jordan 1</a>
+          <a href="./search.php?search=air+jordan+1" class="text-white hover:text-neutral-500">Air Jordan 1</a>
           ,
         </li>
 
         <li class="inline-block mb-2 mr-2 text-3xl font-bold md:mb-3 md:mr-3 md:text-4xl lg:text-6xl">
-          <a href="/collections/nike-dunk" class="text-white hover:text-neutral-500">Nike Dunk</a>,
+          <a href="./search.php?search=dunk" class="text-white hover:text-neutral-500">Nike Dunk</a>,
         </li>
 
         <li class="inline-block mb-2 mr-2 text-3xl font-bold md:mb-3 md:mr-3 md:text-4xl lg:text-6xl">
-          <a href="/collections/yeezy" class="text-white hover:text-neutral-500">Yeezy</a>,
+          <a href="./search.php?search=yeezy" class="text-white hover:text-neutral-500">Yeezy</a>,
         </li>
 
         <li class="inline-block mb-2 mr-2 text-3xl font-bold md:mb-3 md:mr-3 md:text-4xl lg:text-6xl">
-          <a href="/collections/new-balance" class="text-white hover:text-neutral-500">New Balance</a>,
+          <a href="./search.php?search=new+balance" class="text-white hover:text-neutral-500">New Balance</a>,
         </li>
 
         <li class="inline-block mb-2 mr-2 text-3xl font-bold md:mb-3 md:mr-3 md:text-4xl lg:text-6xl">
-          <a href="/collections/air-jordan-4" class="text-white hover:text-neutral-500">Air Jordan 4</a>,
+          <a href="./search.php?search=air+jordan+4" class="text-white hover:text-neutral-500">Air Jordan 4</a>,
         </li>
 
         <li class="inline-block mb-2 mr-2 text-3xl font-bold md:mb-3 md:mr-3 md:text-4xl lg:text-6xl">
-          <a href="/collections/air-jordan-1-low" class="text-white hover:text-neutral-500">Air Jordan 1 Low</a>,
+          <a href="./search.php?search=yeezy+boost+350" class="text-white hover:text-neutral-500">Yeezy 350</a>,
         </li>
 
         <li class="inline-block mb-2 mr-2 text-3xl font-bold md:mb-3 md:mr-3 md:text-4xl lg:text-6xl">
-          <a href="/collections/yeezy-boost-350" class="text-white hover:text-neutral-500">Yeezy 350</a>,
+          <a href="./search.php?search=yeezy+slides" class="text-white hover:text-neutral-500">Yeezy Slides</a>,
         </li>
 
         <li class="inline-block mb-2 mr-2 text-3xl font-bold md:mb-3 md:mr-3 md:text-4xl lg:text-6xl">
-          <a href="/collections/yeezy-slides" class="text-white hover:text-neutral-500">Yeezy Slides</a>,
+          <a href="./search.php?search=yeezy+boost+700" class="text-white hover:text-neutral-500">Yeezy 700</a>,
         </li>
 
         <li class="inline-block mb-2 mr-2 text-3xl font-bold md:mb-3 md:mr-3 md:text-4xl lg:text-6xl">
-          <a href="/collections/nike-dunk-high" class="text-white hover:text-neutral-500">Dunk High</a>,
+          <a href="./search.php?search=air+force+1" class="text-white hover:text-neutral-500">Air Force 1</a>,
         </li>
 
         <li class="inline-block mb-2 mr-2 text-3xl font-bold md:mb-3 md:mr-3 md:text-4xl lg:text-6xl">
-          <a href="/collections/yeezy-boost-700" class="text-white hover:text-neutral-500">Yeezy 700</a>,
+          <a href="./search.php?search=travis+scott" class="text-white hover:text-neutral-500">Travis Scott</a>,
         </li>
 
         <li class="inline-block mb-2 mr-2 text-3xl font-bold md:mb-3 md:mr-3 md:text-4xl lg:text-6xl">
-          <a href="/collections/air-force-1" class="text-white hover:text-neutral-500">Air Force 1</a>,
-        </li>
-
-        <li class="inline-block mb-2 mr-2 text-3xl font-bold md:mb-3 md:mr-3 md:text-4xl lg:text-6xl">
-          <a href="/collections/travis-scott" class="text-white hover:text-neutral-500">Travis Scott</a>,
-        </li>
-
-        <li class="inline-block mb-2 mr-2 text-3xl font-bold md:mb-3 md:mr-3 md:text-4xl lg:text-6xl">
-          <a href="/collections/off-white" class="text-white hover:text-neutral-500">Off-White</a>
+          <a href="./search.php?search=off+white" class="text-white hover:text-neutral-500">Off-White</a>
         </li>
       
       </ul>
