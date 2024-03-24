@@ -159,10 +159,16 @@ $result = $connection->query($sql);
 
       </div>
       <div class="p-4 md:col-span-3 md:px-14 md:py-10 lg:p-20 mb-4 md:mb-0" style="max-height: 600px; overflow-y: auto; padding-bottom: 100px;">
-        <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">View products</h1>
-        <div class="md:col-span-3">
-          <div class="sm:overflow-hidden" >
-          <ul class="divide-y">
+  <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">View products</h1>
+
+  <!-- Add new product button -->
+  <div class="my-4">
+    <button onclick="showAddProductModal()" type="submit" @click="address_input.showModal()" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add a new product</button>
+  </div>
+
+  <div class="md:col-span-3">
+    <div class="sm:overflow-hidden">
+      <ul class="divide-y">
         <?php 
         if ($result && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -179,17 +185,20 @@ $result = $connection->query($sql);
             echo "<li>No products found.</li>";
         }
         ?>
-    </ul>
+      </ul>
+    </div>
+  </div>
 
-            <script>
+  <script>
     function closeModal() {
-        document.getElementById('modal').style.display = 'none';
+      document.getElementById('modal').style.display = 'none';
     }
 
     function showAddProductModal() {
-        document.getElementById('modal').style.display = 'block';
+      document.getElementById('modal').style.display = 'block';
     }
-</script>
+  </script>
+</div>
 
             <div class="my-4">
               <button onclick="showAddProductModal()" type="submit" @click="address_input.showModal()" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add a new product</button>
