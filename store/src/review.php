@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-xrRq3NRtFMICQ4nH6zBQRaFlpfFfN6CJ9aIGfEz2MT2s3N9+nCnYNzCPmIXnUmej" crossorigin="anonymous">
 
     <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
+    <link rel="icon" href="./images/logowhitefav.png" type="image/x-icon">
 
 </head>
 

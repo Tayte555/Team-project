@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="shopping-cart.css">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="./images/logowhitefav.png" type="image/x-icon">
 </head>
 <body>
 

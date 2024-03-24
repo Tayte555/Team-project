@@ -29,6 +29,7 @@ include("functions.php");
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <title>Sole Haven | Online Trainer and Exclusive Sneaker Shop</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="./images/logowhitefav.png" type="image/x-icon">
                   
 </head>
 

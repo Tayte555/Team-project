@@ -16,6 +16,7 @@ $womensProducts = getWomensProducts($connection);
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Sole Haven | Online Trainer and Exclusive Sneaker Shop</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="./images/logowhitefav.png" type="image/x-icon">
                   
 </head>
 
