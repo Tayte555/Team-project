@@ -160,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
 
                         <!-- Nav Links -->
                         <ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
-                            <li><a class="hover:text-gray-300" href="./newarrivals.html">New Arrivals</a></li>
+                            <li><a class="hover:text-gray-300" href="./newarrivals.php">New Arrivals</a></li>
                             <li><a class="hover:text-gray-300" href="./best_sellers.php">Best Sellers</a></li>
 
                             <!-- Sneakers Hover Menu -->
