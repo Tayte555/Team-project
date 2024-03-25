@@ -308,20 +308,17 @@ input[type="search"]:focus {
                         </ul>
                         <!-- Header Icons -->
                         <div class="hidden xl:flex items-center -space-x-1 pr-6 text-gray-100">
-
-
-                            <!-- search icon -->
-                            <div class="flex-grow mx-4">
-                                <input type="search" placeholder="Search items..."
-                                    class="w-full h-10 px-4 bg-transparent text-white placeholder-gray-300 rounded transition-all duration-300 focus:border-blue-300 focus:bg-white focus:text-black" />
-                            </div>
-                            <a class="hover:text-gray-300" href="#">
+                            <form action="search.php" method="GET" class="flex items-center">
                                 <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" class="icon icon-search w-10">
+                                    stroke-linecap="round" stroke-linejoin="round" class="icon icon-search w-6 h-6">
                                     <circle cx="11" cy="11" r="8" />
                                     <path d="m21 21-4.35-4.35" />
                                 </svg>
-                            </a>
+                                <div class="flex-grow">
+                                    <input type="search" name="search" placeholder="Search items..."
+                                        class="w-full h-10 px-4 bg-transparent text-white placeholder-gray-300 rounded transition-all duration-300 focus:border-blue-300 focus:bg-white focus:text-black" />
+                                </div>
+                            </form>
                             <!-- profile -->
                             <a class="flex items-center hover:text-gray-300 pr-1" href="login.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -400,7 +397,7 @@ input[type="search"]:focus {
 
     <div>
         <div class="md:ml-[8.3333%] md:mr-[8.3333%] px-4 py-8 lg:py-12">
-            <div class="gap-4 lg:grid lg:grid-cols-2">
+            <div class="gap-4 lg:grid lg:grid-cols-2 flex items-center">
                 <h1 class="text-3xl font-bold tracking-wide">All Sneakers</h1>
                 <h2
                     class="max-h-[3.75rem] max-h-overflow-hidden text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent lg:max-h-screen lg:text-black pt-2 tracking-wide ">
