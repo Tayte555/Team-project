@@ -449,7 +449,7 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
     </div>
 
 
-    <div style="solid black;">
+    <div style="border: 1px solid black;">
         <div class="flex justify-end items-center px-4 md:px-4 border-t border-black">
             <button id="openFilterBtn" type="button" class="flex items-center mr-auto py-3">
                 Filter

@@ -151,5 +151,18 @@ function getApparel($conn) {
     return $apparel_products;
 }
 
+function getAccessories($conn) {
+    $sql = "SELECT * FROM products WHERE category = 'all'";
+    $result = $conn->query($sql);
+    $accessory_products = array();
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $accessory_products[] = $row;
+        }
+    }
+    
+    return $accessory_products;
+}
+
 
 ?>

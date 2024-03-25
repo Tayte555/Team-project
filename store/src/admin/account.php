@@ -123,11 +123,11 @@ if ($_SESSION['is_admin'] != 1){
               <span>View Messages</span>
             </a>
           </li>
-          <li class="mb-2 py-2">
+          <!-- <li class="mb-2 py-2">
             <a href="settings.php" class="py-2 md:text-base lg:text-2xl">
               <span>Profile Settings</span>
             </a>
-          </li>
+          </li> -->
           <li class="mb-2 py-2">
             <a href="../logout.php" class="py-2 md:text-base lg:text-2xl">
               <span>Log out</span>
