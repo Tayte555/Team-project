@@ -106,7 +106,7 @@ include("functions.php");
                                     </li>
                                 </ul>
                             </li>
-                            <li><a class="hover:text-gray-300 pr-40" href="#">Discover
+                            <li><a class="hover:text-gray-300 pr-40" href="./discover.html">Discover
                                     <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">

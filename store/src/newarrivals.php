@@ -83,7 +83,7 @@ include("functions.php");
               
               <!-- Discover Hover Menu -->
               <li class="relative group">
-                <a class="hover:text-gray-300 pr-40" href="#">Discover
+                <a class="hover:text-gray-300 pr-40" href="./discover.html">Discover
                   <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                     <path d="m9 18 6-6-6-6"/>
                   </svg>
