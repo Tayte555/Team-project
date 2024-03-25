@@ -394,7 +394,7 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
       echo '<div class="overflow-hidden">';
       echo '<a href="product.php?id=' . $product['product_id'] . '"  class="block h-full group">';
       echo '<div class="bg-neutral-100 pt-36 pb-8 flex items-center justify-center">';
-      echo '<img src="' . $product['product_img'] . '" class="object-cover">';
+      echo '<img src="' . $product['product_img'] . '" class="object-cover" height: 350px;">'; // Adjust the width according to your requirement
       echo '</div>';
       echo '<div class="flex flex-col justify-between p-4 grow">';
       echo '<h3 class="mb-2 text-sm font-medium">' . $product['product_name'] . '</h3>';
@@ -409,11 +409,13 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
       echo '</div>';
       echo '</li>';
   }
+
   echo '</ul>';
   echo '</div>';
   echo '</div>';
+
   mysqli_close($connection);
-  ?>
+?>
 
 
     <div id="app">
@@ -465,12 +467,12 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
 
 
     <!-- close button -->
-    <button @click="openFilter = !openFilter" class="absolute top-0 left-0 bottom-0 right-0">
+    <!-- <button @click="openFilter = !openFilter" class="absolute top-0 left-0 bottom-0 right-0">
         <svg class="w-6 h-6 absolute top-2 right-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
             stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
-    </button>
+    </button> -->
     </header>
     </div>
 
