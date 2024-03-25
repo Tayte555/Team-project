@@ -110,22 +110,22 @@ if ($_SESSION['is_admin'] != 1){
           </li>
           <li class="mb-2 py-2">
             <a href="add_product.php" class=" py-2 md:text-base lg:text-2xl">
-              <span>Add products</span>
+              <span>Add Products</span>
             </a>
           </li>
           <li class="mb-2 py-2">
             <a href="manage_users.php" class="py-2 md:text-base lg:text-2xl">
-              <span>Manage users</span>
+              <span>Manage Users</span>
             </a>
           </li>
           <li class="mb-2 py-2">
             <a href="view_messages.php" class="py-2 md:text-base lg:text-2xl">
-              <span>View messages</span>
+              <span>View Messages</span>
             </a>
           </li>
           <li class="mb-2 py-2">
             <a href="settings.php" class="py-2 md:text-base lg:text-2xl">
-              <span>Profile settings</span>
+              <span>Profile Settings</span>
             </a>
           </li>
           <li class="mb-2 py-2">

@@ -88,7 +88,7 @@ if ($_SESSION['is_admin'] != 1){
             <div class="p-4 px-8 md:border-r md:border-black h-screen">
                 <ul>
                     <li class="mb-2 py-2">
-                        <a href="account.php" class="opacity-50 py-2 md:text-base md:text-base lg:text-2xl">
+                        <a href="account.php" class="py-2 md:text-base lg:text-2xl">
                             <span>Admin Dashboard</span>
                         </a>
                     </li>
@@ -98,7 +98,7 @@ if ($_SESSION['is_admin'] != 1){
                         </a>
                     </li>
                     <li class="mb-2 py-2">
-                        <a href="manage_users.php" class="py-2 md:text-base lg:text-2xl">
+                        <a href="manage_users.php" class="opacity-50 py-2 md:text-base md:text-base lg:text-2xl">
                             <span>Manage Users</span>
                         </a>
                     </li>

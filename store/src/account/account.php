@@ -159,7 +159,7 @@ if (!isset($_SESSION['user_id'])){
               // Check if a row was returned
               if ($row) {
                   // Display the user's forename
-                  echo '<div class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">Hello ' . $row['forename'] . '!</div>';
+                  echo '<div class="text-xl md:text-xl lg:text-xl mb-2 md:mb-4 lg:mb-8 font-bold">Hello ' . $row['forename'] . '!</div>';
               } else {
                   // Handle the case where user ID is not found
                   echo "Hello, Unknown User!";
