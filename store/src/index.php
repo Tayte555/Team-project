@@ -456,7 +456,7 @@ input[type="search"]:focus {
 
     <div class="flex justify-between p-4 bg-zinc-950">
       <h2 class="text-sm font-bold tracking-wide uppercase text-white">Top collections</h2>
-      <a href="/collections" class="underline underline-offset-2 text-white">View More</a>
+      <!-- <a href="/collections" class="underline underline-offset-2 text-white">View More</a> -->
     </div>
     <div class="px-4 py-6 md:py-[8.333%] sm:px-[8.333%] bg-zinc-950">
       <ul class="text-white">
@@ -612,109 +612,49 @@ input[type="search"]:focus {
   <section>
     <div class="flex justify-between p-4 ">
       <h2 class="text-sm font-bold uppercase tracking-wide">"random collection"</h2>
-      <a href="/collections/new-arrivals" class="underline underline-offset-2">View more</a>
+      <!-- <a href="/collections/new-arrivals" class="underline underline-offset-2">View more</a> -->
     </div>
-
     <div class="grid gap-px px-4 grid-cols-5">
+    <?php
+    // Assuming you have established a database connection named $connection
+
+    // Get the largest product ID from the database
+    $query = "SELECT MAX(product_id) AS max_id FROM products";
+    $result = mysqli_query($connection, $query);
+    $row = mysqli_fetch_assoc($result);
+    $maxProductId = $row['max_id'];
+
+    // Generate 5 unique random product IDs
+    $randomProductIds = [];
+    while (count($randomProductIds) < 5) {
+        $randomId = mt_rand(1, $maxProductId);
+        if (!in_array($randomId, $randomProductIds)) {
+            $randomProductIds[] = $randomId;
+        }
+    }
+
+    // Get products with the randomly selected IDs
+    $randomProducts = getProducts($connection, $randomProductIds);
+    
+    
+    // Display the random products
+    foreach ($randomProducts as $product) : ?>
       <div class="">
         <ul class="divide-y">
           <li class="py-2">
-            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-                <div class=" overflow-hidden">
-                    <a href="/collections/jordan/jordan-4" class="block h-full group">
-                    <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                      <img src="./images/blackcatsneaker 1.png" class="object-cover" >
-                    </div>
+            <a href="product.php?id=<?php echo $product['product_id']; ?>" class="flex items-center text-xs hover:opacity-75 md:text-sm">
+              <div class="overflow-hidden">
+                <!-- <a href="/collections/jordan/jordan-4" class="block h-full group"> -->
+                  <div class="bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
+                    <img src="<?php echo $product['product_img'] ?>" class="object-cover" >
+                  </div>
                 </a>
-                </div>
-
+              </div>
             </a>
           </li>
-
         </ul>
-
-        </div>
-
-        <div class="">
-            <ul class="divide-y">
-              <li class="py-2">
-                <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-                    <div class=" overflow-hidden">
-                        <a href="/collections/jordan/jordan-4" class="block h-full group">
-                        <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                          <img src="./images/blackcatsneaker 1.png" class="object-cover" >
-                        </div>
-                    </a>
-                    </div>
-
-                </a>
-              </li>
-    
-            </ul>
-    
-            </div>
-
-            <div class="">
-                <ul class="divide-y">
-                  <li class="py-2">
-                    <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-                        <div class=" overflow-hidden">
-                            <a href="/collections/jordan/jordan-4" class="block h-full group">
-                            <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                              <img src="./images/blackcatsneaker 1.png" class="object-cover" >
-                            </div>
-                        </a>
-                        </div>                 
-                    </a>
-                  </li>
-        
-                </ul>
-        
-                </div>
-
-                <div class="">
-                    <ul class="divide-y">
-                      <li class="py-2">
-                        <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-                            <div class=" overflow-hidden">
-                                <a href="/collections/jordan/jordan-4" class="block h-full group">
-                                <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                                  <img src="./images/blackcatsneaker 1.png" class="object-cover" >
-                                </div>
-                            </a>
-                            </div>
-      
-                        </a>
-                      </li>
-            
-                    </ul>
-            
-                    </div>
-
-                    <div class="">
-                        <ul class="divide-y">
-                          <li class="py-2">
-                            <a href="" class="flex items-center text-xs hover:opacity-75 md:text-sm">
-                                <div class=" overflow-hidden">
-                                    <a href="/collections/jordan/jordan-4" class="block h-full group">
-                                    <div class="max-w-[1/4] max-h-[1/5] bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                                      <img src="./images/blackcatsneaker 1.png" class="object-cover" >
-                                    </div>
-                                </a>
-                                </div>
-      
-                            </a>
-                          </li>
-                
-                        </ul>
-                
-                        </div>
-
-    
-            
-    </div>
-    
-            
+      </div>
+    <?php endforeach; ?>
     </div>
 
   </section>
