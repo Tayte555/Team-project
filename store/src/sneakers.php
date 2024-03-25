@@ -656,7 +656,7 @@ switch ($sortOption) {
         break;
 }
 
-$query = "SELECT * FROM products" . $sqlFilter . " " . $orderBy;
+$query = "SELECT * FROM products WHERE product_collection NOT IN ('Tops&Sweatshirts', 'tshirts', 'Sweatpants', 'Jackets') " . $sqlFilter . " " . $orderBy;
 $result = mysqli_query($connection, $query);
 
 if (!$result) {
@@ -677,14 +677,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo '<span class="mr-1 text-xs">From</span>';
     echo '<span class="price text-sm">£' . $row['price'] . '</span>';
     echo '</div>';
-    //echo '<form action="cart.php" method="post" class="flex items-center>';
-    //echo '<input type="hidden" name="product_id" value="' . $row['product_id'] . '">';
-    //echo '<input type="number" name="quantity" value="1" min="1" class="text-sm p-1">';
-    //echo '<button type="submit" class=" bg-slate-800 hover:bg-slate-900 text-white font-light tracking-wide py-1 px-2 rounded text-xs">Add to Cart</button>';
-    //echo '</form>';
-    //echo '</div>';
-    //echo '</div>';
-   // echo '</a>';
+
 
     echo '</div>';
     echo '</li>';

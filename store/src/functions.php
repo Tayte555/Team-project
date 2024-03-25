@@ -113,7 +113,7 @@ function getAllProductDetails($product_id, $conn) {
 }
 
 function getMensProducts($conn) {
-    $sql = "SELECT * FROM products WHERE category = 'Mens'";
+    $sql = "SELECT * FROM products WHERE category = 'Mens' AND product_collection NOT IN ('Tops&Sweatshirts', 'tshirts', 'Sweatpants', 'Jackets')";
     $result = $conn->query($sql);
     $mens_products = array();
     if ($result->num_rows > 0) {
@@ -126,7 +126,7 @@ function getMensProducts($conn) {
 }
 
 function getWomensProducts($conn) {
-    $sql = "SELECT * FROM products WHERE category = 'Womens'";
+    $sql = "SELECT * FROM products WHERE category = 'Womens' AND product_collection NOT IN ('Tops&Sweatshirts', 'tshirts', 'Sweatpants', 'Jackets')";
     $result = $conn->query($sql);
     $mens_products = array();
     if ($result->num_rows > 0) {
@@ -137,5 +137,19 @@ function getWomensProducts($conn) {
     
     return $mens_products;
 }
+
+function getApparel($conn) {
+    $sql = "SELECT * FROM products WHERE product_collection IN ('Tops&Sweatshirts', 'tshirts', 'Sweatpants', 'Jackets')";
+    $result = $conn->query($sql);
+    $apparel_products = array();
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $apparel_products[] = $row;
+        }
+    }
+    
+    return $apparel_products;
+}
+
 
 ?>

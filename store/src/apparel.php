@@ -3,6 +3,7 @@ session_start();
 
 include("connections.php");
 include("functions.php");
+$apparel = getApparel($connection);
 // Handle Filters
 $filterConditions = [];
 $filterValues = [];
@@ -475,332 +476,36 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
         <div style="border-top: 1px solid black;"></div>
     </div>
 
-    <div class="image-section">
-        <div class="item-container" data-brand="socks" data-size="8" data-price="23" data-color="black">
-            <img src="images/apparel_socks/socks_1.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Nike 6-Pack Everyday Cushioned Training Crew Socks</div>
-                <div class="price">from £23</div>
-            </div>
-        </div>
+    <?php
+  echo '<div class="flex border-t border-black">';
+  echo '<div class="collection w-full">';
+  echo '<ul class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-px gap-y-5 mb-10">';
 
-        <div class="item-container" data-brand="socks" data-size="8" data-price="20" data-color="black">
-            <img src="images/apparel_socks/socks_2.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">adidas Originals 6 Pack Trefoil Crew Socks</div>
-                <div class="price">from £20</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="12" data-color="black">
-            <img src="images/apparel_socks/socks_3.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Under Armour 3 Pack HeatGear Tech Crew Socks</div>
-                <div class="price">from £12</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="11" data-color="black">
-            <img src="images/apparel_socks/socks_4.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Under Armour 3 Pack HeatGear Tech No Show Socks</div>
-                <div class="price">from £11</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="11" data-color="black">
-            <img src="images/apparel_socks/socks_5.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">MONTIREX 3-Pack Crew Socks</div>
-                <div class="price">from £15</div>
-            </div>
-        </div>
-
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="18" data-color="black">
-            <img src="images/apparel_socks/socks_6.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Jordan 3-Pack Everyday Crew Socks</div>
-                <div class="price">from £18</div>
-            </div>
-        </div>
-
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="35" data-color="black">
-            <img src="images/apparel_socks/socks_7.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">HUGO 6-Pack Ribbed Logo Socks</div>
-                <div class="price">from £35</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="35" data-color="black">
-            <img src="images/apparel_socks/socks_8.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Lacoste 3-Pack Quarter Socks</div>
-                <div class="price">from £35</div>
-            </div>
-        </div>
-
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="12" data-color="black">
-            <img src="images/apparel_socks/socks_9.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Hoodrich 3-Pack Crew Socks</div>
-                <div class="price">from £12</div>
-            </div>
-        </div>
-
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="12" data-color="black">
-            <img src="images/apparel_socks/socks_10.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Nike 1-Pack Everyday Plus Cushioned Crew Socks</div>
-                <div class="price">from £12</div>
-            </div>
-        </div>
-
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="17" data-color="black">
-            <img src="images/apparel_socks/socks_11.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Nike Everyday Plus Cushioned Crew Socks (3-Pack)</div>
-                <div class="price">from £17</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="22" data-color="black">
-            <img src="images/apparel_socks/socks_12.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Nike 6-Pack Terry Socks Infant</div>
-                <div class="price">from £22</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="18" data-color="black">
-            <img src="images/apparel_socks/socks_13.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">HUGO 3-Pack Invisible Socks</div>
-                <div class="price">from £18</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="16" data-color="black">
-            <img src="images/apparel_socks/socks_14.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Jordan 6-Pack Ankle Socks Junior</div>
-                <div class="price">from £16</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="12" data-color="black">
-            <img src="images/apparel_socks/socks_15.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Nike 1-Pack Everyday Plus Cushioned Crew Socks</div>
-                <div class="price">from £12</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="17" data-color="black">
-            <img src="images/apparel_socks/socks_16.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Nike Everyday Plus Cushioned Crew Socks (3-Pack)</div>
-                <div class="price">from £17</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="20" data-color="black">
-            <img src="images/apparel_socks/socks_17.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Jordan 6-Pack Ankle Socks Junior</div>
-                <div class="price">from £20</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="13" data-color="black">
-            <img src="images/apparel_socks/socks_18.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Nike 2-Pack Crew Court Heritage Socks</div>
-                <div class="price">from £13</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="13" data-color="black">
-            <img src="images/apparel_socks/socks_19.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Under Armour Low Socks UA Essential Low Cut 3pk</div>
-                <div class="price">from £13</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="12" data-color="black">
-            <img src="images/apparel_socks/socks_20.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">MONTIREX 3 Pack No Show Socks</div>
-                <div class="price">from £12</div>
-            </div>
-        </div>
-
-
-        <div class="item-container" data-brand="cleaning" data-size="8" data-price="17" data-color="black">
-            <img src="images/apparel_shoecare/shoecare_1.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">XL polishing brush - horsehair</div>
-                <div class="price">from £17</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="cleaning" data-size="8" data-price="15.50" data-color="black">
-            <img src="images/apparel_shoecare/shoecare_2.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Leather Cleaner</div>
-                <div class="price">from £15.50</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="cleaning" data-size="8" data-price="15.50" data-color="black">
-            <img src="images/apparel_shoecare/shoecare_3.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Foam Cleaner</div>
-                <div class="price">from £15.50</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="cleaning" data-size="8" data-price="16" data-color="black">
-            <img src="images/apparel_shoecare/shoecare_4.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Vegetable tanned leather cream</div>
-                <div class="price">from £16</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="cleaning" data-size="8" data-price="8.50" data-color="black">
-            <img src="images/apparel_shoecare/shoecare_5.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Saddle Soap</div>
-                <div class="price">from £8.50</div>
-            </div>
-        </div>
-
-
-        <div class="item-container" data-brand="cleaning" data-size="8" data-price="52" data-color="black">
-            <img src="images/apparel_shoecare/shoecare_6.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Polishing glove</div>
-                <div class="price">from £52</div>
-            </div>
-        </div>
-
-
-        <div class="item-container" data-brand="kits" data-size="8" data-price="5" data-color="black">
-            <img src="images/apparel_shoecare/shoecare_7.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Colour chart</div>
-                <div class="price">from £5</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="kits" data-size="8" data-price="11.50" data-color="black">
-            <img src="images/apparel_shoecare/shoecare_8.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Applicator and polishing cloths - set of 3</div>
-                <div class="price">from £11.50</div>
-            </div>
-        </div>
-
-
-        <div class="item-container" data-brand="cleaning" data-size="8" data-price="9.50" data-color="black">
-            <img src="images/apparel_shoecare/shoecare_9.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Premium Shoe Cream - Natural</div>
-                <div class="price">from £9.50</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="kits" data-size="8" data-price="24" data-color="black">
-            <img src="images/apparel_shoecare/shoecare_10.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Trainer Freshener, Cleaner, Trainer Protector & Brush</div>
-                <div class="price">from £24</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="kits" data-size="8" data-price="40" data-color="black">
-            <img src="images/apparel_kits/kits_1.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Shoe Clean and Care Kit - 9 Piece Shoe Care Set</div>
-                <div class="price">from £40</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="kits" data-size="8" data-price="30" data-color="black">
-            <img src="images/apparel_kits/kits_2.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Shoe Polish & Care Kit</div>
-                <div class="price">from £30</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="kits" data-size="8" data-price="15.50" data-color="black">
-            <img src="images/apparel_kits/kits_3.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Jason Markk 4 oz. Essential Kit</div>
-                <div class="price">from £15.50</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="kits" data-size="8" data-price="5.99" data-color="black">
-            <img src="images/apparel_kits/kits_4.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Stormsure Boot & Wader Repair Kit</div>
-                <div class="price">from £5.99</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="kits" data-size="8" data-price="16" data-color="black">
-            <img src="images/apparel_kits/kits_5.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Stormsure Boot & Wader Repair Kit</div>
-                <div class="price">from £16</div>
-            </div>
-        </div>
-
-    </div>
+  foreach ($apparel as $product) {  
+      echo '<li class="">';
+      echo '<div class="overflow-hidden">';
+      echo '<a href="product.php?id=' . $product['product_id'] . '"  class="block h-full group">';
+      echo '<div class="bg-neutral-100 pt-36 pb-8 flex items-center justify-center">';
+      echo '<img src="' . $product['product_img'] . '" class="object-cover">';
+      echo '</div>';
+      echo '<div class="flex flex-col justify-between p-4 grow">';
+      echo '<h3 class="mb-2 text-sm font-medium">' . $product['product_name'] . '</h3>';
+      echo '<div class="flex justify-between items-center">';
+      echo '<div>';
+      echo '<span class="mr-1 text-xs">From</span>';
+      echo '<span class="price text-sm">£' . $product['price'] . '</span>';
+      echo '</div>';
+      echo '</div>';
+      echo '</div>';
+      echo '</a>';
+      echo '</div>';
+      echo '</li>';
+  }
+  echo '</ul>';
+  echo '</div>';
+  echo '</div>';
+  mysqli_close($connection);
+  ?>
 
 
     <div id="app">
