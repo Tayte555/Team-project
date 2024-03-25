@@ -7,7 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Sole Haven | Online Trainer and Exclusive Sneaker Shop</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="./images/logowhitefav.png" type="image/x-icon">
                   
 </head>
 
@@ -645,6 +644,283 @@
         });
         </script>
         
+
+        <script>
+          function sortCollection() {
+            var sortBy = document.getElementById("sort-by").value;
+            if (sortBy === "title-ascending") {
+              var container = document.querySelector(".image-section");
+              var items = container.querySelectorAll(".item-container");
+        
+              // Convert NodeList to Array for easier manipulation
+              items = Array.from(items);
+        
+              // Sort items alphabetically by shoe name
+              items.sort(function(a, b) {
+                var nameA = a.querySelector(".shoe-name").textContent.trim().toUpperCase();
+                var nameB = b.querySelector(".shoe-name").textContent.trim().toUpperCase();
+                if (nameA < nameB) {
+                  return -1;
+                }
+                if (nameA > nameB) {
+                  return 1;
+                }
+                return 0;
+              });
+        
+              // Remove existing items from container
+              items.forEach(function(item) {
+                container.removeChild(item);
+              });
+        
+              // Append sorted items back to container
+              items.forEach(function(item) {
+                container.appendChild(item);
+              });
+            }
+          }
+        
+          // Event listener for dropdown change
+          document.getElementById("sort-by").addEventListener("change", sortCollection);
+        </script>
+
+<script>
+  // Function to shuffle array in place
+  function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    return array;
+  }
+
+  // Function to sort by shoe name alphabetically, A-Z
+  function sortByAlphabetAscending() {
+    var container = document.querySelector(".image-section");
+    var items = container.querySelectorAll(".item-container");
+    items = Array.from(items);
+    items.sort(function(a, b) {
+      var nameA = a.querySelector(".shoe-name").textContent.trim().toUpperCase();
+      var nameB = b.querySelector(".shoe-name").textContent.trim().toUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    items.forEach(function(item) {
+      container.appendChild(item);
+    });
+  }
+
+  // Function to sort by shoe price, low to high
+  function sortByPriceAscending() {
+    var container = document.querySelector(".image-section");
+    var items = container.querySelectorAll(".item-container");
+    items = Array.from(items);
+    items.sort(function(a, b) {
+      var priceA = parseFloat(a.getAttribute("data-price"));
+      var priceB = parseFloat(b.getAttribute("data-price"));
+      return priceA - priceB;
+    });
+    items.forEach(function(item) {
+      container.appendChild(item);
+    });
+  }
+
+  // Function to sort by shoe price, high to low
+  function sortByPriceDescending() {
+    var container = document.querySelector(".image-section");
+    var items = container.querySelectorAll(".item-container");
+    items = Array.from(items);
+    items.sort(function(a, b) {
+      var priceA = parseFloat(a.getAttribute("data-price"));
+      var priceB = parseFloat(b.getAttribute("data-price"));
+      return priceB - priceA;
+    });
+    items.forEach(function(item) {
+      container.appendChild(item);
+    });
+  }
+
+  // Function to sort randomly while keeping consistent order
+  function sortRandomConsistent() {
+    var container = document.querySelector(".image-section");
+    var items = container.querySelectorAll(".item-container");
+    items = Array.from(items);
+    var shuffledItems = shuffleArray(items);
+    shuffledItems.forEach(function(item) {
+      container.appendChild(item);
+    });
+  }
+
+  function sortCollection() {
+    var sortBy = document.getElementById("sort-by").value;
+    switch (sortBy) {
+      case "best-selling":
+        // Random order, but consistent
+        sortRandomConsistent();
+        break;
+      case "title-ascending":
+        // Alphabetically, A-Z
+        sortByAlphabetAscending();
+        break;
+      case "price-ascending":
+        // Price, low to high
+        sortByPriceAscending();
+        break;
+      case "price-descending":
+        // Price, high to low
+        sortByPriceDescending();
+        break;
+      case "created-ascending":
+        // Random order, but consistent
+        sortRandomConsistent();
+        break;
+      case "created-descending":
+        // Random order, but consistent
+        sortRandomConsistent();
+        break;
+      default:
+        // Default behavior (Featured), do nothing
+        break;
+    }
+  }
+
+  // Event listener for dropdown change
+  document.getElementById("sort-by").addEventListener("change", sortCollection);
+</script>
+
+<script>
+  function sortCollection() {
+    var sortBy = document.getElementById("sort-by").value;
+    if (sortBy === "title-descending") {
+      var container = document.querySelector(".image-section");
+      var items = container.querySelectorAll(".item-container");
+
+      // Convert NodeList to Array for easier manipulation
+      items = Array.from(items);
+
+      // Sort items alphabetically by shoe name in descending order
+      items.sort(function(a, b) {
+        var nameA = a.querySelector(".shoe-name").textContent.trim().toUpperCase();
+        var nameB = b.querySelector(".shoe-name").textContent.trim().toUpperCase();
+        if (nameA > nameB) {
+          return -1;
+        }
+        if (nameA < nameB) {
+          return 1;
+        }
+        return 0;
+      });
+
+      // Remove existing items from container
+      items.forEach(function(item) {
+        container.removeChild(item);
+      });
+
+      // Append sorted items back to container
+      items.forEach(function(item) {
+        container.appendChild(item);
+      });
+    }
+  }
+
+  // Event listener for dropdown change
+  document.getElementById("sort-by").addEventListener("change", sortCollection);
+</script>
+
+
+<script>
+  function sortCollection() {
+    var sortBy = document.getElementById("sort-by").value;
+    if (sortBy === "price-ascending") {
+      var container = document.querySelector(".image-section");
+      var items = container.querySelectorAll(".item-container");
+
+      // Convert NodeList to Array for easier manipulation
+      items = Array.from(items);
+
+      // Sort items by price in ascending order
+      items.sort(function(a, b) {
+        var priceA = parseInt(a.getAttribute("data-price"));
+        var priceB = parseInt(b.getAttribute("data-price"));
+        return priceA - priceB;
+      });
+
+      // Remove existing items from container
+      items.forEach(function(item) {
+        container.removeChild(item);
+      });
+
+      // Append sorted items back to container
+      items.forEach(function(item) {
+        container.appendChild(item);
+      });
+    }
+  }
+
+  // Event listener for dropdown change
+  document.getElementById("sort-by").addEventListener("change", sortCollection);
+</script>
+
+<script>
+  function sortCollection() {
+    var sortBy = document.getElementById("sort-by").value;
+    if (sortBy === "price-descending") {
+      var container = document.querySelector(".image-section");
+      var items = container.querySelectorAll(".item-container");
+
+      // Convert NodeList to Array for easier manipulation
+      items = Array.from(items);
+
+      // Sort items by price in descending order
+      items.sort(function(a, b) {
+        var priceA = parseInt(a.getAttribute("data-price"));
+        var priceB = parseInt(b.getAttribute("data-price"));
+        return priceB - priceA;
+      });
+
+      // Remove existing items from container
+      items.forEach(function(item) {
+        container.removeChild(item);
+      });
+
+      // Append sorted items back to container
+      items.forEach(function(item) {
+        container.appendChild(item);
+      });
+    }
+  }
+
+  // Event listener for dropdown change
+  document.getElementById("sort-by").addEventListener("change", sortCollection);
+</script>
+
+<script>
+  // Function to handle sorting
+  function sortCollection() {
+    var sortBy = document.getElementById("sort-by").value;
+    
+    // Check if the selected option is "Featured"
+    if (sortBy === "manual") {
+      // Reload the page to revert to original order
+      location.reload();
+    } else {
+      // Otherwise, handle other sorting options
+      // Add sorting logic for other options here
+    }
+  }
+
+  // Event listener for dropdown change
+  document.getElementById("sort-by").addEventListener("change", sortCollection);
+</script>
+
+
         
       
 
