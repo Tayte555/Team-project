@@ -178,6 +178,11 @@ mysqli_stmt_close($statement);
             <div class="p-4 px-8 md:border-r md:border-black h-screen">
                 <ul>
                     <li class="mb-2 py-2">
+                        <a href="admin.php" class="hover:opacity-50 py-2 md:text-base md:text-base lg:text-2xl">
+                            <span>Admin Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="mb-2 py-2">
                         <a href="account.php" class="py-2 md:text-base md:text-base lg:text-2xl">
                             <span>Order History</span>
                         </a>
@@ -185,11 +190,6 @@ mysqli_stmt_close($statement);
                     <li class="mb-2 py-2">
                         <a href="addresses.php" class="opacity-50 py-2 md:text-base lg:text-2xl">
                             <span>View addresses</span>
-                        </a>
-                    </li>
-                    <li class="mb-2 py-2">
-                        <a href="/account/settings" class="py-2 md:text-base lg:text-2xl">
-                            <span>Profile settings</span>
                         </a>
                     </li>
                     <li class="mb-2 py-2">
