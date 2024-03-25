@@ -123,6 +123,56 @@ if ($_SESSION['is_admin'] != 1){
             <div class="p-4 md:col-span-3 md:px-14 md:py-10 lg:p-20 mb-4 md:mb-0">
                 <h1 class="text-xl md:text-2xl lg:text-6xl mb-2 md:mb-4 lg:mb-8 font-bold">Manage Users</h1>
                 <p>Below is a list of users.</p>
+                <div class="my-4">
+  <button onclick="showAddUserModal()" type="button" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add a new user</button>
+</div>
+<div id="modal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-headline">
+  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div class="fixed inset-0 bg-gray-500 opacity-75" onclick="closeModal()"></div>
+    <div class="inline-block align-bottom bg-white text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-screen-md sm:w-full" role="dialog" aria-modal="true" aria-labelledby="Add a new user">
+      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="new-user-form">
+          <h3 class="text-xl md:text-4xl font-bold mb-4">Add a new admin user</h3>
+
+          <!-- User Form Fields -->
+          <form method="post" action="add_user.php">
+            <div class="grid grid-cols-6 gap-3">
+              <div class="col-span-6">
+                <label for="forename" class="block text-sm font-medium text-gray-700">First Name</label>
+                <input type="text" name="forename" id="forename" required class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+              </div>
+              <div class="col-span-6">
+                <label for="surname" class="block text-sm font-medium text-gray-700">Last Name</label>
+                <input type="text" name="surname" id="surname" required class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+              </div>
+              <div class="col-span-6">
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" name="password" id="password" required class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+              </div>
+              <div class="col-span-6">
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" name="email" id="email" required class="mt-2 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full border sm:text-sm border-gray-300 h-[42px]">
+              </div>
+            </div>
+            <div class="px-4 py-3 flex flex-col md:flex-row-reverse justify-between">
+              <button type="submit" class="bg-black flex items-center justify-center border border-transparent py-2 px-4 text-base font-medium text-white hover:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add user</button>
+              <button type="button" onclick="closeModal()" class="text-sm px-4 border border-black uppercase tracking-wide">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function closeModal() {
+    document.getElementById('modal').classList.add('hidden');
+  }
+
+  function showAddUserModal() {
+    document.getElementById('modal').classList.remove('hidden');
+  }
+</script>
 
                 <!-- Users Table -->
                 <table class="table w-full">
