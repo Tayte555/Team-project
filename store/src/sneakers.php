@@ -57,7 +57,7 @@ function isSelected($optionValue, $currentValue) {
     <title>Sole Haven | Online Trainer and Exclusive Sneaker Shop</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="./images/logowhitefav.png" type="image/x-icon">
-                  
+
 </head>
 
 <style>
@@ -430,13 +430,28 @@ input[type="search"]:focus {
                 <div id="filter-sidebar"
                     class="fixed right-0 top-0 transform translate-x-full h-full bg-white p-5 rounded shadow-lg min-w-[300px] z-50 transition-transform duration-300 flex flex-col text-black">
                     <!-- Sidebar Header -->
-                    <header class="relative w-full p-2 border-b border-black">
-                        <h3 class="text-medium font-bold uppercase tracking-wide"> Filters </h3>
+                    <header class="relative w-full p-2">
+                        <h3 class="text-xl font-medium tracking-wide flex items-center"> Filters
+                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"
+                                role="presentation" class="ml-2 w-5 color-black icon icon-filter" fill="none"
+                                viewBox="0 11 20 20">
+                                <line x1="16.5" y1="17.5" x2="3.5" y2="17.5" stroke="currentColor"
+                                    stroke-linecap="round"></line>
+                                <line x1="16.5" y1="24.5" x2="3.5" y2="24.5" stroke="currentColor"
+                                    stroke-linecap="round"></line>
+                                <circle cx="13" cy="24.5" r="2" fill="white" stroke="currentColor"></circle>
+                                <circle cx="7" cy="17.5" r="2" fill="white" stroke="currentColor"></circle>
+                            </svg>
+
+                        </h3>
                     </header>
-                    <main class="flex-1">
+
+                    <div class="mb-4 border-t border-zinc-300 mt-4"></div>
+
+                    <main class="flex-1 pt-4">
                         <div class="filter-group Brand" onclick="toggleDropdown('dropdownBrand')">
                             <button type="button"
-                                class="flex items-center justify-between w-full p-4 text-base border-b border-black cursor-pointer hover:opacity-75">
+                                class="flex items-center justify-between w-full p-4 text-base border-b border-zinc-300 cursor-pointer hover:opacity-75">
                                 <div>
                                     <span class="font-medium">Brand</span>
                                     <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90"
@@ -487,7 +502,7 @@ input[type="search"]:focus {
 
                         <div class="filter-group Colour" onclick="toggleDropdown('dropdownColour')">
                             <button type="button"
-                                class="flex items-center justify-between w-full p-4 text-base border-b border-black cursor-pointer hover:opacity-75">
+                                class="flex items-center justify-between w-full p-4 text-base border-b border-zinc-300 cursor-pointer hover:opacity-75">
                                 <div>
                                     <span class="font-medium">Colour</span>
                                     <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90"
@@ -581,6 +596,8 @@ input[type="search"]:focus {
 
 
                     <!-- submit Button -->
+
+                    <div class="mb-4 border-t border-zinc-300"></div>
 
                     <a href="sneakers.php"
                         class="block rounded flex items-center justify-center p-2 text-base text-black border border-black cursor-pointer hover:opacity-75">Clear
