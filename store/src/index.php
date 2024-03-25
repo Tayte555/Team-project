@@ -34,7 +34,7 @@ $subtotal = 0;
 
                         <!-- Nav Links -->
                         <ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
-                            <li><a class="hover:text-gray-300" href="./newarrivals.html">New Arrivals</a></li>
+                            <li><a class="hover:text-gray-300" href="./newarrivals.php">New Arrivals</a></li>
                             <li><a class="hover:text-gray-300" href="./best_sellers.php">Best Sellers</a></li>
 
                             <!-- Sneakers Hover Menu -->
@@ -62,7 +62,7 @@ $subtotal = 0;
 
                             <!-- Apparel Hover Menu -->
                             <li class="relative group">
-                                <a class="hover:text-gray-300" href="./apparel.html">Apparel
+                                <a class="hover:text-gray-300" href="./apparel.php">Apparel
                                     <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
@@ -106,7 +106,7 @@ $subtotal = 0;
 
                             <!-- Discover Hover Menu -->
                             <li class="relative group">
-                                <a class="hover:text-gray-300 pr-40" href="#">Discover
+                                <a class="hover:text-gray-300 pr-40" href="discover.html">Discover
                                     <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
