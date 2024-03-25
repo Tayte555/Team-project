@@ -30,30 +30,30 @@ if ($_SESSION['is_admin'] != 1){
                 <!-- navbar -->
                 <nav class="flex justify-between w-screen">
                     <div class="px-2 flex w-full py-4 items-center">
-                        <a class="" href="../home.php">
+                        <a class="" href="../index.php">
                             <img class="h-6" src="../images/logowhite.png" alt="logo"/>         
                         </a>
 
                         <!-- Nav Links -->
                         <ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
-                            <li><a class="hover:text-gray-300" href="#">New Arrivals</a></li>
-                            <li><a class="hover:text-gray-300" href="#">Best Sellers</a></li>
-                            <li><a class="hover:text-gray-300" href="#">Sneakers                
+                        <li><a class="hover:text-gray-300" href="../newarrivals.php">New Arrivals</a></li>
+                          <li><a class="hover:text-gray-300" href="../best_sellers.php">Best Sellers</a></li>
+                         <li><a class="hover:text-gray-300" href="../sneakers.php">Sneakers                
                                 <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                                     <path d="m9 18 6-6-6-6"/>
                                 </svg>               
                             </a></li>
-                            <li><a class="hover:text-gray-300" href="#">Apparel
+                            <li><a class="hover:text-gray-300" href="../apparel.php">Apparel
                                 <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                                     <path d="m9 18 6-6-6-6"/>
                                 </svg>
                             </a></li>
-                            <li><a class="hover:text-gray-300" href="#">Accessories
+                            <li><a class="hover:text-gray-300" href="../accessories.php">Accessories
                                 <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                                     <path d="m9 18 6-6-6-6"/>
                                 </svg>
                             </a></li>
-                            <li><a class="hover:text-gray-300 pr-40" href="#">Discover
+                            <li><a class="hover:text-gray-300 pr-40" href="../discover.php">Discover
                                 <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                                     <path d="m9 18 6-6-6-6"/>
                                 </svg>
@@ -61,7 +61,7 @@ if ($_SESSION['is_admin'] != 1){
                         </ul>
                         <!-- Header Icons -->
                         <div class="hidden xl:flex items-center -space-x-1 pr-6 text-gray-100">
-                            <a class="hover:text-gray-300" href="#">
+                            <a class="hover:text-gray-300" href="index.php">
                                 <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-search w-10">
                                     <circle cx="11" cy="11" r="8"/>
                                     <path d="m21 21-4.35-4.35"/>
