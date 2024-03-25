@@ -16,6 +16,7 @@ $mensProducts = getMensProducts($connection);
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
     <title>Mens</title>
+    <link rel="icon" href="./images/logowhitefav.png" type="image/x-icon">
 </head>
 
 

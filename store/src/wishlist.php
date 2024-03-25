@@ -7,6 +7,7 @@
     <title>Sole Haven | Sneaker Wishlist</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
+    <link rel="icon" href="./images/logowhitefav.png" type="image/x-icon">
 
     <style>
         body {

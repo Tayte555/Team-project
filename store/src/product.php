@@ -26,7 +26,8 @@ if(isset($_GET['id'])) {
   <script src="https://cdn.tailwindcss.com"></script>
   <title> Sole Haven | Product</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="https://kit.fontawesome.com/7623f015c6.js" crossorigin="anonymous"></script>                
+  <script src="https://kit.fontawesome.com/7623f015c6.js" crossorigin="anonymous"></script>   
+  <link rel="icon" href="./images/logowhitefav.png" type="image/x-icon">             
 </head>
 
 <style>

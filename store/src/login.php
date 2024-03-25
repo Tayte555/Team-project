@@ -77,6 +77,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     <title>Sole Haven | Login</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
+    <link rel="icon" href="./images/logowhitefav.png" type="image/x-icon">
                 
 </head>
 
