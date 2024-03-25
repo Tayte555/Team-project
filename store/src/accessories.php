@@ -385,7 +385,7 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
     </div>
 
     <?php
-  echo '<div class="flex border-t border-black">';
+  echo '<div class="flex border-black">';
   echo '<div class="collection w-full">';
   echo '<ul class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-px gap-y-5 mb-10">';
 

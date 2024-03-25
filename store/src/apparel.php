@@ -449,7 +449,7 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
     </div>
 
 
-    <div style="border: 1px solid black;">
+    <div style="">
         <div class="flex justify-end items-center px-4 md:px-4 border-t border-black">
             <button id="openFilterBtn" type="button" class="flex items-center mr-auto py-3">
                 Filter
@@ -477,7 +477,7 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
     </div>
 
     <?php
-  echo '<div class="flex border-t border-black">';
+  echo '<div class="flex border-black">';
   echo '<div class="collection w-full">';
   echo '<ul class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-px gap-y-5 mb-10">';
 
