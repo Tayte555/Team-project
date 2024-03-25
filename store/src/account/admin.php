@@ -1,38 +1,3 @@
-<?php 
-session_start();
-include("../connections.php");
-include("../functions.php");
-
-$message = ""; // Initialize message variable
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Extend variable assignment with new form fields
-    $productName = $_POST['product_name'] ?? '';
-    $productBrand = $_POST['brand'] ?? '';
-    $productColour = $_POST['colour'] ?? '';
-    $productDesc = $_POST['product_desc'] ?? '';
-    $stockQuantity = $_POST['stock_quantity'] ?? 0; // Assuming a default of 0 if not set
-    $productPrice = $_POST['price'] ?? 0.0; // Assuming a default price of 0.0 if not set
-
-    // Update your SQL statement to include the new columns
-    $sql = "INSERT INTO products (product_name, brand, colour, product_desc, stock_quantity, price) VALUES (?, ?, ?, ?, ?, ?)";
-
-    if ($stmt = mysqli_prepare($connection, $sql)) {
-        // Bind the new variables as parameters
-        mysqli_stmt_bind_param($stmt, "ssssid", $productName, $productBrand, $productColour, $productDesc, $stockQuantity, $productPrice);
-
-        if (mysqli_stmt_execute($stmt)) {
-            $message = "Product added successfully.";
-        } else {
-            $message = "Error: Could not execute query. " . mysqli_error($connection);
-        }
-        mysqli_stmt_close($stmt);
-    } else {
-        $message = "Error: Could not prepare query. " . mysqli_error($connection);
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,8 +6,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-commerce Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
     header {
         z-index: 20;
@@ -73,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <nav>
                 <a href="#"
                     class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-800 hover:text-white">Dashboard</a>
-                <a href="./account.php"
+                <a href="home.php"
                     class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-800 hover:text-white">Logout</a>
                 <!-- More nav items -->
             </nav>
@@ -143,159 +106,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <!-- Tab contents -->
-                <div class="inventory-section mt-8">
-                    <button id="showInventoryBtn"
-                        class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">
-                        Show Inventory
-                    </button>
-                    <div id="inventoryTable" class="hidden mt-4">
-                        <table class="min-w-full leading-normal">
-                            <thead>
-                                <tr>
-                                    <th>Product ID</th>
-                                    <th>Product Name</th>
-                                    <th>Colour</th>
-                                    <th>Brand</th>
-                                    <th>Collection</th>
-                                    <th>Price</th>
-                                    <th>Release Date</th>
-                                    <th>Stock Quantity</th>
-                                    <th>Category</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php 
-            $sql = "SELECT product_id, product_name, colour, brand, product_collection, price, release_date, stock_quantity, category, product_desc FROM products";
-            $result = mysqli_query($connection, $sql);
-
-            if (mysqli_num_rows($result) > 0) {
-                while($row = mysqli_fetch_assoc($result)) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row['product_id']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['product_name']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['colour']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['brand']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['product_collection']) . "</td>";
-                    echo "<td>$" . htmlspecialchars($row['price']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['release_date']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['stock_quantity']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['category']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['product_desc']) . "</td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='10'>No products found</td></tr>";
-            }
-            ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="user-section mt-8">
-                    <button id="showUsersBtn"
-                        class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">
-                        Show Users
-                    </button>
-                    <div id="usersTable" class="hidden mt-4">
-                        <table class="min-w-full leading-normal">
-                            <thead>
-                                <tr>
-                                    <th>User ID</th>
-                                    <th>Forename</th>
-                                    <th>Surname</th>
-                                    <th>Email</th>
-                                    <th>Password</th>
-                                    <th>Is Admin</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php 
-                $sql = "SELECT user_id, forename, surname, email, pass, is_admin FROM users";
-                $result = mysqli_query($connection, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    while($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr>";
-                        echo "<td>" . htmlspecialchars($row['user_id']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['forename']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['surname']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['email']) . "</td>";
-                        echo "<td>••••••••</td>"; // For security, don't display actual passwords
-                        echo "<td>" . ($row['is_admin'] ? 'Yes' : 'No') . "</td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='6'>No users found</td></tr>";
-                }
-                ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Tab contents -->
                 <div id="orders" class="tab-content">
                     <!-- Dynamic content for Orders -->
                     <?php
         // PHP code to fetch orders from database and display them
         ?>
-
-                    <div class="add-product-section mt-8">
-                        <h2 class="text-lg mb-4">Add New Product</h2>
-                        <form id="addProductForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
-                            method="POST">
-                            <div class="mb-4">
-                                <label for="productName" class="block text-gray-700 text-sm font-bold mb-2">Product
-                                    Name:</label>
-                                <input type="text" id="productName" name="product_name" required
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                            </div>
-                            <!-- Repeat the above div for each product attribute like colour, brand, etc. -->
-                            <div class="mb-4">
-                                <label for="productPrice"
-                                    class="block text-gray-700 text-sm font-bold mb-2">Price:</label>
-                                <input type="number" step="0.01" id="productPrice" name="price" required
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                            </div>
-                            <div class="mb-4">
-                                <label for="productBrand"
-                                    class="block text-gray-700 text-sm font-bold mb-2">Brand:</label>
-                                <input type="text" id="productBrand" name="brand" required
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                            </div>
-
-                            <div class="mb-4">
-                                <label for="productColour"
-                                    class="block text-gray-700 text-sm font-bold mb-2">Colour:</label>
-                                <input type="text" id="productColour" name="colour" required
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                            </div>
-
-                            <div class="mb-4">
-                                <label for="productDesc" class="block text-gray-700 text-sm font-bold mb-2">Product
-                                    Description:</label>
-                                <textarea id="productDesc" name="product_desc" required
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
-                            </div>
-
-                            <div class="mb-4">
-                                <label for="stockQuantity" class="block text-gray-700 text-sm font-bold mb-2">Stock
-                                    Quantity:</label>
-                                <input type="number" id="stockQuantity" name="stock_quantity" required
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <button
-                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                    type="submit">
-                                    Add Product
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-
                 </div>
                 <div id="inventory" class="tab-content hidden">
                     <!-- Dynamic content for Shipped -->
@@ -316,25 +131,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 
-
-
-
-
-
-
     <script>
-    $(document).ready(function() {
-        $('#showInventoryBtn').click(function() {
-            // Toggle the visibility of the inventory table
-            $('#inventoryTable').toggleClass('hidden');
-        });
+    // Toggle sidebar visibility
+    document.getElementById('menuBtn').addEventListener('click', function() {
+        var sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('-translate-x-full');
+
+        // Toggle padding for the content area when sidebar is shown/hidden
+        var content = document.querySelector('.content');
+        if (sidebar.classList.contains('-translate-x-full')) {
+            content.style.paddingLeft = '0';
+        } else {
+            content.style.paddingLeft = '16rem'; // Match the sidebar width
+        }
     });
 
-    $(document).ready(function() {
-        $('#showUsersBtn').click(function() {
-            $('#usersTable').toggleClass('hidden');
+    // Tab functionality
+    document.querySelectorAll('.tab-button').forEach(function(tab) {
+        tab.addEventListener('click', function() {
+            var selectedTab = this.getAttribute('data-tab');
+
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(function(content) {
+                content.classList.add('hidden');
+            });
+
+            // Show selected tab content
+            document.getElementById(selectedTab).classList.remove('hidden');
         });
-        // Keep the existing showInventoryBtn click function here as well
     });
     </script>
 
