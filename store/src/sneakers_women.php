@@ -20,97 +20,6 @@ $womensProducts = getWomensProducts($connection);
                   
 </head>
 
-<style>
-        .image-container {
-            white-space: nowrap; 
-            overflow-x: auto; 
-        }
-
-        .image-container img {
-            margin-right: 0px;
-            margin-left: 0px;
-            width: 465px;
-            height: 107px;
-            display: inline-block; 
-        }
-
-        @media (max-width: 600px) {
-            .image-container {
-                white-space: initial; 
-                overflow-x: initial; 
-            }
-
-            .image-container img {
-                flex-basis: auto; 
-                margin-right: 0;
-                margin-left: 0;
-            }
-          }
-
-
-        /*--Section for the "best sellers" section--*/
-        .image-section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            margin-top: 20px;
-            margin-left: 17px
-        }
-
-        .image-section .item-container {
-            margin: 5px;
-            max-width: calc(20% - 10px);
-            height: auto;
-            float: left;
-        }
-
-        @media (max-width: 600px) {
-            .image-section img {
-                flex-basis: calc(50% - 10px); 
-                width: 100%;
-            }
-        }
-
-
-        /*--text container--*/
-        .text-container {
-            position: relative;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-            padding: 5px;
-            box-sizing: border-box;
-        }
-
-
-        .shoe-name {
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 5px;
-            z-index: 5;
-        }
-
-        .price {
-            font-size: 12px; 
-        }
-
-        img:hover{
-          transform: scale(1.1);
-        }
-
-        .group:hover .absolute {
-    display: block;
-  }
-
-  /* Additional styles for the sub-menus */
-  .absolute {
-    display: none;
-  }
-        
-    </style>
-
-
 
 <body class="overflow-x-hidden flex flex-col min-h-screen">
   <header class="items-center bg-zinc-950 md:px">
@@ -263,7 +172,7 @@ $womensProducts = getWomensProducts($connection);
       echo '<div class="overflow-hidden">';
       echo '<a href="product.php?id=' . $product['product_id'] . '"  class="block h-full group">';
       echo '<div class="bg-neutral-100 pt-36 pb-8 flex items-center justify-center">';
-      echo '<img src="' . $product['product_img'] . '" class="object-cover">';
+      echo '<img src="' . $product['product_img'] . '" class=object-cover style= height:350px>';
       echo '</div>';
       echo '<div class="flex flex-col justify-between p-4 grow">';
       echo '<h3 class="mb-2 text-sm font-medium">' . $product['product_name'] . '</h3>';

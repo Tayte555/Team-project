@@ -668,7 +668,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo '<div class="overflow-hidden">';
     echo '<a href="product.php?id=' . $row['product_id'] . '" class="block h-full group">';
     echo '<div class="bg-neutral-100 pt-36 pb-8 flex items-center justify-center">';
-    echo '<img src="' . $row['product_img'] . '" class="object-cover hover:opacity-75">';
+    echo '<img src="' . $row['product_img'] . '" class="object-cover hover:opacity-75" style= height:350px>';
     echo '</div>';
     echo '<div class="flex flex-col justify-between p-4 grow">';
     echo '<h3 class="mb-2 text-sm font-medium">' . $row['product_name'] . '</h3>';
