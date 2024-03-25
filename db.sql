@@ -158,7 +158,7 @@ INSERT INTO `products` (`product_name`, `colour`, `brand`, `product_collection`,
 --
 
 CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `forename` varchar(255) NOT NULL,
   `surname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,

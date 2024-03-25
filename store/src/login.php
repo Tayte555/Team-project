@@ -201,10 +201,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         </div>
       </form>
 
-      <p class="mt-10 text-center text-sm text-gray-500">
+      <!-- <p class="mt-10 text-center text-sm text-gray-500">
         Sign up as admin?
         <a href="register_admin.php" class="font-semibold leading-6 text-zinc-950 hover:text-opacity-50">Sign up admin</a>
-      </p>
+      </p> -->
   
       <p class="mt-10 text-center text-sm text-gray-500">
         Don't have an account?
