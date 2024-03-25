@@ -191,7 +191,7 @@ if ($_SESSION['is_admin'] != 1){
                         include '../connections.php';
 
                         // Fetch users from the database
-                        $query = "SELECT * FROM users WHERE is_admin = 0;";
+                        $query = "SELECT * FROM users";
                         $result = mysqli_query($connection, $query);
                         if (!$result) {
                             die("Query failed: " . mysqli_error($connection));
