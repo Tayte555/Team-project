@@ -45,24 +45,24 @@ if ($_SESSION['is_admin'] != 1){
 
             <!-- Nav Links -->
             <ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
-              <li><a class="hover:text-gray-300" href="#">New Arrivals</a></li>
-              <li><a class="hover:text-gray-300" href="#">Best Sellers</a></li>
-              <li><a class="hover:text-gray-300" href="#">Sneakers                
+              <li><a class="hover:text-gray-300" href="../newarrivals.php">New Arrivals</a></li>
+              <li><a class="hover:text-gray-300" href="../best_sellers.php">Best Sellers</a></li>
+              <li><a class="hover:text-gray-300" href="../sneakers.php">Sneakers                
                   <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                     <path d="m9 18 6-6-6-6"/>
                   </svg>               
               </a></li>
-              <li><a class="hover:text-gray-300" href="#">Apparel
+              <li><a class="hover:text-gray-300" href="../apparel.php">Apparel
                 <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                   <path d="m9 18 6-6-6-6"/>
                 </svg>
               </a></li>
-              <li><a class="hover:text-gray-300" href="#">Accessories
+              <li><a class="hover:text-gray-300" href="../accessories.php">Accessories
                 <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                   <path d="m9 18 6-6-6-6"/>
                 </svg>
               </a></li>
-              <li><a class="hover:text-gray-300 pr-40" href="#">Discover
+              <li><a class="hover:text-gray-300 pr-40" href="../discover.php">Discover
                 <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                   <path d="m9 18 6-6-6-6"/>
                 </svg>
@@ -82,7 +82,7 @@ if ($_SESSION['is_admin'] != 1){
                 
               </a>
               <!-- Cart      -->
-              <a class="flex items-center hover:text-gray-300" href="cart.php">
+              <a class="flex items-center hover:text-gray-300" href="../cart.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart w-10"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                 </svg>
                 <!--<span class="flex absolute -mt-5 ml-4">
@@ -175,16 +175,16 @@ if ($_SESSION['is_admin'] != 1){
       <h3 class="mb-2 text-base text-white text-sm font-bold pb-5 pt-6">CUSTOMER SERVICE 🛎️</h3>
       <ul class="text-white space-y-3">
         <li class="mb-1">
-          <a href="/privacy-policy" class="hover:opacity-50">Privacy policy</a>
+          <a href="../privacy-policy.html" class="hover:opacity-50">Privacy policy</a>
         </li>
         <li class="mb-1">
-          <a href="/refund-policy" class="hover:opacity-50">Refund policy</a>
+          <a href="../refundpolicy.html" class="hover:opacity-50">Refund policy</a>
         </li>
         <li class="mb-1">
-          <a href="/tos" class="hover:opacity-50">Terms of service</a>
+          <a href="../terms_of_use.html" class="hover:opacity-50">Terms of service</a>
         </li>
         <li class="mb-1 pb-5">
-          <a href="/shipping" class="hover:opacity-50">Shipping policy</a>
+          <a href="../shipping_response.html" class="hover:opacity-50">Shipping policy</a>
         </li>
       </ul>
   </div>
@@ -193,16 +193,16 @@ if ($_SESSION['is_admin'] != 1){
     <h3 class="mb-2 text-base text-white text-sm font-bold pb-5 pt-6">INFORMATION 💼</h3>
     <ul class="text-white space-y-3">
       <li class="mb-1">
-        <a href="/privacy-policy" class="hover:opacity-50">About us</a>
+        <a href="../privacy.html" class="hover:opacity-50">About us</a>
       </li>
       <li class="mb-1">
-        <a href="/refund-policy" class="hover:opacity-50">Meet the team</a>
+        <a href="../refundpolicy.html" class="hover:opacity-50">Meet the team</a>
       </li>
       <li class="mb-1">
         <a href="../contactus.php" class="hover:opacity-50">Contact us</a>
       </li>
       <li class="mb-1 pb-5">
-        <a href="/shipping" class="hover:opacity-50">Careers</a>
+        <a href="../careers.html" class="hover:opacity-50">Careers</a>
       </li>
     </ul>
 </div>
