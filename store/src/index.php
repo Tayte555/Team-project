@@ -561,7 +561,7 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
         <section>
             <div class="flex justify-between p-4 ">
                 <h2 class="text-sm font-bold uppercase tracking-wide">clothing</h2>
-                <a href="/collections/new-arrivals" class="underline underline-offset-2">View more</a>
+                <a href="./apparel.php" class="underline underline-offset-2">View more</a>
             </div>
 
             <!--FIRST ROW CLOTHES-->
