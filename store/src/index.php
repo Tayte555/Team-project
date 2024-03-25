@@ -695,7 +695,7 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
                             <div class="overflow-hidden">
                                 <!-- <a href="/collections/jordan/jordan-4" class="block h-full group"> -->
                                 <div class="bg-neutral-50 pt-36 pb-8 flex items-center justify-center">
-                                    <img src="<?php echo $product['product_img'] ?>" class="object-cover">
+                                    <img src="<?php echo $product['product_img'] ?>" class="object-cover" style="height:350px">
                                 </div>
                         </a>
             </div>
