@@ -60,155 +60,6 @@ function isSelected($optionValue, $currentValue) {
 
 </head>
 
-<style>
-.image-container {
-    white-space: nowrap;
-    overflow-x: auto;
-    z-index: 1;
-}
-
-.image-container img {
-    margin-right: 0px;
-    margin-left: 0px;
-    width: 465px;
-    height: 107px;
-    display: inline-block;
-    z-index: 1;
-}
-
-@media (max-width: 600px) {
-    .image-container {
-        white-space: initial;
-        overflow-x: initial;
-        z-index: 1;
-    }
-
-    .image-container img {
-        flex-basis: auto;
-        margin-right: 0;
-        margin-left: 0;
-        z-index: 1;
-    }
-}
-
-
-/*--Section for the "best sellers" section--*/
-.image-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-top: 20px;
-    margin-left: 17px;
-    z-index: 1;
-}
-
-.image-section .item-container {
-    margin: 5px;
-    max-width: calc(20% - 10px);
-    height: auto;
-    float: left;
-    z-index: 1;
-}
-
-@media (max-width: 600px) {
-    .image-section img {
-        flex-basis: calc(50% - 10px);
-        width: 100%;
-        z-index: 1;
-    }
-}
-
-
-/*--text container--*/
-.text-container {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
-    /* Semi-transparent white background */
-    padding: 5px;
-    box-sizing: border-box;
-    z-index: 1;
-}
-
-
-.shoe-name {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    z-index: 5;
-    z-index: 1;
-}
-
-.price {
-    font-size: 12px;
-    z-index: 1;
-}
-
-img:hover {
-    z-index: 1;
-}
-
-.group:hover .absolute {
-    display: block;
-    z-index: 1;
-}
-
-
-.absolute {
-    display: none;
-    z-index: 1;
-}
-
-input[type="search"] {
-    width: 100%;
-    height: 40px;
-    padding: 0 15px;
-    font-size: 1rem;
-    border: 2px solid transparent;
-    background-color: transparent;
-    color: white;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-}
-
-input[type="search"]::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-    /* Light white placeholder text */
-}
-
-input[type="search"]:focus {
-    background-color: white;
-    /* Background white on focus */
-    color: black;
-    /* Text color black on focus */
-    outline: none;
-    /* Remove the default outline */
-    border-color: #4A90E2;
-    /* Blue border on focus */
-}
-
-
-#cart-sidebar {
-    transition: transform 0.3s ease;
-}
-
-.cart-item {
-    display: flex;
-    align-items: center;
-}
-
-.cart-item img {
-    border-radius: 5px;
-}
-
-.cart-item div {
-    flex-grow: 1;
-}
-</style>
-
-
 
 
 <body class="overflow-x-hidden flex flex-col min-h-screen" x-data="{ openFilter : false}">
@@ -330,15 +181,10 @@ input[type="search"]:focus {
                                 </svg>
 
                             </a>
-                            <!-- Cart 
-              <a class="flex items-center hover:text-gray-300" href="cart.php">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart w-10"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                </svg>
-                <span class="flex absolute -mt-5 ml-4">
-                    <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500">
-                      </span>
-                    </span> -->
+
+
+
+
                             <div id="cart-icon" class="cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
