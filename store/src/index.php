@@ -756,7 +756,7 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
                                 <a href="contactus.php" class="hover:opacity-50">Contact us</a>
                             </li>
                             <li class="mb-1 pb-5">
-                                <a href="shipping_response.html" class="hover:opacity-50">Careers</a>
+                                <a href="careers.html" class="hover:opacity-50">Careers</a>
                             </li>
                         </ul>
                     </div>
