@@ -3,6 +3,7 @@ session_start();
 
 include("connections.php");
 include("functions.php");
+$accessories = getAccessories($connection);
 // Handle Filters
 $filterConditions = [];
 $filterValues = [];
@@ -129,98 +130,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
     <link rel="icon" href="./images/logowhitefav.png" type="image/x-icon">
 
 </head>
-
-<style>
-.image-container {
-    white-space: nowrap;
-    overflow-x: auto;
-}
-
-.image-container img {
-    margin-right: 0px;
-    margin-left: 0px;
-    width: 465px;
-    height: 107px;
-    display: inline-block;
-}
-
-@media (max-width: 600px) {
-    .image-container {
-        white-space: initial;
-        overflow-x: initial;
-    }
-
-    .image-container img {
-        flex-basis: auto;
-        margin-right: 0;
-        margin-left: 0;
-    }
-}
-
-
-/*--Section for the "best sellers" section--*/
-.image-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-top: 20px;
-    margin-left: 17px
-}
-
-.image-section .item-container {
-    margin: 5px;
-    max-width: calc(20% - 10px);
-    height: auto;
-    float: left;
-}
-
-@media (max-width: 600px) {
-    .image-section img {
-        flex-basis: calc(50% - 10px);
-        width: 100%;
-    }
-}
-
-
-/*--text container--*/
-.text-container {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
-    /* Semi-transparent white background */
-    padding: 5px;
-    box-sizing: border-box;
-}
-
-
-.shoe-name {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    z-index: 5;
-}
-
-.price {
-    font-size: 12px;
-}
-
-img:hover {
-    transform: scale(1.1);
-}
-
-.group:hover .absolute {
-    display: block;
-}
-
-/* Additional styles for the sub-menus */
-.absolute {
-    display: none;
-}
-</style>
-
-
 
 <body class="overflow-x-hidden flex flex-col min-h-screen" x-data="{ openFilter : false}">
     <header class="items-center bg-zinc-950 md:px">
@@ -448,7 +357,7 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
     </div>
 
 
-    <div style="solid black;">
+    <div>
         <div class="flex justify-end items-center px-4 md:px-4 border-t border-black">
             <button id="openFilterBtn" type="button" class="flex items-center mr-auto py-3">
                 Filter
@@ -475,190 +384,36 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
         <div style="border-top: 1px solid black;"></div>
     </div>
 
-    <div class="image-section">
+    <?php
+  echo '<div class="flex border-t border-black">';
+  echo '<div class="collection w-full">';
+  echo '<ul class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-px gap-y-5 mb-10">';
 
-        <div class="item-container" data-brand="shoelace" data-size="8" data-price="1.99" data-color="black">
-            <img src="images/accessories_shoelaces/shoelaces_1.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Black Shoelaces</div>
-                <div class="price">from £1.99</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="shoelace" data-size="8" data-price="2.99" data-color="black">
-            <img src="images/accessories_shoelaces/shoelaces_2.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Light Brown Shoelaces</div>
-                <div class="price">from £2.99</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="shoelace" data-size="8" data-price="1.99" data-color="black">
-            <img src="images/accessories_shoelaces/shoelaces_3.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">White Shoelaces</div>
-                <div class="price">from £1.99</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="shoelace" data-size="8" data-price="1.99" data-color="black">
-            <img src="images/accessories_shoelaces/shoelaces_4.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Blue Shoelaces</div>
-                <div class="price">from £1.99</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="shoelace" data-size="8" data-price="1.99" data-color="black">
-            <img src="images/accessories_shoelaces/shoelaces_5.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Brown shoelaces</div>
-                <div class="price">from £1.99</div>
-            </div>
-        </div>
-
-
-        <div class="item-container" data-brand="insoles" data-size="8" data-price="26.99" data-color="black">
-            <img src="images/accessories_shoeinserts/shoeinserts_1.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Premium Anti-Fatigue Shoe Insoles</div>
-                <div class="price">from £26.99</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="insoles" data-size="8" data-price="16" data-color="black">
-            <img src="images/accessories_shoeinserts/shoeinserts_2.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Gel Active Work Insoles</div>
-                <div class="price">from £16</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="insoles" data-size="8" data-price="4.99" data-color="black">
-            <img src="images/accessories_shoeinserts/shoeinserts_3.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Insoles for Comfort & Relaxation</div>
-                <div class="price">from £4.99</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="insoles" data-size="8" data-price="3.50" data-color="black">
-            <img src="images/accessories_shoeinserts/shoeinserts_4.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Elastic Shock Absorbing Insoles</div>
-                <div class="price">from £3.50</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="insoles" data-size="8" data-price="3.40" data-color="black">
-            <img src="images/accessories_shoeinserts/shoeinserts_5.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Odour Control Insole</div>
-                <div class="price">from £3.40</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="bag" data-size="8" data-price="12" data-color="black">
-            <img src="images/accessories_shoebag/shoebag_1.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Nike Academy Shoe Bag</div>
-                <div class="price">from £12</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="bag" data-size="8" data-price="29" data-color="black">
-            <img src="images/accessories_shoebag/shoebag_2.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Under Armour Shoe Bag</div>
-                <div class="price">from £21.99</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="bag" data-size="8" data-price="29" data-color="black">
-            <img src="images/accessories_shoebag/shoebag_3.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Nike Shoe Bag</div>
-                <div class="price">from £29</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="bag" data-size="8" data-price="3" data-color="black">
-            <img src="images/accessories_shoebag/shoebag_4.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Fold-up walking shoes bag</div>
-                <div class="price">from £3</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="bag" data-size="8" data-price="16" data-color="black">
-            <img src="images/accessories_shoebag/shoebag_5.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Stuburt Evolve Lightweight Shoebag</div>
-                <div class="price">from £16</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="insoles" data-size="8" data-price="3" data-color="black">
-            <img src="images/accessories_soles/soles_1.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Comfortable Outdoor Insoles</div>
-                <div class="price">from £3</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="insoles" data-size="8" data-price="3.99" data-color="black">
-            <img src="images/accessories_soles/soles_2.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Stick on Soles</div>
-                <div class="price">from £3.99</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="insoles" data-size="8" data-price="2.89" data-color="black">
-            <img src="images/accessories_soles/soles_3.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Thick Felt Shoe Insoles</div>
-                <div class="price">from £2.89</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="insoles" data-size="8" data-price="10" data-color="black">
-            <img src="images/accessories_soles/soles_4.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Vibram Jankuat 1220</div>
-                <div class="price">from £10</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="insoles" data-size="8" data-price="5.59" data-color="black">
-            <img src="images/accessories_soles/soles_5.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Replacement Shoe Sole</div>
-                <div class="price">from £5.59</div>
-            </div>
-        </div>
-
-    </div>
+  foreach ($accessories as $product) {  
+      echo '<li class="">';
+      echo '<div class="overflow-hidden">';
+      echo '<a href="product.php?id=' . $product['product_id'] . '"  class="block h-full group">';
+      echo '<div class="bg-neutral-100 pt-36 pb-8 flex items-center justify-center">';
+      echo '<img src="' . $product['product_img'] . '" class="object-cover">';
+      echo '</div>';
+      echo '<div class="flex flex-col justify-between p-4 grow">';
+      echo '<h3 class="mb-2 text-sm font-medium">' . $product['product_name'] . '</h3>';
+      echo '<div class="flex justify-between items-center">';
+      echo '<div>';
+      echo '<span class="mr-1 text-xs">From</span>';
+      echo '<span class="price text-sm">£' . $product['price'] . '</span>';
+      echo '</div>';
+      echo '</div>';
+      echo '</div>';
+      echo '</a>';
+      echo '</div>';
+      echo '</li>';
+  }
+  echo '</ul>';
+  echo '</div>';
+  echo '</div>';
+  mysqli_close($connection);
+  ?>
 
 
     <div id="app">

@@ -577,7 +577,11 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
                 if ($product['product_collection'] == 'Tops&Sweatshirts' || $product['product_collection'] == 'Tshirts' || $product['product_collection'] == 'Sweatpants' || $product['product_collection'] == 'Jackets') {
                   // Display size options for clothing
                   $sizes = array('XS', 'S', 'M', 'L', 'XL');
-                } else {
+                } 
+                elseif ($product['category'] == 'Accessories' ){
+                    $sizes = array('One Size');
+                }
+                else {
                   // Display shoe sizes
                   $sizes = range(3, 13);
                 }

@@ -119,13 +119,13 @@ if (!isset($_SESSION['user_id'])){
                 <ul>
                     <?php
         // Only display the Admin Dashboard link for user_id 2
-        if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == 2) {
-            echo '<li class="mb-2 py-2">
-                    <a href="admin.php" class="hover:opacity-50 py-2 md:text-base md:text-base lg:text-2xl">
-                        <span>Admin Dashboard</span>
-                    </a>
-                  </li>';
-        }
+        // if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == 2) {
+        //     echo '<li class="mb-2 py-2">
+        //             <a href="admin.php" class="hover:opacity-50 py-2 md:text-base md:text-base lg:text-2xl">
+        //                 <span>Admin Dashboard</span>
+        //             </a>
+        //           </li>';
+        // }
         ?>
                     <li class="mb-2 py-2">
                         <a href="account.php" class="hover:opacity-50 py-2 md:text-base md:text-base lg:text-2xl">
