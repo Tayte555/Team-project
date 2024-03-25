@@ -1,3 +1,7 @@
+<?php
+// Start the session
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +14,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="./images/logowhitefav.png" type="image/x-icon">
 </head>
+
 <body>
   <!-- navbar -->
   <header class="items-center bg-zinc-950 md:px">
@@ -79,66 +84,66 @@
       </div>
       </div>
     </nav>
-  <main class="page payment-page">
-    <section class="payment-form dark">
-      <div class="container">
-        <div class="block-heading">
-          <h2>Payment</h2>
-          <p></p>
-        </div>
-        <form>
-          <div class="products">
-            <h3 class="title">Checkout</h3>
-            <div class="item">
-              <span class="price">$120</span>
-              <p class="item-name">Jordan 4 Retro Black Cat (2020)</p>
-              <p class="item-description">Size: 9.5 UK</p>
-            </div>
-            <div class="item">
-              <span class="price">$120</span>
-              <p class="item-name">Jordan 4 Retro Black Cat (2020)</p>
-              <p class="item-description">Size: 9.5 UK</p>
-            </div>
-            <div class="item">
-              <span class="price">$120</span>
-              <p class="item-name">Jordan 4 Retro Black Cat (2020)</p>
-              <p class="item-description">Size: 9.5 UK</p>
-            </div>
-            <div class="total">Total<span class="price">$360</span></div>
-          </div>
-          <div class="card-details">
-            <h3 class="title">Credit Card Details</h3>
-            <div class="row">
-              <div class="form-group col-sm-7">
-                <label for="card-holder">Card Holder</label>
-                <input id="card-holder" type="text" class="form-control" placeholder="Card Holder" aria-label="Card Holder" aria-describedby="basic-addon1">
-              </div>
-              <div class="form-group col-sm-5">
-                <label for="">Expiration Date</label>
-                <div class="input-group expiration-date">
-                  <input type="text" class="form-control" placeholder="MM" aria-label="MM" aria-describedby="basic-addon1">
-                  <span class="date-separator">/</span>
-                  <input type="text" class="form-control" placeholder="YY" aria-label="YY" aria-describedby="basic-addon1">
+    <main class="page payment-page">
+        <section class="payment-form dark">
+            <div class="container">
+                <div class="block-heading">
+                    <h2>Payment</h2>
+                    <p>Complete your payment details below.</p>
                 </div>
-              </div>
-              <div class="form-group col-sm-8">
-                <label for="card-number">Card Number</label>
-                <input id="card-number" type="text" class="form-control" placeholder="Card Number" aria-label="Card Holder" aria-describedby="basic-addon1">
-              </div>
-              <div class="form-group col-sm-4">
-                <label for="cvc">CVC</label>
-                <input id="cvc" type="text" class="form-control" placeholder="CVC" aria-label="Card Holder" aria-describedby="basic-addon1">
-              </div>
-              <div class="form-group col-sm-12">
-                <button type="button" class="btn btn-primary btn-block">Proceed</button>
-              </div>
+                <form action="process_payment.php" method="post">
+                    <div class="products">
+                        <h3 class="title">Checkout</h3>
+                        <?php
+                        $total = 0;
+                        if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+                            foreach ($_SESSION['cart'] as $item) {
+                                $total += $item['price'] * $item['quantity'];
+                                echo '<div class="item">';
+                                echo '<span class="price">$' . number_format($item['price'], 2) . '</span>';
+                                echo '<p class="product_name">' . htmlspecialchars($item['product_name']) . '</p>';
+    
+                                echo '</div>';
+                            }
+                        } else {
+                            echo '<p>Your cart is empty.</p>';
+                        }
+                        ?>
+                        <div class="total">Total<span class="price">$<?php echo number_format($total, 2); ?></span></div>
+                    </div>
+                    <div class="card-details">
+                        <h3 class="title">Credit Card Details</h3>
+                        <div class="row">
+                            <div class="form-group col-sm-7">
+                                <label for="card-holder">Card Holder</label>
+                                <input id="card-holder" type="text" class="form-control" placeholder="Card Holder Name" name="card_holder" required>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Expiration Date</label>
+                                <div class="input-group expiration-date">
+                                    <input type="text" class="form-control" placeholder="MM" name="exp_month" required>
+                                    <span class="date-separator">/</span>
+                                    <input type="text" class="form-control" placeholder="YY" name="exp_year" required>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-8">
+                                <label for="card-number">Card Number</label>
+                                <input id="card-number" type="text" class="form-control" placeholder="Card Number" name="card_number" required>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="cvc">CVC</label>
+                                <input id="cvc" type="text" class="form-control" placeholder="CVC" name="cvc" required>
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <button type="submit" class="btn btn-primary btn-block">Proceed</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-          </div>
-        </form>
-      </div>
-    </section>
-  </main>
-</body>
+        </section>
+    </main>
+
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
