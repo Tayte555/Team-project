@@ -3,8 +3,118 @@ session_start();
 
 include("connections.php");
 include("functions.php");
+// Handle Filters
+$filterConditions = [];
+$filterValues = [];
 
 $subtotal = 0;
+
+$sortOption = isset($_GET['sort']) ? $_GET['sort'] : 'manual';
+
+if (!empty($_GET['brand'])) {
+    foreach ($_GET['brand'] as $brand) {
+        $filterConditions[] = "brand = '". mysqli_real_escape_string($connection, $brand) ."'";
+    }
+}
+
+if (!empty($_GET['colour'])) {
+    foreach ($_GET['colour'] as $colour) {
+        $filterConditions[] = "colour = '". mysqli_real_escape_string($connection, $colour) ."'";
+    }
+}
+
+$sqlFilter = '';
+if (!empty($filterConditions)) {
+    $sqlFilter = " WHERE " . implode(' AND ', $filterConditions);
+}
+
+function isSelected($optionValue, $currentValue) {
+  return $optionValue == $currentValue ? 'selected' : '';
+}
+// Function to get the current user's ID
+function getCurrentUserID() {
+  // Check if the user is logged in and their ID is stored in a session variable
+  if (isset($_SESSION['user_id'])) {
+      return $_SESSION['user_id'];
+  } else {
+      // Return a default value or handle the case where the user is not logged in
+      return null;
+  }
+}
+
+// Put product selected into the cart 
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['product_id'], $_POST['quantity'], $_POST['product_img'])) {
+  $product_id = $_POST['product_id'];
+  $quantity = $_POST['quantity'];
+
+  // Check if the product_id is numeric to avoid SQL injection
+  if (!is_numeric($product_id)) {
+      die('Invalid product_id');
+  }
+
+  $query = "SELECT * FROM products WHERE product_id = $product_id";
+  $result = mysqli_query($connection, $query);
+
+  if ($result) {
+      $product = mysqli_fetch_assoc($result);
+
+      if (!isset($_SESSION['cart'])) {
+          $_SESSION['cart'] = [];
+      }
+      
+      $product_id = $_POST['product_id'];
+      $product_name = $_POST['product_name'];
+      $product_img = $_POST['product_img'];
+      $quantity = $_POST['quantity'];
+      $size = $_POST['size'];
+
+      $_SESSION['cart'][] = [
+          'product_id' => $product_id,
+          'product_name' => $product_name,
+          'price' => $product['price'],
+          'quantity' => $quantity,
+          'product_img' => $product_img, // Ensure correct image path here
+          'size' => $size,
+      ];
+
+      echo 'Product added to cart';
+  } else {
+      echo 'Error fetching product information';
+  }
+}
+
+// Handle removal of items from the cart
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == 'remove_from_cart') {
+  if (isset($_POST['remove_index'])) {
+      $removeIndex = $_POST['remove_index'];
+      array_splice($_SESSION['cart'], $removeIndex, 1);
+  }
+  // Optionally, add a redirect here to refresh the page or handle as needed
+  header("Location: " . htmlspecialchars($_SERVER["PHP_SELF"]));
+  exit();
+}
+
+// Handle checkout
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == 'checkout') {
+  if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+      $user_id = getCurrentUserID();
+      if ($user_id) {
+          foreach ($_SESSION['cart'] as $index => $item) {
+              // Validate size data
+              $product_size = $item['size'];
+
+              processPurchase($item['product_id'], $item['quantity'], $product_size, $user_id, $connection);
+          }
+          // Clear the cart after checkout
+          unset($_SESSION['cart']);
+          echo 'Checkout successful!';
+      } else {
+          echo '<script>alert("Must be logged in to process purchase...");</script>';
+      }
+  } else {
+      echo 'Your shopping cart is empty.';
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +193,7 @@ $subtotal = 0;
 
                             <!-- Accessories Hover Menu -->
                             <li class="relative group">
-                                <a class="hover:text-gray-300" href="./accessories.html">Accessories
+                                <a class="hover:text-gray-300" href="./accessories.php">Accessories
                                     <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
@@ -106,7 +216,7 @@ $subtotal = 0;
 
                             <!-- Discover Hover Menu -->
                             <li class="relative group">
-                                <a class="hover:text-gray-300 pr-40" href="discover.html">Discover
+                                <a class="hover:text-gray-300 pr-40" href="discover.php">Discover
                                     <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">

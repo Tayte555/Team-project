@@ -1,3 +1,122 @@
+<?php
+session_start();
+
+include("connections.php");
+include("functions.php");
+// Handle Filters
+$filterConditions = [];
+$filterValues = [];
+
+$subtotal = 0;
+
+$sortOption = isset($_GET['sort']) ? $_GET['sort'] : 'manual';
+
+if (!empty($_GET['brand'])) {
+    foreach ($_GET['brand'] as $brand) {
+        $filterConditions[] = "brand = '". mysqli_real_escape_string($connection, $brand) ."'";
+    }
+}
+
+if (!empty($_GET['colour'])) {
+    foreach ($_GET['colour'] as $colour) {
+        $filterConditions[] = "colour = '". mysqli_real_escape_string($connection, $colour) ."'";
+    }
+}
+
+$sqlFilter = '';
+if (!empty($filterConditions)) {
+    $sqlFilter = " WHERE " . implode(' AND ', $filterConditions);
+}
+
+function isSelected($optionValue, $currentValue) {
+  return $optionValue == $currentValue ? 'selected' : '';
+}
+// Function to get the current user's ID
+function getCurrentUserID() {
+  // Check if the user is logged in and their ID is stored in a session variable
+  if (isset($_SESSION['user_id'])) {
+      return $_SESSION['user_id'];
+  } else {
+      // Return a default value or handle the case where the user is not logged in
+      return null;
+  }
+}
+
+// Put product selected into the cart 
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['product_id'], $_POST['quantity'], $_POST['product_img'])) {
+  $product_id = $_POST['product_id'];
+  $quantity = $_POST['quantity'];
+
+  // Check if the product_id is numeric to avoid SQL injection
+  if (!is_numeric($product_id)) {
+      die('Invalid product_id');
+  }
+
+  $query = "SELECT * FROM products WHERE product_id = $product_id";
+  $result = mysqli_query($connection, $query);
+
+  if ($result) {
+      $product = mysqli_fetch_assoc($result);
+
+      if (!isset($_SESSION['cart'])) {
+          $_SESSION['cart'] = [];
+      }
+      
+      $product_id = $_POST['product_id'];
+      $product_name = $_POST['product_name'];
+      $product_img = $_POST['product_img'];
+      $quantity = $_POST['quantity'];
+      $size = $_POST['size'];
+
+      $_SESSION['cart'][] = [
+          'product_id' => $product_id,
+          'product_name' => $product_name,
+          'price' => $product['price'],
+          'quantity' => $quantity,
+          'product_img' => $product_img, // Ensure correct image path here
+          'size' => $size,
+      ];
+
+      echo 'Product added to cart';
+  } else {
+      echo 'Error fetching product information';
+  }
+}
+
+// Handle removal of items from the cart
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == 'remove_from_cart') {
+  if (isset($_POST['remove_index'])) {
+      $removeIndex = $_POST['remove_index'];
+      array_splice($_SESSION['cart'], $removeIndex, 1);
+  }
+  // Optionally, add a redirect here to refresh the page or handle as needed
+  header("Location: " . htmlspecialchars($_SERVER["PHP_SELF"]));
+  exit();
+}
+
+// Handle checkout
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == 'checkout') {
+  if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+      $user_id = getCurrentUserID();
+      if ($user_id) {
+          foreach ($_SESSION['cart'] as $index => $item) {
+              // Validate size data
+              $product_size = $item['size'];
+
+              processPurchase($item['product_id'], $item['quantity'], $product_size, $user_id, $connection);
+          }
+          // Clear the cart after checkout
+          unset($_SESSION['cart']);
+          echo 'Checkout successful!';
+      } else {
+          echo '<script>alert("Must be logged in to process purchase...");</script>';
+      }
+  } else {
+      echo 'Your shopping cart is empty.';
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -102,15 +221,15 @@ img:hover {
 
 
 
-<body class="overflow-x-hidden flex flex-col min-h-screen">
+<body class="overflow-x-hidden flex flex-col min-h-screen" x-data="{ openFilter : false}">
     <header class="items-center bg-zinc-950 md:px">
         <div class="flex flex-wrap place-items-center">
             <section class="relative mx-auto">
                 <!-- navbar -->
                 <nav class="flex justify-between w-screen">
-                    <div class="px-2 flex w-full py-4 items-center">
-                        <a class="" href="home.php">
-                            <img class="h-6" src="./images/logowhite.png" alt="logo" />
+                    <div class="px-2 flex w-full py-2 items-center">
+                        <a class="" href="index.php">
+                            <img class="h-6 mr-60" src="./images/logowhite.png" alt="logo" />
                         </a>
 
                         <!-- Nav Links -->
@@ -129,9 +248,9 @@ img:hover {
                                 </a>
                                 <ul class="absolute hidden space-y-2 bg-white text-black py-2 rounded-md">
                                     <li><a
-                                            href="./sneakers_men.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Men</a>
+                                            href="./sneakers_men.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Men</a>
                                     </li>
-                                    <li><a href="./sneakers_women.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Women</a></li>
+                                    <li><a href="./sneakers_women.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Women</a></li>
                                     <li><a
                                             href="./sneakers_clearance.html">&nbsp;&nbsp;&nbsp;Clearance&nbsp;&nbsp;&nbsp;</a>
                                     </li>
@@ -187,7 +306,7 @@ img:hover {
 
                             <!-- Discover Hover Menu -->
                             <li class="relative group">
-                                <a class="hover:text-gray-300 pr-40" href="./discover.php">Discover
+                                <a class="hover:text-gray-300 pr-40" href="discover.php">Discover
                                     <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
@@ -199,13 +318,18 @@ img:hover {
                         </ul>
                         <!-- Header Icons -->
                         <div class="hidden xl:flex items-center -space-x-1 pr-6 text-gray-100">
-                            <a class="hover:text-gray-300" href="#">
+                            <form action="search.php" method="GET" class="flex items-center">
                                 <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" class="icon icon-search w-10">
+                                    stroke-linecap="round" stroke-linejoin="round" class="icon icon-search w-6 h-6">
                                     <circle cx="11" cy="11" r="8" />
                                     <path d="m21 21-4.35-4.35" />
                                 </svg>
-                            </a>
+                                <div class="flex-grow">
+                                    <input type="search" name="search" placeholder="Search items..."
+                                        class="w-full h-10 px-4 bg-transparent text-white placeholder-gray-300 rounded transition-all duration-300 focus:border-blue-300 focus:bg-white focus:text-black" />
+                                </div>
+                            </form>
+                            <!-- profile -->
                             <a class="flex items-center hover:text-gray-300 pr-1" href="login.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -215,8 +339,9 @@ img:hover {
                                 </svg>
 
                             </a>
-                            <!-- Cart      -->
-                            <a class="flex items-center hover:text-gray-300" href="cart.php">
+
+
+                            <div id="cart-icon" class="cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="icon icon-cart w-10">
@@ -224,14 +349,81 @@ img:hover {
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                                 </svg>
-                                <!--<span class="flex absolute -mt-5 ml-4">
-                    <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500">
-                      </span>
-                    </span> -->
-                            </a>
-                        </div>
-                    </div>
+                            </div>
+
+                            <!-- Cart Sidebar Container -->
+                            <div id="cart-sidebar"
+                                class="fixed right-0 top-0 transform translate-x-full h-full bg-white p-5 rounded shadow-lg min-w-[300px] z-50 transition-transform duration-300 flex flex-col text-black">
+                                <header class="relative w-full p-2">
+                                    <h3 class="text-xl font-medium tracking-wide flex items-center"> Your Cart
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round" class="icon icon-cart w-5 ml-2">
+                                            <circle cx="9" cy="21" r="1"></circle>
+                                            <circle cx="20" cy="21" r="1"></circle>
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
+                                            </path>
+                                        </svg>
+                                    </h3>
+                                </header>
+
+                                <div class="mb-4 border-t border-zinc-300 mt-4"></div>
+
+
+                                <!-- Cart Items -->
+                                <div class="flex-grow overflow-y-auto">
+                                    <div class="items mb-4">
+
+
+                                        <?php
+if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+  foreach ($_SESSION['cart'] as $index => $item) {
+      $itemTotal = $item['price'] * $item['quantity'];
+      $subtotal += $itemTotal;
+        // Echo HTML for each cart item
+        echo '<div class="cart-item flex items-center justify-between mb-4">';
+        echo '<img src="' . $item['product_img'] . '" alt="' . $item['product_name'] . '" class="w-20 h-20 object-cover mr-4">';
+        echo '<div>';
+        echo '<h4 class="text-sm font-semibold">' . $item['product_name'] . '</h4>';
+        echo '<div class="text-xs">Size: <span class="value">' . $item['size'] . '</span></div>';
+        echo '<span class="text-xs">£' . number_format($item['price'], 2) . ' x ' . $item['quantity'] . '</span>';
+        echo '</div>';
+
+        // Echo form for the removal button with SVG
+        echo '<div class="ml-auto">';
+        echo '<form method="post" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">';
+        echo '<input type="hidden" name="remove_index" value="' . $index . '">';
+        echo '<input type="hidden" name="action" value="remove_from_cart">';
+        echo '<button type="submit" class="remove-btn" style="background: none; border: none; cursor: pointer; padding: 0;">';
+
+        
+        echo '<svg width="28" height="28" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M19 24h-14c-1.104 0-2-.896-2-2v-17h-1v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2h-1v17c0 1.104-.896 2-2 2zm0-19h-14v16.5c0 .276.224.5.5.5h13c.276 0 .5-.224.5-.5v-16.5zm-9 4c0-.552-.448-1-1-1s-1 .448-1 1v9c0 .552.448 1 1 1s1-.448 1-1v-9zm6 0c0-.552-.448-1-1-1s-1 .448-1 1v9c0 .552.448 1 1 1s1-.448 1-1v-9zm-2-7h-4v1h4v-1z"/></svg>';
+        echo '</button>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+        echo '<div class="mb-4 border-t border-zinc-300 mt-4"></div>';
+    }
+
+} else {
+    echo 'Your cart is empty.';
+}
+?>
+                                    </div>
+                                </div>
+
+
+                                <!-- Cart Total -->
+                                <div class="mt-auto">
+                                    <div class="border-t pt-4">
+                                        <h4 class="text-lg font-medium">Subtotal:
+                                            £<?php echo number_format($subtotal, 2); ?></h4>
+                                    </div>
+                                    <a href="cart.php"
+                                        class="block text-center bg-black text-white p-2 rounded mt-3">Checkout</a>
+                                </div>
+                            </div>
+
                 </nav>
             </section>
         </div>
@@ -444,6 +636,29 @@ img:hover {
         closeFilterBtn.addEventListener("click", function() {
             filterModal.classList.add("hidden");
         });
+    });
+
+    document.getElementById('cart-icon').addEventListener('click', function() {
+        var sidebar = document.getElementById('cart-sidebar');
+        if (sidebar.classList.contains('translate-x-full')) {
+            sidebar.classList.remove('translate-x-full');
+            sidebar.classList.add('translate-x-0');
+        } else {
+            sidebar.classList.remove('translate-x-0');
+            sidebar.classList.add('translate-x-full');
+        }
+    });
+
+    // Close the sidebar when clicking outside of it
+    document.addEventListener('click', function(event) {
+        var sidebar = document.getElementById('cart-sidebar');
+        var clickInsideCartIcon = document.getElementById('cart-icon').contains(event.target);
+        var clickInsideSidebar = sidebar.contains(event.target);
+
+        if (!clickInsideCartIcon && !clickInsideSidebar && !sidebar.classList.contains('translate-x-full')) {
+            sidebar.classList.remove('translate-x-0');
+            sidebar.classList.add('translate-x-full');
+        }
     });
     </script>
 
