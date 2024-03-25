@@ -3,6 +3,8 @@ session_start();
 
 include("connections.php");
 include("functions.php");
+
+$subtotal = 0;
 ?>
 
 <!DOCTYPE html>
@@ -19,27 +21,22 @@ include("functions.php");
 </head>
 
 
-<body class="overflow-x-hidden">
-
-    <!-- navbar -->
+<body class="overflow-x-hidden flex flex-col min-h-screen" x-data="{ openFilter : false}">
     <header class="items-center bg-zinc-950 md:px">
         <div class="flex flex-wrap place-items-center">
             <section class="relative mx-auto">
                 <!-- navbar -->
                 <nav class="flex justify-between w-screen">
-
                     <div class="px-2 flex w-full py-2 items-center">
-
                         <a class="" href="index.php">
-                            <!-- <img class="h-9" src="logo.png" alt="logo"> -->
-                            <img class="h-6 mr-60
-               " src="./images/logowhite.png" alt="logo" />
+                            <img class="h-6 mr-60" src="./images/logowhite.png" alt="logo" />
                         </a>
 
                         <!-- Nav Links -->
                         <ul class="hidden md:flex mx-auto space-x-12 text-l text-white">
-                            <li><a class="hover:text-gray-300" href="newarrivals.php">New Arrivals</a></li>
-                            <li><a class="hover:text-gray-300" href="best_sellers.php">Best Sellers</a></li>
+                            <li><a class="hover:text-gray-300" href="./newarrivals.html">New Arrivals</a></li>
+                            <li><a class="hover:text-gray-300" href="./best_sellers.php">Best Sellers</a></li>
+
                             <!-- Sneakers Hover Menu -->
                             <li class="relative group">
                                 <a class="hover:text-gray-300" href="./sneakers.php">Sneakers
@@ -51,9 +48,9 @@ include("functions.php");
                                 </a>
                                 <ul class="absolute hidden space-y-2 bg-white text-black py-2 rounded-md">
                                     <li><a
-                                            href="./sneakers_men.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Men</a>
+                                            href="./sneakers_men.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Men</a>
                                     </li>
-                                    <li><a href="./sneakers_women.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Women</a></li>
+                                    <li><a href="./sneakers_women.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Women</a></li>
                                     <li><a
                                             href="./sneakers_clearance.html">&nbsp;&nbsp;&nbsp;Clearance&nbsp;&nbsp;&nbsp;</a>
                                     </li>
@@ -106,18 +103,21 @@ include("functions.php");
                                     </li>
                                 </ul>
                             </li>
-                            <li><a class="hover:text-gray-300 pr-40" href="./discover.html">Discover
+
+                            <!-- Discover Hover Menu -->
+                            <li class="relative group">
+                                <a class="hover:text-gray-300 pr-40" href="#">Discover
                                     <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                                         <path d="m9 18 6-6-6-6" />
                                     </svg>
-                                </a></li>
+                                </a>
+                                <!-- Add sub-menu items for Discover -->
+                            </li>
                         </ul>
                         <!-- Header Icons -->
                         <div class="hidden xl:flex items-center -space-x-1 pr-6 text-gray-100">
-
-                            <!-- search icon -->
                             <form action="search.php" method="GET" class="flex items-center">
                                 <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round" class="icon icon-search w-6 h-6">
@@ -140,6 +140,7 @@ include("functions.php");
 
                             </a>
 
+
                             <div id="cart-icon" class="cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -150,44 +151,78 @@ include("functions.php");
                                 </svg>
                             </div>
 
-                            <!-- Sidebar Container -->
+                            <!-- Cart Sidebar Container -->
                             <div id="cart-sidebar"
                                 class="fixed right-0 top-0 transform translate-x-full h-full bg-white p-5 rounded shadow-lg min-w-[300px] z-50 transition-transform duration-300 flex flex-col text-black">
-                                <!-- Sidebar Header -->
-                                <h3 class="text-lg font-semibold mb-3">Your Cart</h3>
+                                <header class="relative w-full p-2">
+                                    <h3 class="text-xl font-medium tracking-wide flex items-center"> Your Cart
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round" class="icon icon-cart w-5 ml-2">
+                                            <circle cx="9" cy="21" r="1"></circle>
+                                            <circle cx="20" cy="21" r="1"></circle>
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
+                                            </path>
+                                        </svg>
+                                    </h3>
+                                </header>
+
+                                <div class="mb-4 border-t border-zinc-300 mt-4"></div>
+
 
                                 <!-- Cart Items -->
-                                <div class="cart-item mb-4">
-                                    <img src="images\blackcatsneaker 1.png" alt="Shoe 1"
-                                        class="w-20 h-20 object-cover mr-4">
-                                    <div>
-                                        <h4 class="text-sm font-semibold">Sneaker Model 1</h4>
-                                        <p class="text-xs">Price: $100.00</p>
-                                        <p class="text-xs">Quantity: 1</p>
+                                <div class="flex-grow overflow-y-auto">
+                                    <div class="items mb-4">
+
+
+                                        <?php
+if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+  foreach ($_SESSION['cart'] as $index => $item) {
+      $itemTotal = $item['price'] * $item['quantity'];
+      $subtotal += $itemTotal;
+        // Echo HTML for each cart item
+        echo '<div class="cart-item flex items-center justify-between mb-4">';
+        echo '<img src="' . $item['product_img'] . '" alt="' . $item['product_name'] . '" class="w-20 h-20 object-cover mr-4">';
+        echo '<div>';
+        echo '<h4 class="text-sm font-semibold">' . $item['product_name'] . '</h4>';
+        echo '<div class="text-xs">Size: <span class="value">' . $item['size'] . '</span></div>';
+        echo '<span class="text-xs">£' . number_format($item['price'], 2) . ' x ' . $item['quantity'] . '</span>';
+        echo '</div>';
+
+        // Echo form for the removal button with SVG
+        echo '<div class="ml-auto">';
+        echo '<form method="post" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">';
+        echo '<input type="hidden" name="remove_index" value="' . $index . '">';
+        echo '<input type="hidden" name="action" value="remove_from_cart">';
+        echo '<button type="submit" class="remove-btn" style="background: none; border: none; cursor: pointer; padding: 0;">';
+
+        
+        echo '<svg width="28" height="28" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M19 24h-14c-1.104 0-2-.896-2-2v-17h-1v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2h-1v17c0 1.104-.896 2-2 2zm0-19h-14v16.5c0 .276.224.5.5.5h13c.276 0 .5-.224.5-.5v-16.5zm-9 4c0-.552-.448-1-1-1s-1 .448-1 1v9c0 .552.448 1 1 1s1-.448 1-1v-9zm6 0c0-.552-.448-1-1-1s-1 .448-1 1v9c0 .552.448 1 1 1s1-.448 1-1v-9zm-2-7h-4v1h4v-1z"/></svg>';
+        echo '</button>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+        echo '<div class="mb-4 border-t border-zinc-300 mt-4"></div>';
+    }
+
+} else {
+    echo 'Your cart is empty.';
+}
+?>
                                     </div>
                                 </div>
-                                <div class="cart-item mb-4">
-                                    <img src="images\blackcatsneaker 1.png" alt="Shoe 2"
-                                        class="w-20 h-20 object-cover mr-4">
-                                    <div>
-                                        <h4 class="text-sm font-semibold">Sneaker Model 2</h4>
-                                        <p class="text-xs">Price: $150.00</p>
-                                        <p class="text-xs">Quantity: 1</p>
-                                    </div>
-                                </div>
+
 
                                 <!-- Cart Total -->
-                                <div class="mt-auto pt-4 border-t">
-                                    <h4 class="text-lg font-semibold">Total: $250.00</h4>
+                                <div class="mt-auto">
+                                    <div class="border-t pt-4">
+                                        <h4 class="text-lg font-medium">Subtotal:
+                                            £<?php echo number_format($subtotal, 2); ?></h4>
+                                    </div>
+                                    <a href="cart.php"
+                                        class="block text-center bg-black text-white p-2 rounded mt-3">Checkout</a>
                                 </div>
-
-                                <!-- Checkout Button -->
-                                <a href="cart.php"
-                                    class="block text-center bg-blue-500 text-white p-2 rounded mt-3">Checkout</a>
                             </div>
-                            </a>
-                        </div>
-                    </div>
 
                 </nav>
             </section>
