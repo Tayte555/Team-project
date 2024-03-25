@@ -294,12 +294,10 @@ mysqli_close($connection);
                                     <div class="summary-item"><span class="text">Shipping</span><span
                                             class="price">£4.99</span></div>
 
-                                    <form id="checkout-form" method="post"
-                                        action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-                                        <input type="hidden" name="action" value="checkout">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block pay-button"
-                                            id="payButton">Pay</button>
-                                    </form>
+                                            <form id="checkout-form" method="post" action="payment.php">
+                                            <input type="hidden" name="action" value="checkout">
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block pay-button" id="payButton">Pay</button>
+                                        </form>
                                 </div>
                             </div>
                         </div>
