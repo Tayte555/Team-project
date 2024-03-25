@@ -259,7 +259,7 @@
 
     <div class="image-section">
 
-      <div class="item-container">
+      <div class="item-container" data-brand="brush" data-size="" data-price="17" data-color="">
         <img src="images/apparel_shoecare/shoecare_1.png">
         <br>
         <div class="text-container">
@@ -268,7 +268,7 @@
         </div>
       </div>
   
-        <div class="item-container">
+        <div class="item-container" data-brand="creamsoapfluids" data-size="" data-price="15.50" data-color="">
           <img src="images/apparel_shoecare/shoecare_2.png">
           <br>
           <div class="text-container">
@@ -277,7 +277,7 @@
           </div>
         </div>
 
-        <div class="item-container">
+        <div class="item-container" data-brand="creamsoapfluids" data-size="" data-price="15.50" data-color="">
           <img src="images/apparel_shoecare/shoecare_3.png">
           <br>
           <div class="text-container">
@@ -286,7 +286,7 @@
           </div>
         </div>
 
-        <div class="item-container">
+        <div class="item-container"data-brand="creamsoapfluids" data-size="" data-price="16" data-color="">
           <img src="images/apparel_shoecare/shoecare_4.png">
           <br>
           <div class="text-container">
@@ -295,7 +295,7 @@
           </div>
         </div>
 
-        <div class="item-container">
+        <div class="item-container"data-brand="creamsoapfluids" data-size="" data-price="8.50" data-color="">
           <img src="images/apparel_shoecare/shoecare_5.png">
           <br>
           <div class="text-container">
@@ -304,13 +304,7 @@
           </div>
         </div>
 
-  </div>
-
-</div>
-<br>
-
-<div class="image-section">
-  <div class="item-container">
+  <div class="item-container" data-brand="polishingglove" data-size="" data-price="52" data-color="">
     <img src="images/apparel_shoecare/shoecare_6.png">
     <br>
     <div class="text-container">
@@ -320,7 +314,7 @@
   </div>
 
 
-        <div class="item-container">
+        <div class="item-container" data-brand="colourchart" data-size="" data-price="5" data-color="">
           <img src="images/apparel_shoecare/shoecare_7.png">
           <br>
           <div class="text-container">
@@ -329,7 +323,7 @@
           </div>
         </div>
 
-        <div class="item-container">
+        <div class="item-container" data-brand="kits" data-size="" data-price="11.50" data-color="">
           <img src="images/apparel_shoecare/shoecare_8.png">
           <br>
           <div class="text-container">
@@ -339,7 +333,7 @@
         </div>
 
 
-        <div class="item-container">
+        <div class="item-container" data-brand="creamsoapfluids" data-size="" data-price="9.50" data-color="">
           <img src="images/apparel_shoecare/shoecare_9.png">
           <br>
           <div class="text-container">
@@ -348,7 +342,7 @@
           </div>
         </div>
 
-        <div class="item-container">
+        <div class="item-container" data-brand="kits" data-size="" data-price="24" data-color="">
           <img src="images/apparel_shoecare/shoecare_10.png">
           <br>
           <div class="text-container">
@@ -372,14 +366,17 @@
             <label class="block text-sm font-medium text-gray-700" for="brandSelect">Brand</label>
             <select id="brandSelect" class="mt-1 p-2 border rounded-md w-full">
                 <option value="">Select Brand</option>
-                <option value="nike">N/A</option>
-                <option value="adidas">N/A</option>
+                <option value="brush">Brushes</option>
+                <option value="creamsoapfluids">Cream/Soap/Fluids</option>
+                <option value="polishingglove">Polishing Glove</option>
+                <option value="colourchart">Colour Chart</option>
+                <option value="kits">Kits</option>
               </select>
           </div>
           <div class="mb-4">
             <label class="block text-sm font-medium text-gray-700" for="sizeSelect">Size</label>
             <select id="sizeSelect" class="mt-1 p-2 border rounded-md w-full">
-                <option value="">Select Size</option>
+                <option value="">N/A</option>
                 <option value="us-7">N/A</option>
                 <option value="us-8">N/A</option>
                 <!-- Add more options as needed -->
@@ -389,14 +386,14 @@
               <label class="block text-sm font-medium text-gray-700" for="priceSelect">Price</label>
               <select id="priceSelect" class="mt-1 p-2 border rounded-md w-full">
                   <option value="">Select Price Range</option>
-                  <option value="0-50">N/A</option>
-                  <option value="51-100">N/A</option>
+                  <option value="0-50">£10></option>
+                  <option value="51-100">£10+</option>
               </select>
           </div>
           <div class="mb-4">
             <label class="block text-sm font-medium text-gray-700" for="colorSelect">Color</label>
             <select id="colorSelect" class="mt-1 p-2 border rounded-md w-full">
-                <option value="">Select Color</option>
+                <option value="">N/A</option>
                 <option value="red">N/A</option>
                 <option value="blue">N/A</option>
             </div>
@@ -564,7 +561,354 @@
   });
 </script>
 
+     <!-- JavaScript for filter modal -->
+     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const filterBtn = document.getElementById("openFilterBtn");
+        const filterModal = document.getElementById("filterModal");
+        const closeFilterBtn = document.getElementById("closeFilterBtn");
+      
+        filterBtn.addEventListener("click", function () {
+          filterModal.classList.remove("hidden");
+        });
+      
+        closeFilterBtn.addEventListener("click", function () {
+          filterModal.classList.add("hidden");
+        });
+      
+        const applyFilterBtn = document.getElementById("applyFilterBtn");
+      
+        applyFilterBtn.addEventListener("click", function () {
+          applyFilter();
+          filterModal.classList.add("hidden");
+        });
+      
+        closeFilterBtn.addEventListener("click", function () {
+          filterModal.classList.add("hidden");
+        });
+      
+        function applyFilter() {
+          const selectedBrand = document.getElementById("brandSelect").value.toLowerCase();
+          const selectedSize = document.getElementById("sizeSelect").value.toLowerCase();
+          const selectedPriceRange = document.getElementById("priceSelect").value.toLowerCase();
+          const selectedColor = document.getElementById("colorSelect").value.toLowerCase();
+      
+          const imageSections = document.querySelectorAll('.image-section');
+      
+          imageSections.forEach(function(section) {
+            const productContainers = section.querySelectorAll('.item-container');
+      
+            productContainers.forEach(function(container) {
+              const brand = container.getAttribute('data-brand').toLowerCase();
+              const size = container.getAttribute('data-size').toLowerCase();
+              const price = parseInt(container.getAttribute('data-price'));
+              const color = container.getAttribute('data-color').toLowerCase();
+      
+              let isVisible = false;
+      
+              if ((selectedBrand === '' || brand === selectedBrand) &&
+                  (selectedSize === '' || size === selectedSize) &&
+                  (selectedColor === '' || color === selectedColor) &&
+                  ((selectedPriceRange === "0-50" && price >= 5 && price <= 10) ||
+                  (selectedPriceRange === "51-100" && price >= 10 && price <= 100) ||
+                  selectedPriceRange === '')) {
+                isVisible = true;
+              }
+      
+              if (isVisible) {
+                container.style.display = 'block';
+              } else {
+                container.style.display = 'none';
+              }
+            });
+          });
+        }
+      });
+      </script>
+      
 
+      <script>
+        function sortCollection() {
+          var sortBy = document.getElementById("sort-by").value;
+          if (sortBy === "title-ascending") {
+            var container = document.querySelector(".image-section");
+            var items = container.querySelectorAll(".item-container");
+      
+            // Convert NodeList to Array for easier manipulation
+            items = Array.from(items);
+      
+            // Sort items alphabetically by shoe name
+            items.sort(function(a, b) {
+              var nameA = a.querySelector(".shoe-name").textContent.trim().toUpperCase();
+              var nameB = b.querySelector(".shoe-name").textContent.trim().toUpperCase();
+              if (nameA < nameB) {
+                return -1;
+              }
+              if (nameA > nameB) {
+                return 1;
+              }
+              return 0;
+            });
+      
+            // Remove existing items from container
+            items.forEach(function(item) {
+              container.removeChild(item);
+            });
+      
+            // Append sorted items back to container
+            items.forEach(function(item) {
+              container.appendChild(item);
+            });
+          }
+        }
+      
+        // Event listener for dropdown change
+        document.getElementById("sort-by").addEventListener("change", sortCollection);
+      </script>
+
+<script>
+// Function to shuffle array in place
+function shuffleArray(array) {
+  for (var i = array.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
+}
+
+// Function to sort by shoe name alphabetically, A-Z
+function sortByAlphabetAscending() {
+  var container = document.querySelector(".image-section");
+  var items = container.querySelectorAll(".item-container");
+  items = Array.from(items);
+  items.sort(function(a, b) {
+    var nameA = a.querySelector(".shoe-name").textContent.trim().toUpperCase();
+    var nameB = b.querySelector(".shoe-name").textContent.trim().toUpperCase();
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+  items.forEach(function(item) {
+    container.appendChild(item);
+  });
+}
+
+// Function to sort by shoe price, low to high
+function sortByPriceAscending() {
+  var container = document.querySelector(".image-section");
+  var items = container.querySelectorAll(".item-container");
+  items = Array.from(items);
+  items.sort(function(a, b) {
+    var priceA = parseFloat(a.getAttribute("data-price"));
+    var priceB = parseFloat(b.getAttribute("data-price"));
+    return priceA - priceB;
+  });
+  items.forEach(function(item) {
+    container.appendChild(item);
+  });
+}
+
+// Function to sort by shoe price, high to low
+function sortByPriceDescending() {
+  var container = document.querySelector(".image-section");
+  var items = container.querySelectorAll(".item-container");
+  items = Array.from(items);
+  items.sort(function(a, b) {
+    var priceA = parseFloat(a.getAttribute("data-price"));
+    var priceB = parseFloat(b.getAttribute("data-price"));
+    return priceB - priceA;
+  });
+  items.forEach(function(item) {
+    container.appendChild(item);
+  });
+}
+
+// Function to sort randomly while keeping consistent order
+function sortRandomConsistent() {
+  var container = document.querySelector(".image-section");
+  var items = container.querySelectorAll(".item-container");
+  items = Array.from(items);
+  var shuffledItems = shuffleArray(items);
+  shuffledItems.forEach(function(item) {
+    container.appendChild(item);
+  });
+}
+
+function sortCollection() {
+  var sortBy = document.getElementById("sort-by").value;
+  switch (sortBy) {
+    case "best-selling":
+      // Random order, but consistent
+      sortRandomConsistent();
+      break;
+    case "title-ascending":
+      // Alphabetically, A-Z
+      sortByAlphabetAscending();
+      break;
+    case "price-ascending":
+      // Price, low to high
+      sortByPriceAscending();
+      break;
+    case "price-descending":
+      // Price, high to low
+      sortByPriceDescending();
+      break;
+    case "created-ascending":
+      // Random order, but consistent
+      sortRandomConsistent();
+      break;
+    case "created-descending":
+      // Random order, but consistent
+      sortRandomConsistent();
+      break;
+    default:
+      // Default behavior (Featured), do nothing
+      break;
+  }
+}
+
+// Event listener for dropdown change
+document.getElementById("sort-by").addEventListener("change", sortCollection);
+</script>
+
+<script>
+function sortCollection() {
+  var sortBy = document.getElementById("sort-by").value;
+  if (sortBy === "title-descending") {
+    var container = document.querySelector(".image-section");
+    var items = container.querySelectorAll(".item-container");
+
+    // Convert NodeList to Array for easier manipulation
+    items = Array.from(items);
+
+    // Sort items alphabetically by shoe name in descending order
+    items.sort(function(a, b) {
+      var nameA = a.querySelector(".shoe-name").textContent.trim().toUpperCase();
+      var nameB = b.querySelector(".shoe-name").textContent.trim().toUpperCase();
+      if (nameA > nameB) {
+        return -1;
+      }
+      if (nameA < nameB) {
+        return 1;
+      }
+      return 0;
+    });
+
+    // Remove existing items from container
+    items.forEach(function(item) {
+      container.removeChild(item);
+    });
+
+    // Append sorted items back to container
+    items.forEach(function(item) {
+      container.appendChild(item);
+    });
+  }
+}
+
+// Event listener for dropdown change
+document.getElementById("sort-by").addEventListener("change", sortCollection);
+</script>
+
+
+<script>
+function sortCollection() {
+  var sortBy = document.getElementById("sort-by").value;
+  if (sortBy === "price-ascending") {
+    var container = document.querySelector(".image-section");
+    var items = container.querySelectorAll(".item-container");
+
+    // Convert NodeList to Array for easier manipulation
+    items = Array.from(items);
+
+    // Sort items by price in ascending order
+    items.sort(function(a, b) {
+      var priceA = parseInt(a.getAttribute("data-price"));
+      var priceB = parseInt(b.getAttribute("data-price"));
+      return priceA - priceB;
+    });
+
+    // Remove existing items from container
+    items.forEach(function(item) {
+      container.removeChild(item);
+    });
+
+    // Append sorted items back to container
+    items.forEach(function(item) {
+      container.appendChild(item);
+    });
+  }
+}
+
+// Event listener for dropdown change
+document.getElementById("sort-by").addEventListener("change", sortCollection);
+</script>
+
+<script>
+function sortCollection() {
+  var sortBy = document.getElementById("sort-by").value;
+  if (sortBy === "price-descending") {
+    var container = document.querySelector(".image-section");
+    var items = container.querySelectorAll(".item-container");
+
+    // Convert NodeList to Array for easier manipulation
+    items = Array.from(items);
+
+    // Sort items by price in descending order
+    items.sort(function(a, b) {
+      var priceA = parseInt(a.getAttribute("data-price"));
+      var priceB = parseInt(b.getAttribute("data-price"));
+      return priceB - priceA;
+    });
+
+    // Remove existing items from container
+    items.forEach(function(item) {
+      container.removeChild(item);
+    });
+
+    // Append sorted items back to container
+    items.forEach(function(item) {
+      container.appendChild(item);
+    });
+  }
+}
+
+// Event listener for dropdown change
+document.getElementById("sort-by").addEventListener("change", sortCollection);
+</script>
+
+<script>
+// Function to handle sorting
+function sortCollection() {
+  var sortBy = document.getElementById("sort-by").value;
+  
+  // Check if the selected option is "Featured"
+  if (sortBy === "manual") {
+    // Reload the page to revert to original order
+    location.reload();
+  } else {
+    // Otherwise, handle other sorting options
+    // Add sorting logic for other options here
+  }
+}
+
+// Event listener for dropdown change
+document.getElementById("sort-by").addEventListener("change", sortCollection);
+</script>
+
+
+      
+    
+
+
+</body>
+</html>
 
 </body>
 </html>
