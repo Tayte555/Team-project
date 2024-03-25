@@ -436,17 +436,19 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
 
 
     <!--This page was created by Mohammed Zeinelabdin-->
-    <div class="px-1 py-2 md:py-2 sm:px-2 bg-zinc-950">
-        <ul class="text-white">
-            <li class="flex items-center mb-1 text-xl font-thin md:mb-1 md:text-2xl lg:text-4xl">
-                <a href="./apparel.php"
-                    class="text-white hover:text-neutral-500">&nbsp;&nbsp;</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apparel</a></a>
-            </li>
-        </ul>
+    <div class="md:ml-[8.3333%] md:mr-[8.3333%] px-4 py-8 lg:py-12">
+        <div class="gap-4 lg:grid lg:grid-cols-2 flex items-center">
+            <h1 class="text-3xl font-bold tracking-wide">Apparel</h1>
+            <h2
+                class="max-h-[3.75rem] max-h-overflow-hidden text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent lg:max-h-screen lg:text-black pt-2 tracking-wide ">
+                Shop all the latest garms from Solehaven, from Broken Planet to Nocta
+            </h2>
+        </div>
+
     </div>
 
 
-    <div style="border-top: 1px solid black;">
+    <div style="solid black;">
         <div class="flex justify-end items-center px-4 md:px-4 border-t border-black">
             <button id="openFilterBtn" type="button" class="flex items-center mr-auto py-3">
                 Filter

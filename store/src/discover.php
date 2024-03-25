@@ -435,19 +435,21 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
 
 
     <!--This page was created by Mohammed Zeinelabdin-->
-    <div class="px-1 py-2 md:py-2 sm:px-2 bg-zinc-950">
-        <ul class="text-white">
-            <li class="flex items-center mb-1 text-xl font-thin md:mb-1 md:text-2xl lg:text-4xl">
-                <a href="/collections/air-jordan-1"
-                    class="text-white hover:text-neutral-500">&nbsp;&nbsp;</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Discover</a></a>
-            </li>
-        </ul>
+    <div class="md:ml-[8.3333%] md:mr-[8.3333%] px-4 py-8 lg:py-12">
+        <div class="gap-4 lg:grid lg:grid-cols-2 flex items-center">
+            <h1 class="text-3xl font-bold tracking-wide">SoleAI</h1>
+            <h2
+                class="max-h-[3.75rem] max-h-overflow-hidden text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent lg:max-h-screen lg:text-black pt-2 tracking-wide ">
+                Discover our new ground breaking bandwagon jumping API-less new AI agent called SoleAI!
+            </h2>
+        </div>
+
     </div>
 
 
 
 
-    <section class="px-6 py-12">
+    <section class="px-6 py-12 border border-t border-black">
         <div class="container mx-auto">
             <!-- Ask our AI Section -->
             <div class="my-8">
