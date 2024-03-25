@@ -1,5 +1,6 @@
 <?php
 session_start();
+ini_set('display_errors', 1);
 
 if (isset($_SESSION['user_id'])){
   if ($_SESSION['is_admin'] == 1){
@@ -50,12 +51,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             //exit;
 //all else statement intended for debugging          
           } else {
+
             $_SESSION['error_message'] = "Incorrect email or password";
           }
         } else{
+
           $_SESSION['error_message'] = "Incorrect email or password";
         }
       } else {
+        echo $userData;
         $_SESSION['error_message'] = "Incorrect email or password";
       }
     } else{
