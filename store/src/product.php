@@ -359,7 +359,7 @@ function resetActiveImg() {
 
                             <!-- Apparel Hover Menu -->
                             <li class="relative group">
-                                <a class="hover:text-gray-300" href="./apparel.html">Apparel
+                                <a class="hover:text-gray-300" href="./apparel.php">Apparel
                                     <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
@@ -380,7 +380,7 @@ function resetActiveImg() {
 
                             <!-- Accessories Hover Menu -->
                             <li class="relative group">
-                                <a class="hover:text-gray-300" href="./accessories.html">Accessories
+                                <a class="hover:text-gray-300" href="./accessories.php">Accessories
                                     <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
@@ -403,7 +403,7 @@ function resetActiveImg() {
 
                             <!-- Discover Hover Menu -->
                             <li class="relative group">
-                                <a class="hover:text-gray-300 pr-40" href="./discover.html">Discover
+                                <a class="hover:text-gray-300 pr-40" href="./discover.php">Discover
                                     <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">

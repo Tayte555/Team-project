@@ -134,21 +134,21 @@ mysqli_close($connection);
                                         <path d="m9 18 6-6-6-6" />
                                     </svg>
                                 </a></li>
-                            <li><a class="hover:text-gray-300" href="apparel.html">Apparel
+                            <li><a class="hover:text-gray-300" href="apparel.php">Apparel
                                     <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                                         <path d="m9 18 6-6-6-6" />
                                     </svg>
                                 </a></li>
-                            <li><a class="hover:text-gray-300" href="accessories.html">Accessories
+                            <li><a class="hover:text-gray-300" href="accessories.php">Accessories
                                     <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
                                         <path d="m9 18 6-6-6-6" />
                                     </svg>
                                 </a></li>
-                            <li><a class="hover:text-gray-300 pr-40" href="./discover.html">Discover
+                            <li><a class="hover:text-gray-300 pr-40" href="./discover.php">Discover
                                     <svg aria-hidden="true" class="w-5 inline-block origin-center rotate-90"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">

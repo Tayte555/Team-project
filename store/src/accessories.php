@@ -329,8 +329,8 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
     <div class="px-1 py-2 md:py-2 sm:px-2 bg-zinc-950">
         <ul class="text-white">
             <li class="flex items-center mb-1 text-xl font-thin md:mb-1 md:text-2xl lg:text-4xl">
-                <a href="./apparel.php"
-                    class="text-white hover:text-neutral-500">&nbsp;&nbsp;</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apparel</a></a>
+                <a href="/collections/air-jordan-1"
+                    class="text-white hover:text-neutral-500">&nbsp;&nbsp;</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accessories</a></a>
             </li>
         </ul>
     </div>
@@ -364,327 +364,185 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
     </div>
 
     <div class="image-section">
-        <div class="item-container" data-brand="socks" data-size="8" data-price="23" data-color="black">
-            <img src="images/apparel_socks/socks_1.png">
+
+        <div class="item-container" data-brand="shoelace" data-size="8" data-price="1.99" data-color="black">
+            <img src="images/accessories_shoelaces/shoelaces_1.png">
             <br>
             <div class="text-container">
-                <div class="shoe-name">Nike 6-Pack Everyday Cushioned Training Crew Socks</div>
-                <div class="price">from £23</div>
+                <div class="shoe-name">Black Shoelaces</div>
+                <div class="price">from £1.99</div>
             </div>
         </div>
 
-        <div class="item-container" data-brand="socks" data-size="8" data-price="20" data-color="black">
-            <img src="images/apparel_socks/socks_2.png">
+        <div class="item-container" data-brand="shoelace" data-size="8" data-price="2.99" data-color="black">
+            <img src="images/accessories_shoelaces/shoelaces_2.png">
             <br>
             <div class="text-container">
-                <div class="shoe-name">adidas Originals 6 Pack Trefoil Crew Socks</div>
-                <div class="price">from £20</div>
+                <div class="shoe-name">Light Brown Shoelaces</div>
+                <div class="price">from £2.99</div>
             </div>
         </div>
 
-        <div class="item-container" data-brand="socks" data-size="8" data-price="12" data-color="black">
-            <img src="images/apparel_socks/socks_3.png">
+        <div class="item-container" data-brand="shoelace" data-size="8" data-price="1.99" data-color="black">
+            <img src="images/accessories_shoelaces/shoelaces_3.png">
             <br>
             <div class="text-container">
-                <div class="shoe-name">Under Armour 3 Pack HeatGear Tech Crew Socks</div>
-                <div class="price">from £12</div>
+                <div class="shoe-name">White Shoelaces</div>
+                <div class="price">from £1.99</div>
             </div>
         </div>
 
-        <div class="item-container" data-brand="socks" data-size="8" data-price="11" data-color="black">
-            <img src="images/apparel_socks/socks_4.png">
+        <div class="item-container" data-brand="shoelace" data-size="8" data-price="1.99" data-color="black">
+            <img src="images/accessories_shoelaces/shoelaces_4.png">
             <br>
             <div class="text-container">
-                <div class="shoe-name">Under Armour 3 Pack HeatGear Tech No Show Socks</div>
-                <div class="price">from £11</div>
+                <div class="shoe-name">Blue Shoelaces</div>
+                <div class="price">from £1.99</div>
             </div>
         </div>
 
-        <div class="item-container" data-brand="socks" data-size="8" data-price="11" data-color="black">
-            <img src="images/apparel_socks/socks_5.png">
+        <div class="item-container" data-brand="shoelace" data-size="8" data-price="1.99" data-color="black">
+            <img src="images/accessories_shoelaces/shoelaces_5.png">
             <br>
             <div class="text-container">
-                <div class="shoe-name">MONTIREX 3-Pack Crew Socks</div>
-                <div class="price">from £15</div>
-            </div>
-        </div>
-
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="18" data-color="black">
-            <img src="images/apparel_socks/socks_6.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Jordan 3-Pack Everyday Crew Socks</div>
-                <div class="price">from £18</div>
+                <div class="shoe-name">Brown shoelaces</div>
+                <div class="price">from £1.99</div>
             </div>
         </div>
 
 
-        <div class="item-container" data-brand="socks" data-size="8" data-price="35" data-color="black">
-            <img src="images/apparel_socks/socks_7.png">
+        <div class="item-container" data-brand="insoles" data-size="8" data-price="26.99" data-color="black">
+            <img src="images/accessories_shoeinserts/shoeinserts_1.png">
             <br>
             <div class="text-container">
-                <div class="shoe-name">HUGO 6-Pack Ribbed Logo Socks</div>
-                <div class="price">from £35</div>
+                <div class="shoe-name">Premium Anti-Fatigue Shoe Insoles</div>
+                <div class="price">from £26.99</div>
             </div>
         </div>
 
-        <div class="item-container" data-brand="socks" data-size="8" data-price="35" data-color="black">
-            <img src="images/apparel_socks/socks_8.png">
+        <div class="item-container" data-brand="insoles" data-size="8" data-price="16" data-color="black">
+            <img src="images/accessories_shoeinserts/shoeinserts_2.png">
             <br>
             <div class="text-container">
-                <div class="shoe-name">Lacoste 3-Pack Quarter Socks</div>
-                <div class="price">from £35</div>
-            </div>
-        </div>
-
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="12" data-color="black">
-            <img src="images/apparel_socks/socks_9.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Hoodrich 3-Pack Crew Socks</div>
-                <div class="price">from £12</div>
-            </div>
-        </div>
-
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="12" data-color="black">
-            <img src="images/apparel_socks/socks_10.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Nike 1-Pack Everyday Plus Cushioned Crew Socks</div>
-                <div class="price">from £12</div>
-            </div>
-        </div>
-
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="17" data-color="black">
-            <img src="images/apparel_socks/socks_11.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Nike Everyday Plus Cushioned Crew Socks (3-Pack)</div>
-                <div class="price">from £17</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="22" data-color="black">
-            <img src="images/apparel_socks/socks_12.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Nike 6-Pack Terry Socks Infant</div>
-                <div class="price">from £22</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="18" data-color="black">
-            <img src="images/apparel_socks/socks_13.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">HUGO 3-Pack Invisible Socks</div>
-                <div class="price">from £18</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="16" data-color="black">
-            <img src="images/apparel_socks/socks_14.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Jordan 6-Pack Ankle Socks Junior</div>
+                <div class="shoe-name">Gel Active Work Insoles</div>
                 <div class="price">from £16</div>
             </div>
         </div>
 
-        <div class="item-container" data-brand="socks" data-size="8" data-price="12" data-color="black">
-            <img src="images/apparel_socks/socks_15.png">
+        <div class="item-container" data-brand="insoles" data-size="8" data-price="4.99" data-color="black">
+            <img src="images/accessories_shoeinserts/shoeinserts_3.png">
             <br>
             <div class="text-container">
-                <div class="shoe-name">Nike 1-Pack Everyday Plus Cushioned Crew Socks</div>
+                <div class="shoe-name">Insoles for Comfort & Relaxation</div>
+                <div class="price">from £4.99</div>
+            </div>
+        </div>
+
+        <div class="item-container" data-brand="insoles" data-size="8" data-price="3.50" data-color="black">
+            <img src="images/accessories_shoeinserts/shoeinserts_4.png">
+            <br>
+            <div class="text-container">
+                <div class="shoe-name">Elastic Shock Absorbing Insoles</div>
+                <div class="price">from £3.50</div>
+            </div>
+        </div>
+
+        <div class="item-container" data-brand="insoles" data-size="8" data-price="3.40" data-color="black">
+            <img src="images/accessories_shoeinserts/shoeinserts_5.png">
+            <br>
+            <div class="text-container">
+                <div class="shoe-name">Odour Control Insole</div>
+                <div class="price">from £3.40</div>
+            </div>
+        </div>
+
+        <div class="item-container" data-brand="bag" data-size="8" data-price="12" data-color="black">
+            <img src="images/accessories_shoebag/shoebag_1.png">
+            <br>
+            <div class="text-container">
+                <div class="shoe-name">Nike Academy Shoe Bag</div>
                 <div class="price">from £12</div>
             </div>
         </div>
 
-        <div class="item-container" data-brand="socks" data-size="8" data-price="17" data-color="black">
-            <img src="images/apparel_socks/socks_16.png">
+        <div class="item-container" data-brand="bag" data-size="8" data-price="29" data-color="black">
+            <img src="images/accessories_shoebag/shoebag_2.png">
             <br>
             <div class="text-container">
-                <div class="shoe-name">Nike Everyday Plus Cushioned Crew Socks (3-Pack)</div>
-                <div class="price">from £17</div>
+                <div class="shoe-name">Under Armour Shoe Bag</div>
+                <div class="price">from £21.99</div>
             </div>
         </div>
 
-        <div class="item-container" data-brand="socks" data-size="8" data-price="20" data-color="black">
-            <img src="images/apparel_socks/socks_17.png">
+        <div class="item-container" data-brand="bag" data-size="8" data-price="29" data-color="black">
+            <img src="images/accessories_shoebag/shoebag_3.png">
             <br>
             <div class="text-container">
-                <div class="shoe-name">Jordan 6-Pack Ankle Socks Junior</div>
-                <div class="price">from £20</div>
+                <div class="shoe-name">Nike Shoe Bag</div>
+                <div class="price">from £29</div>
             </div>
         </div>
 
-        <div class="item-container" data-brand="socks" data-size="8" data-price="13" data-color="black">
-            <img src="images/apparel_socks/socks_18.png">
+        <div class="item-container" data-brand="bag" data-size="8" data-price="3" data-color="black">
+            <img src="images/accessories_shoebag/shoebag_4.png">
             <br>
             <div class="text-container">
-                <div class="shoe-name">Nike 2-Pack Crew Court Heritage Socks</div>
-                <div class="price">from £13</div>
+                <div class="shoe-name">Fold-up walking shoes bag</div>
+                <div class="price">from £3</div>
             </div>
         </div>
 
-        <div class="item-container" data-brand="socks" data-size="8" data-price="13" data-color="black">
-            <img src="images/apparel_socks/socks_19.png">
+        <div class="item-container" data-brand="bag" data-size="8" data-price="16" data-color="black">
+            <img src="images/accessories_shoebag/shoebag_5.png">
             <br>
             <div class="text-container">
-                <div class="shoe-name">Under Armour Low Socks UA Essential Low Cut 3pk</div>
-                <div class="price">from £13</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="socks" data-size="8" data-price="12" data-color="black">
-            <img src="images/apparel_socks/socks_20.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">MONTIREX 3 Pack No Show Socks</div>
-                <div class="price">from £12</div>
-            </div>
-        </div>
-
-
-        <div class="item-container" data-brand="cleaning" data-size="8" data-price="17" data-color="black">
-            <img src="images/apparel_shoecare/shoecare_1.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">XL polishing brush - horsehair</div>
-                <div class="price">from £17</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="cleaning" data-size="8" data-price="15.50" data-color="black">
-            <img src="images/apparel_shoecare/shoecare_2.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Leather Cleaner</div>
-                <div class="price">from £15.50</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="cleaning" data-size="8" data-price="15.50" data-color="black">
-            <img src="images/apparel_shoecare/shoecare_3.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Foam Cleaner</div>
-                <div class="price">from £15.50</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="cleaning" data-size="8" data-price="16" data-color="black">
-            <img src="images/apparel_shoecare/shoecare_4.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Vegetable tanned leather cream</div>
+                <div class="shoe-name">Stuburt Evolve Lightweight Shoebag</div>
                 <div class="price">from £16</div>
             </div>
         </div>
 
-        <div class="item-container" data-brand="cleaning" data-size="8" data-price="8.50" data-color="black">
-            <img src="images/apparel_shoecare/shoecare_5.png">
+        <div class="item-container" data-brand="insoles" data-size="8" data-price="3" data-color="black">
+            <img src="images/accessories_soles/soles_1.png">
             <br>
             <div class="text-container">
-                <div class="shoe-name">Saddle Soap</div>
-                <div class="price">from £8.50</div>
+                <div class="shoe-name">Comfortable Outdoor Insoles</div>
+                <div class="price">from £3</div>
             </div>
         </div>
 
-
-        <div class="item-container" data-brand="cleaning" data-size="8" data-price="52" data-color="black">
-            <img src="images/apparel_shoecare/shoecare_6.png">
+        <div class="item-container" data-brand="insoles" data-size="8" data-price="3.99" data-color="black">
+            <img src="images/accessories_soles/soles_2.png">
             <br>
             <div class="text-container">
-                <div class="shoe-name">Polishing glove</div>
-                <div class="price">from £52</div>
+                <div class="shoe-name">Stick on Soles</div>
+                <div class="price">from £3.99</div>
             </div>
         </div>
 
-
-        <div class="item-container" data-brand="kits" data-size="8" data-price="5" data-color="black">
-            <img src="images/apparel_shoecare/shoecare_7.png">
+        <div class="item-container" data-brand="insoles" data-size="8" data-price="2.89" data-color="black">
+            <img src="images/accessories_soles/soles_3.png">
             <br>
             <div class="text-container">
-                <div class="shoe-name">Colour chart</div>
-                <div class="price">from £5</div>
+                <div class="shoe-name">Thick Felt Shoe Insoles</div>
+                <div class="price">from £2.89</div>
             </div>
         </div>
 
-        <div class="item-container" data-brand="kits" data-size="8" data-price="11.50" data-color="black">
-            <img src="images/apparel_shoecare/shoecare_8.png">
+        <div class="item-container" data-brand="insoles" data-size="8" data-price="10" data-color="black">
+            <img src="images/accessories_soles/soles_4.png">
             <br>
             <div class="text-container">
-                <div class="shoe-name">Applicator and polishing cloths - set of 3</div>
-                <div class="price">from £11.50</div>
+                <div class="shoe-name">Vibram Jankuat 1220</div>
+                <div class="price">from £10</div>
             </div>
         </div>
 
-
-        <div class="item-container" data-brand="cleaning" data-size="8" data-price="9.50" data-color="black">
-            <img src="images/apparel_shoecare/shoecare_9.png">
+        <div class="item-container" data-brand="insoles" data-size="8" data-price="5.59" data-color="black">
+            <img src="images/accessories_soles/soles_5.png">
             <br>
             <div class="text-container">
-                <div class="shoe-name">Premium Shoe Cream - Natural</div>
-                <div class="price">from £9.50</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="kits" data-size="8" data-price="24" data-color="black">
-            <img src="images/apparel_shoecare/shoecare_10.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Trainer Freshener, Cleaner, Trainer Protector & Brush</div>
-                <div class="price">from £24</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="kits" data-size="8" data-price="40" data-color="black">
-            <img src="images/apparel_kits/kits_1.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Shoe Clean and Care Kit - 9 Piece Shoe Care Set</div>
-                <div class="price">from £40</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="kits" data-size="8" data-price="30" data-color="black">
-            <img src="images/apparel_kits/kits_2.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Shoe Polish & Care Kit</div>
-                <div class="price">from £30</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="kits" data-size="8" data-price="15.50" data-color="black">
-            <img src="images/apparel_kits/kits_3.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Jason Markk 4 oz. Essential Kit</div>
-                <div class="price">from £15.50</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="kits" data-size="8" data-price="5.99" data-color="black">
-            <img src="images/apparel_kits/kits_4.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Stormsure Boot & Wader Repair Kit</div>
-                <div class="price">from £5.99</div>
-            </div>
-        </div>
-
-        <div class="item-container" data-brand="kits" data-size="8" data-price="16" data-color="black">
-            <img src="images/apparel_kits/kits_5.png">
-            <br>
-            <div class="text-container">
-                <div class="shoe-name">Stormsure Boot & Wader Repair Kit</div>
-                <div class="price">from £16</div>
+                <div class="shoe-name">Replacement Shoe Sole</div>
+                <div class="price">from £5.59</div>
             </div>
         </div>
 
@@ -702,9 +560,9 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
                         <label class="block text-sm font-medium text-gray-700" for="brandSelect">Item Type</label>
                         <select id="brandSelect" class="mt-1 p-2 border rounded-md w-full">
                             <option value="">Select Item Type</option>
-                            <option value="socks">Socks</option>
-                            <option value="cleaning">Cleaning Equipment</option>
-                            <option value="kits">Kits</option>
+                            <option value="shoelace">Shoe Laces</option>
+                            <option value="insoles">Insoles</option>
+                            <option value="bag">Bags</option>
                         </select>
                     </div>
                     <div class="mb-4">
@@ -718,8 +576,8 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
                         <label class="block text-sm font-medium text-gray-700" for="priceSelect">Price</label>
                         <select id="priceSelect" class="mt-1 p-2 border rounded-md w-full">
                             <option value="">Select Price Range</option>
-                            <option value="0-50">£20></option>
-                            <option value="51-100">£20-£55</option>
+                            <option value="0-50">£10></option>
+                            <option value="51-100">£10-£30</option>
                         </select>
                     </div>
                     <div class="mb-4">
@@ -929,8 +787,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 if ((selectedBrand === '' || brand === selectedBrand) &&
                     (selectedSize === '' || size === selectedSize) &&
                     (selectedColor === '' || color === selectedColor) &&
-                    ((selectedPriceRange === "0-50" && price >= 10 && price <= 20) ||
-                        (selectedPriceRange === "51-100" && price >= 20 && price <= 55) ||
+                    ((selectedPriceRange === "0-50" && price >= 5 && price <= 10) ||
+                        (selectedPriceRange === "51-100" && price >= 10 && price <= 30) ||
                         selectedPriceRange === '')) {
                     isVisible = true;
                 }
@@ -1168,9 +1026,9 @@ function sortCollection() {
 
 // Event listener for dropdown change
 document.getElementById("sort-by").addEventListener("change", sortCollection);
+</script>
 
-
-
+<script>
 function sortCollection() {
     var sortBy = document.getElementById("sort-by").value;
     if (sortBy === "price-descending") {
@@ -1201,8 +1059,9 @@ function sortCollection() {
 
 // Event listener for dropdown change
 document.getElementById("sort-by").addEventListener("change", sortCollection);
+</script>
 
-
+<script>
 // Function to handle sorting
 function sortCollection() {
     var sortBy = document.getElementById("sort-by").value;
@@ -1219,7 +1078,6 @@ function sortCollection() {
 
 // Event listener for dropdown change
 document.getElementById("sort-by").addEventListener("change", sortCollection);
-
 
 document.getElementById('cart-icon').addEventListener('click', function() {
     var sidebar = document.getElementById('cart-sidebar');
