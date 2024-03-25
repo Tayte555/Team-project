@@ -2,6 +2,35 @@
 session_start();
 include("../connections.php");
 include("../functions.php");
+
+$message = ""; // Initialize message variable
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Extend variable assignment with new form fields
+    $productName = $_POST['product_name'] ?? '';
+    $productBrand = $_POST['brand'] ?? '';
+    $productColour = $_POST['colour'] ?? '';
+    $productDesc = $_POST['product_desc'] ?? '';
+    $stockQuantity = $_POST['stock_quantity'] ?? 0; // Assuming a default of 0 if not set
+    $productPrice = $_POST['price'] ?? 0.0; // Assuming a default price of 0.0 if not set
+
+    // Update your SQL statement to include the new columns
+    $sql = "INSERT INTO products (product_name, brand, colour, product_desc, stock_quantity, price) VALUES (?, ?, ?, ?, ?, ?)";
+
+    if ($stmt = mysqli_prepare($connection, $sql)) {
+        // Bind the new variables as parameters
+        mysqli_stmt_bind_param($stmt, "ssssid", $productName, $productBrand, $productColour, $productDesc, $stockQuantity, $productPrice);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $message = "Product added successfully.";
+        } else {
+            $message = "Error: Could not execute query. " . mysqli_error($connection);
+        }
+        mysqli_stmt_close($stmt);
+    } else {
+        $message = "Error: Could not prepare query. " . mysqli_error($connection);
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -212,6 +241,61 @@ include("../functions.php");
                     <?php
         // PHP code to fetch orders from database and display them
         ?>
+
+                    <div class="add-product-section mt-8">
+                        <h2 class="text-lg mb-4">Add New Product</h2>
+                        <form id="addProductForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
+                            method="POST">
+                            <div class="mb-4">
+                                <label for="productName" class="block text-gray-700 text-sm font-bold mb-2">Product
+                                    Name:</label>
+                                <input type="text" id="productName" name="product_name" required
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            </div>
+                            <!-- Repeat the above div for each product attribute like colour, brand, etc. -->
+                            <div class="mb-4">
+                                <label for="productPrice"
+                                    class="block text-gray-700 text-sm font-bold mb-2">Price:</label>
+                                <input type="number" step="0.01" id="productPrice" name="price" required
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            </div>
+                            <div class="mb-4">
+                                <label for="productBrand"
+                                    class="block text-gray-700 text-sm font-bold mb-2">Brand:</label>
+                                <input type="text" id="productBrand" name="brand" required
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="productColour"
+                                    class="block text-gray-700 text-sm font-bold mb-2">Colour:</label>
+                                <input type="text" id="productColour" name="colour" required
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="productDesc" class="block text-gray-700 text-sm font-bold mb-2">Product
+                                    Description:</label>
+                                <textarea id="productDesc" name="product_desc" required
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="stockQuantity" class="block text-gray-700 text-sm font-bold mb-2">Stock
+                                    Quantity:</label>
+                                <input type="number" id="stockQuantity" name="stock_quantity" required
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <button
+                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                    type="submit">
+                                    Add Product
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
                 <div id="inventory" class="tab-content hidden">
                     <!-- Dynamic content for Shipped -->
