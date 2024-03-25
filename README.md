@@ -13,7 +13,7 @@ SoleHaven is a dynamic e-commerce platform dedicated to the sale of sneakers and
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/solehaven-project/solehaven/test_and_deploy.yml)
 
 ## Table of Contents
-- [How to Contribute](#how-to-contribute)
+
 - [Local Development](#local-development)
     - [Windows](#windows)
     - [macOS](#macos)
@@ -196,14 +196,14 @@ SoleHaven is the product of dedicated teamwork by students at Aston University. 
 
 
 
-Tayte Keates (220085397) - Backend Developer  Lead
-Mohammed Zeinelabdin (220131823) - Frontend Developer
-Muhammed Tahmid Ahmed (220083463) - Frontend Developer
-Ahmad Hamour (220331744) - Frontend Developer | UI/UX Design | Documentation
-Sheriff Adisa (220041681) Frontend Developer
-Ishwar Saul (210173859) - Backend Developer
-Daiyan Ahad (200165433) - Frontend Developer  |  UI/UX Lead
-Hani Hussain (220183497) Frontend Developer
+- Tayte Keates (220085397) - Backend Developer  Lead
+- Mohammed Zeinelabdin (220131823) - Frontend Developer
+- Muhammed Tahmid Ahmed (220083463) - Frontend Developer
+- Ahmad Hamour (220331744) - Frontend Developer | UI/UX Design | Documentation
+- Sheriff Adisa (220041681) Frontend Developer
+- Ishwar Saul (210173859) - Backend Developer
+- Daiyan Ahad (200165433) - Frontend Developer  |  UI/UX Lead
+- Hani Hussain (220183497) Frontend Developer
 
 
 For any queries, suggestions, or contributions, please refer to our [GitHub repository](https://github.com/Tayte555/Team-project).
