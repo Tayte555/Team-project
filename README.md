@@ -8,9 +8,9 @@ SoleHaven is a dynamic e-commerce platform dedicated to the sale of sneakers and
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![Apache](https://img.shields.io/badge/apache-%23D42029.svg?style=for-the-badge&logo=apache&logoColor=white)
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/solehaven-project/solehaven)
-![GitHub contributors](https://img.shields.io/github/contributors/solehaven-project/solehaven)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/solehaven-project/solehaven/test_and_deploy.yml)
+![GitHub commit activity](https://img.shields.io/Tayte555/Team-project/graphs/commit-activity)
+![GitHub contributors](https://img.shields.io/github.com/Tayte555/Team-project/graphs/contributors)
+
 
 ## Table of Contents
 
