@@ -656,7 +656,7 @@ switch ($sortOption) {
         break;
 }
 
-$query = "SELECT * FROM products" . $sqlFilter . " " . $orderBy;
+$query = "SELECT * FROM products WHERE category NOT IN ('Accessories')" . $sqlFilter . " " . $orderBy;
 $result = mysqli_query($connection, $query);
 
 if (!$result) {
